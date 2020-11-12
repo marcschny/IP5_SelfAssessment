@@ -29,23 +29,5 @@ build:
   script:
     - pub run build $PUB_VARS
 
-test:
-  stage: test
-  script:
-    - pub run test $PUB_VARS
 
-review:
-  stage: review
-  script:
-    - pub run review $PUB_VARS
-
-staging:
-  stage: staging
-  script:
-    - pub run staging $PUB_VARS
-    
-production:
-  stage: production
-  script:
-    - pub run production $PUB_VARS
 
