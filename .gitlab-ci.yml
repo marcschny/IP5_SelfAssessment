@@ -3,7 +3,6 @@
 image: google/dart:2.8.4
 
 
-
 variables:
   # Use to learn more:
   # pub run test --help
@@ -26,7 +25,6 @@ cache:
 before_script:
   - apt-get --quiet update --yes
   - export PATH="$PATH":"~/.pub-cache/bin"
-  - pub get --no-precompile
 
 debugTests:
   stage: test
