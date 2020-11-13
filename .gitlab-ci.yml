@@ -24,7 +24,6 @@ cache:
 
 before_script:
   - apt-get --quiet update --yes
-  - export PATH="$PATH":"~/.pub-cache/bin"
 
 debugTests:
   stage: test
