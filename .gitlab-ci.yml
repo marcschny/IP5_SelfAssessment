@@ -29,7 +29,7 @@ debugTests:
   stage: test
   script:
     - flutter pub get
-    - flutter packages pub run build_runner build
+    - flutter packages pub run IP5_GitLab-Runner build
     - flutter test
     #- cd /builds/ip34-20bb/ip34-20bb_selfassessmentyouthapp/dateien
     #- dart --enable-asserts --enable-vm-service:59314 /builds/ip34-20bb/ip34-20bb_selfassessmentyouthapp/dateien/test/code_metrics_analyzer.dart
@@ -42,7 +42,7 @@ assembleDebug:
   stage: build
   script:
     - flutter pub get
-    #- flutter packages pub run IP5_GitLab-Runner build
+    - flutter packages pub run IP5_GitLab-Runner build
     - flutter build apk
   artifacts:
     paths:
