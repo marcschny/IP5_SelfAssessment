@@ -25,7 +25,7 @@ before_script:
   - tar -xf flutter-sdk.tar.xz
   - export PATH=$PATH:$PWD/flutter/bin
   - echo flutter.sdk=$PWD/flutter > android/local.properties
-  - chmod +x ./android/gradlew
+  #- chmod +x ./android/gradlew
 
 stages:
   - test
@@ -35,7 +35,7 @@ test:android:
   stage: test
   script:
     - cd android
-    - ./gradlew -Pci --console=plain :app:testDebug
+    #- ./gradlew -Pci --console=plain :app:testDebug
 
 build:apk:
   stage: build
