@@ -80,9 +80,9 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Assessment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date_created` TEXT, `date_finished` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Answer` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `answer` TEXT, `question_number` TEXT, FOREIGN KEY (`question_number`) REFERENCES `Question` (`question_number`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
+            'CREATE TABLE IF NOT EXISTS `Answer` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `answer` TEXT, `question_number` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`question_number`) REFERENCES `Question` (`question_number`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Question` (`id` INTEGER, `question_number` TEXT, `answered` INTEGER, `question` TEXT, `subquestion` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, PRIMARY KEY (`id`, `question_number`))');
+            'CREATE TABLE IF NOT EXISTS `Question` (`question_number` TEXT, `answered` INTEGER, `question` TEXT, `subquestion` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, PRIMARY KEY (`question_number`))');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `NetworkCard` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
