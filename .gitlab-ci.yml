@@ -38,7 +38,7 @@ before_script:
   - export PATH="$PATH:pwd/flutter/bin"
   - export PATH="$PATH:pwd/flutter/bin/cache/dart-sdk/bin"
   - set +o pipefail
-  - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
+  #- yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
 
 debugTests:
