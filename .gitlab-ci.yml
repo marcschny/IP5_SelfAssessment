@@ -53,7 +53,7 @@ build:bundle:
     paths:
       - build/app/outputs/bundle
 
-test:flutter:
-  stage: test
-  script:
-    - flutter test
+#test:flutter:
+#  stage: test
+#  script:
+#    - flutter test
