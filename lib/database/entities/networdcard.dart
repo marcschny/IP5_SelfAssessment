@@ -16,7 +16,9 @@ import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 class NetworkCard{
   @PrimaryKey(autoGenerate: true)
   final int id;
+  final int noLifeAreas;
+  final String lifeAreas;
   final int assessment_id;
 
-  NetworkCard(this.id, this.assessment_id);
+  NetworkCard(this.id, this.assessment_id, this.noLifeAreas, this.lifeAreas);
 }

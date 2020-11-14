@@ -1,6 +1,7 @@
 //entity Person
 
 import 'package:floor/floor.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
 
 @Entity(
@@ -10,7 +11,12 @@ import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
       childColumns: ['network_id'],
       parentColumns: ['id'],
       entity: NetworkCard,
-    )
+    ),
+    ForeignKey(
+      childColumns: ['assessment_id'],
+      parentColumns: ['id'],
+      entity: Assessment,
+    ),
   ],
 )
 class Person{
@@ -19,8 +25,9 @@ class Person{
   final String name;
   final String icon;
   final String lifeArea;
-  final int distance;
+  final double distance;
   final int network_id;
+  final int assessment_id;
 
-  Person(this.id, this.name, this.icon, this.lifeArea, this.distance, this.network_id);
+  Person(this.id, this.name, this.icon, this.lifeArea, this.distance, this.network_id, this.assessment_id);
 }

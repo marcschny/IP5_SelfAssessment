@@ -16,11 +16,12 @@ import 'assessment.dart';
   ],
 )
 class Question{
+  final int id;
   final String question_number;
   final bool answered;
   final String question;
   final String subquestion;
   final int assessment_id;
 
-  Question(this.question_number, this.answered, this.question, this.subquestion, this.assessment_id);
+  Question(this.id, this.question_number, this.answered, this.question, this.subquestion, this.assessment_id);
 }
