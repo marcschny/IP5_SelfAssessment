@@ -1,11 +1,7 @@
 //entity Person
 
 import 'package:floor/floor.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 
-import 'answer.dart';
-import 'changeproject.dart';
 
 @entity
 class Assessment{

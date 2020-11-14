@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 
-import 'database/entities/question.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   final callback = Callback(
-    //initialized for the first time
+    //when initialized for the first time
     onCreate: (database, version) async {
       const initScript = initialDataScript;
       for (final script in initScript) {

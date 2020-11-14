@@ -1,10 +1,8 @@
 //entity Person
 
 import 'package:floor/floor.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 
 import 'assessment.dart';
-import 'note.dart';
 
 @Entity(
   tableName: 'ChangeProject',
