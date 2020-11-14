@@ -10,12 +10,21 @@ Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   final callback = Callback(
+    //initialized for the first time
     onCreate: (database, version) async {
       const initScript = initialDataScript;
       for (final script in initScript) {
         await database.execute(script);
       }
     },
+    //when app is opened
+    onOpen: (database) async{
+      //tbd
+    },
+    //when upgraded
+    onUpgrade: (database, startVersion, endVersion){
+      //tbd
+    }
   );
 
   final database = await $FloorAppDatabase
