@@ -32,20 +32,34 @@ stages:
   - build
 
 test:android:
+  #only: [merge_requests]
   stage: test
   script:
     - cd android
     #- ./gradlew -Pci --console=plain :app:testDebug
 
+test:flutter:
+  #only: [merge_requests]
+  stage: test
+  script:
+    - flutter pub get
+    - flutter packages pub run build_runner build
+    - flutter test
+
+
 build:apk:
+  #only: [merge_requests]
   stage: build
   script:
+    - flutter pub get
+    - flutter packages pub run build_runner build
     - flutter build apk
   artifacts:
     paths:
       - build/app/outputs/apk
 
 build:bundle:
+  #only: [merge_requests]
   stage: build
   script:
     - flutter build appbundle
@@ -53,7 +67,3 @@ build:bundle:
     paths:
       - build/app/outputs/bundle
 
-#test:flutter:
-#  stage: test
-#  script:
-#    - flutter test
