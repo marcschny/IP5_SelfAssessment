@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Center(
         child: Text(
           "Hello World",
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20, color: ThemeColors.greenShade1),
         ),
       )),
     );
