@@ -16,8 +16,8 @@ before_script:
   - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
   - export ANDROID_HOME=$PWD/android-sdk-linux
   - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
-  # temporarily disable checking for EPIPE error and use yes to accept all licenses
 
+  # temporarily disable checking for EPIPE error and use yes to accept all licenses
   # flutter sdk setup
   - git clone https://github.com/flutter/flutter.git -b stable --depth 1
   - export PATH=$PATH:$PWD/flutter/bin
@@ -52,7 +52,7 @@ test:android:
 
 
 build:apk:
-  #only: [merge_requests]
+  only: [merge_requests]
   stage: build
   script:
     - flutter pub get
@@ -63,7 +63,7 @@ build:apk:
       - build/app/outputs/apk
 
 build:bundle:
-  #only: [merge_requests]
+  only: [merge_requests]
   stage: build
   script:
     - flutter build appbundle
