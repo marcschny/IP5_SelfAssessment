@@ -21,10 +21,10 @@ before_script:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
   # flutter sdk setup
-  - wget --output-document=flutter-sdk.tar.xz $FLUTTER_VERSION
-  - tar -xf flutter-sdk.tar.xz
+  #- wget --output-document=flutter-sdk.tar.xz $FLUTTER_VERSION
+  #- tar -xf flutter-sdk.tar.xz
   - export PATH=$PATH:$PWD/flutter/bin
-  - echo flutter.sdk=$PWD/flutter > android/local.properties
+  #- echo flutter.sdk=$PWD/flutter > android/local.properties
   #- chmod +x ./android/gradlew
 
 stages:
@@ -32,14 +32,14 @@ stages:
   - build
 
 test:android:
-  #only: [merge_requests]
+  only: [merge_requests]
   stage: test
   script:
     - cd android
     #- ./gradlew -Pci --console=plain :app:testDebug
 
 test:flutter:
-  #only: [merge_requests]
+  only: [merge_requests]
   stage: test
   script:
     - flutter pub get
@@ -48,7 +48,7 @@ test:flutter:
 
 
 build:apk:
-  #only: [merge_requests]
+  only: [merge_requests]
   stage: build
   script:
     - flutter pub get
@@ -59,7 +59,7 @@ build:apk:
       - build/app/outputs/apk
 
 build:bundle:
-  #only: [merge_requests]
+  only: [merge_requests]
   stage: build
   script:
     - flutter build appbundle
