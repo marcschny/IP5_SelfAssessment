@@ -19,8 +19,6 @@ before_script:
   # temporarily disable checking for EPIPE error and use yes to accept all licenses
 
   # flutter sdk setup
-  #- wget --output-document=flutter-sdk.tar.xz $FLUTTER_VERSION
-  #- tar -xf flutter-sdk.tar.xz
   - git clone https://github.com/flutter/flutter.git -b stable --depth 1
   - export PATH=$PATH:$PWD/flutter/bin
   - export PATH=$PATH:$PWD/flutter/bin/cache/dart-sdk/bin
@@ -31,8 +29,7 @@ before_script:
   - flutter pub get
   - flutter packages pub run build_runner build --delete-conflicting-outputs
   #- flutter packages pub run build_runner build
-  #- echo flutter.sdk=$PWD/flutter > android/local.properties
-  #- chmod +x ./android/gradlew
+
 
 stages:
   - test
@@ -43,15 +40,15 @@ test:android:
   stage: test
   script:
     - cd android
-    #- ./gradlew -Pci --console=plain :app:testDebug
 
-test:flutter:
-  #only: [merge_requests]
-  stage: test
-  script:
-    - flutter pub get
-    - flutter packages pub run build_runner build
-    - flutter test
+### Checks test cases in test folder ###
+#test:flutter:
+#  #only: [merge_requests]
+#  stage: test
+#  script:
+#    - flutter pub get
+#    - flutter packages pub run build_runner build
+#    - flutter test
 
 
 build:apk:
