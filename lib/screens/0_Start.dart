@@ -1,13 +1,9 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 class StartScreen extends StatelessWidget{
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,8 @@ class StartScreen extends StatelessWidget{
             ),
           ),
 
-          //assessment titles
+
+          //assessment top titles
           Positioned(
             top: 0,
             left: 0,
@@ -144,11 +141,12 @@ class StartScreen extends StatelessWidget{
                     letterSpacing: 0.8,
                   ),
                 ),
-                onPressed: (){},
+                onPressed: (){
+                  print('pressed "Starten"');
+                },
               ),
             ),
           )
-
 
         ],
       ),
