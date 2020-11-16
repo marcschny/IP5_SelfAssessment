@@ -14,6 +14,16 @@ class StartScreen extends StatelessWidget{
     return Scaffold(
       body: Stack(
         children: [
+
+          //background image
+          Image.asset(
+            "assets/background_image/gradient-grey.png",
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            fit: BoxFit.cover,
+          ),
+
+
           //custom curved shape (fills entire screen)
           Positioned(
             top: 0,
