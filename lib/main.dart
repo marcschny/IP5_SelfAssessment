@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
+import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,10 +43,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Self Assessment Social Relationships',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
+      //theme: tbd
+      home: StartScreen(),
+      routes: {
+        "/start": (context) => StartScreen(),
+      },
     );
   }
 }
@@ -61,12 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Center(
-        child: Text(
-          "Hello World",
-          style: TextStyle(fontSize: 20),
-        ),
-      )),
+          child: Text(
+            "Hello World",
+            style: TextStyle(fontSize: 20, color: ThemeColors.greenShade1),
+          ),
+      ),
     );
   }
 }
