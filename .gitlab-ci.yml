@@ -33,7 +33,7 @@ before_script:
 
 stages:
   - test
-  - build
+  #- build
 
 test:android:
   only: [merge_requests]
