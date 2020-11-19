@@ -17,12 +17,12 @@ class _StartScreenState extends State<StartScreen>{
   int _currentIndex = 0;
 
   List pageList = [
-    Item0(),
-    Item1(),
-    Item2(),
-    Item3(),
-    Item4(),
-    Item5(),
+    Part0(),
+    Part1(),
+    Part2(),
+    Part3(),
+    Part4(),
+    Part5(),
   ];
 
   List<T> map<T>(List list, Function handler) {
@@ -140,11 +140,12 @@ class _StartScreenState extends State<StartScreen>{
                             border: Border.all(
                                 color: _currentIndex == i
                                   ? Colors.transparent
-                                  : Colors.grey
+                                  : Color.fromRGBO(200, 200, 200, 1)
                             ),
                             color: _currentIndex == i
-                                ? Colors.grey
-                                : Colors.transparent),
+                                ? Color.fromRGBO(200, 200, 200, 1)
+                                : Colors.transparent
+                        ),
                       );
                     }).toList(),
                   ),
@@ -195,8 +196,8 @@ class _StartScreenState extends State<StartScreen>{
 }
 
 
-class Item0 extends StatelessWidget {
-  const Item0({Key key}) : super(key: key);
+class Part0 extends StatelessWidget {
+  const Part0({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -217,13 +218,6 @@ class Item0 extends StatelessWidget {
               WidgetSpan(
                 child: Image.asset("assets/illustrations/flowchart.png"),
               ),
-              TextSpan(
-                text: "\n\n\nWische hier nach links um mehr Informationen  über dieses Assessment zu erhalten\n\n",
-                style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 14
-                ),
-              ),
             ],
           ),
 
@@ -233,8 +227,8 @@ class Item0 extends StatelessWidget {
   }
 }
 
-class Item1 extends StatelessWidget {
-  const Item1({Key key}) : super(key: key);@override
+class Part1 extends StatelessWidget {
+  const Part1({Key key}) : super(key: key);@override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -246,7 +240,7 @@ class Item1 extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
@@ -274,8 +268,8 @@ class Item1 extends StatelessWidget {
   }
 }
 
-class Item2 extends StatelessWidget {
-  const Item2({Key key}) : super(key: key);@override
+class Part2 extends StatelessWidget {
+  const Part2({Key key}) : super(key: key);@override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -287,7 +281,7 @@ class Item2 extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
@@ -315,8 +309,8 @@ class Item2 extends StatelessWidget {
   }
 }
 
-class Item3 extends StatelessWidget {
-  const Item3({Key key}) : super(key: key);@override
+class Part3 extends StatelessWidget {
+  const Part3({Key key}) : super(key: key);@override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -328,7 +322,7 @@ class Item3 extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
@@ -349,8 +343,8 @@ class Item3 extends StatelessWidget {
   }
 }
 
-class Item4 extends StatelessWidget {
-  const Item4({Key key}) : super(key: key);@override
+class Part4 extends StatelessWidget {
+  const Part4({Key key}) : super(key: key);@override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -362,7 +356,7 @@ class Item4 extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
@@ -383,8 +377,8 @@ class Item4 extends StatelessWidget {
   }
 }
 
-class Item5 extends StatelessWidget {
-  const Item5({Key key}) : super(key: key);@override
+class Part5 extends StatelessWidget {
+  const Part5({Key key}) : super(key: key);@override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -396,20 +390,36 @@ class Item5 extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du eine visualle Auswertung Deines Assessments.\n\n\n",
+                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du eine visuelle Auswertung Deines Assessments.\n\n\n",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
                     ),
                   ),
                   TextSpan(
-                    text: "Drücke auf Starten um das Assessment zu starten !",
+                    text: "Tippe unten auf ",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "Starten",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: ThemeColors.greenShade2,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  TextSpan(
+                    text: " um das Assessment zu starten !",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,
