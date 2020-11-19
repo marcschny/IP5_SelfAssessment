@@ -45,7 +45,7 @@ abstract class ThemeTexts{
 
   //assessment title
   static TextStyle assessmentTitle = GoogleFonts.roboto(
-    fontSize: 18,
+    fontSize: 17,
     color: Color.fromRGBO(73, 101, 77, 1),
     fontWeight: FontWeight.w500
   );
@@ -53,7 +53,7 @@ abstract class ThemeTexts{
 
   //assessment subtitle
   static TextStyle assessmentSubtitle = GoogleFonts.roboto(
-    fontSize: 20,
+    fontSize: 20.5,
     color: Color.fromRGBO(170, 170, 170, 1),
     fontWeight: FontWeight.w500
   );
@@ -61,9 +61,9 @@ abstract class ThemeTexts{
 
   //assessment intro text
   static TextStyle assessmentIntro = GoogleFonts.roboto(
-    fontSize: 14,
+    fontSize: 14.5,
     color: Colors.black,
-    fontWeight: FontWeight.w300
+    fontWeight: FontWeight.w400
   );
 
 
