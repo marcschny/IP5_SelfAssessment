@@ -14,10 +14,10 @@ class TopBar extends StatelessWidget{
 
   const TopBar({
     Key key,
-    this.title,
-    this.titleNumber,
-    this.onClose,
-    this.subtitle,
+    @required this.title,
+    @required this.titleNumber,
+    @required this.onClose,
+    @required this.subtitle,
     this.intro
   }) : super(key: key);
 
@@ -49,7 +49,7 @@ class TopBar extends StatelessWidget{
                   title,
                   style: ThemeTexts.assessmentTitle,
                   textAlign: TextAlign.start,
-                  maxLines: 2,
+                  maxLines: 3,
                   overflow: TextOverflow.clip,
                 ),
               ),

@@ -17,17 +17,17 @@ class BottomNavigation extends StatelessWidget{
     Key key,
     this.showNextButton,
     this.showBackButton,
-    this.nextTitle,
-    this.callbackBack,
-    this.callbackNext
+    @required this.nextTitle,
+    @required this.callbackBack,
+    @required this.callbackNext
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 84,
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+      height: 94,
+      padding: EdgeInsets.fromLTRB(18, 10, 13, 18),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/background_image/gradient-grey.png"),

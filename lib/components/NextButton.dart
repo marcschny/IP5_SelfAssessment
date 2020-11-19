@@ -10,8 +10,8 @@ class NextButton extends StatelessWidget{
 
   const NextButton({
     Key key,
-    this.nextTitle,
-    this.callback
+    @required this.nextTitle,
+    @required this.callback
   }) : super(key: key);
 
   @override
@@ -45,11 +45,9 @@ class NextButton extends StatelessWidget{
                       textAlign: TextAlign.end,
                       style: ThemeTexts.assessmentNavigationNext,
                     )
-
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
@@ -57,8 +55,8 @@ class NextButton extends StatelessWidget{
 
 
         ButtonTheme(
-          height: 54,
-          minWidth: 54,
+          height: 60,
+          minWidth: 70,
           child: RaisedButton(
             elevation: 0.0,
             color: ThemeColors.greenShade2,

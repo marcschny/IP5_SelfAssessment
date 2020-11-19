@@ -9,14 +9,14 @@ class GoBackButton extends StatelessWidget{
 
   const GoBackButton({
     Key key,
-    this.callback
+    @required this.callback
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      height: 46,
-      minWidth: 46,
+      height: 55,
+      minWidth: 55,
       child: RaisedButton(
         elevation: 0.0,
         color: ThemeColors.greyShade1,
