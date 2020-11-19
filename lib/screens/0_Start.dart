@@ -80,19 +80,11 @@ class _StartScreenState extends State<StartScreen>{
                     children: [
                       TextSpan(
                         text: "Kurz Assessment\n",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        ),
+                        style: ThemeTexts.startAssessmentTitle
                       ),
                       TextSpan(
                         text: "Soziale Beziehungen",
-                        style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black
-                        ),
+                        style: ThemeTexts.startAssessmentSubtitle
                       ),
                     ],
                   ),
