@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
+import 'package:ip5_selbsteinschaetzung/screens/testscreen.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 Future<void> main() async {
@@ -44,9 +45,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Self Assessment Social Relationships',
       //theme: tbd
-      home: StartScreen(),
+      home: TestScreen(),
       routes: {
         "/start": (context) => StartScreen(),
+        "/test": (context) => TestScreen(),
       },
     );
   }
