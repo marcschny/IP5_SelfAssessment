@@ -35,13 +35,9 @@ class _LifeAreasState extends State<LifeAreas>{
   };
 
 
-  List<CheckBoxComponent> _widgetList;
-
-
   @override
   void initState() {
     super.initState();
-    _widgetList = new List();
   }
 
   @override
