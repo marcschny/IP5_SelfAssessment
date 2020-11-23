@@ -20,7 +20,6 @@ class ExpandableQuestionCard extends StatelessWidget{
 
 
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +27,7 @@ class ExpandableQuestionCard extends StatelessWidget{
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Container(
-          color: answered ? ThemeColors.greenShade2 : ThemeColors.greenShade3,
+          color: ThemeColors.greenShade3,
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           child: ExpandablePanel(
             header: Container(
