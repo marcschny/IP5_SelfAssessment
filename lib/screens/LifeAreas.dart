@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -19,25 +22,26 @@ class LifeAreas extends StatefulWidget{
 class _LifeAreasState extends State<LifeAreas>{
 
   TextEditingController _textController = TextEditingController();
-  List<CheckBoxComponent> list = List();
 
 
-  List<String> _listData = [
-    "Familie",
-    "Freunde*Innen im Heim/WG",
-    "Freunde*Innen ausserhalb",
-    "Sozialpädagogen*Innen im Heim/WG",
-    "Schule / Ausbildung / Arbeit",
-    "Verein / Hobby",
-    "Tiere",
-  ];
+  Map<String, bool> _lifeAreasMap = {
+    "Tiere": false,
+    "Verein / Hobby": false,
+    "Schule / Ausbildung / Arbeit": false,
+    "Sozialpädagogen*Innen im Heim/WG": false,
+    "Freunde*Innen ausserhalb": false,
+    "Freunde*Innen im Heim/WG": false,
+    "Familie": false,
+  };
 
 
+  List<CheckBoxComponent> _widgetList;
 
 
   @override
   void initState() {
     super.initState();
+    _widgetList = new List();
   }
 
   @override
@@ -49,6 +53,8 @@ class _LifeAreasState extends State<LifeAreas>{
 
   @override
   Widget build(BuildContext context) {
+    final int assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -72,7 +78,7 @@ class _LifeAreasState extends State<LifeAreas>{
                   titleNumber: 1,
                   onClose: null,
                   subtitle: "Lebensbereiche",
-                  percent: 0.1,
+                  percent: 0.05,
                   intro: "Für eine Übersicht über dein persönliches Netzwerk kannst Du zuerst auswählen, welchen Lebensbereichen Du die verschiedenen Personen zuordnen möchtest: Welches sind für Dich relevante Lebensbereiche? ",
                 ),
 
@@ -82,9 +88,15 @@ class _LifeAreasState extends State<LifeAreas>{
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
                     child: ListView.builder(
-                      itemCount: _listData.length,
+                      itemCount: _lifeAreasMap.length,
                       itemBuilder: (context, index){
-                        return CheckBoxComponent(checkboxTitle: _listData[index]);
+                        return CheckBoxComponent(
+                          checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
+                          checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
+                          callback: (checkBoxTitle){
+                            _switchChecked(checkBoxTitle);
+                          }
+                        );
                       },
                     ),
                   ),
@@ -99,7 +111,7 @@ class _LifeAreasState extends State<LifeAreas>{
               showBackButton: false,
               nextTitle: "Wichtige Personen",
               callbackNext: (){
-
+                _next(context, assessmentId);
               },
             ),
           ],
@@ -141,9 +153,52 @@ class _LifeAreasState extends State<LifeAreas>{
 
   _onSubmit(String value){
     print(value);
-    _listData.insert(0, value);
+    _lifeAreasMap.putIfAbsent(value, () => true);
     _textController.clear();
     setState(() {});
+  }
+
+  _switchChecked(String title){
+    _lifeAreasMap.forEach((key, value) {
+      if(key == title){
+        _lifeAreasMap.update(key, (value) => value ? false : true);
+      }
+    });
+    setState(() {
+
+    });
+  }
+
+
+  void _next(BuildContext context, int assessmentId){
+    int noLifeAreas = 0;
+    String lifeAreas = "";
+
+    //put each key (lifeArea) in a comma separated string
+    //and count number of life areas
+    _lifeAreasMap.forEach((key, value) {
+      if(value) {
+        print(key);
+        noLifeAreas++;
+        lifeAreas += key+", ";
+      }
+    });
+    print(lifeAreas);
+
+    //create network card
+    final NetworkCard newNetworkCard = new NetworkCard(null, assessmentId, noLifeAreas, lifeAreas);
+
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+    assessmentRepo.createNetworkCard(newNetworkCard).then((networkId){
+      print(newNetworkCard.toString());
+      print(networkId);
+      Navigator.of(context).pushNamed('/importantPersons', arguments: assessmentId);
+    });
+
+    //reset variables
+    noLifeAreas = 0;
+    lifeAreas = "";
   }
 
 

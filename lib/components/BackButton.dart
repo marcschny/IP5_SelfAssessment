@@ -25,7 +25,9 @@ class GoBackButton extends StatelessWidget{
           Icons.arrow_back_ios_rounded,
           color: Color.fromRGBO(80, 80, 80, 1),
         ),
-        onPressed: callback,
+        onPressed: (){
+          callback;
+        },
       ),
     );
   }

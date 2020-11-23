@@ -4,8 +4,10 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 class CheckBoxComponent extends StatefulWidget {
   final String checkboxTitle;
+  final bool checked;
+  final Function callback;
 
-  const CheckBoxComponent({Key key, @required this.checkboxTitle})
+  const CheckBoxComponent({Key key, @required this.checkboxTitle, @required this.checked, this.callback})
       : super(key: key);
 
   @override
@@ -13,7 +15,6 @@ class CheckBoxComponent extends StatefulWidget {
 }
 
 class CheckBoxComponentState extends State<CheckBoxComponent>{
-  bool checked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +24,9 @@ class CheckBoxComponentState extends State<CheckBoxComponent>{
       child: Row(
         children: [
           Checkbox(
-            value: checked,
+            value: widget.checked,
             onChanged: (bool value) {
-              setState(() {
-                checked = value;
-              });
-              print(widget.checkboxTitle+" ["+checked.toString()+"]");
+              widget.callback(widget.checkboxTitle);
             },
             activeColor: ThemeColors.greenShade2,
             checkColor: ThemeColors.greenShade4,
@@ -36,10 +34,8 @@ class CheckBoxComponentState extends State<CheckBoxComponent>{
           Expanded(
             child: GestureDetector(
                 onTap: () {
-                  setState(() {
-                    checked = !checked;
-                  });
-                  print(widget.checkboxTitle+" ["+checked.toString()+"]");
+                  print(widget.checkboxTitle+" ["+widget.checked.toString()+"]");
+                  widget.callback(widget.checkboxTitle);
                 },
                 child: Text(
                   widget.checkboxTitle,

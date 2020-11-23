@@ -37,16 +37,16 @@ abstract class AssessmentRepository{
   /* ANSWER */
 
   //find answer by question_number
-  @Query('SELECT * FROM Answer WHERE question_number = :question_number AND assessment_id')
-  Future<Question> findAnswer(String question_number, int assessment_id);
+  @Query('SELECT * FROM Answer WHERE question_number = :question_number AND assessment_id = :assessment_id')
+  Future<Answer> findAnswer(String question_number, int assessment_id);
 
   //get all answers by assessment_id
   @Query('SELECT * FROM Answer WHERE assessment_id = :assessment_id')
-  Future<List<Question>> getAllAnswersByAssessment(int assessment_id);
+  Future<List<Answer>> getAllAnswersByAssessment(int assessment_id);
 
   //insert answer
   @insert
-  Future<void> insertAnswer(Answer answer);
+  Future<int> insertAnswer(Answer answer);
 
   //update answer
   @update
@@ -71,7 +71,7 @@ abstract class AssessmentRepository{
 
   //new assessment
   @insert
-  Future<void> createAssessment(Assessment assessment);
+  Future<int> createAssessment(Assessment assessment);
 
   //update assessment
   @update
@@ -96,15 +96,15 @@ abstract class AssessmentRepository{
 
   //new changeproject
   @insert
-  Future<void> createChangeProject();
+  Future<int> createChangeProject(ChangeProject changeProject);
 
   //update changeproject
   @update
-  Future<void> updateChangeProject();
+  Future<void> updateChangeProject(ChangeProject changeProject);
 
   //delete changeproject
   @delete
-  Future<void> deleteChangeProject();
+  Future<void> deleteChangeProject(ChangeProject changeProject);
 
 
 
@@ -125,15 +125,15 @@ abstract class AssessmentRepository{
 
   //create new note
   @insert
-  Future<void> createNote();
+  Future<int> createNote(Note note);
 
   //update note
   @update
-  Future<void> updateNote();
+  Future<void> updateNote(Note note);
 
   //delete note
   @delete
-  Future<void> deleteNote();
+  Future<void> deleteNote(Note note);
 
 
 
@@ -150,15 +150,15 @@ abstract class AssessmentRepository{
 
   //create new network card
   @insert
-  Future<void> createNetworkCard();
+  Future<int> createNetworkCard(NetworkCard networkCard);
 
   //update network card
   @update
-  Future<void> updateNetworkCard();
+  Future<void> updateNetworkCard(NetworkCard networkCard);
 
   //delete network card
   @delete
-  Future<void> deleteNetworkCard();
+  Future<void> deleteNetworkCard(NetworkCard networkCard);
 
 
 
@@ -179,15 +179,15 @@ abstract class AssessmentRepository{
 
   //create Person
   @insert
-  Future<void> createPerson();
+  Future<int> createPerson(Person person);
 
   //update Person
   @update
-  Future<void> updatePerson();
+  Future<void> updatePerson(Person person);
 
   //delete Person
   @delete
-  Future<void> deletePerson();
+  Future<void> deletePerson(Person person);
 
 
 

@@ -5,7 +5,9 @@ import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
+import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,14 +44,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Self Assessment Social Relationships',
-      //theme: tbd
-      home: LifeAreas(),
-      routes: {
-        "/start": (context) => StartScreen(),
-        "/lifeAreas": (context) => LifeAreas(),
-      },
+    return Provider<AppDatabase>(
+      create: (_) => database,
+      child: MaterialApp(
+        initialRoute: "/start",
+        routes: {
+          "/start": (context) => StartScreen(),
+          "/lifeAreas": (context) => LifeAreas(),
+          "/importantPersons": (context) => ImportantPersons(),
+        },
+      ),
     );
   }
 }
