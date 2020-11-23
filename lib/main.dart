@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_4.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 Future<void> main() async {
@@ -44,9 +47,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Self Assessment Social Relationships',
       //theme: tbd
-      home: StartScreen(),
+      home: Part_2_1(),
       routes: {
-        "/start": (context) => StartScreen(),
+       // "/start": (context) => StartScreen(),
+        "/part_2_1": (context) => Part_2_1(),
+        "/part_2_2": (context) => Part_2_2(),
+        "/part_2_3": (context) => Part_2_3(),
+        "/part_2_4": (context) => Part_2_4()
       },
     );
   }

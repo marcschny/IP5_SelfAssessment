@@ -5,7 +5,6 @@ import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
-import '1.1_My_NetworkCard.dart';
 
 class Part_2_4 extends StatefulWidget {
   const Part_2_4({Key key}) : super(key: key);
