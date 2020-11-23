@@ -113,6 +113,14 @@ abstract class ThemeTexts{
   );
 
 
+  //dialog box subtitles
+  static TextStyle assessmentText = GoogleFonts.roboto(
+    fontSize: 20,
+    color: Colors.black,
+    fontWeight: FontWeight.w400
+  );
+
+
 
 
 }

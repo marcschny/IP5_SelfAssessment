@@ -11,6 +11,7 @@ class TopBar extends StatelessWidget{
   final Function onClose;
   final String subtitle;
   final String intro;
+  final double percent;
 
   const TopBar({
     Key key,
@@ -18,7 +19,8 @@ class TopBar extends StatelessWidget{
     @required this.titleNumber,
     @required this.onClose,
     @required this.subtitle,
-    this.intro
+    this.intro,
+    @required this.percent
   }) : super(key: key);
 
 
@@ -69,7 +71,7 @@ class TopBar extends StatelessWidget{
             ],
           ),
           ProgressBar(
-            percent: 0.1
+            percent: percent,
           ),
           Container(
             width: MediaQuery.of(context).size.width,

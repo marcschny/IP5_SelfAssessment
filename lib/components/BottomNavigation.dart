@@ -24,22 +24,21 @@ class BottomNavigation extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 94,
-      padding: EdgeInsets.fromLTRB(18, 10, 13, 18),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/background_image/gradient-grey.png"),
-          fit: BoxFit.fill
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 94,
+        padding: EdgeInsets.fromLTRB(18, 10, 13, 18),
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            showBackButton ? GoBackButton(callback: callbackBack) : SizedBox(width: 20),
+            if(showNextButton) NextButton(nextTitle: nextTitle, callback: callbackNext),
+          ],
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          if(showBackButton) GoBackButton(callback: callbackBack),
-          if(showNextButton) NextButton(nextTitle: nextTitle, callback: callbackNext),
-        ],
       ),
     );
   }
