@@ -89,6 +89,13 @@ abstract class ThemeTexts{
     fontWeight: FontWeight.w300
   );
 
+  //answers
+  static TextStyle assessmentAnswer = GoogleFonts.roboto(
+    fontSize: 16.5,
+    color: Colors.black,
+    fontWeight: FontWeight.w300
+  );
+
 
   //dialog box titles
   static TextStyle assessmentDialogTitle = GoogleFonts.roboto(
