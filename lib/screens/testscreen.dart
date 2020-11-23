@@ -29,20 +29,11 @@ class _TestScreenState extends State<TestScreen>{
                 question: "Wenn Du daran denkst, was für eine Person Du gerne wärst: Wie könnte das Motto dieser Person lauten?",
                 answered: false,
                 questionNumber: "2.1.1",
-                callback: (question){
-                  print("tapped on the question: "+question);
-                },
               ),
               QuestionCard(
                 question: "Was fällt Dir manchmal schwer im Umgang mit anderen Menschen? ",
                 answered: true,
                 questionNumber: "2.1.2",
-                callback: (question, questionNumber){
-                  showDialog(
-                    context: context,
-                    child: QuestionDialog(question: question, questionNumber: questionNumber)
-                  );
-                },
               ),
             ],
           ),

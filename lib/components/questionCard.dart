@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ip5_selbsteinschaetzung/components/questionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 class QuestionCard extends StatelessWidget{
@@ -53,7 +54,10 @@ class QuestionCard extends StatelessWidget{
         ),
       ),
       onTap: (){
-        callback(question, questionNumber);
+        showDialog(
+            context: context,
+            child: QuestionDialog(question: question, questionNumber: questionNumber)
+        );
       },
     );
   }
