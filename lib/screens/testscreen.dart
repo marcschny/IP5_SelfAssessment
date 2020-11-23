@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/questionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 class TestScreen extends StatefulWidget {
@@ -36,8 +37,11 @@ class _TestScreenState extends State<TestScreen>{
                 question: "Was fällt Dir manchmal schwer im Umgang mit anderen Menschen? ",
                 answered: true,
                 questionNumber: "2.1.2",
-                callback: (question){
-                  print("tapped on the question: "+question);
+                callback: (question, questionNumber){
+                  showDialog(
+                    context: context,
+                    child: QuestionDialog(question: question, questionNumber: questionNumber)
+                  );
                 },
               ),
             ],

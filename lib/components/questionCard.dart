@@ -27,7 +27,7 @@ class QuestionCard extends StatelessWidget{
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Container(
-            color: ThemeColors.greenShade2,
+            color: answered ? ThemeColors.greenShade2 : ThemeColors.greenShade3,
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
