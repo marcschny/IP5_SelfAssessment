@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
+import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
@@ -25,16 +26,8 @@ class _TestScreenState extends State<TestScreen>{
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
           child: Column(
             children: [
-              QuestionCard(
-                question: "Wenn Du daran denkst, was für eine Person Du gerne wärst: Wie könnte das Motto dieser Person lauten?",
-                answered: false,
-                questionNumber: "2.1.1",
-              ),
-              QuestionCard(
-                question: "Was fällt Dir manchmal schwer im Umgang mit anderen Menschen? ",
-                answered: true,
-                questionNumber: "2.1.2",
-              ),
+              ExpandableQuestionCard(question: "In einer mir bekannten Gruppe etwas sagen/eine Idee vorbringen", questionNumber: "3.1.1", answered: false),
+              ExpandableQuestionCard(question: "Ein Gespräch anfangen/andere ansprechen", questionNumber: "3.1.2", answered: false),
             ],
           ),
         ),
