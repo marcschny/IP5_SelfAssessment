@@ -5,6 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:flutter_score_slider/flutter_score_slider.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 
 
 
@@ -73,6 +74,8 @@ class _PersonDialogState extends State<PersonDialog>{
     _dropdownMenuItems = List();
     _lifeAreas = List();
     _selectedLifeArea = "";
+    _selectedIcon = "";
+    _nameController.clear();
     _getLifeAreas();
   }
 
@@ -99,7 +102,7 @@ class _PersonDialogState extends State<PersonDialog>{
 
                 //title
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: EdgeInsets.only(top: 10, bottom: 14),
                   child: Text(
                     "Person hinzufügen",
                     style: ThemeTexts.assessmentDialogTitle,
@@ -457,7 +460,7 @@ class _PersonDialogState extends State<PersonDialog>{
                 color: Color.fromRGBO(80, 80, 80, 1),
               ),
               onPressed: (){
-
+                Navigator.of(context).pop();
               },
             ),
           ),
@@ -474,7 +477,18 @@ class _PersonDialogState extends State<PersonDialog>{
                   color: Color.fromRGBO(80, 80, 80, 1),
                 ),
                 onPressed: (){
-                    //todo: validate inputs
+                    print(_validate().toString());
+                    if(!_validate()){
+                      Toast.show(
+                        _missingInput(),
+                        context,
+                        duration: Toast.LENGTH_LONG,
+                        gravity: Toast.BOTTOM,
+                        backgroundColor: Colors.black54,
+                      );
+                    }else{
+                      //todo: write Person to db
+                    }
                 },
               ),
             ),
@@ -503,6 +517,21 @@ class _PersonDialogState extends State<PersonDialog>{
         );
       }
     });
+  }
+
+  bool _validate(){
+    if(_nameController.text != "" && _selectedIcon != "" && _selectedLifeArea != "" && _currentDistance != null) return true;
+    else return false;
+  }
+
+  String _missingInput(){
+    if(_nameController.text == ""){
+      return "Gib der Person einen Namen";
+    }else if(_selectedIcon == ""){
+      return "Wähle eine Kategorie";
+    }else if(_selectedLifeArea == ""){
+      return "Wähle einen Lebensbereich";
+    }
   }
 
 }
