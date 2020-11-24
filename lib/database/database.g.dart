@@ -502,6 +502,13 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
+  Future<void> getLifeAreas(int id) async {
+    await _queryAdapter.queryNoReturn(
+        'SELECT lifeAreas FROM NetworkCard WHERE assessment_id = ?',
+        arguments: <dynamic>[id]);
+  }
+
+  @override
   Future<List<Person>> getAllPersons() async {
     return _queryAdapter.queryList('SELECT * FROM Person',
         mapper: (Map<String, dynamic> row) => Person(

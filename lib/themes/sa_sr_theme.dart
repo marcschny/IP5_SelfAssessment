@@ -99,7 +99,7 @@ abstract class ThemeTexts{
 
   //dialog box titles
   static TextStyle assessmentDialogTitle = GoogleFonts.roboto(
-    fontSize: 18,
+    fontSize: 20,
     color: Colors.black,
     fontWeight: FontWeight.w500
   );
@@ -107,7 +107,7 @@ abstract class ThemeTexts{
 
   //dialog box subtitles
   static TextStyle assessmentDialogSubtitle = GoogleFonts.roboto(
-    fontSize: 15,
+    fontSize: 17,
     color: Colors.black,
     fontWeight: FontWeight.w500
   );

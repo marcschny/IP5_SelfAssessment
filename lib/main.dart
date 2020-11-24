@@ -9,6 +9,8 @@ import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'components/personDialog.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -52,6 +54,7 @@ class MyApp extends StatelessWidget {
           "/start": (context) => StartScreen(),
           "/lifeAreas": (context) => LifeAreas(),
           "/importantPersons": (context) => ImportantPersons(),
+          "/personDialog": (context) => PersonDialog(),
         },
       ),
     );

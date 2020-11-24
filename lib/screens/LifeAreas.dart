@@ -193,8 +193,9 @@ class _LifeAreasState extends State<LifeAreas>{
     final assessmentRepo = appDatabase.assessmentRepository;
     assessmentRepo.createNetworkCard(newNetworkCard).then((networkId){
       print(newNetworkCard.toString());
-      print(networkId);
-      Navigator.of(context).pushNamed('/importantPersons', arguments: assessmentId);
+      print("assId: "+assessmentId.toString());
+      print("netId: "+networkId.toString());
+      Navigator.of(context).pushNamed('/importantPersons', arguments: <String, int>{"assessmentId": assessmentId, "networkId": networkId},);
     });
 
     //reset variables

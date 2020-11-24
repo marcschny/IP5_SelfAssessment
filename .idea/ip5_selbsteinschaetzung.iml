@@ -24,6 +24,12 @@
       <excludeFolder url="file://$MODULE_DIR$/ip5_selbsteinschaetzung/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ip5_selbsteinschaetzung/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ip5_selbsteinschaetzung/build" />
+      <excludeFolder url="file://$MODULE_DIR$/widgets/custom_radio_grouped_button-1.0.6+1-override/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/widgets/custom_radio_grouped_button-1.0.6+1-override/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/widgets/custom_radio_grouped_button-1.0.6+1-override/build" />
+      <excludeFolder url="file://$MODULE_DIR$/widgets/custom_radio_grouped_button-1.0.6+1-override/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/widgets/custom_radio_grouped_button-1.0.6+1-override/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/widgets/custom_radio_grouped_button-1.0.6+1-override/example/build" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

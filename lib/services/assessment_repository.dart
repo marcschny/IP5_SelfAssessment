@@ -148,6 +148,7 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM NetworkCard WHERE assessment_id = :id')
   Future<NetworkCard> findNetworkCard(int id);
 
+
   //create new network card
   @insert
   Future<int> createNetworkCard(NetworkCard networkCard);
