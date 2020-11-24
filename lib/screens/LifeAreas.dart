@@ -52,6 +52,7 @@ class _LifeAreasState extends State<LifeAreas>{
     final int assessmentId = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stack(
           children: [
@@ -133,10 +134,14 @@ class _LifeAreasState extends State<LifeAreas>{
                   onSubmitted: (value){
                     _onSubmit(value);
                   },
+                  textInputAction: TextInputAction.go,
                   decoration: InputDecoration(
                     hintText: "Neuer Lebensbereich hinzufügen...",
                     hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 18, color: Colors.grey),
-                    contentPadding: EdgeInsets.only(bottom: 0)
+                    contentPadding: EdgeInsets.only(bottom: 0),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: ThemeColors.greenShade3),
+                    ),
                   ),
                   style: ThemeTexts.assessmentText,
                 ),
@@ -149,7 +154,7 @@ class _LifeAreasState extends State<LifeAreas>{
 
   _onSubmit(String value){
     print(value);
-    _lifeAreasMap.putIfAbsent(value, () => true);
+    if(value.length > 2) _lifeAreasMap.putIfAbsent(value, () => true);
     _textController.clear();
     setState(() {});
   }
