@@ -6,14 +6,14 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 
 import 'Part_2_3.dart';
 
-class Part_2_2 extends StatefulWidget {
-  const Part_2_2({Key key}) : super(key: key);
+class Part_2_6 extends StatefulWidget {
+  const Part_2_6({Key key}) : super(key: key);
 
   @override
-  _Part_2_2State createState() => _Part_2_2State();
+  _Part_2_6State createState() => _Part_2_6State();
 }
 
-class _Part_2_2State extends State<Part_2_2> {
+class _Part_2_6State extends State<Part_2_6> {
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,9 @@ class _Part_2_2State extends State<Part_2_2> {
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
                   onClose: null,
-                  subtitle: "Das möchte ich gerne besser können",
-                  intro: "Wähle die Frage aus, welche Dich am meisten anspricht  und beantworte sie anschliessend.",
-                  percent: 0.35,
+                  subtitle: "Wer oder was hilft Dir dabei?",
+                  intro: "",
+                  percent: 0.55,
               ),
 
               Padding(
@@ -44,21 +44,22 @@ class _Part_2_2State extends State<Part_2_2> {
                   child: Wrap(
                     children: [
                       QuestionCard(
-                        questionNumber: "2.2.1",
-                        question: "Was fällt Dir manchmal schwer im Umgang mit anderen Menschen?",
+                        questionNumber: "2.6.1",
+                        question: "Wer der Jugendlichen könnte Dir dabei helfen? Wen willst Du einweihen und fragen,"
+                            " ob er/sie Dich unterstützt?",
                         answered: false,
                       ),
 
                       QuestionCard(
-                        questionNumber: "2.2.2",
-                        question: "Wenn Du morgen früh aufwachst und im Umgang mit anderen so bist, wie Du es gerne hättest: "
-                            "Wie wärst Du dann? Wie würdest Du Dich dann verhalten? ",
+                        questionNumber: "2.6.2",
+                        question: "Die SozialpädagogInnen in der WG sind ja dazu da, Dich zu unterstützen. "
+                            " Wen willst Du einbeziehen in Dein «Hey, das kann ich»-Projekt/Vorhaben?",
                         answered: false,
                       ),
 
                       QuestionCard(
-                        questionNumber: "2.2.3",
-                        question: "Wenn Du daran denkst, was für eine Person Du gerne wärst: Wie könnte das Motto dieser Person lauten?",
+                        questionNumber: "2.6.3",
+                        question: "Hast Du sonst noch eine Idee, wer oder was Dir bei Deinem Projekt behilflich sein könnte?",
                         answered: false,
                       ),
 
@@ -79,7 +80,7 @@ class _Part_2_2State extends State<Part_2_2> {
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_3()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
               }
           ),
         ],

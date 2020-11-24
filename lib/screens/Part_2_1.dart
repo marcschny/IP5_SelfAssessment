@@ -19,22 +19,26 @@ class _Part_2_1State extends State<Part_2_1> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        child: Stack(
+          children:[
+            Image.asset(
+              "assets/background_image/gradient-grey.png",
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
+            ),
 
-          child: Column(
+            Column(
             children: [
               //background image
-           /*   Image.asset(
-                "assets/background_image/gradient-grey.png",
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                fit: BoxFit.cover,
-              ),*/
+
               TopBar(
                 title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 2,
                 onClose: null,
                 subtitle: "Hey, das kann ich bereits!",
-                intro: "Hier kannst Du Deine Stärken notieren! Tippe auf eine Frage um deine Antwort zu notieren"
+                intro: "Hier kannst Du Deine Stärken notieren! Tippe auf eine Frage um deine Antwort zu notieren",
+                percent: 0.3,
               ),
 
               Padding(
@@ -62,27 +66,31 @@ class _Part_2_1State extends State<Part_2_1> {
                         ],
                       ),
                     ),
-
                 ],
             ),
-          ),
+
+            BottomNavigation(
+                showNextButton: true,
+                showBackButton: true,
+                nextTitle: "Das möchte ich  gerne besser können",
+                callbackBack: () {
+                  Navigator.of(context).pop();
+                },
+
+                callbackNext: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_2()));
+                }
+
+            ),
+        ],
+        ),
+      ),
 
 
-          bottomNavigationBar: BottomNavigation(
-              showNextButton: true,
-              showBackButton: true,
-              nextTitle: "Das möchte ich  gerne besser können",
-              callbackBack: () {
-                Navigator.of(context).pop();
-              },
+    );
 
-              callbackNext: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_2()));
-              }
 
-          ),
 
-          );
 
   }
 }

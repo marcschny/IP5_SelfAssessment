@@ -7,6 +7,8 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_2_1.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_4.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_6.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 Future<void> main() async {
@@ -49,11 +51,12 @@ class MyApp extends StatelessWidget {
       //theme: tbd
       home: Part_2_1(),
       routes: {
-       // "/start": (context) => StartScreen(),
         "/part_2_1": (context) => Part_2_1(),
         "/part_2_2": (context) => Part_2_2(),
         "/part_2_3": (context) => Part_2_3(),
-        "/part_2_4": (context) => Part_2_4()
+        "/part_2_4": (context) => Part_2_4(),
+        "/part_2_5": (context) => Part_2_5(),
+        "/part_2_6": (context) => Part_2_6()
       },
     );
   }
