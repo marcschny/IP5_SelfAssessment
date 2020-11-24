@@ -13,6 +13,7 @@ class TopBar extends StatelessWidget{
   final String intro;
   final double percent;
 
+
   const TopBar({
     Key key,
     @required this.title,
@@ -22,6 +23,8 @@ class TopBar extends StatelessWidget{
     this.intro,
     @required this.percent
   }) : super(key: key);
+
+
 
 
   @override

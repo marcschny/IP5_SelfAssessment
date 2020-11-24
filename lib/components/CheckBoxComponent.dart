@@ -14,6 +14,8 @@ class CheckBoxComponent extends StatefulWidget {
   CheckBoxComponentState createState() => CheckBoxComponentState();
 }
 
+
+
 class CheckBoxComponentState extends State<CheckBoxComponent>{
 
   @override

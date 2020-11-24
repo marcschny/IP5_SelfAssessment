@@ -1,10 +1,11 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/NextButton.dart';
 
 import 'BackButton.dart';
+
+
+
 
 class BottomNavigation extends StatelessWidget{
   final bool showNextButton;
@@ -21,6 +22,8 @@ class BottomNavigation extends StatelessWidget{
     @required this.callbackBack,
     @required this.callbackNext
   }) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
