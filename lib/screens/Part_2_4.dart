@@ -19,7 +19,8 @@ class _Part_2_4State extends State<Part_2_4> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: Stack(
+        children:[ Column(
           children: [
             //background image
             /*   Image.asset(
@@ -68,11 +69,28 @@ class _Part_2_4State extends State<Part_2_4> {
                     ],
                     ),
 
+                    RaisedButton(
+                      textColor: Colors.black,
+                      color: ThemeColors.greenShade4,
+                      onPressed: () {
+                        // Respond to button press
+                      },
+                        child: Row(
+                          children: <Widget> [
+                            Text("Fragekatalog"),
+                            Icon(Icons.arrow_right_alt_rounded, size: 30),
+                          ],
+                      //shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
+                    )
+                    ),
                   ],
                 ),
+
             ),
 
           ],
+        ),
+      ],
         ),
       ),
 
