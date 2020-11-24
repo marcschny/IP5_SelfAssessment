@@ -36,10 +36,8 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   Widget build(BuildContext context) {
 
     final LinkedHashMap<String, int> routeArgs = ModalRoute.of(context).settings.arguments;
-    //final Set<int> routeArgs = {11, 3};
     final int assessmentId = routeArgs["assessmentId"];
     final int networkId = routeArgs["networkId"];
-    //print("assId hashmap: "+assessmentId.toString());
 
     return Scaffold(
       body: SafeArea(

@@ -98,7 +98,6 @@ class _LifeAreasState extends State<LifeAreas>{
                     ),
                   ),
                 ),
-
               ],
             ),
 
