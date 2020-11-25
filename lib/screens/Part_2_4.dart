@@ -6,6 +6,8 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
+import 'Part_3_1.dart';
+
 class Part_2_4 extends StatefulWidget {
   const Part_2_4({Key key}) : super(key: key);
 
@@ -77,6 +79,7 @@ class _Part_2_4State extends State<Part_2_4> {
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                         onPressed: () {
                           // Respond to button press
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
                         },
                           child: Row(
                             children: <Widget> [
