@@ -488,7 +488,6 @@ class _PersonDialogState extends State<PersonDialog>{
                         backgroundColor: Colors.black54,
                       );
                     }else{
-                      //todo: write Person to db
                       //write new person to db
 
                       //create new person
