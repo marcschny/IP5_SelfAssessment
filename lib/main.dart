@@ -8,6 +8,7 @@ import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'components/personDialog.dart';
 
@@ -48,14 +49,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider<AppDatabase>(
       create: (_) => database,
-      child: MaterialApp(
-        initialRoute: "/start",
-        routes: {
-          "/start": (context) => StartScreen(),
-          "/lifeAreas": (context) => LifeAreas(),
-          "/importantPersons": (context) => ImportantPersons(),
-          "/personDialog": (context) => PersonDialog(),
-        },
+      child: OKToast(
+        backgroundColor: Color.fromRGBO(80, 80, 80, 1),
+        radius: 30,
+        duration: Duration(seconds: 5),
+        child: MaterialApp(
+          initialRoute: "/start",
+          routes: {
+            "/start": (context) => StartScreen(),
+            "/lifeAreas": (context) => LifeAreas(),
+            "/importantPersons": (context) => ImportantPersons(),
+            "/personDialog": (context) => PersonDialog(),
+          },
+        ),
       ),
     );
   }

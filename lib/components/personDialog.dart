@@ -6,7 +6,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:flutter_score_slider/flutter_score_slider.dart';
 import 'package:provider/provider.dart';
-import 'package:toast/toast.dart';
+import 'package:oktoast/oktoast.dart';
 
 
 
@@ -497,12 +497,16 @@ class _PersonDialogState extends State<PersonDialog>{
                 onPressed: (){
                     print(_validate().toString());
                     if(!_validate()){
-                      Toast.show(
+
+                      showToast(
                         _missingInput(),
-                        context,
-                        duration: Toast.LENGTH_LONG,
-                        gravity: Toast.BOTTOM,
-                        backgroundColor: Colors.black54,
+                        context: context,
+                        textAlign: TextAlign.center,
+                        textStyle: ThemeTexts.toastText,
+                        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                        position: ToastPosition.bottom,
+                        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+                        duration: Duration(milliseconds: 2500),
                       );
                     }else{
 

@@ -121,6 +121,14 @@ abstract class ThemeTexts{
   );
 
 
+  //toasts
+  static TextStyle toastText = GoogleFonts.roboto(
+    fontSize: 14.5,
+    color: Colors.white,
+    fontWeight: FontWeight.w400
+  );
+
+
 
 
 }

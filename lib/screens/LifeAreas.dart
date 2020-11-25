@@ -7,6 +7,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
 
 
 
@@ -168,39 +169,59 @@ class _LifeAreasState extends State<LifeAreas>{
   }
 
 
-  void _next(BuildContext context, int assessmentId){
+
+
+  void _next(BuildContext context, int assessmentId) {
     int noLifeAreas = 0;
     String lifeAreas = "";
 
     //put each key (lifeArea) in a comma separated string
     //and count number of life areas
     _lifeAreasMap.forEach((key, value) {
-      if(value) {
+      if (value) {
         print(key);
         noLifeAreas++;
-        lifeAreas += key+", ";
+        lifeAreas += key + ", ";
       }
     });
     print(lifeAreas);
 
-    //create network card
-    final NetworkCard newNetworkCard = new NetworkCard(null, assessmentId, noLifeAreas, lifeAreas);
+    if (noLifeAreas > 1 && noLifeAreas >= 6) {
+      //create network card
+      final NetworkCard newNetworkCard = new NetworkCard(
+          null, assessmentId, noLifeAreas, lifeAreas);
 
-    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
-    final assessmentRepo = appDatabase.assessmentRepository;
-    assessmentRepo.createNetworkCard(newNetworkCard).then((networkId){
-      print(newNetworkCard.toString());
-      print("assId: "+assessmentId.toString());
-      print("netId: "+networkId.toString());
-      Navigator.of(context).pushNamed('/importantPersons', arguments: <String, int>{"assessmentId": assessmentId, "networkId": networkId},);
-    });
+      final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+      final assessmentRepo = appDatabase.assessmentRepository;
+      assessmentRepo.createNetworkCard(newNetworkCard).then((networkId) {
+        print(newNetworkCard.toString());
+        print("assId: " + assessmentId.toString());
+        print("netId: " + networkId.toString());
+        Navigator.of(context).pushNamed('/importantPersons',
+          arguments: <String, int>{
+            "assessmentId": assessmentId,
+            "networkId": networkId
+          },);
+      });
 
-    //reset variables
-    noLifeAreas = 0;
-    lifeAreas = "";
+      //reset variables
+      noLifeAreas = 0;
+      lifeAreas = "";
+    }else{
+      showToast(
+        "Wähle mindestens einen Lebensbereich",
+        context: context,
+        textAlign: TextAlign.center,
+        textStyle: ThemeTexts.toastText,
+        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        position: ToastPosition.bottom,
+        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+        duration: Duration(milliseconds: 2500),
+      );
+    }
+
+
+
   }
-
-
-
 
 }
