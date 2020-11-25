@@ -4,7 +4,7 @@ import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/changeproject.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/note.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
@@ -50,11 +50,11 @@ abstract class AssessmentRepository{
 
   //update answer
   @update
-  Future<void> updateAnswer(Answer answer);
+  Future<int> updateAnswer(Answer answer);
 
   //delete answer
   @delete
-  Future<void> deleteAnswer(Answer answer);
+  Future<int> deleteAnswer(Answer answer);
 
 
 
@@ -75,11 +75,11 @@ abstract class AssessmentRepository{
 
   //update assessment
   @update
-  Future<void> updateAssessment(Assessment assessment);
+  Future<int> updateAssessment(Assessment assessment);
 
   //delete assessment
   @delete
-  Future<void> deleteAssessment(Assessment assessment);
+  Future<int> deleteAssessment(Assessment assessment);
 
 
 
@@ -100,11 +100,11 @@ abstract class AssessmentRepository{
 
   //update changeproject
   @update
-  Future<void> updateChangeProject(ChangeProject changeProject);
+  Future<int> updateChangeProject(ChangeProject changeProject);
 
   //delete changeproject
   @delete
-  Future<void> deleteChangeProject(ChangeProject changeProject);
+  Future<int> deleteChangeProject(ChangeProject changeProject);
 
 
 
@@ -129,11 +129,11 @@ abstract class AssessmentRepository{
 
   //update note
   @update
-  Future<void> updateNote(Note note);
+  Future<int> updateNote(Note note);
 
   //delete note
   @delete
-  Future<void> deleteNote(Note note);
+  Future<int> deleteNote(Note note);
 
 
 
@@ -155,11 +155,11 @@ abstract class AssessmentRepository{
 
   //update network card
   @update
-  Future<void> updateNetworkCard(NetworkCard networkCard);
+  Future<int> updateNetworkCard(NetworkCard networkCard);
 
   //delete network card
   @delete
-  Future<void> deleteNetworkCard(NetworkCard networkCard);
+  Future<int> deleteNetworkCard(NetworkCard networkCard);
 
 
 
@@ -184,11 +184,11 @@ abstract class AssessmentRepository{
 
   //update Person
   @update
-  Future<void> updatePerson(Person person);
+  Future<int> updatePerson(Person person);
 
   //delete Person
   @delete
-  Future<void> deletePerson(Person person);
+  Future<int> deletePerson(Person person);
 
 
 

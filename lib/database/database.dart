@@ -10,7 +10,7 @@ import 'entities/person.dart';
 import 'entities/question.dart';
 import 'entities/assessment.dart';
 import 'entities/changeproject.dart';
-import 'entities/networdcard.dart';
+import 'entities/networkcard.dart';
 
 
 // generate code with following command: flutter packages pub run build_runner build

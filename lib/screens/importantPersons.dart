@@ -75,10 +75,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
       if(element != null){
         widgetList.add(
             ImportantPersonTile(
-              id: element.id,
-              name: element.name,
-              icon: element.icon,
-              lifeArea: element.lifeArea,
+              person: element,
             )
         );
       }
@@ -175,7 +172,19 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                       itemCount: widgetList.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index){
-                        return widgetList[index];
+                        return GestureDetector(
+                          child: widgetList[index],
+                          onTap: (){
+                            showDialog(
+                              context: context,
+                              child: PersonDialog(
+                                assessmentId: assessmentId,
+                                networkId: networkId,
+                                person: widgetList[index].person,
+                              ),
+                            ).then(onGoBack);
+                          },
+                        );
                       },
                     ) :
                       Container(),

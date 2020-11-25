@@ -502,13 +502,6 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<void> getLifeAreas(int id) async {
-    await _queryAdapter.queryNoReturn(
-        'SELECT lifeAreas FROM NetworkCard WHERE assessment_id = ?',
-        arguments: <dynamic>[id]);
-  }
-
-  @override
   Future<List<Person>> getAllPersons() async {
     return _queryAdapter.queryList('SELECT * FROM Person',
         mapper: (Map<String, dynamic> row) => Person(
@@ -586,64 +579,69 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<void> updateAnswer(Answer answer) async {
-    await _answerUpdateAdapter.update(answer, OnConflictStrategy.abort);
+  Future<int> updateAnswer(Answer answer) {
+    return _answerUpdateAdapter.updateAndReturnChangedRows(
+        answer, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> updateAssessment(Assessment assessment) async {
-    await _assessmentUpdateAdapter.update(assessment, OnConflictStrategy.abort);
+  Future<int> updateAssessment(Assessment assessment) {
+    return _assessmentUpdateAdapter.updateAndReturnChangedRows(
+        assessment, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> updateChangeProject(ChangeProject changeProject) async {
-    await _changeProjectUpdateAdapter.update(
+  Future<int> updateChangeProject(ChangeProject changeProject) {
+    return _changeProjectUpdateAdapter.updateAndReturnChangedRows(
         changeProject, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> updateNote(Note note) async {
-    await _noteUpdateAdapter.update(note, OnConflictStrategy.abort);
+  Future<int> updateNote(Note note) {
+    return _noteUpdateAdapter.updateAndReturnChangedRows(
+        note, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> updateNetworkCard(NetworkCard networkCard) async {
-    await _networkCardUpdateAdapter.update(
+  Future<int> updateNetworkCard(NetworkCard networkCard) {
+    return _networkCardUpdateAdapter.updateAndReturnChangedRows(
         networkCard, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> updatePerson(Person person) async {
-    await _personUpdateAdapter.update(person, OnConflictStrategy.abort);
+  Future<int> updatePerson(Person person) {
+    return _personUpdateAdapter.updateAndReturnChangedRows(
+        person, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> deleteAnswer(Answer answer) async {
-    await _answerDeletionAdapter.delete(answer);
+  Future<int> deleteAnswer(Answer answer) {
+    return _answerDeletionAdapter.deleteAndReturnChangedRows(answer);
   }
 
   @override
-  Future<void> deleteAssessment(Assessment assessment) async {
-    await _assessmentDeletionAdapter.delete(assessment);
+  Future<int> deleteAssessment(Assessment assessment) {
+    return _assessmentDeletionAdapter.deleteAndReturnChangedRows(assessment);
   }
 
   @override
-  Future<void> deleteChangeProject(ChangeProject changeProject) async {
-    await _changeProjectDeletionAdapter.delete(changeProject);
+  Future<int> deleteChangeProject(ChangeProject changeProject) {
+    return _changeProjectDeletionAdapter
+        .deleteAndReturnChangedRows(changeProject);
   }
 
   @override
-  Future<void> deleteNote(Note note) async {
-    await _noteDeletionAdapter.delete(note);
+  Future<int> deleteNote(Note note) {
+    return _noteDeletionAdapter.deleteAndReturnChangedRows(note);
   }
 
   @override
-  Future<void> deleteNetworkCard(NetworkCard networkCard) async {
-    await _networkCardDeletionAdapter.delete(networkCard);
+  Future<int> deleteNetworkCard(NetworkCard networkCard) {
+    return _networkCardDeletionAdapter.deleteAndReturnChangedRows(networkCard);
   }
 
   @override
-  Future<void> deletePerson(Person person) async {
-    await _personDeletionAdapter.delete(person);
+  Future<int> deletePerson(Person person) {
+    return _personDeletionAdapter.deleteAndReturnChangedRows(person);
   }
 }

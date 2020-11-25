@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:flutter_score_slider/flutter_score_slider.dart';
@@ -14,12 +14,14 @@ class PersonDialog extends StatefulWidget{
 
   final int assessmentId;
   final int networkId;
+  final Person person;
 
 
   const PersonDialog({
     Key key,
-    this.assessmentId,
-    this.networkId
+    @required this.assessmentId,
+    @required this.networkId,
+    this.person
   }) : super(key: key);
 
 
@@ -78,12 +80,27 @@ class _PersonDialogState extends State<PersonDialog>{
     _selectedIcon = "";
     _nameController.clear();
     _getLifeAreas();
+    _checkForUpdatePerson();
   }
 
   @override
   void dispose() {
     super.dispose();
     _nameController.dispose();
+  }
+
+
+  _checkForUpdatePerson() async{
+    if(widget.person == null){
+      print("new person");
+    }else{
+      setState(() {
+        _nameController.text = widget.person.name;
+        _selectedIcon = widget.person.icon;
+        _selectedLifeArea = widget.person.lifeArea;
+        _currentDistance = widget.person.distance.toInt();
+      });
+    }
   }
 
 
@@ -416,7 +433,7 @@ class _PersonDialogState extends State<PersonDialog>{
                       SizedBox(height: 14),
                       ScoreSlider(
                         maxScore: 10,
-                        score: 5,
+                        score: _currentDistance,
                         onScoreChanged: (newDistance){
                           setState(() {
                             _currentDistance = newDistance;
@@ -488,11 +505,12 @@ class _PersonDialogState extends State<PersonDialog>{
                         backgroundColor: Colors.black54,
                       );
                     }else{
+
                       //write new person to db
 
                       //create new person
                       final Person newPerson = new Person(
-                        null,
+                        widget.person != null ? widget.person.id : null,  //id when update, null when create
                         _nameController.text,
                         _selectedIcon,
                         _selectedLifeArea,
@@ -502,13 +520,30 @@ class _PersonDialogState extends State<PersonDialog>{
                       );
 
 
+
                       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
                       final assessmentRepo = appDatabase.assessmentRepository;
-                      assessmentRepo.createPerson(newPerson).then((personId){
-                        print("new created person id: "+personId.toString());
-                        print(newPerson.name+", "+newPerson.icon+", "+newPerson.lifeArea+", "+newPerson.distance.toString()+", nId: "+newPerson.network_id.toString()+", aId: "+newPerson.assessment_id.toString());
-                        Navigator.of(context).pop();
-                      });
+
+                      //create new person
+                      if(widget.person == null) {
+                        assessmentRepo.createPerson(newPerson).then((personId) {
+                          print("new created person id: " +
+                              personId.toString());
+                          print(newPerson.name + ", " + newPerson.icon + ", " +
+                              newPerson.lifeArea + ", " +
+                              newPerson.distance.toString() + ", nId: " +
+                              newPerson.network_id.toString() + ", aId: " +
+                              newPerson.assessment_id.toString());
+                          Navigator.of(context).pop();
+                        });
+                      }
+                      //update person
+                      else{
+                        assessmentRepo.updatePerson(newPerson).then((personId){
+                          print("updated person: "+personId.toString());
+                          Navigator.of(context).pop();
+                        });
+                      }
                     }
                 },
               ),
