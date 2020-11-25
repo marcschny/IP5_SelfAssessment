@@ -42,19 +42,13 @@ class _ImportantPersonsState extends State<ImportantPersons>{
    Future.delayed(Duration.zero, _getTiles);
   }
 
-  @override
-  void didUpdateWidget(covariant ImportantPersons oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    print("CHANGED");
-    _getTiles();
-
-  }
 
   @override
   void dispose() {
     super.dispose();
   }
 
+  //when popped back from dialog screen
   FutureOr onGoBack(dynamic value){
     _getTiles();
     print("FutureOr onGoBck!");
@@ -90,7 +84,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
       }
     });
 
-
     print("widgetList.length: "+widgetList.length.toString());
     print("personList.length: "+personList.length.toString());
 
@@ -101,13 +94,10 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   @override
   Widget build(BuildContext context) {
 
+    //get passed arguments
     routeArgs = ModalRoute.of(context).settings.arguments;
     assessmentId = routeArgs["assessmentId"];
     networkId = routeArgs["networkId"];
-
-
-    print("netId: "+networkId.toString());
-
 
     return Scaffold(
       body: SafeArea(
@@ -128,7 +118,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-
                 TopBar(
                   title: "Wer ist mir wichtig?\nMeine Netzwerkkarte",
                   titleNumber: 1,
@@ -137,7 +126,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   percent: 0.1,
                   intro: "Wer ist für Dich in Deinem Leben ganz wichtig?  Zeichne diese wichtigen Personen ganz nah bei Dir; je weiter weg von der Mitte (und damit von Dir) Du eine Person einträgst, desto weniger wichtig ist sie aktuell in Deinem Leben.",
                 ),
-
 
                 Padding(
                   padding: EdgeInsets.only(left: 18),
@@ -190,7 +178,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                         return widgetList[index];
                       },
                     ) :
-                      Container(width: 20, height: 20, color: Colors.green),
+                      Container(),
                   ),
                 ),
 

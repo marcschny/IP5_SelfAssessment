@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
@@ -31,7 +29,7 @@ class ImportantPersonTile extends StatelessWidget{
           color: Colors.transparent,
           border: Border(
             bottom: BorderSide(
-              color: Colors.black26,
+              color: Color.fromRGBO(220, 220, 220, 1),
               width: 1
             )
           ),
@@ -40,35 +38,40 @@ class ImportantPersonTile extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-              child: Icon(
-                Icons.person,
-                size: 40,
-                color: Color.fromRGBO(80, 80, 80, 1),
+            Container(
+              child: Center(
+                child: Icon(
+                  Icons.person,
+                  size: 40,
+                  color: Color.fromRGBO(80, 80, 80, 1),
+                ),
               ),
             ),
             SizedBox(width: 10),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Text(
-                    name,
-                    style: ThemeTexts.assessmentSubquestion.copyWith(fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.clip,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: ThemeTexts.assessmentSubquestion.copyWith(fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Text(
-                    lifeArea,
-                    style: ThemeTexts.assessmentNavigationNext.copyWith(color: Color.fromRGBO(149, 149, 140, 1)),
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.clip,
+                  Expanded(
+                    child: Text(
+                      lifeArea,
+                      style: ThemeTexts.assessmentNavigationNext.copyWith(color: Color.fromRGBO(149, 149, 140, 1)),
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
