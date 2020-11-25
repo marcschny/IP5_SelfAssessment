@@ -48,6 +48,7 @@ abstract class AssessmentRepository{
   @insert
   Future<int> insertAnswer(Answer answer);
 
+
   //update answer
   @update
   Future<int> updateAnswer(Answer answer);
@@ -152,6 +153,7 @@ abstract class AssessmentRepository{
   //create new network card
   @insert
   Future<int> createNetworkCard(NetworkCard networkCard);
+
 
   //update network card
   @update

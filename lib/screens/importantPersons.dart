@@ -11,6 +11,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
 
 
 //Screen 1.2
@@ -155,6 +156,8 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                       ],
                     ),
                     onPressed: (){
+                      print("IP assId: "+assessmentId.toString());
+                      print("IP netId: "+networkId.toString());
                       showDialog(
                         context: context,
                         child: PersonDialog(assessmentId: assessmentId, networkId: networkId),
@@ -201,6 +204,10 @@ class _ImportantPersonsState extends State<ImportantPersons>{
               showBackButton: true,
               nextTitle: "Visualisierung",
               callbackNext: (){
+                _next(context, assessmentId, networkId);
+              },
+              callbackBack: (){
+                Navigator.of(context).pop(true);
               },
             ),
           ],
@@ -209,6 +216,25 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     );
   }
 
-
+  void _next(BuildContext context, int assessmentId, int networkId) {
+    if (personList.length >= 2) {
+      Navigator.of(context).pushNamed('/visualization',
+        arguments: <String, int>{
+          "assessmentId": assessmentId,
+          "networkId": networkId
+        },);
+    } else {
+      showToast(
+        "Füge mindestens zwei Personen hinzu",
+        context: context,
+        textAlign: TextAlign.center,
+        textStyle: ThemeTexts.toastText,
+        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        position: ToastPosition.bottom,
+        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+        duration: Duration(milliseconds: 2500),
+      );
+    }
+  }
 
 }

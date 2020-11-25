@@ -22,6 +22,17 @@ class LifeAreas extends StatefulWidget{
 
 class _LifeAreasState extends State<LifeAreas>{
 
+
+  bool alreadyExists = false; //check if network card already exists (for navigator.pop)
+  int netwId = -1;  //will be reset when new network card is created
+
+  //update variable 'alreadyExists' when navigator popped
+  void updateAlreadyExists(bool boolValue){
+    setState(() {
+      alreadyExists = boolValue;
+    });
+  }
+
   TextEditingController _textController = TextEditingController();
 
 
@@ -171,7 +182,7 @@ class _LifeAreasState extends State<LifeAreas>{
 
 
 
-  void _next(BuildContext context, int assessmentId) {
+  void _next(BuildContext context, int assessmentId) async{
     int noLifeAreas = 0;
     String lifeAreas = "";
 
@@ -186,27 +197,56 @@ class _LifeAreasState extends State<LifeAreas>{
     });
     print(lifeAreas);
 
-    if (noLifeAreas > 1 && noLifeAreas >= 6) {
+    //only continue when number of lifeareas is bigger than 1 and smaller than 7
+    if (noLifeAreas > 0 && noLifeAreas <= 6) {
       //create network card
       final NetworkCard newNetworkCard = new NetworkCard(
-          null, assessmentId, noLifeAreas, lifeAreas);
+          !alreadyExists ? null : netwId, assessmentId, noLifeAreas, lifeAreas); //if already exists set current network id, else null (auto increment)
+
+
+      print("already exists: "+alreadyExists.toString());
 
       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
       final assessmentRepo = appDatabase.assessmentRepository;
-      assessmentRepo.createNetworkCard(newNetworkCard).then((networkId) {
-        print(newNetworkCard.toString());
-        print("assId: " + assessmentId.toString());
-        print("netId: " + networkId.toString());
-        Navigator.of(context).pushNamed('/importantPersons',
-          arguments: <String, int>{
-            "assessmentId": assessmentId,
-            "networkId": networkId
-          },);
-      });
 
-      //reset variables
-      noLifeAreas = 0;
-      lifeAreas = "";
+      //if record does not already exist
+      if(!alreadyExists) {
+        assessmentRepo.createNetworkCard(newNetworkCard).then((
+            networkId) async {
+          print("las: "+newNetworkCard.lifeAreas);
+          print("assId: " + assessmentId.toString());
+          print("netId: " + networkId.toString());
+          final boolValue = await Navigator.of(context).pushNamed(
+            '/importantPersons',
+            arguments: <String, int>{
+              "assessmentId": assessmentId,
+              "networkId": networkId
+            },
+          );
+          updateAlreadyExists(boolValue);
+          setState(() {
+            netwId = networkId;
+          });
+        });
+
+        //reset variables
+        noLifeAreas = 0;
+        lifeAreas = "";
+      }
+      //if record already exists -> update it
+      else{
+        assessmentRepo.updateNetworkCard(newNetworkCard);
+          print("las: "+newNetworkCard.lifeAreas);
+          print("assId: " + assessmentId.toString());
+          print("netId: " + netwId.toString());
+          Navigator.of(context).pushNamed(
+            '/importantPersons',
+            arguments: <String, int>{
+              "assessmentId": assessmentId,
+              "networkId": netwId
+            },
+          );
+      }
     }else{
       showToast(
         "Wähle mindestens einen Lebensbereich",
