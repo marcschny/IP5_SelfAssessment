@@ -164,9 +164,7 @@ class _LifeAreasState extends State<LifeAreas>{
         _lifeAreasMap.update(key, (value) => value ? false : true);
       }
     });
-    setState(() {
-
-    });
+    setState(() { });
   }
 
 

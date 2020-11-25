@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:flutter_score_slider/flutter_score_slider.dart';
 import 'package:provider/provider.dart';
@@ -488,6 +489,27 @@ class _PersonDialogState extends State<PersonDialog>{
                       );
                     }else{
                       //todo: write Person to db
+                      //write new person to db
+
+                      //create new person
+                      final Person newPerson = new Person(
+                        null,
+                        _nameController.text,
+                        _selectedIcon,
+                        _selectedLifeArea,
+                        _currentDistance.toDouble(),
+                        widget.networkId,
+                        widget.assessmentId
+                      );
+
+
+                      final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+                      final assessmentRepo = appDatabase.assessmentRepository;
+                      assessmentRepo.createPerson(newPerson).then((personId){
+                        print("new created person id: "+personId.toString());
+                        print(newPerson.name+", "+newPerson.icon+", "+newPerson.lifeArea+", "+newPerson.distance.toString()+", nId: "+newPerson.network_id.toString()+", aId: "+newPerson.assessment_id.toString());
+                        Navigator.of(context).pop();
+                      });
                     }
                 },
               ),
@@ -500,13 +522,20 @@ class _PersonDialogState extends State<PersonDialog>{
   }
 
   _getLifeAreas() async{
+    //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
+
+    //get network card by assessment id
     final NetworkCard networkCard = await assessmentRepo.findNetworkCard(widget.assessmentId);
     print("areas: "+networkCard.lifeAreas);
+
+    //convert life areas from comma separated string to list
     setState(() {
       _lifeAreas = networkCard.lifeAreas.split(",").map((e) => e.trim()).toList();
     });
+
+    //create a dropdownmenuitem for each life area string
     _lifeAreas.forEach((element) {
       if(element != null && element != "") {
         _dropdownMenuItems.add(
@@ -517,13 +546,16 @@ class _PersonDialogState extends State<PersonDialog>{
         );
       }
     });
+
   }
 
+  //check for missing inputs return bool
   bool _validate(){
     if(_nameController.text != "" && _selectedIcon != "" && _selectedLifeArea != "" && _currentDistance != null) return true;
     else return false;
   }
 
+  //return missing input toast text
   String _missingInput(){
     if(_nameController.text == ""){
       return "Gib der Person einen Namen";
@@ -531,6 +563,8 @@ class _PersonDialogState extends State<PersonDialog>{
       return "Wähle eine Kategorie";
     }else if(_selectedLifeArea == ""){
       return "Wähle einen Lebensbereich";
+    }else{
+      return "";
     }
   }
 

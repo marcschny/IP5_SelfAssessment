@@ -79,6 +79,10 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                     color: Colors.transparent,
                     elevation: 0,
                     padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                    highlightColor: ThemeColors.greenShade3,
+                    splashColor: Colors.transparent,
+                    focusElevation: 0,
+                    highlightElevation: 0,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
