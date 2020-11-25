@@ -4,6 +4,7 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
+import 'package:ip5_selbsteinschaetzung/components/CircleTrianlgePainter.dart';
 import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
 import 'package:ip5_selbsteinschaetzung/components/personDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
@@ -51,6 +52,8 @@ class _VisualizationState extends State<Visualization>{
     assessmentId = routeArgs["assessmentId"];
     networkId = routeArgs["networkId"];
 
+    print("width: "+MediaQuery.of(context).size.width.toString());
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -79,6 +82,24 @@ class _VisualizationState extends State<Visualization>{
                   intro: "",
                 ),
 
+                Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Center(
+                        child: CustomPaint(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width,
+                          ),
+                          painter: WheelPainter(
+                            noAreas: 6,
+                            widgetSize: MediaQuery.of(context).size.width-40,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
 
               ],
             ),
