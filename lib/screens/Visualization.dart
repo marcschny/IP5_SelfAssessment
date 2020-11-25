@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/CircleTrianlgePainter.dart';
 import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
+import 'package:ip5_selbsteinschaetzung/components/personCircle.dart';
 import 'package:ip5_selbsteinschaetzung/components/personDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
@@ -98,8 +99,22 @@ class _VisualizationState extends State<Visualization>{
                         ),
                       ),
                     ),
+
+
+                    Positioned(
+                        bottom: MediaQuery.of(context).size.width/2,
+                        left: MediaQuery.of(context).size.width/2,
+                        child: PersonCircle(name: "Mein Name ist Penis Pernis Pernis Pernis")
+                    ),
+
+                    Positioned(
+                        bottom: MediaQuery.of(context).size.width/3,
+                        left: MediaQuery.of(context).size.width/3,
+                        child: PersonCircle(name: "Hallo du Peter"),
+                    ),
                   ],
                 ),
+
 
               ],
             ),
