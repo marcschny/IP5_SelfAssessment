@@ -73,7 +73,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                widget.evaluationString != null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Fragekatalog wurde bereits ausgefüllt",
+                                widget.evaluationString == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Fragekatalog wurde bereits ausgefüllt",
                                 style: ThemeTexts.assessmentQuestion,
                                 textAlign: TextAlign.start,
                                 softWrap: true,
@@ -83,7 +83,7 @@ class _Part_2_4State extends State<Part_2_4> {
                         ],
                         ),
 
-                        widget.evaluationString != null ? Padding(
+                        widget.evaluationString == null ? Padding(
                           padding: EdgeInsets.only(left: 32, top: 3),
                           child: RaisedButton(
                             color: ThemeColors.greenShade4,
@@ -121,7 +121,7 @@ class _Part_2_4State extends State<Part_2_4> {
 
                         //Spacer(flex: 1),
 
-                        widget.evaluationString == null ? _evaluationQuestionnaire() : Container(),
+                        widget.evaluationString != null ? _evaluationQuestionnaire() : Container(),
                       ],
                     ),
                 ),
@@ -180,7 +180,7 @@ class _Part_2_4State extends State<Part_2_4> {
               color: Colors.transparent,
             ),
             child: Text(
-              "Irgend eine unwichtig gewählte Frage kommt hier hin", //todo: widget.evaluationString,
+              "Irgend eine unwichtig gewählte Frage kommt hier", //todo: widget.evaluationString,
               style: ThemeTexts.assessmentQuestion,
               overflow: TextOverflow.clip,
             ),
