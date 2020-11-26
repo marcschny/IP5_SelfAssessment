@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 class StartScreen extends StatefulWidget {
 
@@ -14,8 +17,10 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen>{
 
+  //index for intro pageView
   int _currentIndex = 0;
 
+  //list of pages for pageView
   List pageList = [
     Part0(),
     Part1(),
@@ -32,6 +37,21 @@ class _StartScreenState extends State<StartScreen>{
     }
     return result;
   }
+
+
+  //start assessment
+  void _startAssessment(BuildContext context){
+    final Assessment newAssessment = new Assessment(null, DateTime.now().toString(), null);
+
+    final appDataBase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDataBase.assessmentRepository;
+    assessmentRepo.createAssessment(newAssessment).then((assessmentId) {
+      print(assessmentId);
+      Navigator.of(context).pushNamed("/lifeAreas", arguments: assessmentId);
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -149,9 +169,6 @@ class _StartScreenState extends State<StartScreen>{
 
 
 
-
-
-
           //start button
           Positioned(
             bottom: 40,
@@ -175,6 +192,8 @@ class _StartScreenState extends State<StartScreen>{
                 ),
                 onPressed: (){
                   print('pressed "Starten"');
+                  _startAssessment(context);
+                  Navigator.of(context).pushNamed("/lifeAreas");
                 },
               ),
             ),
