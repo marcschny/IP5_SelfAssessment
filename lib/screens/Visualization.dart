@@ -293,58 +293,56 @@ class _VisualizationState extends State<Visualization>{
 
 
             //content
-            Padding(
-              padding: EdgeInsets.only(bottom: 94),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(bottom: 94),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                  TopBar(
-                    title: "Wer ist mir wichtig?\nMeine Netzwerkkarte",
-                    titleNumber: 1,
-                    onClose: null,
-                    subtitle: "Visualisierung",
-                    percent: 0.2,
-                    intro: "",
-                  ),
+                    TopBar(
+                      title: "Wer ist mir wichtig?\nMeine Netzwerkkarte",
+                      titleNumber: 1,
+                      onClose: null,
+                      subtitle: "Visualisierung",
+                      percent: 0.2,
+                      intro: "",
+                    ),
 
-                  Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        child: Center(
-                          child: CustomPaint(
-                            child: Container(
-                              height: MediaQuery.of(context).size.width,
-                              padding: EdgeInsets.all(20),
-                            ),
-                            painter: WheelPainter(
-                              noAreas: lifeAreas.length,
-                              widgetSize: MediaQuery.of(context).size.width-40,
+                    Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          child: Center(
+                            child: CustomPaint(
+                              child: Container(
+                                height: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.all(20),
+                              ),
+                              painter: WheelPainter(
+                                noAreas: lifeAreas.length,
+                                widgetSize: MediaQuery.of(context).size.width-40,
+                              ),
                             ),
                           ),
                         ),
-                      ),
 
-                    ]..addAll(personCircleList),
-                  ),
+                      ]..addAll(personCircleList),
+                    ),
 
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
-                        width: MediaQuery.of(context).size.width,
-                        child: Wrap(
-                          alignment: WrapAlignment.start,
-                          children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                      width: MediaQuery.of(context).size.width,
+                      child: Wrap(
+                        alignment: WrapAlignment.start,
+                        children: [
 
-                          ]..addAll(legendList),
-                        ),
+                        ]..addAll(legendList),
                       ),
                     ),
-                  ),
 
-                ],
+                  ],
+                ),
               ),
             ),
 
