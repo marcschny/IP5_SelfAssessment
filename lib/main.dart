@@ -81,32 +81,11 @@ class MyApp extends StatelessWidget {
             "/part_2_6": (context) => Part_2_6(),
           },
         ),
-      );
-  }
-
-
-  @override
-  Widget build(BuildContext context){
-    return Provider<AppDatabase>(
-      create: (_) => database,
-      child: MaterialApp(
-        initialRoute: "/part_2_1",
-        routes: {
-          "/part_2_1": (context) => Part_2_1(),
-          "/part_2_2": (context) => Part_2_2(),
-          "/part_2_3": (context) => Part_2_3(),
-          "/part_2_4": (context) => Part_2_4(),
-          "/part_3_1": (context) => Part_3_1(),
-          "/part_3_2": (context) => Part_3_2(),
-          "/part_3_3": (context) => Part_3_3(),
-          "/part_3_4": (context) => Part_3_4(),
-          "/part_3_5": (context) => Part_3_5(),
-          "/part_2_5": (context) => Part_2_5(),
-          "/part_2_6": (context) => Part_2_6()
-        },
-      )
+      ),
     );
   }
+
+
 }
 
 class MyHomePage extends StatefulWidget {

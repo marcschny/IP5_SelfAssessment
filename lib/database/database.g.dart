@@ -168,6 +168,19 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'network_id': item.network_id,
                   'assessment_id': item.assessment_id
                 }),
+        _questionUpdateAdapter = UpdateAdapter(
+            database,
+            'Question',
+            ['question_number'],
+            (Question item) => <String, dynamic>{
+                  'id': item.id,
+                  'question_number': item.question_number,
+                  'answered':
+                      item.answered == null ? null : (item.answered ? 1 : 0),
+                  'question': item.question,
+                  'subquestion': item.subquestion,
+                  'assessment_id': item.assessment_id
+                }),
         _answerUpdateAdapter = UpdateAdapter(
             database,
             'Answer',
@@ -315,6 +328,8 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final InsertionAdapter<Person> _personInsertionAdapter;
 
+  final UpdateAdapter<Question> _questionUpdateAdapter;
+
   final UpdateAdapter<Answer> _answerUpdateAdapter;
 
   final UpdateAdapter<Assessment> _assessmentUpdateAdapter;
@@ -366,11 +381,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Question>> findQuestion(
-      String question_number, int assessment_id) async {
-    return _queryAdapter.queryList(
-        'SELECT * FROM Question WHERE question_number = ? AND assessment_id = ?',
-        arguments: <dynamic>[question_number, assessment_id],
+  Future<Question> findQuestion(String question_number) async {
+    return _queryAdapter.query(
+        'SELECT * FROM Question WHERE question_number = ?',
+        arguments: <dynamic>[question_number],
         mapper: (Map<String, dynamic> row) => Question(
             row['id'] as int,
             row['question_number'] as String,
@@ -381,10 +395,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Answer> findAnswer(String question_number, int assessment_id) async {
-    return _queryAdapter.query(
-        'SELECT * FROM Answer WHERE question_number = ? AND assessment_id = ?',
-        arguments: <dynamic>[question_number, assessment_id],
+  Future<Answer> findAnswer(String question_number) async {
+    return _queryAdapter.query('SELECT * FROM Answer WHERE question_number = ?',
+        arguments: <dynamic>[question_number],
         mapper: (Map<String, dynamic> row) => Answer(
             row['id'] as int,
             row['answer'] as String,
@@ -576,6 +589,12 @@ class _$AssessmentRepository extends AssessmentRepository {
   Future<int> createPerson(Person person) {
     return _personInsertionAdapter.insertAndReturnId(
         person, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<int> updateQuestion(Question question) {
+    return _questionUpdateAdapter.updateAndReturnChangedRows(
+        question, OnConflictStrategy.abort);
   }
 
   @override

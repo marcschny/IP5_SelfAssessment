@@ -18,7 +18,7 @@ import 'assessment.dart';
 class Question{
   final int id;
   final String question_number;
-  final bool answered;
+  bool answered;
   final String question;
   final String subquestion;
   final int assessment_id;
