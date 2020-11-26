@@ -47,8 +47,6 @@ class _Part_2_4State extends State<Part_2_4> {
                     children: [
                       QuestionCard(
                         questionNumber: "2.4.1",
-                        question: "Was ganz konkret möchtest Du in den nächsten zwei bis drei Wochen ausprobieren?",
-                        answered: false,
                       ),
 
                       Row(

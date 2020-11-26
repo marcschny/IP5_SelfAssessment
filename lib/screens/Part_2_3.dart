@@ -44,16 +44,10 @@ class _Part_2_3State extends State<Part_2_3> {
                     children: [
                       QuestionCard(
                         questionNumber: "2.3.1",
-                        question: "Welches sind die beiden wichtigsten Situationen, die Du gerne anders hinkriegen möchtest?",
-                        answered: false,
                       ),
 
                       QuestionCard(
                         questionNumber: "2.3.2",
-                        question: "Wenn Du jetzt nochmals über schwierige soziale Situationen (und auch über das Motto der Person, "
-                            "die Du gerne wärst!) nachdenkst: Welche Verhaltensweisen möchtest Du verändern? Welche neuen Verhaltensweisen "
-                            "wünscht Du Dir? ",
-                        answered: false,
                       ),
 
                     ],

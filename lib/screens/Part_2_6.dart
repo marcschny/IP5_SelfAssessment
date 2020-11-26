@@ -45,28 +45,19 @@ class _Part_2_6State extends State<Part_2_6> {
                     children: [
                       QuestionCard(
                         questionNumber: "2.6.1",
-                        question: "Wer der Jugendlichen könnte Dir dabei helfen? Wen willst Du einweihen und fragen,"
-                            " ob er/sie Dich unterstützt?",
-                        answered: false,
                       ),
 
                       QuestionCard(
                         questionNumber: "2.6.2",
-                        question: "Die SozialpädagogInnen in der WG sind ja dazu da, Dich zu unterstützen. "
-                            " Wen willst Du einbeziehen in Dein «Hey, das kann ich»-Projekt/Vorhaben?",
-                        answered: false,
                       ),
 
                       QuestionCard(
                         questionNumber: "2.6.3",
-                        question: "Hast Du sonst noch eine Idee, wer oder was Dir bei Deinem Projekt behilflich sein könnte?",
-                        answered: false,
                       ),
 
                     ],
                 ),
               ),
-
 
             ],
           ),

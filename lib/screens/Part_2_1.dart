@@ -47,21 +47,14 @@ class _Part_2_1State extends State<Part_2_1> {
                         children: [
                           QuestionCard(
                             questionNumber: "2.1.1",
-                            question: "Was läuft richtig gut/was kannst Du richtig gut mit anderen Menschen?",
-                            answered: false,
                           ),
 
                           QuestionCard(
                             questionNumber: "2.1.2",
-                            question: "Was kannst/machst Du denn genau, worauf Du echt stolz sein kannst?",
-                            answered: false,
                           ),
 
                           QuestionCard(
                             questionNumber: "2.1.3",
-                            question: "Zähle möglichst viele Deiner sozialen Fähigkeiten auf! "
-                                "Beschreibe so genau wie möglich, was Du machst/wie Du Dich verhältst.",
-                            answered: false,
                           ),
                         ],
                       ),
@@ -88,9 +81,6 @@ class _Part_2_1State extends State<Part_2_1> {
 
 
     );
-
-
-
 
   }
 }

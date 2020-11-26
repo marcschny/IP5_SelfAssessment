@@ -45,21 +45,14 @@ class _Part_2_2State extends State<Part_2_2> {
                     children: [
                       QuestionCard(
                         questionNumber: "2.2.1",
-                        question: "Was fällt Dir manchmal schwer im Umgang mit anderen Menschen?",
-                        answered: false,
                       ),
 
                       QuestionCard(
                         questionNumber: "2.2.2",
-                        question: "Wenn Du morgen früh aufwachst und im Umgang mit anderen so bist, wie Du es gerne hättest: "
-                            "Wie wärst Du dann? Wie würdest Du Dich dann verhalten? ",
-                        answered: false,
                       ),
 
                       QuestionCard(
                         questionNumber: "2.2.3",
-                        question: "Wenn Du daran denkst, was für eine Person Du gerne wärst: Wie könnte das Motto dieser Person lauten?",
-                        answered: false,
                       ),
 
                     ],
