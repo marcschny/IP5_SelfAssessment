@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 class WheelPainter extends CustomPainter {
 
@@ -13,6 +14,8 @@ class WheelPainter extends CustomPainter {
     this.noAreas,
     this.widgetSize
   });
+
+
 
   Path getWheelPath(double wheelSize, double fromRadius, double toRadius) {
     return new Path()
@@ -33,12 +36,14 @@ class WheelPainter extends CustomPainter {
     int noElements = noAreas;
     double radius = (2 * pi) / noElements;
 
-    canvas.drawPath(getWheelPath(wheelSize, 0, radius), getColoredPaint(Color.fromRGBO(222, 206, 206, 1)));
-    canvas.drawPath(getWheelPath(wheelSize, radius, radius), getColoredPaint(Color.fromRGBO(216, 222, 206, 1)));
-    canvas.drawPath(getWheelPath(wheelSize, radius * 2, radius), getColoredPaint(Color.fromRGBO(206, 222, 214, 1)));
-    canvas.drawPath(getWheelPath(wheelSize, radius * 3, radius), getColoredPaint(Color.fromRGBO(206, 219, 222, 1)));
-    canvas.drawPath(getWheelPath(wheelSize, radius * 4, radius), getColoredPaint(Color.fromRGBO(212, 206, 222, 1)));
-    canvas.drawPath(getWheelPath(wheelSize, radius * 5, radius), getColoredPaint(Color.fromRGBO(222, 206, 220, 1)));
+    canvas.drawPath(getWheelPath(wheelSize, 0, radius), getColoredPaint(ThemeColors.sixthColor));
+    canvas.drawPath(getWheelPath(wheelSize, radius, radius), getColoredPaint(ThemeColors.fifthColor));
+    canvas.drawPath(getWheelPath(wheelSize, radius * 2, radius), getColoredPaint(ThemeColors.fourthColor));
+    canvas.drawPath(getWheelPath(wheelSize, radius * 3, radius), getColoredPaint(ThemeColors.thirdColor));
+    canvas.drawPath(getWheelPath(wheelSize, radius * 4, radius), getColoredPaint(ThemeColors.secondColor));
+    canvas.drawPath(getWheelPath(wheelSize, radius * 5, radius), getColoredPaint(ThemeColors.firstColor));
+
+
   }
 
   @override

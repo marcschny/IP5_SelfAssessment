@@ -13,6 +13,14 @@ abstract class ThemeColors{
   //main colors - grey shades
   static const Color greyShade0 = Color.fromRGBO(170, 170, 170, 1);   //title color
   static const Color greyShade1 = Color.fromRGBO(229, 229, 229, 1);   //back button color
+
+  //network card colors
+  static const Color firstColor = Color.fromRGBO(216, 222, 206, 1);
+  static const Color secondColor = Color.fromRGBO(212, 206, 222, 1);
+  static const Color thirdColor =  Color.fromRGBO(206, 219, 222, 1);
+  static const Color fourthColor = Color.fromRGBO(206, 222, 214, 1);
+  static const Color fifthColor = Color.fromRGBO(222, 206, 220, 1);
+  static const Color sixthColor = Color.fromRGBO(222, 206, 206, 1);
 }
 
 abstract class ThemeTexts{

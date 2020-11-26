@@ -3,28 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
 
-class PersonCircle extends StatefulWidget {
+class YourPersonCircle extends StatefulWidget {
 
   //todo: person in constructor instead of these variables
   final String icon;
   final String name;
 
-  const PersonCircle({
+  const YourPersonCircle({
     Key key,
     this.icon,
     this.name
   });
 
-  _PersonCircleState createState() => _PersonCircleState();
+  _YourPersonCircleState createState() => _YourPersonCircleState();
 
 }
 
-class _PersonCircleState extends State<PersonCircle>{
+class _YourPersonCircleState extends State<YourPersonCircle>{
 
   SuperTooltip tooltip;
-
-
-
 
   void _onTap() {
     tooltip = SuperTooltip(
@@ -59,16 +56,12 @@ class _PersonCircleState extends State<PersonCircle>{
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Color.fromRGBO(230, 230, 230, 1),
-          border: Border.all(
-            color: Color.fromRGBO(80, 80, 80, 1),
-            width: 1
-          ),
+          color: Colors.transparent,
         ),
         child: Icon(
-          Icons.person,
-          size: 30,
-          color: Color.fromRGBO(80, 80, 80, 1)
+            Icons.person,
+            size: 30,
+            color: Color.fromRGBO(0, 0, 0, 1)
         ),
       ),
       onTap: _onTap,

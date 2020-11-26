@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
+import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
 import 'package:ip5_selbsteinschaetzung/components/personDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
@@ -31,7 +32,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   int networkId;
   LinkedHashMap<String, int> routeArgs;
 
-  List<ImportantPersonTile> widgetList = List();
+  List<ImportantPersonTile> widgetList;
   List<Person> personList;
 
 
@@ -39,7 +40,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   void initState() {
     super.initState();
     personList = List();
-
+    widgetList = List();
    Future.delayed(Duration.zero, _getTiles);
   }
 
@@ -60,7 +61,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    //prevent widgetList from dupulicate values...
+    //prevent widgetList from duplicate values...
     widgetList.clear();
 
     //get all persons by network card
@@ -96,6 +97,8 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     routeArgs = ModalRoute.of(context).settings.arguments;
     assessmentId = routeArgs["assessmentId"];
     networkId = routeArgs["networkId"];
+
+    print("nID: "+networkId.toString());
 
     return Scaffold(
       body: SafeArea(
