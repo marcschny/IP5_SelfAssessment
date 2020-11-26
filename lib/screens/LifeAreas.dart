@@ -162,7 +162,7 @@ class _LifeAreasState extends State<LifeAreas>{
     );
   }
 
-
+  //when textfield is submitted
   _onSubmit(String value){
     print(value);
     if(value.length > 2) _lifeAreasMap.putIfAbsent(value, () => true);
@@ -170,6 +170,7 @@ class _LifeAreasState extends State<LifeAreas>{
     setState(() {});
   }
 
+  //switch checkbox state
   _switchChecked(String title){
     _lifeAreasMap.forEach((key, value) {
       if(key == title){
@@ -180,8 +181,7 @@ class _LifeAreasState extends State<LifeAreas>{
   }
 
 
-
-
+  //next page
   void _next(BuildContext context, int assessmentId) async{
     int noLifeAreas = 0;
     String lifeAreas = "";
@@ -259,8 +259,6 @@ class _LifeAreasState extends State<LifeAreas>{
         duration: Duration(milliseconds: 2500),
       );
     }
-
-
 
   }
 

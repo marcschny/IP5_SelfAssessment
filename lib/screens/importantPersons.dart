@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
-import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
 import 'package:ip5_selbsteinschaetzung/components/personDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
@@ -41,7 +40,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     super.initState();
     personList = List();
     widgetList = List();
-   Future.delayed(Duration.zero, _getTiles);
+    Future.delayed(Duration.zero, _getTiles);
   }
 
 
@@ -56,6 +55,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     print("FutureOr onGoBck!");
   }
 
+  //get person tiles from db
   _getTiles() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
@@ -82,9 +82,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
         );
       }
     });
-
-    print("widgetList.length: "+widgetList.length.toString());
-    print("personList.length: "+personList.length.toString());
 
   }
 
@@ -197,7 +194,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   ),
                 ),
 
-
               ],
             ),
 
@@ -219,6 +215,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     );
   }
 
+  //next page
   void _next(BuildContext context, int assessmentId, int networkId) {
     if (personList.length >= 2) {
       Navigator.of(context).pushNamed('/visualization',

@@ -6,7 +6,6 @@ import 'package:super_tooltip/super_tooltip.dart';
 
 class YourPersonCircle extends StatefulWidget {
 
-  //todo: person in constructor instead of these variables
   final String icon;
   final String name;
 

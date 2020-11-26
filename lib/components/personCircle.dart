@@ -1,18 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
 
 class PersonCircle extends StatefulWidget {
 
-  //todo: person in constructor instead of these variables
-  final String icon;
-  final String name;
+  final Person person;
 
   const PersonCircle({
     Key key,
-    this.icon,
-    this.name
+    this.person
   });
 
   _PersonCircleState createState() => _PersonCircleState();
@@ -39,7 +37,7 @@ class _PersonCircleState extends State<PersonCircle>{
       content: new Material(
         color: Color.fromRGBO(80, 80, 80, 1),
         child: Text(
-          widget.name,
+          widget.person.name,
           style: TextStyle(
             fontSize: 13,
             color: Colors.white,

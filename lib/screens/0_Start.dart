@@ -17,9 +17,10 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen>{
 
-
+  //index for intro pageView
   int _currentIndex = 0;
 
+  //list of pages for pageView
   List pageList = [
     Part0(),
     Part1(),
@@ -37,6 +38,8 @@ class _StartScreenState extends State<StartScreen>{
     return result;
   }
 
+
+  //start assessment
   void _startAssessment(BuildContext context){
     final Assessment newAssessment = new Assessment(null, DateTime.now().toString(), null);
 

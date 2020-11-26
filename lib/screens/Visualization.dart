@@ -14,7 +14,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:provider/provider.dart';
 
 
-//Screen 1.2
+//Screen 1.3
 class Visualization extends StatefulWidget{
 
   const Visualization({
@@ -27,18 +27,21 @@ class Visualization extends StatefulWidget{
 
 class _VisualizationState extends State<Visualization>{
 
+  //variables from route
   int assessmentId;
   int networkId;
   LinkedHashMap<String, int> routeArgs;
 
+  //necessary lists
   List<String> lifeAreas;
   List<Person> personList;
   List<Widget> personCircleList;
   List<LegendElement> legendList;
 
+  //initial distance
+  int distance = 0;
 
-  int distance = 5;
-
+  //canvas variables
   double centerX;
   double centerY;
   double radius;
@@ -61,6 +64,7 @@ class _VisualizationState extends State<Visualization>{
     super.dispose();
   }
 
+  //computations methods for positioning the person circles
   double _computeXPosition(int distance, double angle){
     return centerX + ((radius/10)*distance) * cos(_toRadian(angle));
   }
@@ -73,10 +77,10 @@ class _VisualizationState extends State<Visualization>{
     return angle * (pi / 180);
   }
 
+  //create legend
   _createLegend(){
 
     int tempSector = 1;
-
 
     lifeAreas.forEach((element) {
       legendList.add(
@@ -90,16 +94,15 @@ class _VisualizationState extends State<Visualization>{
 
     setState(() { });
     tempSector = 1;
-
   }
 
+  //create person circle list
   _createPersonCircleList(){
 
     personCircleList.clear();
 
+    double space = 22; //default space (when multiple persons have same life area and distance)
     List<Person> tempPersonList = List();
-
-    double space = 22;
 
 
     var yourPerson = Positioned(
@@ -130,20 +133,13 @@ class _VisualizationState extends State<Visualization>{
 
       tempPersonList.add(element);
 
-
       startAngle = _getStartSectorAngle(sector+1);
-      print("sector: "+sector.toString());
-      print("sA: "+startAngle.toString());
-
-      print("sector: "+sector.toString());
-      print("startAngle: "+startAngle.toString());
-
 
       personCircleList.add(
         Positioned(
           top: _computeYPosition(element.distance.toInt()+2, startAngle+(space*multiplicator)),
           left: _computeXPosition(element.distance.toInt()+2, startAngle+(space*multiplicator)),
-          child: PersonCircle(name: element.name),
+          child: PersonCircle(person: element),
         ),
       );
     });
@@ -153,6 +149,7 @@ class _VisualizationState extends State<Visualization>{
 
   }
 
+  //get the starting angle point from sector
   double _getStartSectorAngle(int sector){
     int noLifeAreas = lifeAreas.length;
     print("noLAs: "+noLifeAreas.toString());
@@ -236,15 +233,13 @@ class _VisualizationState extends State<Visualization>{
     }
   }
 
-
+  //get persons from db
   _getPersons() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final persons = await assessmentRepo.getAllPersonsByNetworkCard(networkId);
-
-
 
     setState(() {
       personList = persons;
@@ -255,8 +250,8 @@ class _VisualizationState extends State<Visualization>{
       });
     });
 
+    //then create legend
     _createLegend();
-
 
   }
 
@@ -372,7 +367,7 @@ class _VisualizationState extends State<Visualization>{
   }
 
   void _next(BuildContext context, int assessmentId, int networkId) {
-
+    //todo
 
   }
 
