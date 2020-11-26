@@ -61,6 +61,7 @@ class _Part_2_6State extends State<Part_2_6> {
                 ),
               ),
 
+              //todo: add network card button (maybe as a alert box)
             ],
           ),
 

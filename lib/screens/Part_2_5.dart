@@ -47,8 +47,8 @@ class _Part_2_5State extends State<Part_2_5> {
                       children: [
                         TextFormField(
                           decoration: InputDecoration(
-                              labelText: "Titel meines Projekts"
-
+                              labelText: "Titel meines Projekts",
+                            contentPadding: EdgeInsets.all(0),
                           ),
                         ),
 
