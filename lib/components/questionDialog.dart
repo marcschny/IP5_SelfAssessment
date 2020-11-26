@@ -1,40 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
+import 'package:provider/provider.dart';
 
 class QuestionDialog extends StatefulWidget{
 
+  final int assessmentId;
   final String question;
   final String questionNumber;
 
   const QuestionDialog({
     Key key,
     this.question,
-    this.questionNumber
+    this.questionNumber,
+    this.assessmentId
   });
 
   _QuestionDialogState createState() => _QuestionDialogState();
 
 }
 
-class _QuestionDialogState extends State<QuestionDialog>{
+class _QuestionDialogState extends State<QuestionDialog> {
 
-  //todo: read subquestion from db
   String subquestion;
-  String answer;
+  Answer answer;
 
   final answerController = TextEditingController();
+
 
   @override
   void initState() {
     super.initState();
+    getAnswer();
     answerController.addListener(() {
-      //todo: listen on changes
+
+      getSubQuestion();
     });
   }
 
   @override
-  void dispose(){
+  void dispose() {
     answerController.dispose();
     super.dispose();
   }
@@ -57,7 +67,10 @@ class _QuestionDialogState extends State<QuestionDialog>{
                   ),
                   WidgetSpan(
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
                       height: 20,
                     ),
                   ),
@@ -74,7 +87,8 @@ class _QuestionDialogState extends State<QuestionDialog>{
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),
+                    bottomRight: Radius.circular(12)),
                 color: ThemeColors.greenShade4,
               ),
               child: TextField(
@@ -106,14 +120,84 @@ class _QuestionDialogState extends State<QuestionDialog>{
           size: 30,
           color: Color.fromRGBO(80, 80, 80, 1),
         ),
-        onPressed: (){
-          //todo: store answer in db
+        onPressed: () {
+          createOrUpdateAnswer();
+
           Navigator.pop(context);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
+
+  getAnswer() async {
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    final loadAnswer = await assessmentRepo.findAnswer(
+        widget.questionNumber);
+
+    answer = loadAnswer;
+
+    setState((){
+        if(loadAnswer !=null) {
+          var cursorPos = answerController.selection;
+
+          answerController.text = loadAnswer.answer;
+
+          if (cursorPos.start < answerController.text.length) {
+            cursorPos = new TextSelection.fromPosition(
+                new TextPosition(offset: answerController.text.length));
+          }
+          answerController.selection = cursorPos;
+        }
+    });
+  }
+
+  createOrUpdateAnswer() async {
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    final loadAnswer = await assessmentRepo.findAnswer(
+        widget.questionNumber);
+
+    final question = await assessmentRepo.findQuestion(widget.questionNumber);
+    question.answered = true;
+    assessmentRepo.updateQuestion(question);
+
+      if(loadAnswer!=null) {
+        final Answer updatedAnswer =  Answer(
+            loadAnswer.id, answerController.text, widget.questionNumber,
+            widget.assessmentId);
+        assessmentRepo.updateAnswer(updatedAnswer);
+
+      } else {
+
+        final Answer newAnswer = new Answer(
+            null, answerController.text, widget.questionNumber,
+            widget.assessmentId);
+        if(newAnswer.answer!='') {
+          assessmentRepo.insertAnswer(newAnswer);
+        }
+
+      }
+    }
+
+
+  getSubQuestion() async {
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    final loadQuestion = await assessmentRepo.findQuestion(
+        widget.questionNumber);
+
+    String subQuestion = loadQuestion.subquestion;
+
+    setState((){
+      subquestion = subQuestion;
+    });
+  }
+
 
 
 }

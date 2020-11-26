@@ -4,7 +4,8 @@ import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/changeproject.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/note.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
@@ -26,8 +27,12 @@ abstract class AssessmentRepository{
   Future<List<Question>> getAllQuestionsByAssessment(int assessment_id);
 
   //find specific question by question_number and assessment_id
-  @Query('SELECT * FROM Question WHERE question_number = :question_number AND assessment_id = :assessment_id')
-  Future<List<Question>> findQuestion(String question_number, int assessment_id);
+  @Query('SELECT * FROM Question WHERE question_number = :question_number ') //AND assessment_id = :assessment_id
+  Future<Question> findQuestion(String question_number); //, int assessment_id
+
+  //update question
+  @update
+  Future<int> updateQuestion(Question question);
 
   //questions are currently added and modified from 'database_initial_data' script
 
@@ -37,24 +42,24 @@ abstract class AssessmentRepository{
   /* ANSWER */
 
   //find answer by question_number
-  @Query('SELECT * FROM Answer WHERE question_number = :question_number AND assessment_id')
-  Future<Question> findAnswer(String question_number, int assessment_id);
+  @Query('SELECT * FROM Answer WHERE question_number = :question_number ') //AND assessment_id = :assessment_id
+  Future<Answer> findAnswer(String question_number); //, int assessment_id
 
   //get all answers by assessment_id
   @Query('SELECT * FROM Answer WHERE assessment_id = :assessment_id')
-  Future<List<Question>> getAllAnswersByAssessment(int assessment_id);
+  Future<List<Answer>> getAllAnswersByAssessment(int assessment_id);
 
   //insert answer
   @insert
-  Future<void> insertAnswer(Answer answer);
+  Future<int> insertAnswer(Answer answer);
 
   //update answer
   @update
-  Future<void> updateAnswer(Answer answer);
+  Future<int> updateAnswer(Answer answer);
 
   //delete answer
   @delete
-  Future<void> deleteAnswer(Answer answer);
+  Future<int> deleteAnswer(Answer answer);
 
 
 
@@ -71,15 +76,15 @@ abstract class AssessmentRepository{
 
   //new assessment
   @insert
-  Future<void> createAssessment(Assessment assessment);
+  Future<int> createAssessment(Assessment assessment);
 
   //update assessment
   @update
-  Future<void> updateAssessment(Assessment assessment);
+  Future<int> updateAssessment(Assessment assessment);
 
   //delete assessment
   @delete
-  Future<void> deleteAssessment(Assessment assessment);
+  Future<int> deleteAssessment(Assessment assessment);
 
 
 
@@ -96,15 +101,15 @@ abstract class AssessmentRepository{
 
   //new changeproject
   @insert
-  Future<void> createChangeProject();
+  Future<int> createChangeProject(ChangeProject changeProject);
 
   //update changeproject
   @update
-  Future<void> updateChangeProject();
+  Future<int> updateChangeProject(ChangeProject changeProject);
 
   //delete changeproject
   @delete
-  Future<void> deleteChangeProject();
+  Future<int> deleteChangeProject(ChangeProject changeProject);
 
 
 
@@ -125,15 +130,15 @@ abstract class AssessmentRepository{
 
   //create new note
   @insert
-  Future<void> createNote();
+  Future<int> createNote(Note note);
 
   //update note
   @update
-  Future<void> updateNote();
+  Future<int> updateNote(Note note);
 
   //delete note
   @delete
-  Future<void> deleteNote();
+  Future<int> deleteNote(Note note);
 
 
 
@@ -148,17 +153,18 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM NetworkCard WHERE assessment_id = :id')
   Future<NetworkCard> findNetworkCard(int id);
 
+
   //create new network card
   @insert
-  Future<void> createNetworkCard();
+  Future<int> createNetworkCard(NetworkCard networkCard);
 
   //update network card
   @update
-  Future<void> updateNetworkCard();
+  Future<int> updateNetworkCard(NetworkCard networkCard);
 
   //delete network card
   @delete
-  Future<void> deleteNetworkCard();
+  Future<int> deleteNetworkCard(NetworkCard networkCard);
 
 
 
@@ -179,15 +185,15 @@ abstract class AssessmentRepository{
 
   //create Person
   @insert
-  Future<void> createPerson();
+  Future<int> createPerson(Person person);
 
   //update Person
   @update
-  Future<void> updatePerson();
+  Future<int> updatePerson(Person person);
 
   //delete Person
   @delete
-  Future<void> deletePerson();
+  Future<int> deletePerson(Person person);
 
 
 
