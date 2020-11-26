@@ -141,8 +141,8 @@ class _VisualizationState extends State<Visualization>{
 
       personCircleList.add(
         Positioned(
-          top: _computeYPosition(element.distance.toInt(), startAngle+(space*multiplicator)),
-          left: _computeXPosition(element.distance.toInt(), startAngle+(space*multiplicator)),
+          top: _computeYPosition(element.distance.toInt()+2, startAngle+(space*multiplicator)),
+          left: _computeXPosition(element.distance.toInt()+2, startAngle+(space*multiplicator)),
           child: PersonCircle(name: element.name),
         ),
       );
@@ -157,54 +157,79 @@ class _VisualizationState extends State<Visualization>{
     int noLifeAreas = lifeAreas.length;
     print("noLAs: "+noLifeAreas.toString());
     if(noLifeAreas == 2){
-      if(sector == 1){
-        return 180;
-      }else if(sector == 2){
-        return 0;
+      switch(sector){
+        case 1:
+          return 180;
+          break;
+        case 2:
+          return 0;
+          break;
       }
     }else if(noLifeAreas == 3){
-      if(sector == 1){
-        return 240;
-      }else if(sector == 2){
-        return 120;
-      }else if(sector == 3){
-        return 0;
+      switch(sector){
+        case 1:
+          return 240;
+          break;
+        case 2:
+          return 120;
+          break;
+        case 3:
+          return 0;
+          break;
       }
     }else if(noLifeAreas == 4){
-      if(sector == 1){
-        return 90;
-      }else if(sector == 2){
-        return 0;
-      }else if(sector == 3){
-        return 270;
-      }else if(sector == 4){
-        return 180;
+      switch(sector){
+        case 1:
+          return 90;
+          break;
+        case 2:
+          return 0;
+          break;
+        case 3:
+          return 270;
+          break;
+        case 4:
+          return 180;
+          break;
       }
     }else if(noLifeAreas == 5){
-      if(sector == 1){
-        return 0;
-      }else if(sector == 2){
-        return 288;
-      }else if(sector == 3){
-        return 216;
-      }else if(sector == 4){
-        return 144;
-      }else if(sector == 5){
-        return 72;
+      switch(sector){
+        case 1:
+          return 0;
+          break;
+        case 2:
+          return 288;
+          break;
+        case 3:
+          return 216;
+          break;
+        case 4:
+          return 144;
+          break;
+        case 5:
+          return 72;
+          break;
       }
     }else if(noLifeAreas == 6){
-      if(sector == 1){
-        return 300;
-      }else if(sector == 2){
-        return 240;
-      }else if(sector == 3){
-        return 180;
-      }else if(sector == 4){
-        return 120;
-      }else if(sector == 5){
-        return 60;
-      }else if(sector == 6){
-        return 0;
+      switch(sector){
+        case 1:
+          return 300;
+          break;
+        case 2:
+          return 240;
+          break;
+        case 3:
+          return 180;
+          break;
+        case 4:
+          return 120;
+          break;
+        case 5:
+          return 60;
+          break;
+        case 6:
+          return 0;
+          break;
       }
     }else{
       return -1000;
@@ -312,7 +337,7 @@ class _VisualizationState extends State<Visualization>{
                   Expanded(
                     child: SingleChildScrollView(
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(18, 0, 18, 5),
+                        padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
                         width: MediaQuery.of(context).size.width,
                         child: Wrap(
                           alignment: WrapAlignment.start,

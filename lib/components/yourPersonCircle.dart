@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
 
@@ -61,7 +62,7 @@ class _YourPersonCircleState extends State<YourPersonCircle>{
         child: Icon(
             Icons.person,
             size: 30,
-            color: Color.fromRGBO(0, 0, 0, 1)
+            color: ThemeColors.greenShade0,
         ),
       ),
       onTap: _onTap,

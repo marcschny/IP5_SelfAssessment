@@ -53,19 +53,17 @@ class _PersonDialogState extends State<PersonDialog>{
 
 
   //distance
-  int _currentDistance = 5;
+  int _currentDistance = 4;
   Map<int, String> _distanceMap = {
-    0: "Gar nicht nah",
-    1: "Weniger nah",
-    2: "Weniger nah",
-    3: "Weniger nah",
-    4: "Nah",
+    8: "Gar nicht nah",
+    7: "Weniger nah",
+    6: "Weniger nah",
     5: "Nah",
-    6: "Nah",
-    7: "Sehr nah",
-    8: "Sehr nah",
-    9: "Sehr nah",
-    10: "Sehr sehr nah",
+    4: "Nah",
+    3: "Nah",
+    2: "Sehr nah",
+    1: "Sehr nah",
+    0: "Sehr sehr nah"
   };
 
 
@@ -432,7 +430,7 @@ class _PersonDialogState extends State<PersonDialog>{
                       ),
                       SizedBox(height: 14),
                       ScoreSlider(
-                        maxScore: 10,
+                        maxScore: 8,
                         score: _currentDistance,
                         onScoreChanged: (newDistance){
                           setState(() {
