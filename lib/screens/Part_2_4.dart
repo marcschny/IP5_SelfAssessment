@@ -6,7 +6,6 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
-import 'Part_3_1.dart';
 
 class Part_2_4 extends StatefulWidget {
   const Part_2_4({Key key}) : super(key: key);
@@ -41,53 +40,56 @@ class _Part_2_4State extends State<Part_2_4> {
                   percent: 0.45,
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(20),
-                  child: Wrap(
-                    children: [
-                      QuestionCard(
-                        questionNumber: "2.4.1",
-                      ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                    child: Wrap(
+                      children: [
+                        QuestionCard(
+                          questionNumber: "2.4.1",
+                        ),
 
-                      Row(
-                        children: [
-                        Icon(Icons.info_outline_rounded),
-                          Flexible(
-                            child: RichText(
-                              textAlign: TextAlign.start,
-                              softWrap: true,
-                              overflow: TextOverflow.clip,
-                              maxLines: 2,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
-                                    style: ThemeTexts.assessmentQuestion,
-                                    ),
-                                  ],
+                        Row(
+                          children: [
+                          Icon(Icons.info_outline_rounded),
+                            Flexible(
+                              child: RichText(
+                                textAlign: TextAlign.start,
+                                softWrap: true,
+                                overflow: TextOverflow.clip,
+                                maxLines: 2,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
+                                      style: ThemeTexts.assessmentQuestion,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                          ),
-                      ],
-                      ),
+                            ),
+                        ],
+                        ),
 
-                      RaisedButton(
-                        textColor: Colors.black,
-                        color: ThemeColors.greenShade4,
-                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        onPressed: () {
-                          // Respond to button press
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
-                        },
-                          child: Row(
-                            children: <Widget> [
-                              Text("Fragekatalog"),
-                              Icon(Icons.arrow_right_alt_rounded, size: 20),
-                            ],
-                      )
-                      ),
-                    ],
-                  ),
+                        RaisedButton(
+                          textColor: Colors.black,
+                          color: ThemeColors.greenShade4,
+                          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                          onPressed: () {
+                            // Respond to button press
+                            //todo
+                            //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
+                          },
+                            child: Row(
+                              children: <Widget> [
+                                Text("Fragekatalog"),
+                                Icon(Icons.arrow_right_alt_rounded, size: 20),
+                              ],
+                        )
+                        ),
+                      ],
+                    ),
+                ),
               ),
           ],
         ),

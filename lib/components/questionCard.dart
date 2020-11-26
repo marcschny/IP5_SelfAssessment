@@ -33,15 +33,16 @@ class _QuestionCardState extends State<QuestionCard>{
     return FutureBuilder(
     future: loadQuestion,
       builder: (context, snapshot) {
-      
+      if(snapshot.hasData) {
         return GestureDetector(
           child: Container(
             margin: EdgeInsets.only(bottom: 24),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Container(
-                color: snapshot.data.answered ? ThemeColors.greenShade2 : ThemeColors
-                    .greenShade3,
+                color: snapshot.data.answered
+                    ? ThemeColors.greenShade2
+                    : ThemeColors.greenShade3,
                 padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,11 +70,15 @@ class _QuestionCardState extends State<QuestionCard>{
           onTap: () {
             showDialog(
                 context: context,
-                child: QuestionDialog(question: snapshot.data.question,
-                    questionNumber: widget.questionNumber)
+                child: QuestionDialog(
+                  question: snapshot.data.question,
+                  questionNumber: widget.questionNumber
+                )
             );
           },
         );
+      }
+      return Container();
       },
     );
   }

@@ -25,6 +25,8 @@ class Visualization extends StatefulWidget{
 
 }
 
+//todo: handle situation if only one life area (by persons) is selected
+
 class _VisualizationState extends State<Visualization>{
 
   //variables from route
@@ -365,8 +367,7 @@ class _VisualizationState extends State<Visualization>{
   }
 
   void _next(BuildContext context, int assessmentId, int networkId) {
-    //todo
-
+    Navigator.of(context).pushNamed("/part_2_1");
   }
 
 

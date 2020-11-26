@@ -35,7 +35,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
     super.initState();
     getAnswer();
     answerController.addListener(() {
-
       getSubQuestion();
     });
   }
@@ -159,7 +158,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
         widget.questionNumber);
 
     final question = await assessmentRepo.findQuestion(widget.questionNumber);
-    question.answered = true;
+    question.answered = answerController.text != "" ? true : false;
     assessmentRepo.updateQuestion(question);
 
       if(loadAnswer!=null) {
