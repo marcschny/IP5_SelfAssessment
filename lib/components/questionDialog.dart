@@ -149,6 +149,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
+    //todo: get answer by questionNumber and assessment_id!
     final loadAnswer = await assessmentRepo.findAnswer(
         widget.questionNumber);
 
@@ -156,6 +157,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
     question.answered = answerController.text != "" ? true : false;
     assessmentRepo.updateQuestion(question);
 
+      //todo: same here (no id passed yet)
       if(loadAnswer!=null) {
         final Answer updatedAnswer =  Answer(
             loadAnswer.id, answerController.text, widget.questionNumber,
@@ -164,6 +166,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
 
       } else {
 
+        //todo: same here (no id passed yet)
         final Answer newAnswer = new Answer(
             null, answerController.text, widget.questionNumber,
             widget.assessmentId);
@@ -179,6 +182,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
+    //todo: same here - get by questionNumber and Assessment_id!
     final loadQuestion = await assessmentRepo.findQuestion(
         widget.questionNumber);
 

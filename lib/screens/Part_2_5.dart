@@ -16,6 +16,11 @@ class Part_2_5 extends StatefulWidget {
 
 class _Part_2_5State extends State<Part_2_5> {
 
+  TextEditingController _titleController;
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,15 +50,23 @@ class _Part_2_5State extends State<Part_2_5> {
                   padding: const EdgeInsets.all(20),
                     child: Wrap(
                       children: [
-                        TextFormField(
+                        TextField(
+                          maxLines: 1,
+                          controller: _titleController,
+                          onSubmitted: (value){
+                            //todo: write title to db (change project)
+                          },
+                          textInputAction: TextInputAction.go,
                           decoration: InputDecoration(
-                              labelText: "Titel meines Projekts",
+                            hintText: "Title Deines Projekts...",
+                            hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20, color: Colors.grey),
                             contentPadding: EdgeInsets.all(0),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: ThemeColors.greenShade3),
+                            ),
                           ),
+                          style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
                         ),
-
-
-
                       ],
                     ),
                 ),
@@ -62,21 +75,21 @@ class _Part_2_5State extends State<Part_2_5> {
         ),
 
 
-              BottomNavigation(
-                  showNextButton: true,
-                  showBackButton: true,
-                  nextTitle: "Wer oder was hilft  Dir dabei?",
-                  callbackBack: () {
-                    Navigator.of(context).pop();
-                  },
-                  callbackNext: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
-                  }
-              ),
-        ],
+            BottomNavigation(
+                showNextButton: true,
+                showBackButton: true,
+                nextTitle: "Wer oder was hilft  Dir dabei?",
+                callbackBack: () {
+                  Navigator.of(context).pop();
+                },
+                callbackNext: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
+                }
+            ),
+          ],
         ),
       ),
-
+      resizeToAvoidBottomInset: false,
     );
 
   }
