@@ -53,7 +53,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
                     builder: (context, snapshot) {
                       return Container(
                         child: Text(
-                          snapshot.data.question,
+                          widget.question, //snapshot.data.question
                           style: ThemeTexts.assessmentQuestion,
                         ),
                       );

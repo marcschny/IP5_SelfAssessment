@@ -4,7 +4,6 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 
-import 'Part_2_3.dart';
 
 class Part_2_6 extends StatefulWidget {
   const Part_2_6({Key key}) : super(key: key);
@@ -74,7 +73,9 @@ class _Part_2_6State extends State<Part_2_6> {
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
+                //todo: go to change project
+                print("Go to change project...");
+                //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
               }
           ),
         ],

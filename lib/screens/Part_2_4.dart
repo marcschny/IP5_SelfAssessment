@@ -6,6 +6,8 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
+import 'Part_3_1.dart';
+
 
 class Part_2_4 extends StatefulWidget {
 
@@ -91,10 +93,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                             onPressed: () {
-                              print("open questionnaire");
-                              // Respond to button press
-                              //todo:
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
                             },
                               child: Container(
                                 padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),

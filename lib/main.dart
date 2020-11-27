@@ -11,6 +11,11 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_6.dart';
 import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_3_1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_3_2.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_3_3.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_3_4.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_3_5.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Visualization.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
@@ -74,6 +79,11 @@ class MyApp extends StatelessWidget {
             "/part_2_4": (context) => Part_2_4(),
             "/part_2_5": (context) => Part_2_5(),
             "/part_2_6": (context) => Part_2_6(),
+            "/part_3_1": (context) => Part_3_1(),
+            "/part_3_2": (context) => Part_3_2(),
+            "/part_3_3": (context) => Part_3_3(),
+            "/part_3_4": (context) => Part_3_4(),
+            "/part_3_5": (context) => Part_3_5(),
           },
         ),
       ),
