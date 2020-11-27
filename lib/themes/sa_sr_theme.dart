@@ -13,6 +13,14 @@ abstract class ThemeColors{
   //main colors - grey shades
   static const Color greyShade0 = Color.fromRGBO(170, 170, 170, 1);   //title color
   static const Color greyShade1 = Color.fromRGBO(229, 229, 229, 1);   //back button color
+
+  //network card colors
+  static const Color firstColor = Color.fromRGBO(212, 219, 200, 1);
+  static const Color secondColor = Color.fromRGBO(200, 219, 215, 1);
+  static const Color thirdColor =  Color.fromRGBO(217, 200, 219, 1);
+  static const Color fourthColor = Color.fromRGBO(200, 202, 219, 1);
+  static const Color fifthColor = Color.fromRGBO(219, 210, 200, 1);
+  static const Color sixthColor = Color.fromRGBO(219, 200, 200, 1);
 }
 
 abstract class ThemeTexts{
@@ -20,15 +28,15 @@ abstract class ThemeTexts{
   /* 0 Start Screen */
 
   static TextStyle startAssessmentTitle = GoogleFonts.raleway(
-      fontSize: 30,
-      fontWeight: FontWeight.w700,
-      color: Colors.black
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+    color: Colors.black
   );
 
   static TextStyle startAssessmentSubtitle = GoogleFonts.raleway(
-      fontSize: 24,
-      fontWeight: FontWeight.w500,
-      color: Colors.black
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+    color: Colors.black
   );
 
 
@@ -44,80 +52,88 @@ abstract class ThemeTexts{
 
   //assessment title
   static TextStyle assessmentTitle = GoogleFonts.roboto(
-      fontSize: 17,
-      color: Color.fromRGBO(73, 101, 77, 1),
-      fontWeight: FontWeight.w500
+    fontSize: 17,
+    color: Color.fromRGBO(73, 101, 77, 1),
+    fontWeight: FontWeight.w500
   );
 
 
   //assessment subtitle
   static TextStyle assessmentSubtitle = GoogleFonts.roboto(
-      fontSize: 20.5,
-      color: Color.fromRGBO(170, 170, 170, 1),
-      fontWeight: FontWeight.w500
+    fontSize: 20.5,
+    color: Color.fromRGBO(170, 170, 170, 1),
+    fontWeight: FontWeight.w500
   );
 
 
   //assessment intro text
   static TextStyle assessmentIntro = GoogleFonts.roboto(
-      fontSize: 14.5,
-      color: Colors.black,
-      fontWeight: FontWeight.w400
+    fontSize: 14.5,
+    color: Colors.black,
+    fontWeight: FontWeight.w400
   );
 
 
   //navigation text "Weiter zu ..." (only bottom part - top part needs to be thicker)
   static TextStyle assessmentNavigationNext = GoogleFonts.roboto(
-      fontSize: 13.5,
-      color: Colors.black,
-      fontWeight: FontWeight.w300
+    fontSize: 13.5,
+    color: Colors.black,
+    fontWeight: FontWeight.w300
   );
 
 
   //questions
   static TextStyle assessmentQuestion = GoogleFonts.roboto(
-      fontSize: 16,
-      color: Colors.black,
-      fontWeight: FontWeight.w400
+    fontSize: 16,
+    color: Colors.black,
+    fontWeight: FontWeight.w400
   );
 
 
   //subquestions or radio button answers
   static TextStyle assessmentSubquestion = GoogleFonts.roboto(
-      fontSize: 16,
-      color: Colors.black,
-      fontWeight: FontWeight.w300
+    fontSize: 16,
+    color: Colors.black,
+    fontWeight: FontWeight.w300
   );
 
   //answers
   static TextStyle assessmentAnswer = GoogleFonts.roboto(
-      fontSize: 16.5,
-      color: Colors.black,
-      fontWeight: FontWeight.w300
+    fontSize: 16.5,
+    color: Colors.black,
+    fontWeight: FontWeight.w300
   );
 
 
   //dialog box titles
   static TextStyle assessmentDialogTitle = GoogleFonts.roboto(
-      fontSize: 18,
-      color: Colors.black,
-      fontWeight: FontWeight.w500
+    fontSize: 20,
+    color: Colors.black,
+    fontWeight: FontWeight.w500
   );
 
 
   //dialog box subtitles
   static TextStyle assessmentDialogSubtitle = GoogleFonts.roboto(
-      fontSize: 15,
-      color: Colors.black,
-      fontWeight: FontWeight.w500
+    fontSize: 17,
+    color: Colors.black,
+    fontWeight: FontWeight.w500
   );
 
 
   //dialog box subtitles
   static TextStyle assessmentText = GoogleFonts.roboto(
-      fontSize: 20,
-      color: Colors.black,
-      fontWeight: FontWeight.w400
+    fontSize: 20,
+    color: Colors.black,
+    fontWeight: FontWeight.w400
+  );
+
+
+  //toasts
+  static TextStyle toastText = GoogleFonts.roboto(
+    fontSize: 14.5,
+    color: Colors.white,
+    fontWeight: FontWeight.w400
   );
 
 

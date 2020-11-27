@@ -41,24 +41,26 @@ class _Part_2_1State extends State<Part_2_1> {
                 percent: 0.3,
               ),
 
-              Padding(
-                  padding: const EdgeInsets.all(20),
-                      child: Wrap(
-                        children: [
-                          QuestionCard(
-                            questionNumber: "2.1.1",
-                          ),
+              Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.all(20),
+                        child: Wrap(
+                          children: [
+                            QuestionCard(
+                              questionNumber: "2.1.1",
+                            ),
 
-                          QuestionCard(
-                            questionNumber: "2.1.2",
-                          ),
+                            QuestionCard(
+                              questionNumber: "2.1.2",
+                            ),
 
-                          QuestionCard(
-                            questionNumber: "2.1.3",
-                          ),
-                        ],
+                            QuestionCard(
+                              questionNumber: "2.1.3",
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+              ),
                 ],
             ),
 

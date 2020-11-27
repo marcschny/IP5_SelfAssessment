@@ -2,7 +2,7 @@
 
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networdcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 
 @Entity(
   tableName: 'Person',

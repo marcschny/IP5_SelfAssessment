@@ -40,21 +40,23 @@ class _Part_2_5State extends State<Part_2_5> {
                   percent: 0.5,
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(20),
-                  child: Wrap(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                            labelText: "Titel meines Projekts"
-
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                    child: Wrap(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "Titel meines Projekts",
+                            contentPadding: EdgeInsets.all(0),
+                          ),
                         ),
-                      ),
 
 
 
-                    ],
-                  ),
+                      ],
+                    ),
+                ),
               ),
           ],
         ),

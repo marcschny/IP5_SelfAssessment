@@ -4,14 +4,13 @@ import 'package:ip5_selbsteinschaetzung/components/NextButton.dart';
 
 import 'BackButton.dart';
 
-
 class BottomNavigation extends StatelessWidget{
   final bool showNextButton;
   final bool showBackButton;
   final String nextTitle;
   final Function callbackBack;
   final Function callbackNext;
-
+  
   const BottomNavigation({
     Key key,
     this.showNextButton,

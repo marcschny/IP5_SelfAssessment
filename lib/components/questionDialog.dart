@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:provider/provider.dart';
 
 class QuestionDialog extends StatefulWidget{
@@ -38,7 +35,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
     super.initState();
     getAnswer();
     answerController.addListener(() {
-
       getSubQuestion();
     });
   }
@@ -162,7 +158,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
         widget.questionNumber);
 
     final question = await assessmentRepo.findQuestion(widget.questionNumber);
-    question.answered = true;
+    question.answered = answerController.text != "" ? true : false;
     assessmentRepo.updateQuestion(question);
 
       if(loadAnswer!=null) {

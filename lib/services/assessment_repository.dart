@@ -5,7 +5,6 @@ import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/changeproject.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/note.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
@@ -165,6 +164,7 @@ abstract class AssessmentRepository{
   //create new network card
   @insert
   Future<int> createNetworkCard(NetworkCard networkCard);
+
 
   //update network card
   @update

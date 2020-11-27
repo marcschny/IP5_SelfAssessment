@@ -6,10 +6,12 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
-import 'Part_3_1.dart';
 
 class Part_2_4 extends StatefulWidget {
-  const Part_2_4({Key key}) : super(key: key);
+
+  final String evaluationString;
+
+  const Part_2_4({Key key, this.evaluationString}) : super(key: key);
 
   @override
   _Part_2_4State createState() => _Part_2_4State();
@@ -31,6 +33,7 @@ class _Part_2_4State extends State<Part_2_4> {
             ),
 
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
@@ -41,54 +44,90 @@ class _Part_2_4State extends State<Part_2_4> {
                   percent: 0.45,
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(20),
-                  child: Wrap(
-                    children: [
-                      QuestionCard(
-                        questionNumber: "2.4.1",
-                      ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: QuestionCard(
+                            questionNumber: "2.4.1",
+                          ),
+                        ),
 
-                      Row(
-                        children: [
-                        Icon(Icons.info_outline_rounded),
-                          Flexible(
-                            child: RichText(
-                              textAlign: TextAlign.start,
-                              softWrap: true,
-                              overflow: TextOverflow.clip,
-                              maxLines: 2,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
-                                    style: ThemeTexts.assessmentQuestion,
+
+                        Spacer(flex: 2),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Icon(
+                                Icons.info_outline_rounded,
+                                size: 25,
+                                color: Colors.grey,
+                              )
+                            ),
+                            SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                widget.evaluationString == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Fragekatalog wurde bereits ausgefüllt",
+                                style: ThemeTexts.assessmentQuestion,
+                                textAlign: TextAlign.start,
+                                softWrap: true,
+                                overflow: TextOverflow.clip,
+                                ),
+                            ),
+                        ],
+                        ),
+
+                        widget.evaluationString == null ? Padding(
+                          padding: EdgeInsets.only(left: 32, top: 3),
+                          child: RaisedButton(
+                            color: ThemeColors.greenShade4,
+                            elevation: 0,
+                            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                            onPressed: () {
+                              print("open questionnaire");
+                              // Respond to button press
+                              //todo:
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
+                            },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget> [
+                                    Text(
+                                      "Fragekatalog",
+                                      style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
+                                    ),
+                                    SizedBox(width: 8),
+                                    Icon(
+                                      Icons.arrow_forward,
+                                      size: 20
                                     ),
                                   ],
                                 ),
                               ),
                           ),
-                      ],
-                      ),
+                        ) : Container(),
 
-                      RaisedButton(
-                        textColor: Colors.black,
-                        color: ThemeColors.greenShade4,
-                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                        onPressed: () {
-                          // Respond to button press
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
-                        },
-                          child: Row(
-                            children: <Widget> [
-                              Text("Fragekatalog"),
-                              Icon(Icons.arrow_right_alt_rounded, size: 20),
-                            ],
-                      )
-                      ),
-                    ],
-                  ),
+
+                        //Spacer(flex: 1),
+
+                        widget.evaluationString != null ? _evaluationQuestionnaire() : Container(),
+                      ],
+                    ),
+                ),
               ),
+
+              SizedBox(height: 20),
           ],
         ),
 
@@ -111,4 +150,45 @@ class _Part_2_4State extends State<Part_2_4> {
     );
 
   }
+
+
+  _evaluationQuestionnaire(){
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 6, 0, 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Auswertung Fragebogen",
+            style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
+          ),
+
+          Container(
+            padding: EdgeInsets.fromLTRB(0, 4, 0, 10),
+            child: Text(
+              "Am folgenden Punkt möchtest Du gerne am Projekt arbeiten:",
+              style: ThemeTexts.assessmentIntro,
+              overflow: TextOverflow.clip,
+            ),
+          ),
+
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+            decoration: BoxDecoration(
+              border: Border.all(color: ThemeColors.greenShade2),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              color: Colors.transparent,
+            ),
+            child: Text(
+              "Irgend eine unwichtig gewählte Frage kommt hier", //todo: widget.evaluationString,
+              style: ThemeTexts.assessmentQuestion,
+              overflow: TextOverflow.clip,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
 }
