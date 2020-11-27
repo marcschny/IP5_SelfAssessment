@@ -9,6 +9,7 @@ class WheelPainter extends CustomPainter {
   final int noAreas;
   final double widgetSize;
 
+
   const WheelPainter({
     Key key,
     this.noAreas,
@@ -36,6 +37,15 @@ class WheelPainter extends CustomPainter {
     int noElements = noAreas;
     double radius = (2 * pi) / noElements;
 
+
+    var paintFullCircle = Paint()
+      ..color = ThemeColors.firstColor
+      ..style = PaintingStyle.fill;
+
+    if(noElements == 1){
+      print("one element");
+      canvas.drawCircle(Offset(wheelSize, wheelSize), wheelSize, paintFullCircle);
+    }
     canvas.drawPath(getWheelPath(wheelSize, 0, radius), getColoredPaint(ThemeColors.sixthColor));
     canvas.drawPath(getWheelPath(wheelSize, radius, radius), getColoredPaint(ThemeColors.fifthColor));
     canvas.drawPath(getWheelPath(wheelSize, radius * 2, radius), getColoredPaint(ThemeColors.fourthColor));
