@@ -53,7 +53,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
             child: RichText(
               text: TextSpan(
                 children: [
@@ -63,10 +63,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
                   ),
                   WidgetSpan(
                     child: SizedBox(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       height: 20,
                     ),
                   ),
@@ -81,10 +78,9 @@ class _QuestionDialogState extends State<QuestionDialog> {
 
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12)),
+                borderRadius: BorderRadius.all(Radius.circular(12)),
                 color: ThemeColors.greenShade4,
               ),
               child: TextField(
@@ -99,7 +95,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
                   disabledBorder: InputBorder.none,
                 ),
                 keyboardType: TextInputType.multiline,
-                maxLines: 15,
+                maxLines: 16,
                 controller: answerController,
               ),
 
@@ -118,7 +114,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
         ),
         onPressed: () {
           createOrUpdateAnswer();
-
           Navigator.pop(context);
         },
       ),

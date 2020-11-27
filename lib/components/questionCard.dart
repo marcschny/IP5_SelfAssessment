@@ -5,7 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
-
+//todo: load question by questionNumber and assessment id!
 class QuestionCard extends StatefulWidget{
   final String questionNumber;
 
@@ -73,6 +73,7 @@ class _QuestionCardState extends State<QuestionCard>{
                 child: QuestionDialog(
                   question: snapshot.data.question,
                   questionNumber: widget.questionNumber
+                  //todo: pass assessment id
                 )
             );
           },
