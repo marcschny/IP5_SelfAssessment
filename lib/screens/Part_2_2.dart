@@ -41,7 +41,7 @@ class _Part_2_2State extends State<Part_2_2> {
 
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
                     child: Wrap(
                       children: [
                         QuestionCard(
