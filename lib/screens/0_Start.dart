@@ -8,7 +8,10 @@ import 'package:provider/provider.dart';
 
 class StartScreen extends StatefulWidget {
 
-  const StartScreen({Key key}) : super(key: key);
+  final Assessment existingAssessment;
+
+
+  const StartScreen({Key key, this.existingAssessment}) : super(key: key);
 
   @override
   _StartScreenState createState() => _StartScreenState();
@@ -16,6 +19,7 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen>{
+
 
   //index for intro pageView
   int _currentIndex = 0;
@@ -30,6 +34,8 @@ class _StartScreenState extends State<StartScreen>{
     Part5(),
   ];
 
+
+  //page view builder
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -49,6 +55,24 @@ class _StartScreenState extends State<StartScreen>{
       print(assessmentId);
       Navigator.of(context).pushNamed("/lifeAreas", arguments: assessmentId);
     });
+  }
+
+
+  //check if its a new or existing assessment
+  _checkIfExistingAssessment(){
+    //if constructor has retrieved an assessment, thne navigate to change project [part 4]
+    if(widget.existingAssessment != null){
+      print("existing assessment: "+widget.existingAssessment.id.toString());
+
+      //todo: navigate to change project [part 4]
+      //Navigator.of(context).pushNamed("/part_4", arguments: widget.existingAssessment.id);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, _checkIfExistingAssessment);
   }
 
 
