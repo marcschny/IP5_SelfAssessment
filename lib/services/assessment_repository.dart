@@ -63,6 +63,14 @@ abstract class AssessmentRepository{
 
 
 
+  /* SURVEY ANSWERS */
+
+  //get weakest survery answers
+  @Query('SELECT * FROM Answer WHERE answer="Kriege ich hin und wieder hin" OR answer="Schaffe ich selten"')
+  Future<List<Answer>> getSurveyAnswers();
+
+
+
 
   /* ASSESSMENT */
 
