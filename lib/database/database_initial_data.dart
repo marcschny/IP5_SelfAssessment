@@ -16,7 +16,7 @@ const initialDataScript = [
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.3.2\',\'Wenn Du jetzt nochmals über schwierige soziale Situationen (und auch über das Motto der Person, die Du gerne wärst!) nachdenkst...\', \'Welche Verhaltensweisen möchtest Du verändern? Welche neuen Verhaltensweisen wünscht Du Dir?\')',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.4.1\',\'Was ganz konkret möchtest Du in den nächsten zwei bis drei Wochen ausprobieren?\', \'Beschreibe die neue Situation und auch das neue, andere Verhalten möglichst genau.\')',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.6.1\',\'Wer der Jugendlichen könnte Dir dabei helfen?\', \'Wen willst Du einweihen und fragen, ob er/sie Dich unterstützt?\')',
-  'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.6.2\',\'Die SozialpädagogInnen in der WG sind ja dazu da, Dich zu unterstützen\', \'Wen willst Du einbeziehen in Dein «Ja klar, das schaff ich-»-Projekt/Vorhaben?\')',
+  'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.6.2\',\'Die Sozialpädagog*innen in der WG sind ja dazu da, Dich zu unterstützen\', \'Wen willst Du einbeziehen in Dein «Ja klar, das schaff ich-»-Projekt/Vorhaben?\')',
   'INSERT INTO Question (question_number, question) VALUES (\'2.6.3\',\'Hast Du sonst noch eine Idee, wer oder was Dir bei Deinem Projekt behilflich sein könnte?\')',
   'INSERT INTO Question (question_number, question) VALUES (\'3.2.1\',\'Ein Gespräch anfangen/andere ansprechen\')',
   'INSERT INTO Question (question_number, question) VALUES (\'3.2.2\',\'In einer mir bekannten Gruppe etwas sagen/eine Idee vorbringen\')',

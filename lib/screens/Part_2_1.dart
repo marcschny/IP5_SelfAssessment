@@ -43,7 +43,7 @@ class _Part_2_1State extends State<Part_2_1> {
                 titleNumber: 2,
                 onClose: null,
                 subtitle: "Hey, das kann ich bereits!",
-                intro: "Hier kannst Du Deine Stärken notieren! Tippe auf eine Frage um deine Antwort zu notieren",
+                intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                 percent: 0.3,
               ),
 

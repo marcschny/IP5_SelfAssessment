@@ -116,7 +116,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
               children: [
 
                 TopBar(
-                  title: "Wer ist mir wichtig?\nMeine Netzwerkkarte",
+                  title: "Wer ist mir wichtig?\nMeine wichtigen Personen",
                   titleNumber: 1,
                   onClose: null,
                   subtitle: "Wichtige Personen",

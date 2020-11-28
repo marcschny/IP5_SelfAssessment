@@ -42,7 +42,7 @@ class _Part_2_2State extends State<Part_2_2> {
                   titleNumber: 2,
                   onClose: null,
                   subtitle: "Das möchte ich gerne besser können",
-                  intro: "Wähle die Frage aus, welche Dich am meisten anspricht  und beantworte sie anschliessend.",
+                  intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                   percent: 0.35,
               ),
 

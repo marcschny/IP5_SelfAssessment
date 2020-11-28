@@ -28,7 +28,7 @@ abstract class ThemeTexts{
   /* 0 Start Screen */
 
   static TextStyle startAssessmentTitle = GoogleFonts.raleway(
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: FontWeight.w700,
     color: Colors.black
   );

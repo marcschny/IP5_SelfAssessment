@@ -40,7 +40,7 @@ class _Part_2_3State extends State<Part_2_3> {
                   titleNumber: 2,
                   onClose: null,
                   subtitle: "Jetzt packe ich es an!",
-                  intro: "Wähle die Frage aus, welche Dich am meisten anspricht  und beantworte sie anschliessend.",
+                  intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                   percent: 0.4,
               ),
 

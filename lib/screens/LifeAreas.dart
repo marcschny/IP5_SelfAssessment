@@ -37,12 +37,11 @@ class _LifeAreasState extends State<LifeAreas>{
 
 
   Map<String, bool> _lifeAreasMap = {
-    "Tiere": false,
     "Verein / Hobby": false,
     "Schule / Ausbildung / Arbeit": false,
-    "Sozialpädagogen*Innen im Heim/WG": false,
-    "Freunde*Innen ausserhalb": false,
-    "Freunde*Innen im Heim/WG": false,
+    "Sozialpädagog*innen im Heim/WG": false,
+    "Freund*innen ausserhalb": false,
+    "Freund*innen im Heim/WG": false,
     "Familie": false,
   };
 
@@ -83,12 +82,12 @@ class _LifeAreasState extends State<LifeAreas>{
 
 
                 TopBar(
-                  title: "Wer ist mir wichtig?\nMeine Netzwerkkarte",
+                  title: "Wer ist mir wichtig?\nMeine wichtigen Personen",
                   titleNumber: 1,
                   onClose: null,
-                  subtitle: "Lebensbereiche",
+                  subtitle: "Bereiche",
                   percent: 0.05,
-                  intro: "Für eine Übersicht über dein persönliches Netzwerk kannst Du zuerst auswählen, welchen Lebensbereichen Du die verschiedenen Personen zuordnen möchtest: Welches sind für Dich relevante Lebensbereiche? ",
+                  intro: "Um deine Karte zu erstellen musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
                 ),
 
                 _customCheckBox(),
@@ -147,7 +146,7 @@ class _LifeAreasState extends State<LifeAreas>{
                   },
                   textInputAction: TextInputAction.go,
                   decoration: InputDecoration(
-                    hintText: "Neuer Lebensbereich hinzufügen...",
+                    hintText: "Neuer Bereich hinzufügen...",
                     hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 18, color: Colors.grey),
                     contentPadding: EdgeInsets.only(bottom: 0),
                     focusedBorder: UnderlineInputBorder(
@@ -242,7 +241,7 @@ class _LifeAreasState extends State<LifeAreas>{
       }
     }else{
       showToast(
-        "Wähle mindestens einen Lebensbereich",
+        "Wähle mindestens einen Bereich",
         context: context,
         textAlign: TextAlign.center,
         textStyle: ThemeTexts.toastText,

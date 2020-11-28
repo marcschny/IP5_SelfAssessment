@@ -11,9 +11,9 @@ import 'Part_3_1.dart';
 
 class Part_2_4 extends StatefulWidget {
 
-  final String evaluationString;
+  final List<String> evaluation;
 
-  const Part_2_4({Key key, this.evaluationString}) : super(key: key);
+  const Part_2_4({Key key, this.evaluation}) : super(key: key);
 
   @override
   _Part_2_4State createState() => _Part_2_4State();
@@ -58,31 +58,31 @@ class _Part_2_4State extends State<Part_2_4> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Flexible(
-                          child: QuestionCard(
-                            questionNumber: "2.4.1",
-                            assessmentId: assessmentId,
-                          ),
+
+                        QuestionCard(
+                          questionNumber: "2.4.1",
+                          assessmentId: assessmentId,
                         ),
 
+                        SizedBox(height: 50),
 
-                        Spacer(flex: 2),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Center(
                               child: Icon(
                                 Icons.info_outline_rounded,
                                 size: 25,
-                                color: Colors.grey,
+                                color: Colors.black26,
                               )
                             ),
-                            SizedBox(width: 8),
+                            SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                widget.evaluationString == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Fragekatalog wurde bereits ausgefüllt",
-                                style: ThemeTexts.assessmentQuestion,
+                                widget.evaluation != null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
+                                style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                 textAlign: TextAlign.start,
                                 softWrap: true,
                                 overflow: TextOverflow.clip,
@@ -91,8 +91,8 @@ class _Part_2_4State extends State<Part_2_4> {
                         ],
                         ),
 
-                        widget.evaluationString == null ? Padding(
-                          padding: EdgeInsets.only(left: 32, top: 3),
+                        widget.evaluation != null ? Padding(
+                          padding: EdgeInsets.only(left: 34, top: 3),
                           child: RaisedButton(
                             color: ThemeColors.greenShade4,
                             elevation: 0,
@@ -126,7 +126,7 @@ class _Part_2_4State extends State<Part_2_4> {
 
                         //Spacer(flex: 1),
 
-                        widget.evaluationString != null ? _evaluationQuestionnaire() : Container(),
+                        widget.evaluation == null ? _evaluationQuestionnaire() : Container(),
                       ],
                     ),
                 ),
@@ -159,7 +159,7 @@ class _Part_2_4State extends State<Part_2_4> {
 
   _evaluationQuestionnaire(){
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 6, 0, 10),
+      padding: EdgeInsets.fromLTRB(0, 14, 0, 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -171,7 +171,8 @@ class _Part_2_4State extends State<Part_2_4> {
           Container(
             padding: EdgeInsets.fromLTRB(0, 4, 0, 10),
             child: Text(
-              "Am folgenden Punkt möchtest Du gerne am Projekt arbeiten:",
+              //todo: widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
+              "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:",
               style: ThemeTexts.assessmentIntro,
               overflow: TextOverflow.clip,
             ),
@@ -185,7 +186,7 @@ class _Part_2_4State extends State<Part_2_4> {
               color: Colors.transparent,
             ),
             child: Text(
-              "Irgend eine unwichtig gewählte Frage kommt hier", //todo: widget.evaluationString,
+              "Irgend eine unwichtig gewählte Frage kommt hier", //todo: widget.evaluation,
               style: ThemeTexts.assessmentQuestion,
               overflow: TextOverflow.clip,
             ),

@@ -26,7 +26,7 @@ class CurvedShape extends CustomPainter{
       begin: Alignment.bottomCenter,
       end: Alignment.topCenter,
       stops: [
-        0.14,
+        0.24,
         1
       ],
       colors: [

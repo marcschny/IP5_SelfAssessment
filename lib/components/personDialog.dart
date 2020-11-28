@@ -55,15 +55,15 @@ class _PersonDialogState extends State<PersonDialog>{
   //distance
   int _currentDistance = 4;
   Map<int, String> _distanceMap = {
-    8: "Gar nicht nah",
-    7: "Weniger nah",
-    6: "Weniger nah",
-    5: "Nah",
-    4: "Nah",
-    3: "Nah",
-    2: "Sehr nah",
-    1: "Sehr nah",
-    0: "Sehr sehr nah"
+    8: "Gar nicht wichtig",
+    7: "Weniger wichtig",
+    6: "Weniger wichtig",
+    5: "Etwas wichtig",
+    4: "Wichtig",
+    3: "Wichtig",
+    2: "Sehr wichtig",
+    1: "Sehr wichtig",
+    0: "Sehr sehr wichtig"
   };
 
 
@@ -382,7 +382,7 @@ class _PersonDialogState extends State<PersonDialog>{
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Wähle den zugehörigen Lebensbereich",
+                      "Wähle den zugehörigen Bereich",
                       style: ThemeTexts.assessmentDialogSubtitle,
                       overflow: TextOverflow.clip,
                       textAlign: TextAlign.center,
@@ -393,7 +393,7 @@ class _PersonDialogState extends State<PersonDialog>{
                       isExpanded: true,
                       icon: Icon(Icons.keyboard_arrow_down_rounded),
                       iconSize: 32,
-                      hint: Text("Lebensbereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
+                      hint: Text("Bereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
                       items: _dropdownMenuItems,
                       onChanged: onChangeDropdownItem,
                     ) :
@@ -401,7 +401,7 @@ class _PersonDialogState extends State<PersonDialog>{
                       isExpanded: true,
                       icon: Icon(Icons.keyboard_arrow_down_rounded),
                       iconSize: 32,
-                      hint: Text("Lebensbereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
+                      hint: Text("Bereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
                       value: _selectedLifeArea,
                       items: _dropdownMenuItems,
                       onChanged: onChangeDropdownItem,
@@ -418,7 +418,7 @@ class _PersonDialogState extends State<PersonDialog>{
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Wie nahe ist Dir diese Person?",
+                        "Wie wichtig ist Dir diese Person?",
                         style: ThemeTexts.assessmentDialogSubtitle,
                         overflow: TextOverflow.clip,
                       ),
@@ -443,7 +443,7 @@ class _PersonDialogState extends State<PersonDialog>{
                       ),
                       SizedBox(height: 4),
                       Text(
-                        "Nähe: "+_distanceMap[_currentDistance],
+                        "Wichtigkeit: "+_distanceMap[_currentDistance],
                         style: ThemeTexts.assessmentText.copyWith(fontSize: 14, color: Color.fromRGBO(110, 110, 110, 1), fontWeight: FontWeight.w500),
                         overflow: TextOverflow.clip,
                       ),
@@ -597,7 +597,7 @@ class _PersonDialogState extends State<PersonDialog>{
     }else if(_selectedIcon == ""){
       return "Wähle eine Kategorie";
     }else if(_selectedLifeArea == ""){
-      return "Wähle einen Lebensbereich";
+      return "Wähle einen Bereich";
     }else{
       return "";
     }

@@ -123,12 +123,8 @@ class _StartScreenState extends State<StartScreen>{
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: "Kurz Assessment\n",
+                        text: "Freund*innen und Beziehungen",
                         style: ThemeTexts.startAssessmentTitle
-                      ),
-                      TextSpan(
-                        text: "Soziale Beziehungen",
-                        style: ThemeTexts.startAssessmentSubtitle
                       ),
                     ],
                   ),
@@ -280,14 +276,14 @@ class Part1 extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "In einem ersten Schritt erstellst Du eine  soziale Netzwerkkarte. Dazu wählst Du die für Dich wichtigsten Lebensbereiche und fügst danach Personen hinzu, welche Dir entweder sehr nah sind oder eher etwas weniger nah.\n\n",
+                  text: "In einem ersten Schritt erstellst Du eine  soziale Karte über Deine Freun*innen und Beziehungen. Dazu wählst Du die für Dich wichtigsten Bereiche und fügst danach Personen hinzu, welche Dir entweder sehr wichtig oder nicht wichtig sind.\n\n",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
                   ),
                 ),
                 TextSpan(
-                  text: "Nach Abschluss des Teil 1 siehst Du Deine  Visualisierung der Netzwerkkarte.",
+                  text: "Nach Abschluss des Teil 1 siehst Du eine Karte über Deine Freund*innen und Beziehungen.",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
