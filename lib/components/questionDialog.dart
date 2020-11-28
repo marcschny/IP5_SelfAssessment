@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:provider/provider.dart';
 
 class QuestionDialog extends StatefulWidget{
@@ -38,7 +35,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
     super.initState();
     getAnswer();
     answerController.addListener(() {
-
       getSubQuestion();
     });
   }
@@ -57,7 +53,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
             child: RichText(
               text: TextSpan(
                 children: [
@@ -67,10 +63,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
                   ),
                   WidgetSpan(
                     child: SizedBox(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       height: 20,
                     ),
                   ),
@@ -85,10 +78,9 @@ class _QuestionDialogState extends State<QuestionDialog> {
 
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),
-                    bottomRight: Radius.circular(12)),
+                borderRadius: BorderRadius.all(Radius.circular(12)),
                 color: ThemeColors.greenShade4,
               ),
               child: TextField(
@@ -103,7 +95,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
                   disabledBorder: InputBorder.none,
                 ),
                 keyboardType: TextInputType.multiline,
-                maxLines: 15,
+                maxLines: 16,
                 controller: answerController,
               ),
 
@@ -122,8 +114,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
         ),
         onPressed: () {
           createOrUpdateAnswer();
-
-          Navigator.pop(context);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -135,7 +125,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final loadAnswer = await assessmentRepo.findAnswer(
-        widget.questionNumber);
+        widget.questionNumber, widget.assessmentId);
 
     answer = loadAnswer;
 
@@ -159,25 +149,28 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final loadAnswer = await assessmentRepo.findAnswer(
-        widget.questionNumber);
+        widget.questionNumber, widget.assessmentId);
 
-    final question = await assessmentRepo.findQuestion(widget.questionNumber);
-    question.answered = true;
-    assessmentRepo.updateQuestion(question);
 
-      if(loadAnswer!=null) {
+      if(loadAnswer != null) {
         final Answer updatedAnswer =  Answer(
             loadAnswer.id, answerController.text, widget.questionNumber,
             widget.assessmentId);
-        assessmentRepo.updateAnswer(updatedAnswer);
+        assessmentRepo.updateAnswer(updatedAnswer).then((assessmentId){
+          Navigator.of(context).pop();
+        });
+        print("answer updated");
 
       } else {
 
         final Answer newAnswer = new Answer(
             null, answerController.text, widget.questionNumber,
             widget.assessmentId);
-        if(newAnswer.answer!='') {
-          assessmentRepo.insertAnswer(newAnswer);
+        if(newAnswer.answer != '') {
+          assessmentRepo.insertAnswer(newAnswer).then((assessmentId) {
+            Navigator.of(context).pop();
+          });
+          print("answer created");
         }
 
       }

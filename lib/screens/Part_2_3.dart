@@ -14,8 +14,14 @@ class Part_2_3 extends StatefulWidget {
 
 class _Part_2_3State extends State<Part_2_3> {
 
+
+  int assessmentId;
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -34,24 +40,28 @@ class _Part_2_3State extends State<Part_2_3> {
                   titleNumber: 2,
                   onClose: null,
                   subtitle: "Jetzt packe ich es an!",
-                  intro: "Wähle die Frage aus, welche Dich am meisten anspricht  und beantworte sie anschliessend.",
+                  intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                   percent: 0.4,
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(20),
-                  child: Wrap(
-                    children: [
-                      QuestionCard(
-                        questionNumber: "2.3.1",
-                      ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
+                    child: Wrap(
+                      children: [
+                        QuestionCard(
+                          questionNumber: "2.3.1",
+                          assessmentId: assessmentId,
+                        ),
 
-                      QuestionCard(
-                        questionNumber: "2.3.2",
-                      ),
+                        QuestionCard(
+                          questionNumber: "2.3.2",
+                          assessmentId: assessmentId,
+                        ),
 
-                    ],
-                  ),
+                      ],
+                    ),
+                ),
               ),
 
             ],
@@ -66,7 +76,7 @@ class _Part_2_3State extends State<Part_2_3> {
               Navigator.of(context).pop();
             },
             callbackNext: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_4()));
+              Navigator.of(context).pushNamed("/part_2_4", arguments: assessmentId);
             }
           ),
         ],

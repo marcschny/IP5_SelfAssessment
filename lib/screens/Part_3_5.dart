@@ -4,6 +4,11 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
+import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 import 'Part_2_2.dart';
 import 'Part_2_4.dart';
@@ -16,6 +21,20 @@ class Part_3_5 extends StatefulWidget {
 }
 
 class _Part_3_5State extends State<Part_3_5> {
+
+  String surveyQuestion;
+  List<Question> questions = List();
+
+  @override
+  void initState() {
+    super.initState();
+    getSurveyAnswers();
+  }
+
+/*  @override
+  void dispose() {
+    super.dispose();
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +62,26 @@ class _Part_3_5State extends State<Part_3_5> {
                 percent: 0.55,
               ),
 
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: ListView(
-                    children: [
+
+              Padding(
+                padding: const EdgeInsets.all(20),
+              child: Column(
+                  children: <Widget>[
+                    for(var element in questions )
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: ThemeColors.greenShade2),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          color: Colors.transparent,
+                        ),
+                        child: Text(
+                          element.question,
+                          style: ThemeTexts.assessmentQuestion,
+                        ),
+                        margin: EdgeInsets.only(bottom: 15),
+                      ),
                   ],
-                  ),
                 ),
               ),
 
@@ -58,7 +90,7 @@ class _Part_3_5State extends State<Part_3_5> {
 
             BottomNavigation(
                 showNextButton: true,
-                showBackButton: false,
+                showBackButton: true,
                 nextTitle: "Lust auf etwas Neues?",
                 callbackBack: () {
                   Navigator.of(context).pop();
@@ -76,4 +108,32 @@ class _Part_3_5State extends State<Part_3_5> {
     );
 
   }
-}
+
+  getSurveyAnswers() async {
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    List<Answer>surveyAnswers = await assessmentRepo.getSurveyAnswers();
+
+    String questionNumber;
+
+
+
+    for(Answer element in surveyAnswers){
+      questionNumber = element.question_number;
+      //todo: Question findQuestion =  await assessmentRepo.findQuestion(questionNumber);
+      //questions.add(findQuestion);
+    }
+
+
+    questions.forEach((element) {
+      setState(() {
+        surveyQuestion =  element.question;
+      });
+
+      print(surveyQuestion);
+    });
+
+    }
+  }
+

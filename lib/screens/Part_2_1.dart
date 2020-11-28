@@ -15,8 +15,14 @@ class Part_2_1 extends StatefulWidget {
 
 class _Part_2_1State extends State<Part_2_1> {
 
+  int assessmentId;
+
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -37,28 +43,33 @@ class _Part_2_1State extends State<Part_2_1> {
                 titleNumber: 2,
                 onClose: null,
                 subtitle: "Hey, das kann ich bereits!",
-                intro: "Hier kannst Du Deine Stärken notieren! Tippe auf eine Frage um deine Antwort zu notieren",
+                intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                 percent: 0.3,
               ),
 
-              Padding(
-                  padding: const EdgeInsets.all(20),
-                      child: Wrap(
-                        children: [
-                          QuestionCard(
-                            questionNumber: "2.1.1",
-                          ),
+              Expanded(
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
+                        child: Wrap(
+                          children: [
+                            QuestionCard(
+                              questionNumber: "2.1.1",
+                              assessmentId: assessmentId,
+                            ),
 
-                          QuestionCard(
-                            questionNumber: "2.1.2",
-                          ),
+                            QuestionCard(
+                              questionNumber: "2.1.2",
+                              assessmentId: assessmentId,
+                            ),
 
-                          QuestionCard(
-                            questionNumber: "2.1.3",
-                          ),
-                        ],
+                            QuestionCard(
+                              questionNumber: "2.1.3",
+                              assessmentId: assessmentId,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+              ),
                 ],
             ),
 
@@ -71,15 +82,13 @@ class _Part_2_1State extends State<Part_2_1> {
                 },
 
                 callbackNext: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_2()));
+                  Navigator.of(context).pushNamed("/part_2_2", arguments: assessmentId);
                 }
 
             ),
-        ],
+          ],
         ),
       ),
-
-
     );
 
   }

@@ -5,7 +5,6 @@ import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/changeproject.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/note.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
@@ -26,9 +25,9 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM Question WHERE assessment_id = :assessment_id')
   Future<List<Question>> getAllQuestionsByAssessment(int assessment_id);
 
-  //find specific question by question_number and assessment_id
-  @Query('SELECT * FROM Question WHERE question_number = :question_number ') //AND assessment_id = :assessment_id
-  Future<Question> findQuestion(String question_number); //, int assessment_id
+  //find specific question by question_number
+  @Query('SELECT * FROM Question WHERE question_number = :question_number')
+  Future<Question> findQuestion(String question_number);
 
   //update question
   @update
@@ -41,9 +40,9 @@ abstract class AssessmentRepository{
 
   /* ANSWER */
 
-  //find answer by question_number
-  @Query('SELECT * FROM Answer WHERE question_number = :question_number ') //AND assessment_id = :assessment_id
-  Future<Answer> findAnswer(String question_number); //, int assessment_id
+  //find answer by question_number and assessment_id
+  @Query('SELECT * FROM Answer WHERE question_number = :question_number AND assessment_id = :assessmentId') //AND assessment_id = :assessment_id
+  Future<Answer> findAnswer(String question_number, int assessmentId); //, int assessment_id
 
   //get all answers by assessment_id
   @Query('SELECT * FROM Answer WHERE assessment_id = :assessment_id')
@@ -60,6 +59,14 @@ abstract class AssessmentRepository{
   //delete answer
   @delete
   Future<int> deleteAnswer(Answer answer);
+
+
+
+  /* SURVEY ANSWERS */
+
+  //get weakest survery answers
+  @Query('SELECT * FROM Answer WHERE answer="Kriege ich hin und wieder hin" OR answer="Schaffe ich selten"')
+  Future<List<Answer>> getSurveyAnswers();
 
 
 
@@ -157,6 +164,7 @@ abstract class AssessmentRepository{
   //create new network card
   @insert
   Future<int> createNetworkCard(NetworkCard networkCard);
+
 
   //update network card
   @update

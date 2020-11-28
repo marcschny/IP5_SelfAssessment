@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 class StartScreen extends StatefulWidget {
 
-  const StartScreen({Key key}) : super(key: key);
+  final Assessment existingAssessment;
+
+
+  const StartScreen({Key key, this.existingAssessment}) : super(key: key);
 
   @override
   _StartScreenState createState() => _StartScreenState();
@@ -14,8 +20,11 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen>{
 
+
+  //index for intro pageView
   int _currentIndex = 0;
 
+  //list of pages for pageView
   List pageList = [
     Part0(),
     Part1(),
@@ -25,6 +34,8 @@ class _StartScreenState extends State<StartScreen>{
     Part5(),
   ];
 
+
+  //page view builder
   List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -32,6 +43,39 @@ class _StartScreenState extends State<StartScreen>{
     }
     return result;
   }
+
+
+  //start assessment
+  void _startAssessment(BuildContext context){
+    final Assessment newAssessment = new Assessment(null, DateTime.now().toString(), null);
+
+    final appDataBase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDataBase.assessmentRepository;
+    assessmentRepo.createAssessment(newAssessment).then((assessmentId) {
+      print(assessmentId);
+      Navigator.of(context).pushNamed("/lifeAreas", arguments: assessmentId);
+    });
+  }
+
+
+  //check if its a new or existing assessment
+  _checkIfExistingAssessment(){
+    //if constructor has retrieved an assessment, thne navigate to change project [part 4]
+    if(widget.existingAssessment != null){
+      print("existing assessment: "+widget.existingAssessment.id.toString());
+
+      //todo: navigate to change project [part 4]
+      //Navigator.of(context).pushNamed("/part_4", arguments: widget.existingAssessment.id);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, _checkIfExistingAssessment);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,12 +123,8 @@ class _StartScreenState extends State<StartScreen>{
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: "Kurz Assessment\n",
+                        text: "Freund*innen und Beziehungen",
                         style: ThemeTexts.startAssessmentTitle
-                      ),
-                      TextSpan(
-                        text: "Soziale Beziehungen",
-                        style: ThemeTexts.startAssessmentSubtitle
                       ),
                     ],
                   ),
@@ -149,9 +189,6 @@ class _StartScreenState extends State<StartScreen>{
 
 
 
-
-
-
           //start button
           Positioned(
             bottom: 40,
@@ -174,7 +211,8 @@ class _StartScreenState extends State<StartScreen>{
                   ),
                 ),
                 onPressed: (){
-                  print('pressed "Starten"');
+                  _startAssessment(context);
+                  Navigator.of(context).pushNamed("/lifeAreas");
                 },
               ),
             ),
@@ -238,14 +276,14 @@ class Part1 extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "In einem ersten Schritt erstellst Du eine  soziale Netzwerkkarte. Dazu wählst Du die für Dich wichtigsten Lebensbereiche und fügst danach Personen hinzu, welche Dir entweder sehr nah sind oder eher etwas weniger nah.\n\n",
+                  text: "In einem ersten Schritt erstellst Du eine  soziale Karte über Deine Freun*innen und Beziehungen. Dazu wählst Du die für Dich wichtigsten Bereiche und fügst danach Personen hinzu, welche Dir entweder sehr wichtig oder nicht wichtig sind.\n\n",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
                   ),
                 ),
                 TextSpan(
-                  text: "Nach Abschluss des Teil 1 siehst Du Deine  Visualisierung der Netzwerkkarte.",
+                  text: "Nach Abschluss des Teil 1 siehst Du eine Karte über Deine Freund*innen und Beziehungen.",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black

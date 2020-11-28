@@ -16,8 +16,16 @@ class Part_2_5 extends StatefulWidget {
 
 class _Part_2_5State extends State<Part_2_5> {
 
+  int assessmentId;
+  TextEditingController _titleController;
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -40,41 +48,51 @@ class _Part_2_5State extends State<Part_2_5> {
                   percent: 0.5,
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(20),
-                  child: Wrap(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                            labelText: "Titel meines Projekts"
-
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                    child: Wrap(
+                      children: [
+                        TextField(
+                          maxLines: 1,
+                          controller: _titleController,
+                          onSubmitted: (value){
+                            //todo: write title to db (change project)
+                          },
+                          textInputAction: TextInputAction.go,
+                          decoration: InputDecoration(
+                            hintText: "Title Deines Projekts...",
+                            hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20, color: Colors.grey),
+                            contentPadding: EdgeInsets.all(0),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: ThemeColors.greenShade3),
+                            ),
+                          ),
+                          style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
                         ),
-                      ),
-
-
-
-                    ],
-                  ),
+                      ],
+                    ),
+                ),
               ),
           ],
         ),
 
 
-              BottomNavigation(
-                  showNextButton: true,
-                  showBackButton: true,
-                  nextTitle: "Wer oder was hilft  Dir dabei?",
-                  callbackBack: () {
-                    Navigator.of(context).pop();
-                  },
-                  callbackNext: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
-                  }
-              ),
-        ],
+            BottomNavigation(
+                showNextButton: true,
+                showBackButton: true,
+                nextTitle: "Wer oder was hilft  Dir dabei?",
+                callbackBack: () {
+                  Navigator.of(context).pop();
+                },
+                callbackNext: (){
+                  Navigator.of(context).pushNamed("/part_2_6", arguments: assessmentId);
+                }
+            ),
+          ],
         ),
       ),
-
+      resizeToAvoidBottomInset: false,
     );
 
   }

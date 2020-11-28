@@ -84,6 +84,7 @@ class TopBar extends StatelessWidget{
               style: ThemeTexts.assessmentSubtitle,
             ),
           ),
+          intro != null && intro != "" ?
           Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.fromLTRB(5, 5, 5, 10),
@@ -92,7 +93,7 @@ class TopBar extends StatelessWidget{
               style: ThemeTexts.assessmentIntro,
               textAlign: TextAlign.start,
             ),
-          ),
+          ) : Container(),
         ],
       ),
     );

@@ -4,7 +4,6 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 
-import 'Part_2_3.dart';
 
 class Part_2_6 extends StatefulWidget {
   const Part_2_6({Key key}) : super(key: key);
@@ -15,8 +14,13 @@ class Part_2_6 extends StatefulWidget {
 
 class _Part_2_6State extends State<Part_2_6> {
 
+  int assessmentId;
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -39,26 +43,32 @@ class _Part_2_6State extends State<Part_2_6> {
                   percent: 0.55,
               ),
 
-              Padding(
-                padding: const EdgeInsets.all(20),
-                  child: Wrap(
-                    children: [
-                      QuestionCard(
-                        questionNumber: "2.6.1",
-                      ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
+                    child: Wrap(
+                      children: [
+                        QuestionCard(
+                          questionNumber: "2.6.1",
+                          assessmentId: assessmentId,
+                        ),
 
-                      QuestionCard(
-                        questionNumber: "2.6.2",
-                      ),
+                        QuestionCard(
+                          questionNumber: "2.6.2",
+                          assessmentId: assessmentId,
+                        ),
 
-                      QuestionCard(
-                        questionNumber: "2.6.3",
-                      ),
+                        QuestionCard(
+                          questionNumber: "2.6.3",
+                          assessmentId: assessmentId,
+                        ),
 
-                    ],
+                      ],
+                  ),
                 ),
               ),
 
+              //todo: add network card button (maybe as a alert box)
             ],
           ),
 
@@ -71,7 +81,9 @@ class _Part_2_6State extends State<Part_2_6> {
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
+                //todo: go to change project
+                print("Go to change project...");
+                //Navigator.of(context).pushNamed("/part_4", arguments: assessmentId);
               }
           ),
         ],
