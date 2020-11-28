@@ -215,7 +215,6 @@ class _StartScreenState extends State<StartScreen>{
                   ),
                 ),
                 onPressed: (){
-                  print('pressed "Starten"');
                   _startAssessment(context);
                   Navigator.of(context).pushNamed("/lifeAreas");
                 },

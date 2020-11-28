@@ -195,7 +195,6 @@ class _LifeAreasState extends State<LifeAreas>{
         lifeAreas += key + ", ";
       }
     });
-    print(lifeAreas);
 
     //only continue when number of lifeareas is bigger than 1 and smaller than 7
     if (noLifeAreas > 0 && noLifeAreas <= 6) {
@@ -213,9 +212,6 @@ class _LifeAreasState extends State<LifeAreas>{
       if(!alreadyExists) {
         assessmentRepo.createNetworkCard(newNetworkCard).then((
             networkId) async {
-          print("las: "+newNetworkCard.lifeAreas);
-          print("assId: " + assessmentId.toString());
-          print("netId: " + networkId.toString());
           final boolValue = await Navigator.of(context).pushNamed(
             '/importantPersons',
             arguments: <String, int>{
@@ -236,9 +232,6 @@ class _LifeAreasState extends State<LifeAreas>{
       //if record already exists -> update it
       else{
         assessmentRepo.updateNetworkCard(newNetworkCard);
-          print("las: "+newNetworkCard.lifeAreas);
-          print("assId: " + assessmentId.toString());
-          print("netId: " + netwId.toString());
           Navigator.of(context).pushNamed(
             '/importantPersons',
             arguments: <String, int>{

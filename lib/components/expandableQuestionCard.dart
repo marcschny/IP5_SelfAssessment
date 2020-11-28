@@ -18,9 +18,9 @@ class ExpandableQuestionCard extends StatefulWidget {
   const ExpandableQuestionCard({
     Key key,
     this.question,
-    this.questionNumber,
+    @required this.questionNumber,
     this.answered,
-    this.assessmentId
+    @required this.assessmentId
   });
 
   _ExpandableQuestionCardState createState() => _ExpandableQuestionCardState();
@@ -38,7 +38,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
         widget.questionNumber);
 
     final loadAnswer = assessmentRepo.findAnswer(
-        widget.questionNumber);
+        widget.questionNumber, widget.assessmentId);
 
           return Container(
             margin: EdgeInsets.only(bottom: 20),

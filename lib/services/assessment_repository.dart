@@ -25,9 +25,9 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM Question WHERE assessment_id = :assessment_id')
   Future<List<Question>> getAllQuestionsByAssessment(int assessment_id);
 
-  //find specific question by question_number and assessment_id
-  @Query('SELECT * FROM Question WHERE question_number = :question_number ') //AND assessment_id = :assessment_id
-  Future<Question> findQuestion(String question_number); //, int assessment_id
+  //find specific question by question_number
+  @Query('SELECT * FROM Question WHERE question_number = :question_number')
+  Future<Question> findQuestion(String question_number);
 
   //update question
   @update
@@ -40,9 +40,9 @@ abstract class AssessmentRepository{
 
   /* ANSWER */
 
-  //find answer by question_number
-  @Query('SELECT * FROM Answer WHERE question_number = :question_number ') //AND assessment_id = :assessment_id
-  Future<Answer> findAnswer(String question_number); //, int assessment_id
+  //find answer by question_number and assessment_id
+  @Query('SELECT * FROM Answer WHERE question_number = :question_number AND assessment_id = :assessmentId') //AND assessment_id = :assessment_id
+  Future<Answer> findAnswer(String question_number, int assessmentId); //, int assessment_id
 
   //get all answers by assessment_id
   @Query('SELECT * FROM Answer WHERE assessment_id = :assessment_id')

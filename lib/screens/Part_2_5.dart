@@ -16,13 +16,16 @@ class Part_2_5 extends StatefulWidget {
 
 class _Part_2_5State extends State<Part_2_5> {
 
+  int assessmentId;
   TextEditingController _titleController;
-
 
 
 
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -83,7 +86,7 @@ class _Part_2_5State extends State<Part_2_5> {
                   Navigator.of(context).pop();
                 },
                 callbackNext: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_6()));
+                  Navigator.of(context).pushNamed("/part_2_6", arguments: assessmentId);
                 }
             ),
           ],

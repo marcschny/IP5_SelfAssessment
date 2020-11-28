@@ -15,8 +15,15 @@ class Part_2_2 extends StatefulWidget {
 
 class _Part_2_2State extends State<Part_2_2> {
 
+
+  int assessmentId;
+
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -46,14 +53,17 @@ class _Part_2_2State extends State<Part_2_2> {
                       children: [
                         QuestionCard(
                           questionNumber: "2.2.1",
+                          assessmentId: assessmentId,
                         ),
 
                         QuestionCard(
                           questionNumber: "2.2.2",
+                          assessmentId: assessmentId,
                         ),
 
                         QuestionCard(
                           questionNumber: "2.2.3",
+                          assessmentId: assessmentId,
                         ),
 
                       ],
@@ -74,7 +84,7 @@ class _Part_2_2State extends State<Part_2_2> {
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_3()));
+                Navigator.of(context).pushNamed("/part_2_3", arguments: assessmentId);
               }
           ),
         ],

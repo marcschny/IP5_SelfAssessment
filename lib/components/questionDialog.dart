@@ -114,7 +114,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
         ),
         onPressed: () {
           createOrUpdateAnswer();
-          Navigator.pop(context);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -126,7 +125,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final loadAnswer = await assessmentRepo.findAnswer(
-        widget.questionNumber);
+        widget.questionNumber, widget.assessmentId);
 
     answer = loadAnswer;
 
@@ -149,29 +148,29 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    //todo: get answer by questionNumber and assessment_id!
     final loadAnswer = await assessmentRepo.findAnswer(
-        widget.questionNumber);
+        widget.questionNumber, widget.assessmentId);
 
-    final question = await assessmentRepo.findQuestion(widget.questionNumber);
-    question.answered = answerController.text != "" ? true : false;
-    assessmentRepo.updateQuestion(question);
 
-      //todo: same here (no id passed yet)
-      if(loadAnswer!=null) {
+      if(loadAnswer != null) {
         final Answer updatedAnswer =  Answer(
             loadAnswer.id, answerController.text, widget.questionNumber,
             widget.assessmentId);
-        assessmentRepo.updateAnswer(updatedAnswer);
+        assessmentRepo.updateAnswer(updatedAnswer).then((assessmentId){
+          Navigator.of(context).pop();
+        });
+        print("answer updated");
 
       } else {
 
-        //todo: same here (no id passed yet)
         final Answer newAnswer = new Answer(
             null, answerController.text, widget.questionNumber,
             widget.assessmentId);
-        if(newAnswer.answer!='') {
-          assessmentRepo.insertAnswer(newAnswer);
+        if(newAnswer.answer != '') {
+          assessmentRepo.insertAnswer(newAnswer).then((assessmentId) {
+            Navigator.of(context).pop();
+          });
+          print("answer created");
         }
 
       }
@@ -182,7 +181,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    //todo: same here - get by questionNumber and Assessment_id!
     final loadQuestion = await assessmentRepo.findQuestion(
         widget.questionNumber);
 

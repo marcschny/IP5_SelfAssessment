@@ -21,8 +21,13 @@ class Part_2_4 extends StatefulWidget {
 
 class _Part_2_4State extends State<Part_2_4> {
 
+  int assessmentId;
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -56,6 +61,7 @@ class _Part_2_4State extends State<Part_2_4> {
                         Flexible(
                           child: QuestionCard(
                             questionNumber: "2.4.1",
+                            assessmentId: assessmentId,
                           ),
                         ),
 
@@ -93,7 +99,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_1()));
+                              Navigator.of(context).pushNamed("/part_3_1", arguments: assessmentId);
                             },
                               child: Container(
                                 padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
@@ -139,7 +145,7 @@ class _Part_2_4State extends State<Part_2_4> {
                     Navigator.of(context).pop();
                     },
                   callbackNext: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_5()));
+                    Navigator.of(context).pushNamed("/part_2_5", arguments: assessmentId);
                   }
               ),
         ],

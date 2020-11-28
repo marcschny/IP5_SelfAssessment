@@ -15,7 +15,6 @@ class LegendElement extends StatelessWidget{
   });
 
   Color _getColor(){
-    print("sector "+sectorName+": "+sector.toString());
     switch(sector){
       case 1:
         return ThemeColors.firstColor;

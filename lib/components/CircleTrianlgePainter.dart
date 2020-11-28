@@ -43,7 +43,6 @@ class WheelPainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     if(noElements == 1){
-      print("one element");
       canvas.drawCircle(Offset(wheelSize, wheelSize), wheelSize, paintFullCircle);
     }
     canvas.drawPath(getWheelPath(wheelSize, 0, radius), getColoredPaint(ThemeColors.sixthColor));

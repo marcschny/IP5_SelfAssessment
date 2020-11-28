@@ -121,8 +121,8 @@ class _Part_3_5State extends State<Part_3_5> {
 
     for(Answer element in surveyAnswers){
       questionNumber = element.question_number;
-      Question findQuestion =  await assessmentRepo.findQuestion(questionNumber);
-      questions.add(findQuestion);
+      //todo: Question findQuestion =  await assessmentRepo.findQuestion(questionNumber);
+      //questions.add(findQuestion);
     }
 
 

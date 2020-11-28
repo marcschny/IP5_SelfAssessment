@@ -25,7 +25,6 @@ class Visualization extends StatefulWidget{
 
 }
 
-//todo: handle situation if only one life area (by persons) is selected
 
 class _VisualizationState extends State<Visualization>{
 
@@ -121,15 +120,12 @@ class _VisualizationState extends State<Visualization>{
       int multiplicator = 1;
 
       sector = lifeAreas.indexOf(element.lifeArea);
-      print("las: "+lifeAreas.toString());
-      print("ela: "+element.lifeArea);
 
       if(tempPersonList.length > 0) {
         tempPersonList.forEach((person) {
           if (person.lifeArea == element.lifeArea && person.distance == element.distance) {
             multiplicator++;
           }
-          print("element: "+element.id.toString()+", multi: "+multiplicator.toString());
         });
       }
 
@@ -146,7 +142,6 @@ class _VisualizationState extends State<Visualization>{
       );
     });
 
-    print(tempPersonList);
     tempPersonList.clear();
 
   }
@@ -154,7 +149,6 @@ class _VisualizationState extends State<Visualization>{
   //get the starting angle point from sector
   double _getStartSectorAngle(int sector){
     int noLifeAreas = lifeAreas.length;
-    print("noLAs: "+noLifeAreas.toString());
     if(noLifeAreas == 2){
       switch(sector){
         case 1:
@@ -268,7 +262,6 @@ class _VisualizationState extends State<Visualization>{
     networkId = routeArgs["networkId"];
 
     print("width: "+MediaQuery.of(context).size.width.toString());
-    print("nID: "+networkId.toString());
 
 
     //canvas variables
@@ -277,8 +270,6 @@ class _VisualizationState extends State<Visualization>{
     radius = (MediaQuery.of(context).size.width-40)/2;
 
     _createPersonCircleList();
-    print("pcl.length: "+personCircleList.length.toString());
-    print("pcls: "+personCircleList.toString());
 
     return Scaffold(
       body: SafeArea(
@@ -367,7 +358,10 @@ class _VisualizationState extends State<Visualization>{
   }
 
   void _next(BuildContext context, int assessmentId, int networkId) {
-    Navigator.of(context).pushNamed("/part_2_1");
+    Navigator.of(context).pushNamed(
+        "/part_2_1",
+        arguments: assessmentId,
+    );
   }
 
 

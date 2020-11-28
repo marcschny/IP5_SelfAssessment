@@ -95,7 +95,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     assessmentId = routeArgs["assessmentId"];
     networkId = routeArgs["networkId"];
 
-    print("nID: "+networkId.toString());
 
     return Scaffold(
       body: SafeArea(
@@ -156,8 +155,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                       ],
                     ),
                     onPressed: (){
-                      print("IP assId: "+assessmentId.toString());
-                      print("IP netId: "+networkId.toString());
                       showDialog(
                         context: context,
                         child: PersonDialog(assessmentId: assessmentId, networkId: networkId),

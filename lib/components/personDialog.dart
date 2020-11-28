@@ -564,7 +564,6 @@ class _PersonDialogState extends State<PersonDialog>{
 
     //get network card by assessment id
     final NetworkCard networkCard = await assessmentRepo.findNetworkCard(widget.assessmentId);
-    print("areas: "+networkCard.lifeAreas);
 
     //convert life areas from comma separated string to list
     setState(() {

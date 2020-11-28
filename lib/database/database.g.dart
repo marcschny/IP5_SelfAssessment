@@ -84,7 +84,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Answer` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `answer` TEXT, `question_number` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`question_number`) REFERENCES `Question` (`question_number`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Question` (`id` INTEGER, `question_number` TEXT, `answered` INTEGER, `question` TEXT, `subquestion` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, PRIMARY KEY (`question_number`))');
+            'CREATE TABLE IF NOT EXISTS `Question` (`id` INTEGER, `question_number` TEXT, `question` TEXT, `subquestion` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, PRIMARY KEY (`question_number`))');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `NetworkCard` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `noLifeAreas` INTEGER, `lifeAreas` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
@@ -175,8 +175,6 @@ class _$AssessmentRepository extends AssessmentRepository {
             (Question item) => <String, dynamic>{
                   'id': item.id,
                   'question_number': item.question_number,
-                  'answered':
-                      item.answered == null ? null : (item.answered ? 1 : 0),
                   'question': item.question,
                   'subquestion': item.subquestion,
                   'assessment_id': item.assessment_id
@@ -360,7 +358,6 @@ class _$AssessmentRepository extends AssessmentRepository {
         mapper: (Map<String, dynamic> row) => Question(
             row['id'] as int,
             row['question_number'] as String,
-            row['answered'] == null ? null : (row['answered'] as int) != 0,
             row['question'] as String,
             row['subquestion'] as String,
             row['assessment_id'] as int));
@@ -374,7 +371,6 @@ class _$AssessmentRepository extends AssessmentRepository {
         mapper: (Map<String, dynamic> row) => Question(
             row['id'] as int,
             row['question_number'] as String,
-            row['answered'] == null ? null : (row['answered'] as int) != 0,
             row['question'] as String,
             row['subquestion'] as String,
             row['assessment_id'] as int));
@@ -388,16 +384,16 @@ class _$AssessmentRepository extends AssessmentRepository {
         mapper: (Map<String, dynamic> row) => Question(
             row['id'] as int,
             row['question_number'] as String,
-            row['answered'] == null ? null : (row['answered'] as int) != 0,
             row['question'] as String,
             row['subquestion'] as String,
             row['assessment_id'] as int));
   }
 
   @override
-  Future<Answer> findAnswer(String question_number) async {
-    return _queryAdapter.query('SELECT * FROM Answer WHERE question_number = ?',
-        arguments: <dynamic>[question_number],
+  Future<Answer> findAnswer(String question_number, int assessmentId) async {
+    return _queryAdapter.query(
+        'SELECT * FROM Answer WHERE question_number = ? AND assessment_id = ?',
+        arguments: <dynamic>[question_number, assessmentId],
         mapper: (Map<String, dynamic> row) => Answer(
             row['id'] as int,
             row['answer'] as String,
