@@ -11,6 +11,8 @@ import 'package:ip5_selbsteinschaetzung/services/assessment_repository.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
+
+//run with: flutter test/db_tests.dart
 void main() {
 
   group('database tests', () {
@@ -156,6 +158,23 @@ void main() {
         final actual = await repository.findNetworkCard(1);
         expect(actual.noLifeAreas, updateNetworkCard.noLifeAreas);
         expect(actual.lifeAreas, updateNetworkCard.lifeAreas);
+      });
+
+      test('create network card', () async{
+        //one nc has been created in setup()
+        final actual = await repository.getAllNetworkCards();
+        expect(actual, hasLength(1));
+      });
+
+      test('delete network card', () async{
+        //one nc has been created in setup()
+        final networkCard = NetworkCard(2, 1, 5, "lifeAreas");
+        await repository.createNetworkCard(networkCard);
+
+        await repository.deleteNetworkCard(networkCard);
+
+        final actual = await repository.getAllNetworkCards();
+        expect(actual, hasLength(1));
       });
 
     });
