@@ -212,7 +212,6 @@ class _StartScreenState extends State<StartScreen>{
                 ),
                 onPressed: (){
                   _startAssessment(context);
-                  Navigator.of(context).pushNamed("/lifeAreas");
                 },
               ),
             ),

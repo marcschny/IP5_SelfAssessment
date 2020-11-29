@@ -53,44 +53,32 @@ class _Part_3_4State extends State<Part_3_4> {
                   children: [
 
                     ExpandableQuestionCard(
-                      question: "Freude über die Beziehung / das Gespräch zeigen",
                       questionNumber: "3.4.1",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Ansprechen, wie es weitergeht",
                       questionNumber: "3.4.2",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Jemandem ein Feedback geben",
                       questionNumber: "3.4.3",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Weitere Fragen formulieren",
                       questionNumber: "3.4.4",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Um ein weiteres Gespräch bitten",
                       questionNumber: "3.4.5",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Weitere Gesprächsmöglichkeiten ansprechen",
                       questionNumber: "3.4.6",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 

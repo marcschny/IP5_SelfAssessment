@@ -53,51 +53,37 @@ class _Part_3_3State extends State<Part_3_3> {
                   children: [
 
                     ExpandableQuestionCard(
-                      question: "Jemanden nach dem Befinden fragen",
                       questionNumber: "3.3.1",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Jemandem etwas Freundliches sagen/ein Kompliment machen",
                       questionNumber: "3.3.2",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Gut zuhören",
                       questionNumber: "3.3.3",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Jemandem etwas Wichtiges anvertrauen",
                       questionNumber: "3.3.4",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Gemeinsam lachen",
                       questionNumber: "3.3.5",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Auf eine Frage/ein Anliegen eingehen",
                       questionNumber: "3.3.6",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Eigene Irritationen/Schwierigkeiten ansprechen",
                       questionNumber: "3.3.7",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 

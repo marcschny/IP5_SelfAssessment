@@ -53,44 +53,32 @@ class _Part_3_2State extends State<Part_3_2> {
                   children: [
 
                     ExpandableQuestionCard(
-                      question: "Ein Gespräch anfangen/andere ansprechen",
                       questionNumber: "3.2.1",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "In einer mir bekannten Gruppe etwas sagen / eine Idee vorbringen",
                       questionNumber: "3.2.2",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "In einer mir unbekannten Gruppe etwas sagen / eine Idee hervorbringen",
                       questionNumber: "3.2.3",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Etwas Lustiges sagen oder machen, andere zum Lachen bringen",
                       questionNumber: "3.2.4",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Jemanden anlächeln / einen Blick zuwerfen",
                       questionNumber: "3.2.5",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Jemanden neugierig machen / Interesse wecken",
                       questionNumber: "3.2.6",
-                      answered: false,
                       assessmentId: assessmentId,
                     ),
 
