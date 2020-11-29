@@ -22,6 +22,8 @@ class Part_3_5 extends StatefulWidget {
 
 class _Part_3_5State extends State<Part_3_5> {
 
+  int assessmentId;
+
   String surveyQuestion;
   List<Question> questions = List();
 
@@ -38,6 +40,9 @@ class _Part_3_5State extends State<Part_3_5> {
 
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -53,7 +58,7 @@ class _Part_3_5State extends State<Part_3_5> {
             Column(
             children: [
               TopBar(
-                title: "Ich und andere Menschen:  Wie ich bin und werden möchte II",
+                title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 3,
                 onClose: null,
                 subtitle: "Auswertung Fragebogen",
@@ -97,7 +102,8 @@ class _Part_3_5State extends State<Part_3_5> {
                 },
 
                 callbackNext: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_4()));
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_4()));
+                  Navigator.of(context).pushNamed("/part_2_4", arguments: assessmentId);
                 }
 
             ),

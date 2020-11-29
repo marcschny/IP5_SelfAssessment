@@ -81,7 +81,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                widget.evaluation != null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
+                                widget.evaluation == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
                                 style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                 textAlign: TextAlign.start,
                                 softWrap: true,
@@ -91,7 +91,7 @@ class _Part_2_4State extends State<Part_2_4> {
                         ],
                         ),
 
-                        widget.evaluation != null ? Padding(
+                        widget.evaluation == null ? Padding(
                           padding: EdgeInsets.only(left: 34, top: 3),
                           child: RaisedButton(
                             color: ThemeColors.greenShade4,
@@ -126,7 +126,7 @@ class _Part_2_4State extends State<Part_2_4> {
 
                         //Spacer(flex: 1),
 
-                        widget.evaluation == null ? _evaluationQuestionnaire() : Container(),
+                        widget.evaluation != null ? _evaluationQuestionnaire() : Container(),
                       ],
                     ),
                 ),

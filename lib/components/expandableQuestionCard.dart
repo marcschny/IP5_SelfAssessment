@@ -40,6 +40,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
     final loadAnswer = assessmentRepo.findAnswer(
         widget.questionNumber, widget.assessmentId);
 
+
           return Container(
             margin: EdgeInsets.only(bottom: 20),
             child: ClipRRect(
@@ -63,60 +64,66 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
                   expanded: FutureBuilder(
                   future: loadAnswer,
                   builder: (context, snapshot) {
-                    return Container(
-                      padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
-                      //color: Colors.red,
-                      child: CustomRadioButton(
-                        enableShape: true,
-                        customShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(color: ThemeColors.greenShade2),
-                        ),
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        padding: 0,
-                        elevation: 0,
-                        enableButtonWrap: true,
-                        unSelectedColor: Colors.transparent,
-                        selectedColor: ThemeColors.greenShade2,
-                        buttonLables: [
-                          "Mache ich sehr oft / kann ich echt gut",
-                          "Mache ich öfters / kann ich meisten",
-                          "Kriege ich hin und wieder hin",
-                          "Schaffe ich selten"
-                        ],
-                        buttonValues: [
-                          "Mache ich sehr oft / kann ich echt gut",
-                          "Mache ich öfters / kann ich meisten",
-                          "Kriege ich hin und wieder hin",
-                          "Schaffe ich selten"
-                        ],
-                        buttonTextStyle: ButtonTextStyle(
-                            unSelectedColor: Colors.black,
-                            selectedColor: Colors.black,
-                            textStyle: ThemeTexts.assessmentAnswer.copyWith(
-                                fontSize: 14, fontWeight: FontWeight.w600)
-                        ),
-                        radioButtonValue: (value) {
+                    return GestureDetector(
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
+                        //color: Colors.red,
+                        child: CustomRadioButton(
+                          enableShape: true,
+                          customShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(color: ThemeColors.greenShade2),
+                          ),
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width,
+                          padding: 0,
+                          elevation: 0,
+                          enableButtonWrap: true,
+                          unSelectedColor: Colors.transparent,
+                          selectedColor: ThemeColors.greenShade2,
+                          buttonLables: [
+                            "Mache ich sehr oft / kann ich echt gut",
+                            "Mache ich öfters / kann ich meisten",
+                            "Kriege ich hin und wieder hin",
+                            "Schaffe ich selten"
+                          ],
+                          buttonValues: [
+                            "Mache ich sehr oft / kann ich echt gut",
+                            "Mache ich öfters / kann ich meisten",
+                            "Kriege ich hin und wieder hin",
+                            "Schaffe ich selten"
+                          ],
+                          buttonTextStyle: ButtonTextStyle(
+                              unSelectedColor: Colors.black,
+                              selectedColor: Colors.black,
+                              textStyle: ThemeTexts.assessmentAnswer.copyWith(
+                                  fontSize: 14, fontWeight: FontWeight.w600)
+                          ),
+                          radioButtonValue: (value) {
 
-                          if (snapshot.hasData) {
-                            final Answer updatedAnswer = Answer(
-                                snapshot.data.id, value, widget.questionNumber,
-                                widget.assessmentId);
-                            assessmentRepo.updateAnswer(updatedAnswer);
-                          } else {
-                            final Answer newAnswer = new Answer(
-                                null, value, widget.questionNumber,
-                                widget.assessmentId);
-                            if (newAnswer.answer != '') {
-                              assessmentRepo.insertAnswer(newAnswer);
+                            print(widget.assessmentId);
+                            if (snapshot.hasData) {
+                              print("Updated");
+                              final Answer updatedAnswer = Answer(
+                                  snapshot.data.id, value, widget.questionNumber,
+                                  widget.assessmentId);
+                              assessmentRepo.updateAnswer(updatedAnswer);
+
+                            } else {
+                              print("Created");
+                              final Answer newAnswer = new Answer(
+                                  null, value, widget.questionNumber,
+                                  widget.assessmentId);
+                               assessmentRepo.insertAnswer(newAnswer);
+                              //assessmentRepo.deleteAnswer(snapshot.data);
+                              //print(snapshot.data.id);
                             }
-                          }
-                        },
-                        // defaultSelected: true,
+                          },
+                          // defaultSelected: true,
 
+                        ),
                       ),
                     );
                   }

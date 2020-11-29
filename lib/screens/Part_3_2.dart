@@ -15,8 +15,13 @@ class Part_3_2 extends StatefulWidget {
 
 class _Part_3_2State extends State<Part_3_2> {
 
+  int assessmentId;
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -32,10 +37,10 @@ class _Part_3_2State extends State<Part_3_2> {
             Column(
             children: [
               TopBar(
-                title: "Ich und andere Menschen:  Wie ich bin und werden möchte II",
+                title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 3,
                 onClose: null,
-                subtitle: "Fragebogen Themenblock 1",
+                subtitle: "Kommunikation mit Mitmenschen",
                 intro: "",
                 percent: 0.55,
               ),
@@ -51,36 +56,42 @@ class _Part_3_2State extends State<Part_3_2> {
                       question: "Ein Gespräch anfangen/andere ansprechen",
                       questionNumber: "3.2.1",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "In einer mir bekannten Gruppe etwas sagen / eine Idee vorbringen",
                       questionNumber: "3.2.2",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "In einer mir unbekannten Gruppe etwas sagen / eine Idee hervorbringen",
                       questionNumber: "3.2.3",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Etwas Lustiges sagen oder machen, andere zum Lachen bringen",
                       questionNumber: "3.2.4",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Jemanden anlächeln / einen Blick zuwerfen",
                       questionNumber: "3.2.5",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Jemanden neugierig machen / Interesse wecken",
                       questionNumber: "3.2.6",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                 ],
@@ -101,7 +112,8 @@ class _Part_3_2State extends State<Part_3_2> {
                 },
 
                 callbackNext: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_3()));
+                 //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_3()));
+                 Navigator.of(context).pushNamed("/part_3_3", arguments: assessmentId);
                 }
 
             ),

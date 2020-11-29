@@ -15,8 +15,13 @@ class Part_3_4 extends StatefulWidget {
 
 class _Part_3_4State extends State<Part_3_4> {
 
+  int assessmentId;
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -32,10 +37,10 @@ class _Part_3_4State extends State<Part_3_4> {
             Column(
             children: [
               TopBar(
-                title: "Ich und andere Menschen:  Wie ich bin und werden möchte II",
+                title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 3,
                 onClose: null,
-                subtitle: "Fragebogen Themenblock 3",
+                subtitle: "Kommunikation mit Mitmenschen",
                 intro: "",
                 percent: 0.55,
               ),
@@ -51,36 +56,42 @@ class _Part_3_4State extends State<Part_3_4> {
                       question: "Freude über die Beziehung / das Gespräch zeigen",
                       questionNumber: "3.4.1",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Ansprechen, wie es weitergeht",
                       questionNumber: "3.4.2",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Jemandem ein Feedback geben",
                       questionNumber: "3.4.3",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Weitere Fragen formulieren",
                       questionNumber: "3.4.4",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Um ein weiteres Gespräch bitten",
                       questionNumber: "3.4.5",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
                       question: "Weitere Gesprächsmöglichkeiten ansprechen",
                       questionNumber: "3.4.6",
                       answered: false,
+                      assessmentId: assessmentId,
                     ),
 
 
@@ -101,7 +112,8 @@ class _Part_3_4State extends State<Part_3_4> {
                 },
 
                 callbackNext: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_5()));
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_5()));
+                  Navigator.of(context).pushNamed("/part_3_5", arguments: assessmentId);
                 }
 
             ),
