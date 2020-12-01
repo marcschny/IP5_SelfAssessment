@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
@@ -12,7 +11,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
 
-//run with: flutter test/db_tests.dart
+//run with: flutter test test/db_tests.dart
 void main() {
 
   group('database tests', () {

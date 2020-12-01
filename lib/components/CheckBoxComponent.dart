@@ -20,34 +20,40 @@ class CheckBoxComponentState extends State<CheckBoxComponent>{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 0),
-      margin: EdgeInsets.only(bottom: 0),
-      child: Row(
-        children: [
-          Checkbox(
-            value: widget.checked,
-            onChanged: (bool value) {
-              widget.callback(widget.checkboxTitle);
-            },
-            activeColor: ThemeColors.greenShade2,
-            checkColor: ThemeColors.greenShade4,
-          ),
-          Expanded(
-            child: GestureDetector(
-                onTap: () {
-                  print(widget.checkboxTitle+" ["+widget.checked.toString()+"]");
-                  widget.callback(widget.checkboxTitle);
-                },
-                child: Text(
-                  widget.checkboxTitle,
-                  overflow: TextOverflow.clip,
-                  style: ThemeTexts.assessmentText.copyWith(fontSize: 19),
-                )
+    return Material(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 0),
+        margin: EdgeInsets.only(bottom: 0),
+        child: Row(
+          textDirection: TextDirection.ltr,
+          children: [
+            Checkbox(
+              value: widget.checked,
+              onChanged: (bool value) {
+                widget.callback(widget.checkboxTitle);
+              },
+              activeColor: ThemeColors.greenShade2,
+              checkColor: ThemeColors.greenShade4,
             ),
-          )
-        ]
-      )
+            Expanded(
+              child: GestureDetector(
+                  onTap: () {
+                    print(widget.checkboxTitle+" ["+widget.checked.toString()+"]");
+                    widget.callback(widget.checkboxTitle);
+                  },
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text(
+                      widget.checkboxTitle,
+                      overflow: TextOverflow.clip,
+                      style: ThemeTexts.assessmentText.copyWith(fontSize: 19),
+                    ),
+                  )
+              ),
+            )
+          ]
+        )
+      ),
     );
   }
 }
