@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 import 'Part_3_1.dart';

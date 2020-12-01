@@ -1,18 +1,14 @@
-
-
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
+import 'package:ip5_selbsteinschaetzung/components/NextButton.dart';
 import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
 import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
-import 'package:ip5_selbsteinschaetzung/components/personCircle.dart';
-import 'package:ip5_selbsteinschaetzung/components/questionDialog.dart';
-import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
 void main(){
 
+  //test with: flutter test test/widget_tests.dart
   test('BottomNavigation Unit Test', (){
     String nextTitle = "test route";
 
@@ -31,6 +27,16 @@ void main(){
 
   });
 
+
+
+  testWidgets('NextButton Widget Test', (WidgetTester tester) async{
+
+    await tester.pumpWidget(NextButton(nextTitle: "nextTitle", callback: null));
+
+    final titleFinder = find.text("nextTitle");
+
+    expect(titleFinder, findsOneWidget);
+  });
 
 
   testWidgets('CheckBoxComponent Widget Test', (WidgetTester tester) async{

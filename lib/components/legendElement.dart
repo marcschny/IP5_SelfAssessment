@@ -34,6 +34,9 @@ class LegendElement extends StatelessWidget{
       case 6:
         return ThemeColors.sixthColor;
         break;
+      default:
+        return ThemeColors.greyShade1;
+        break;
     }
   }
 
