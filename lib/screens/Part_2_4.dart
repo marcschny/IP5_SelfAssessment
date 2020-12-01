@@ -214,6 +214,7 @@ class _Part_2_4State extends State<Part_2_4> {
 
             ],
           ),
+    )
     );
 
   }
