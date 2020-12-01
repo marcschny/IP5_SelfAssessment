@@ -34,6 +34,9 @@ class LegendElement extends StatelessWidget{
       case 6:
         return ThemeColors.sixthColor;
         break;
+      default:
+        return ThemeColors.greyShade1;
+        break;
     }
   }
 
@@ -45,6 +48,7 @@ class LegendElement extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
+        textDirection: TextDirection.ltr,
         children: [
           Center(
             child: Container(
@@ -59,10 +63,13 @@ class LegendElement extends StatelessWidget{
 
           SizedBox(width: 6),
           Expanded(
-            child: Text(
-              sectorName,
-              style: ThemeTexts.toastText.copyWith(color: Colors.black26),
-              textAlign: TextAlign.left,
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Text(
+                sectorName,
+                style: ThemeTexts.toastText.copyWith(color: Colors.black26),
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
         ],

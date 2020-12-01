@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 import 'Part_3_1.dart';
@@ -184,7 +183,7 @@ class _Part_2_4State extends State<Part_2_4> {
           Container(
             padding: EdgeInsets.fromLTRB(0, 4, 0, 10),
             child: Text(
-              widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
+              widget.evaluation?.length == 1  ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
               style: ThemeTexts.assessmentIntro,
               overflow: TextOverflow.clip,
             ),

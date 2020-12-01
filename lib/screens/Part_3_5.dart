@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
-import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
-import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
@@ -10,7 +8,6 @@ import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
-import 'Part_2_2.dart';
 import 'Part_2_4.dart';
 
 class Part_3_5 extends StatefulWidget {

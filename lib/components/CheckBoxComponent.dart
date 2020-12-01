@@ -23,7 +23,9 @@ class CheckBoxComponentState extends State<CheckBoxComponent>{
     return Container(
       padding: EdgeInsets.symmetric(vertical: 0),
       margin: EdgeInsets.only(bottom: 0),
+      color: Colors.transparent,
       child: Row(
+        textDirection: TextDirection.ltr,
         children: [
           Checkbox(
             value: widget.checked,
@@ -39,10 +41,13 @@ class CheckBoxComponentState extends State<CheckBoxComponent>{
                   print(widget.checkboxTitle+" ["+widget.checked.toString()+"]");
                   widget.callback(widget.checkboxTitle);
                 },
-                child: Text(
-                  widget.checkboxTitle,
-                  overflow: TextOverflow.clip,
-                  style: ThemeTexts.assessmentText.copyWith(fontSize: 19),
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Text(
+                    widget.checkboxTitle,
+                    overflow: TextOverflow.clip,
+                    style: ThemeTexts.assessmentText.copyWith(fontSize: 19),
+                  ),
                 )
             ),
           )

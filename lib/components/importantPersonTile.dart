@@ -7,7 +7,6 @@ class ImportantPersonTile extends StatelessWidget{
 
   final Person person;
 
-
   const ImportantPersonTile({
     Key key,
     this.person
@@ -31,14 +30,18 @@ class ImportantPersonTile extends StatelessWidget{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
+        textDirection: TextDirection.ltr,
         children: [
           Container(
             child: Center(
-              child: Icon(
-                //todo: update with category icons from person.icon
-                Icons.person,
-                size: 40,
-                color: Color.fromRGBO(80, 80, 80, 1),
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Icon(
+                  //todo: update with category icons from person.icon
+                  Icons.person,
+                  size: 40,
+                  color: Color.fromRGBO(80, 80, 80, 1),
+                ),
               ),
             ),
           ),
@@ -47,22 +50,29 @@ class ImportantPersonTile extends StatelessWidget{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
+              textDirection: TextDirection.ltr,
               children: [
                 Expanded(
-                  child: Text(
-                    person.name,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: ThemeTexts.assessmentSubquestion.copyWith(fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text(
+                      person.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: ThemeTexts.assessmentSubquestion.copyWith(fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.left,
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: Text(
-                    person.lifeArea,
-                    style: ThemeTexts.assessmentNavigationNext.copyWith(color: Color.fromRGBO(149, 149, 140, 1)),
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.clip,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text(
+                      person.lifeArea,
+                      style: ThemeTexts.assessmentNavigationNext.copyWith(color: Color.fromRGBO(149, 149, 140, 1)),
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ),
               ],
