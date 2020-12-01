@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 import 'Part_3_1.dart';
@@ -11,9 +12,10 @@ import 'Part_3_1.dart';
 
 class Part_2_4 extends StatefulWidget {
 
-  final List<String> evaluation;
+  final List<Question> evaluation;
+  final int assessmentId;
 
-  const Part_2_4({Key key, this.evaluation}) : super(key: key);
+  const Part_2_4({Key key, this.assessmentId, this.evaluation}) : super(key: key);
 
   @override
   _Part_2_4State createState() => _Part_2_4State();
@@ -21,12 +23,12 @@ class Part_2_4 extends StatefulWidget {
 
 class _Part_2_4State extends State<Part_2_4> {
 
-  int assessmentId;
+
 
   @override
   Widget build(BuildContext context) {
 
-    assessmentId = ModalRoute.of(context).settings.arguments;
+    //assessmentId = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       body: SafeArea(
@@ -40,7 +42,7 @@ class _Part_2_4State extends State<Part_2_4> {
             ),
 
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
@@ -61,10 +63,10 @@ class _Part_2_4State extends State<Part_2_4> {
 
                         QuestionCard(
                           questionNumber: "2.4.1",
-                          assessmentId: assessmentId,
+                          assessmentId: widget.assessmentId,
                         ),
 
-                        SizedBox(height: 50),
+                        SizedBox(height: 10),
 
 
                         Row(
@@ -79,6 +81,7 @@ class _Part_2_4State extends State<Part_2_4> {
                               )
                             ),
                             SizedBox(width: 10),
+
                             Expanded(
                               child: Text(
                                 widget.evaluation == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
@@ -86,69 +89,78 @@ class _Part_2_4State extends State<Part_2_4> {
                                 textAlign: TextAlign.start,
                                 softWrap: true,
                                 overflow: TextOverflow.clip,
+
                                 ),
                             ),
-                        ],
+
+                            ],
                         ),
 
-                        widget.evaluation == null ? Padding(
-                          padding: EdgeInsets.only(left: 34, top: 3),
-                          child: RaisedButton(
-                            color: ThemeColors.greenShade4,
-                            elevation: 0,
-                            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                            onPressed: () {
-                              Navigator.of(context).pushNamed("/part_3_1", arguments: assessmentId);
-                            },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget> [
-                                    Text(
-                                      "Fragekatalog",
-                                      style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
+
+                            widget.evaluation == null ? Padding(
+                              padding: EdgeInsets.only(left: 34, top: 3),
+                              child: RaisedButton(
+                                color: ThemeColors.greenShade4,
+                                elevation: 0,
+                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                onPressed: () {
+                                  Navigator.of(context).pushNamed("/part_3_1", arguments: widget.assessmentId);
+                                },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget> [
+                                        Text(
+                                          "Fragekatalog",
+                                          style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
+                                        ),
+                                        SizedBox(width: 8),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          size: 20
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(width: 8),
-                                    Icon(
-                                      Icons.arrow_forward,
-                                      size: 20
-                                    ),
-                                  ],
-                                ),
+                                  ),
                               ),
-                          ),
-                        ) : Container(),
+                            ) : Container(),
 
+                                SizedBox(height: 10),
 
-                        //Spacer(flex: 1),
+                            widget.evaluation == null ? Container() : _evaluationQuestionnaire(),
 
-                        widget.evaluation != null ? _evaluationQuestionnaire() : Container(),
-                      ],
-                    ),
+                          ],
+
+                        ),
+
                 ),
+
               ),
 
-              SizedBox(height: 20),
-          ],
-        ),
+                  SizedBox(height: 20),
+
+              ],
+            ),
 
 
-              BottomNavigation(
-                  showNextButton: true,
-                  showBackButton: true,
-                  nextTitle: "Name it!",
-                  callbackBack: () {
-                    Navigator.of(context).pop();
-                    },
-                  callbackNext: (){
-                    Navigator.of(context).pushNamed("/part_2_5", arguments: assessmentId);
-                  }
-              ),
-        ],
+            BottomNavigation(
+               showNextButton: true,
+               showBackButton: true,
+               nextTitle: "Name it!",
+               callbackBack: () {
+                 Navigator.of(context).pop();
+                 },
+               callbackNext: (){
+                 Navigator.of(context).pushNamed("/part_2_5", arguments: widget.assessmentId);
+               }
+            ),
+
+
+        ]
         ),
       ),
 
@@ -158,42 +170,46 @@ class _Part_2_4State extends State<Part_2_4> {
 
 
   _evaluationQuestionnaire(){
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 14, 0, 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Auswertung Fragebogen",
-            style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
-          ),
+    return  Expanded(
+      child: SingleChildScrollView(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Auswertung Fragebogen",
+                style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
+              ),
 
-          Container(
-            padding: EdgeInsets.fromLTRB(0, 4, 0, 10),
-            child: Text(
-              //todo: widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
-              "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:",
-              style: ThemeTexts.assessmentIntro,
-              overflow: TextOverflow.clip,
-            ),
-          ),
+              Container(
+                  child: Text(
+                      widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
+                      style: ThemeTexts.assessmentIntro,
+                      overflow: TextOverflow.clip,
+                    ),
+              ),
 
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-            decoration: BoxDecoration(
-              border: Border.all(color: ThemeColors.greenShade2),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              color: Colors.transparent,
-            ),
-            child: Text(
-              "Irgend eine unwichtig gewählte Frage kommt hier", //todo: widget.evaluation,
-              style: ThemeTexts.assessmentQuestion,
-              overflow: TextOverflow.clip,
-            ),
+              SizedBox(height: 20),
+
+              Container(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: widget.evaluation.length,
+                        itemBuilder: (context, index) {
+                          return new SurveyBox(
+                              question: '${widget.evaluation[index].question}',
+                              answerable: false,
+                          );
+                        },
+
+                      ),
+                    ),
+
+            ],
           ),
-        ],
       ),
     );
+
   }
 
 
