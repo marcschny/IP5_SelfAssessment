@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_4.dart';
 
 class Part_2_3 extends StatefulWidget {
   const Part_2_3({Key key}) : super(key: key);

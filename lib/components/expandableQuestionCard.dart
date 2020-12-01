@@ -11,15 +11,11 @@ import 'package:provider/provider.dart';
 class ExpandableQuestionCard extends StatefulWidget {
 
   final int assessmentId;
-  final String question;
   final String questionNumber;
-  final bool answered;
 
   const ExpandableQuestionCard({
     Key key,
-    this.question,
     @required this.questionNumber,
-    this.answered,
     @required this.assessmentId
   });
 
@@ -29,103 +25,202 @@ class ExpandableQuestionCard extends StatefulWidget {
 
 class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
 
+  Answer answer;
+  String question;
+
+  @override
+  void initState() {
+    super.initState();
+    question = "";
+    _getQuestion();
+    _loadAnswer();
+  }
+
+
+  _getQuestion() async{
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    final getQuestion = await assessmentRepo.findQuestion(widget.questionNumber);
+
+    setState(() {
+      question = getQuestion.question;
+    });
+
+  }
+
+
+
+  _loadAnswer() async{
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+    final getAnswer = await assessmentRepo.findAnswer(widget.questionNumber, widget.assessmentId);
+
+    setState(() {
+      answer = getAnswer;
+    });
+  }
+
+
+  _getAnswer(){
+    return answer.answer;
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
-    final assessmentRepo = appDatabase.assessmentRepository;
-    final loadQuestion = assessmentRepo.findQuestion(
-        widget.questionNumber);
+    if(answer != null){
+      return _answeredList();
+    }else{
+      return _unansweredList();
+    }
+  }
 
-    final loadAnswer = assessmentRepo.findAnswer(
-        widget.questionNumber, widget.assessmentId);
+  _answeredList(){
+    return Container(
+      margin: EdgeInsets.only(bottom: 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          color: ThemeColors.greenShade3,
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          child: ExpandablePanel(
+            header: Text(
+              question,
+              style: ThemeTexts.assessmentQuestion,
+            ),
 
-          return Container(
-            margin: EdgeInsets.only(bottom: 20),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                color: ThemeColors.greenShade3,
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                child: ExpandablePanel(
-                  header: FutureBuilder(
-                    future: loadQuestion,
-                    builder: (context, snapshot) {
-                      return Container(
-                        child: Text(
-                          widget.question, //snapshot.data.question
-                          style: ThemeTexts.assessmentQuestion,
-                        ),
-                      );
-                    },
-                  ),
-
-                  expanded: FutureBuilder(
-                  future: loadAnswer,
-                  builder: (context, snapshot) {
-                    return Container(
-                      padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
-                      //color: Colors.red,
-                      child: CustomRadioButton(
-                        enableShape: true,
-                        customShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(color: ThemeColors.greenShade2),
-                        ),
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        padding: 0,
-                        elevation: 0,
-                        enableButtonWrap: true,
-                        unSelectedColor: Colors.transparent,
-                        selectedColor: ThemeColors.greenShade2,
-                        buttonLables: [
-                          "Mache ich sehr oft / kann ich echt gut",
-                          "Mache ich öfters / kann ich meisten",
-                          "Kriege ich hin und wieder hin",
-                          "Schaffe ich selten"
-                        ],
-                        buttonValues: [
-                          "Mache ich sehr oft / kann ich echt gut",
-                          "Mache ich öfters / kann ich meisten",
-                          "Kriege ich hin und wieder hin",
-                          "Schaffe ich selten"
-                        ],
-                        buttonTextStyle: ButtonTextStyle(
-                            unSelectedColor: Colors.black,
-                            selectedColor: Colors.black,
-                            textStyle: ThemeTexts.assessmentAnswer.copyWith(
-                                fontSize: 14, fontWeight: FontWeight.w600)
-                        ),
-                        radioButtonValue: (value) {
-
-                          if (snapshot.hasData) {
-                            final Answer updatedAnswer = Answer(
-                                snapshot.data.id, value, widget.questionNumber,
-                                widget.assessmentId);
-                            assessmentRepo.updateAnswer(updatedAnswer);
-                          } else {
-                            final Answer newAnswer = new Answer(
-                                null, value, widget.questionNumber,
-                                widget.assessmentId);
-                            if (newAnswer.answer != '') {
-                              assessmentRepo.insertAnswer(newAnswer);
-                            }
-                          }
-                        },
-                        // defaultSelected: true,
-
-                      ),
-                    );
-                  }
-                  ),
+            expanded: Container(
+              padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
+              //color: Colors.red,
+              child: CustomRadioButton(
+                defaultSelected: _getAnswer(),
+                enableShape: true,
+                customShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(color: ThemeColors.greenShade2),
                 ),
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                padding: 0,
+                elevation: 0,
+                enableButtonWrap: true,
+                unSelectedColor: Colors.transparent,
+                selectedColor: ThemeColors.greenShade2,
+                buttonLables: [
+                  "Mache ich sehr oft / kann ich echt gut",
+                  "Mache ich öfters / kann ich meisten",
+                  "Kriege ich hin und wieder hin",
+                  "Schaffe ich selten"
+                ],
+                buttonValues: [
+                  "Mache ich sehr oft / kann ich echt gut",
+                  "Mache ich öfters / kann ich meisten",
+                  "Kriege ich hin und wieder hin",
+                  "Schaffe ich selten"
+                ],
+                buttonTextStyle: ButtonTextStyle(
+                    unSelectedColor: Colors.black,
+                    selectedColor: Colors.black,
+                    textStyle: ThemeTexts.assessmentAnswer.copyWith(
+                        fontSize: 14, fontWeight: FontWeight.w600)
+                ),
+                radioButtonValue: (value) {
+                  _saveOrUpdateAnswer(value);
+                },
               ),
             ),
-          );
-        }
+
+          ),
+        ),
+      ),
+    );
+  }
+
+  _unansweredList(){
+    return Container(
+      margin: EdgeInsets.only(bottom: 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          color: ThemeColors.greenShade3,
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          child: ExpandablePanel(
+            header: Text(
+              question,
+              style: ThemeTexts.assessmentQuestion,
+            ),
+
+            expanded: Container(
+              padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
+              //color: Colors.red,
+              child: CustomRadioButton(
+                enableShape: true,
+                customShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(color: ThemeColors.greenShade2),
+                ),
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                padding: 0,
+                elevation: 0,
+                enableButtonWrap: true,
+                unSelectedColor: Colors.transparent,
+                selectedColor: ThemeColors.greenShade2,
+                buttonLables: [
+                  "Mache ich sehr oft / kann ich echt gut",
+                  "Mache ich öfters / kann ich meisten",
+                  "Kriege ich hin und wieder hin",
+                  "Schaffe ich selten"
+                ],
+                buttonValues: [
+                  "Mache ich sehr oft / kann ich echt gut",
+                  "Mache ich öfters / kann ich meisten",
+                  "Kriege ich hin und wieder hin",
+                  "Schaffe ich selten"
+                ],
+                buttonTextStyle: ButtonTextStyle(
+                    unSelectedColor: Colors.black,
+                    selectedColor: Colors.black,
+                    textStyle: ThemeTexts.assessmentAnswer.copyWith(
+                        fontSize: 14, fontWeight: FontWeight.w600)
+                ),
+                radioButtonValue: (value) {
+                  _saveOrUpdateAnswer(value);
+                },
+              ),
+            ),
+
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  _saveOrUpdateAnswer(String value) async{
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    if(answer == null) {
+      final Answer newAnswer = Answer(null, value, widget.questionNumber, widget.assessmentId);
+      assessmentRepo.insertAnswer(newAnswer).then((answerId) {
+        _loadAnswer();
+      });
+      print("new answer: "+newAnswer.answer+" ["+newAnswer.assessment_id.toString()+"]");
+    }else{
+      final Answer updateAnswer = Answer(answer.id, value, widget.questionNumber, widget.assessmentId);
+      assessmentRepo.updateAnswer(updateAnswer);
+      print("updated answer: "+updateAnswer.answer+" ["+updateAnswer.assessment_id.toString()+"]");
+    }
+  }
+
+
+
 
 
 }

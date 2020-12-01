@@ -15,8 +15,13 @@ class Part_3_3 extends StatefulWidget {
 
 class _Part_3_3State extends State<Part_3_3> {
 
+  int assessmentId;
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -32,10 +37,10 @@ class _Part_3_3State extends State<Part_3_3> {
             Column(
             children: [
               TopBar(
-                title: "Ich und andere Menschen:  Wie ich bin und werden möchte II",
+                title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 3,
                 onClose: null,
-                subtitle: "Fragebogen Themenblock 2",
+                subtitle: "Kommunikation mit Mitmenschen",
                 intro: "",
                 percent: 0.55,
               ),
@@ -48,45 +53,38 @@ class _Part_3_3State extends State<Part_3_3> {
                   children: [
 
                     ExpandableQuestionCard(
-                      question: "Jemanden nach dem Befinden fragen",
                       questionNumber: "3.3.1",
-                      answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Jemandem etwas Freundliches sagen/ein Kompliment machen",
                       questionNumber: "3.3.2",
-                      answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Gut zuhören",
                       questionNumber: "3.3.3",
-                      answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Jemandem etwas Wichtiges anvertrauen",
                       questionNumber: "3.3.4",
-                      answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Gemeinsam lachen",
                       questionNumber: "3.3.5",
-                      answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Auf eine Frage/ein Anliegen eingehen",
                       questionNumber: "3.3.6",
-                      answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                     ExpandableQuestionCard(
-                      question: "Eigene Irritationen/Schwierigkeiten ansprechen",
                       questionNumber: "3.3.7",
-                      answered: false,
+                      assessmentId: assessmentId,
                     ),
 
                 ],
@@ -106,7 +104,8 @@ class _Part_3_3State extends State<Part_3_3> {
                 },
 
                 callbackNext: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_4()));
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_4()));
+                  Navigator.of(context).pushNamed("/part_3_4", arguments: assessmentId);
                 }
 
             ),

@@ -15,8 +15,13 @@ class Part_3_1 extends StatefulWidget {
 
 class _Part_3_1State extends State<Part_3_1> {
 
+  int assessmentId;
+
   @override
   Widget build(BuildContext context) {
+
+    assessmentId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -32,7 +37,7 @@ class _Part_3_1State extends State<Part_3_1> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TopBar(
-                  title: "Ich und andere Menschen:  Wie ich bin und werden möchte II",
+                  title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 3,
                   onClose: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_4()));},
                   subtitle: "Fragebogen",
@@ -65,8 +70,10 @@ class _Part_3_1State extends State<Part_3_1> {
                   ),
                 ),
                 onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_2()));
+                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_2()));
+                  Navigator.of(context).pushNamed("/part_3_2", arguments: assessmentId);
                 },
+
               ),
               ),
             ],
