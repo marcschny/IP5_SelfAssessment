@@ -93,7 +93,8 @@ class _LifeAreasState extends State<LifeAreas>{
                 _customCheckBox(),
 
                 Expanded(
-                  child: Padding(
+                  child: Container(
+                    color: Colors.transparent,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
                     child: ListView.builder(
                       itemCount: _lifeAreasMap.length,
