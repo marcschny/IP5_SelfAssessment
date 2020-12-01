@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -22,11 +24,16 @@ class Part_2_4 extends StatefulWidget {
 class _Part_2_4State extends State<Part_2_4> {
 
   int assessmentId;
+  int networkId;
+  LinkedHashMap<String, int> routeArgs;
 
   @override
   Widget build(BuildContext context) {
 
-    assessmentId = ModalRoute.of(context).settings.arguments;
+    //get passed arguments
+    routeArgs = ModalRoute.of(context).settings.arguments;
+    assessmentId = routeArgs["assessmentId"];
+    networkId = routeArgs["networkId"];
 
     return Scaffold(
       body: SafeArea(
@@ -81,7 +88,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                widget.evaluation != null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
+                                widget.evaluation == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
                                 style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                 textAlign: TextAlign.start,
                                 softWrap: true,
@@ -91,7 +98,7 @@ class _Part_2_4State extends State<Part_2_4> {
                         ],
                         ),
 
-                        widget.evaluation != null ? Padding(
+                        widget.evaluation == null ? Padding(
                           padding: EdgeInsets.only(left: 34, top: 3),
                           child: RaisedButton(
                             color: ThemeColors.greenShade4,
@@ -99,7 +106,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                             shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                             onPressed: () {
-                              Navigator.of(context).pushNamed("/part_3_1", arguments: assessmentId);
+                              Navigator.of(context).pushNamed("/part_3_1", arguments: assessmentId); //todo: pass networkcard argument and retrieve it back at end of questionnaire
                             },
                               child: Container(
                                 padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
@@ -145,7 +152,13 @@ class _Part_2_4State extends State<Part_2_4> {
                     Navigator.of(context).pop();
                     },
                   callbackNext: (){
-                    Navigator.of(context).pushNamed("/part_2_5", arguments: assessmentId);
+                    Navigator.of(context).pushNamed(
+                        "/part_2_5",
+                        arguments: <String, int>{
+                          "assessmentId": assessmentId,
+                          "networkId": networkId
+                        }
+                    );
                   }
               ),
         ],
@@ -171,8 +184,7 @@ class _Part_2_4State extends State<Part_2_4> {
           Container(
             padding: EdgeInsets.fromLTRB(0, 4, 0, 10),
             child: Text(
-              //todo: widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
-              "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:",
+              widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
               style: ThemeTexts.assessmentIntro,
               overflow: TextOverflow.clip,
             ),
