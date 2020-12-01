@@ -1,37 +1,36 @@
-import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
-import 'package:ip5_selbsteinschaetzung/components/CircleTrianlgePainter.dart';
 import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
 import 'package:ip5_selbsteinschaetzung/components/personCircle.dart';
-import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/components/yourPersonCircle.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
+import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'CircleTrianlgePainter.dart';
 
-//Screen 1.3
-class Visualization extends StatefulWidget{
+class NetworkcardDialog extends StatefulWidget{
 
-  const Visualization({
-    Key key
+  final int assessmentId;
+  final int networkId;
+
+
+  const NetworkcardDialog({
+    Key key,
+    @required this.assessmentId,
+    @required this.networkId,
   }) : super(key: key);
 
-  _VisualizationState createState() => _VisualizationState();
+
+  _NetworkcardDialogState createState() => _NetworkcardDialogState();
 
 }
 
-//todo: put methods to build network card in separate file (so you can use it here and in networkcardDialog)
-class _VisualizationState extends State<Visualization>{
+class _NetworkcardDialogState extends State<NetworkcardDialog>{
 
-  //variables from route
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
 
   //necessary lists
   List<String> lifeAreas;
@@ -46,8 +45,6 @@ class _VisualizationState extends State<Visualization>{
   double centerX;
   double centerY;
   double radius;
-
-
 
   @override
   void initState() {
@@ -73,7 +70,7 @@ class _VisualizationState extends State<Visualization>{
   double _computeYPosition(int distance, double angle){
     return centerY + ((radius/10)*distance) * sin(_toRadian(angle));
   }
-  
+
   double _toRadian(double angle){
     return angle * (pi / 180);
   }
@@ -85,10 +82,10 @@ class _VisualizationState extends State<Visualization>{
 
     lifeAreas.forEach((element) {
       legendList.add(
-        LegendElement(
-          sector: tempSector,
-          sectorName: element,
-        )
+          LegendElement(
+            sector: tempSector,
+            sectorName: element,
+          )
       );
       tempSector++;
     });
@@ -235,7 +232,7 @@ class _VisualizationState extends State<Visualization>{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    final persons = await assessmentRepo.getAllPersonsByNetworkCard(networkId);
+    final persons = await assessmentRepo.getAllPersonsByNetworkCard(widget.networkId);
 
     setState(() {
       personList = persons;
@@ -252,16 +249,8 @@ class _VisualizationState extends State<Visualization>{
   }
 
 
-
   @override
   Widget build(BuildContext context) {
-
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
-
-    print("width: "+MediaQuery.of(context).size.width.toString());
 
 
     //canvas variables
@@ -269,102 +258,88 @@ class _VisualizationState extends State<Visualization>{
     centerY = MediaQuery.of(context).size.width/2-40;
     radius = (MediaQuery.of(context).size.width-40)/2;
 
-    //todo: put this outside of build (same in networkcardDialog)
+
     _createPersonCircleList();
 
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-        children: [
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(bottom: 94),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
 
-            //background image
-            Image.asset(
-              "assets/background_image/gradient-grey.png",
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              fit: BoxFit.cover,
-            ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    "So sieht Deine Karte aus",
+                    style: ThemeTexts.assessmentSubtitle,
+                  ),
+                ),
 
 
-            //content
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(bottom: 94),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+
+
+                Stack(
                   children: [
-
-                    TopBar(
-                      title: "Wer ist mir wichtig?\nMeine Karte",
-                      titleNumber: 1,
-                      onClose: null,
-                      subtitle: "So sieht deine Karte aus",
-                      percent: 0.2,
-                      intro: "",
-                    ),
-
-                    Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 18),
-                          child: Center(
-                            child: CustomPaint(
-                              child: Container(
-                                height: MediaQuery.of(context).size.width,
-                                padding: EdgeInsets.all(20),
-                              ),
-                              painter: WheelPainter(
-                                noAreas: lifeAreas.length,
-                                widgetSize: MediaQuery.of(context).size.width-40,
-                              ),
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: Center(
+                        child: CustomPaint(
+                          child: Container(
+                            height: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.all(20),
+                          ),
+                          painter: WheelPainter(
+                            noAreas: lifeAreas.length,
+                            widgetSize: MediaQuery.of(context).size.width-40,
                           ),
                         ),
-
-                      ]..addAll(personCircleList),
-                    ),
-
-                    Container(
-                      padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
-                      width: MediaQuery.of(context).size.width,
-                      child: Wrap(
-                        alignment: WrapAlignment.start,
-                        children: [
-
-                        ]..addAll(legendList),
                       ),
                     ),
 
-                  ],
+                  ]..addAll(personCircleList),
                 ),
-              ),
-            ),
 
-            //bottom navigation bar
-            BottomNavigation(
-              showNextButton: true,
-              showBackButton: true,
-              nextTitle: "Hey, das kann ich bereits!",
-              callbackNext: (){
-                _next(context, assessmentId, networkId);
-              },
-              callbackBack: (){
-                Navigator.of(context).pop();
-              },
+                Container(
+                  padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                  width: MediaQuery.of(context).size.width,
+                  child: Wrap(
+                    alignment: WrapAlignment.start,
+                    children: [
+
+                    ]..addAll(legendList),
+                  ),
+                ),
+
+              ],
             ),
-          ],
+          ),
         ),
       ),
-    );
-  }
-
-  void _next(BuildContext context, int assessmentId, int networkId) {
-    Navigator.of(context).pushNamed(
-        "/part_2_1",
-        arguments: <String, int>{
-          "assessmentId": assessmentId,
-          "networkId": networkId
-        },
+      floatingActionButton: Container(
+        padding: EdgeInsets.only(right: 8, bottom: 8),
+        child: ButtonTheme(
+          height: 60,
+          minWidth: 60,
+          child: RaisedButton(
+            elevation: 0.0,
+            color: ThemeColors.greyShade1,
+            shape: CircleBorder(),
+            child: Icon(
+              Icons.arrow_back,
+              color: Color.fromRGBO(80, 80, 80, 1),
+            ),
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      resizeToAvoidBottomInset: false,
     );
   }
 
