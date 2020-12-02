@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
+import 'package:ip5_selbsteinschaetzung/components/surveyBoxFilled.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
@@ -62,9 +63,9 @@ class _Part_2_4State extends State<Part_2_4> {
                           assessmentId: widget.assessmentId,
                         ),
 
-                        SizedBox(height: 20),
+                        SizedBox(height: 24),
 
-
+                        widget.evaluation == null ?
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +81,7 @@ class _Part_2_4State extends State<Part_2_4> {
 
                             Expanded(
                               child: Text(
-                                widget.evaluation == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
+                                "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
                                 style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                 textAlign: TextAlign.start,
                                 softWrap: true,
@@ -90,7 +91,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             ),
 
                             ],
-                        ),
+                        ) : Container(),
 
 
                             widget.evaluation == null ? Padding(
@@ -189,8 +190,9 @@ class _Part_2_4State extends State<Part_2_4> {
               ),
 
               Container(
+                padding: EdgeInsets.only(top: 4),
                   child: Text(
-                      widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
+                      widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Veränderungsprojekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Veränderungsprojekt arbeiten:",
                       style: ThemeTexts.assessmentIntro,
                       overflow: TextOverflow.clip,
                     ),
@@ -204,10 +206,8 @@ class _Part_2_4State extends State<Part_2_4> {
                         shrinkWrap: true,
                         itemCount: widget.evaluation.length,
                         itemBuilder: (context, index) {
-                          return new SurveyBox(
+                          return SurveyBoxFilled(
                             question: widget.evaluation[index],
-                            checked: false,
-                            callback: (){},
                           );
                         },
 
