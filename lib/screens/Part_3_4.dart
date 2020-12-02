@@ -108,13 +108,7 @@ class _Part_3_4State extends State<Part_3_4> {
 
                 callbackNext: () {
                   //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_5()));
-                  Navigator.of(context).pushNamed(
-                      "/part_3_5",
-                      arguments: <String, int>{
-                        "assessmentId": assessmentId,
-                        "networkId": networkId
-                      }
-                  );
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_5(assessmentId: assessmentId, networkId: networkId)));
                 }
 
             ),

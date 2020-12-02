@@ -53,7 +53,11 @@ class _StartScreenState extends State<StartScreen>{
     final assessmentRepo = appDataBase.assessmentRepository;
     assessmentRepo.createAssessment(newAssessment).then((assessmentId) {
       print(assessmentId);
-      Navigator.of(context).pushNamed("/lifeAreas", arguments: assessmentId);
+      //Navigator.of(context).pushNamed("/lifeAreas", arguments: assessmentId);
+      Navigator.of(context).pushNamed("/part_3_1", arguments: <String, int>{
+        "assessmentId": assessmentId,
+        "networkId": 1
+      });
     });
   }
 

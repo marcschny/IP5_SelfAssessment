@@ -13,7 +13,11 @@ import 'package:provider/provider.dart';
 import 'Part_2_4.dart';
 
 class Part_3_5 extends StatefulWidget {
-  const Part_3_5({Key key}) : super(key: key);
+
+  final int assessmentId;
+  final int networkId;
+
+  const Part_3_5({Key key, this.assessmentId, this.networkId}) : super(key: key);
 
   @override
   _Part_3_5State createState() => _Part_3_5State();
@@ -21,27 +25,23 @@ class Part_3_5 extends StatefulWidget {
 
 class _Part_3_5State extends State<Part_3_5> {
 
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
 
   String surveyQuestion;
-  List<Question> distinctQuestions = List();
+
+  Map<String, bool> distinctQuestions;
 
 
   @override
   void initState() {
     super.initState();
+    distinctQuestions = Map();
+    distinctQuestions.clear();
     getSurveyAnswers();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
 
     return Scaffold(
       body: SafeArea(
@@ -76,8 +76,11 @@ class _Part_3_5State extends State<Part_3_5> {
                       itemBuilder: (context, index) {
 
                           return new SurveyBox(
-                          question: '${distinctQuestions[index].question}',
-                          answerable: true,
+                          question: distinctQuestions.keys.elementAt(index),
+                          checked: distinctQuestions.values.elementAt(index),
+                          callback: (question){
+                            _switchChecked(question);
+                          }
                           );
                       },
                     ),
@@ -94,14 +97,8 @@ class _Part_3_5State extends State<Part_3_5> {
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },
-
                 callbackNext: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Part_2_4(assessmentId: assessmentId, evaluation: distinctQuestions, networkId: networkId),
-                    ),
-                  );
+                  _next(context, widget.assessmentId, widget.networkId, distinctQuestions);
                 }
 
             ),
@@ -113,33 +110,57 @@ class _Part_3_5State extends State<Part_3_5> {
 
   }
 
+  //switch checked state of question box
+  _switchChecked(String question){
+    distinctQuestions.forEach((key, value) {
+      if(key == question){
+        distinctQuestions.update(key, (value) => value ? false : true);
+      }
+    });
+    setState(() { });
+  }
+
+
   getSurveyAnswers() async {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    List<Answer>surveyAnswers = await assessmentRepo.getSurveyAnswers();
+    List<Answer> surveyAnswers = await assessmentRepo.getSurveyAnswers(widget.assessmentId);
 
     String questionNumber;
 
-
-    List<Question> questions = List();
     for(Answer element in surveyAnswers){
       questionNumber = element.question_number;
       Question findQuestion = await assessmentRepo.findQuestion(questionNumber);
-      questions.add(findQuestion);
 
-      distinctQuestions = questions.toSet().toList();
+      distinctQuestions.putIfAbsent(findQuestion.question, () => false);
     }
 
+    setState(() {
 
-    distinctQuestions.forEach((element) {
-      setState(() {
-        surveyQuestion =  element.question;
-      });
-
-      print(surveyQuestion);
     });
 
     }
+  }
+
+  //when next-button pressed
+  _next(BuildContext context, int assessmentId, int networkId, Map questions) async{
+
+  List<String> _selectedQuestions = List();
+  _selectedQuestions.clear();
+
+  //fill list with selected questions from map (values with bool true)
+  questions.forEach((key, value) {
+    if(value) _selectedQuestions.add(key);
+  });
+
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Part_2_4(assessmentId: assessmentId, evaluation: _selectedQuestions, networkId: networkId),
+      ),
+    );
+
+
   }
 

@@ -14,7 +14,7 @@ import 'Part_3_1.dart';
 
 class Part_2_4 extends StatefulWidget {
 
-  final List<Question> evaluation;
+  final List<String> evaluation;
   final int assessmentId;
   final int networkId;
 
@@ -209,8 +209,9 @@ class _Part_2_4State extends State<Part_2_4> {
                         itemCount: widget.evaluation.length,
                         itemBuilder: (context, index) {
                           return new SurveyBox(
-                              question: '${widget.evaluation[index].question}',
-                              answerable: false,
+                            question: widget.evaluation[index],
+                            checked: false,
+                            callback: (){},
                           );
                         },
 
