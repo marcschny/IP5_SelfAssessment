@@ -38,6 +38,7 @@ class _SurveyBoxState extends State<SurveyBox> {
         decoration: widget.checked
             ? BoxDecoration(
                 color: ThemeColors.greenShade2,
+                border: Border.all(color: ThemeColors.greenShade2),
                 borderRadius: BorderRadius.all(Radius.circular(12))
         )
             :  BoxDecoration(

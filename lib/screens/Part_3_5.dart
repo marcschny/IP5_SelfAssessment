@@ -64,8 +64,7 @@ class _Part_3_5State extends State<Part_3_5> {
                 titleNumber: 3,
                 onClose: null,
                 subtitle: "Auswertung Fragebogen",
-                intro: "Folgende Punkte sind Dir bisher weniger gut gelungen. "
-                    " Wähle bis zu zwei davon aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest",
+                intro: "Folgende Punkte sind Dir weniger gut gelungen.  Wähle bis zu zwei davon aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest",
                 percent: 0.55,
               ),
 
