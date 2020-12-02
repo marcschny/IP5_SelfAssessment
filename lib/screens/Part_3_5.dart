@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -11,6 +9,8 @@ import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:provider/provider.dart';
 
 import 'Part_2_4.dart';
+
+
 
 class Part_3_5 extends StatefulWidget {
 

@@ -6,7 +6,6 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 import 'Part_2_4.dart';
-import 'Part_3_2.dart';
 
 class Part_3_1 extends StatefulWidget {
   const Part_3_1({Key key}) : super(key: key);

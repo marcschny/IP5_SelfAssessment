@@ -6,7 +6,7 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 
-import 'Part_3_3.dart';
+
 
 class Part_3_2 extends StatefulWidget {
   const Part_3_2({Key key}) : super(key: key);
