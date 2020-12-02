@@ -55,7 +55,7 @@ class _Part_3_2State extends State<Part_3_2> {
 
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                 child: ListView(
                   children: [
 

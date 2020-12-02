@@ -70,7 +70,7 @@ class _Part_3_5State extends State<Part_3_5> {
 
               Expanded(
                 child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                     child: ListView.builder(
                       itemCount: distinctQuestions.length,
                       itemBuilder: (context, index) {
