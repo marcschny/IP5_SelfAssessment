@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -16,11 +18,16 @@ class Part_3_2 extends StatefulWidget {
 class _Part_3_2State extends State<Part_3_2> {
 
   int assessmentId;
+  int networkId;
+  LinkedHashMap<String, int> routeArgs;
 
   @override
   Widget build(BuildContext context) {
 
-    assessmentId = ModalRoute.of(context).settings.arguments;
+    //get passed arguments
+    routeArgs = ModalRoute.of(context).settings.arguments;
+    assessmentId = routeArgs["assessmentId"];
+    networkId = routeArgs["networkId"];
 
     return Scaffold(
       body: SafeArea(
@@ -101,7 +108,13 @@ class _Part_3_2State extends State<Part_3_2> {
 
                 callbackNext: () {
                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_3()));
-                 Navigator.of(context).pushNamed("/part_3_3", arguments: assessmentId);
+                  Navigator.of(context).pushNamed(
+                      "/part_3_3",
+                      arguments: <String, int>{
+                        "assessmentId": assessmentId,
+                        "networkId": networkId
+                      }
+                  );
                 }
 
             ),

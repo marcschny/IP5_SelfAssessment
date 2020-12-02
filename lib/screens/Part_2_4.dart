@@ -16,8 +16,9 @@ class Part_2_4 extends StatefulWidget {
 
   final List<Question> evaluation;
   final int assessmentId;
+  final int networkId;
 
-  const Part_2_4({Key key, this.assessmentId, this.evaluation}) : super(key: key);
+  const Part_2_4({Key key, this.assessmentId, this.evaluation, this.networkId}) : super(key: key);
 
   @override
   _Part_2_4State createState() => _Part_2_4State();
@@ -25,17 +26,9 @@ class Part_2_4 extends StatefulWidget {
 
 class _Part_2_4State extends State<Part_2_4> {
 
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
 
   @override
   Widget build(BuildContext context) {
-
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
 
     return Scaffold(
       body: SafeArea(
@@ -112,7 +105,13 @@ class _Part_2_4State extends State<Part_2_4> {
                                 padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                                 onPressed: () {
-                                  Navigator.of(context).pushNamed("/part_3_1", arguments: widget.assessmentId);
+                                  Navigator.of(context).pushNamed(
+                                      "/part_3_1",
+                                      arguments: <String, int>{
+                                        "assessmentId": widget.assessmentId,
+                                        "networkId": widget.networkId
+                                      }
+                                  );
                                 },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
@@ -162,7 +161,13 @@ class _Part_2_4State extends State<Part_2_4> {
                  Navigator.of(context).pop();
                  },
                callbackNext: (){
-                 Navigator.of(context).pushNamed("/part_2_5", arguments: widget.assessmentId);
+                 Navigator.of(context).pushNamed(
+                     "/part_2_5",
+                     arguments: <String, int>{
+                       "assessmentId": widget.assessmentId,
+                       "networkId": widget.networkId
+                     }
+                 );
                }
             ),
 

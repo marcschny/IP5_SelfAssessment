@@ -83,13 +83,7 @@ class _Part_2_3State extends State<Part_2_3> {
               Navigator.of(context).pop();
             },
             callbackNext: (){
-              Navigator.of(context).pushNamed(
-                "/part_2_4",
-                arguments: <String, int>{
-                  "assessmentId": assessmentId,
-                  "networkId": networkId
-                }
-              );
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_4(assessmentId: assessmentId, networkId: networkId)));
             }
           ),
         ],
