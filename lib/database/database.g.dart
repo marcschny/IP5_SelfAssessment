@@ -414,9 +414,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Answer>> getSurveyAnswers() async {
+  Future<List<Answer>> getSurveyAnswers(int assessmentId) async {
     return _queryAdapter.queryList(
-        'SELECT * FROM Answer WHERE answer="Kriege ich hin und wieder hin" OR answer="Schaffe ich selten"',
+        'SELECT * FROM Answer WHERE (answer="Kriege ich hin und wieder hin" OR answer="Schaffe ich selten") AND assessment_id = ?',
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Answer(
             row['id'] as int,
             row['answer'] as String,

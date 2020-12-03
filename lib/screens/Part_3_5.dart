@@ -6,12 +6,20 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
+import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'Part_2_4.dart';
 
+
+
 class Part_3_5 extends StatefulWidget {
-  const Part_3_5({Key key}) : super(key: key);
+
+  final int assessmentId;
+  final int networkId;
+
+  const Part_3_5({Key key, this.assessmentId, this.networkId}) : super(key: key);
 
   @override
   _Part_3_5State createState() => _Part_3_5State();
@@ -19,22 +27,23 @@ class Part_3_5 extends StatefulWidget {
 
 class _Part_3_5State extends State<Part_3_5> {
 
-  int assessmentId;
 
   String surveyQuestion;
-  List<Question> distinctQuestions = List();
+
+  Map<String, bool> distinctQuestions;
 
 
   @override
   void initState() {
     super.initState();
+    distinctQuestions = Map();
+    distinctQuestions.clear();
     getSurveyAnswers();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    assessmentId = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       body: SafeArea(
@@ -55,22 +64,24 @@ class _Part_3_5State extends State<Part_3_5> {
                 titleNumber: 3,
                 onClose: null,
                 subtitle: "Auswertung Fragebogen",
-                intro: "Folgende Punkte sind Dir bisher weniger gut gelungen. "
-                    " Wähle bis zu zwei davon aus, an welchen Du gerne als  Veränderungsprojekt arbeiten möchtest",
+                intro: "Folgende Punkte sind Dir weniger gut gelungen.  Wähle bis zu zwei davon aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest",
                 percent: 0.55,
               ),
 
 
               Expanded(
                 child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                     child: ListView.builder(
                       itemCount: distinctQuestions.length,
                       itemBuilder: (context, index) {
 
                           return new SurveyBox(
-                          question: '${distinctQuestions[index].question}',
-                          answerable: true,
+                          question: distinctQuestions.keys.elementAt(index),
+                          checked: distinctQuestions.values.elementAt(index),
+                          callback: (question){
+                            _switchChecked(question);
+                          }
                           );
                       },
                     ),
@@ -87,14 +98,8 @@ class _Part_3_5State extends State<Part_3_5> {
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },
-
                 callbackNext: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Part_2_4(assessmentId: assessmentId, evaluation: distinctQuestions),
-                    ),
-                  );
+                  _next(context, widget.assessmentId, widget.networkId, distinctQuestions);
                 }
 
             ),
@@ -106,33 +111,88 @@ class _Part_3_5State extends State<Part_3_5> {
 
   }
 
+  //switch checked state of question box
+  _switchChecked(String question){
+    distinctQuestions.forEach((key, value) {
+      if(key == question){
+        distinctQuestions.update(key, (value) => value ? false : true);
+      }
+    });
+    setState(() { });
+  }
+
+
   getSurveyAnswers() async {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    List<Answer>surveyAnswers = await assessmentRepo.getSurveyAnswers();
+    List<Answer> surveyAnswers = await assessmentRepo.getSurveyAnswers(widget.assessmentId);
+
+    print("surveyAnswers: "+surveyAnswers.length.toString());
 
     String questionNumber;
-
-
-    List<Question> questions = List();
-    for(Answer element in surveyAnswers){
-      questionNumber = element.question_number;
+    distinctQuestions.clear();
+    for(Answer answer in surveyAnswers){
+      questionNumber = answer.question_number;
       Question findQuestion = await assessmentRepo.findQuestion(questionNumber);
-      questions.add(findQuestion);
 
-      distinctQuestions = questions.toSet().toList();
+      distinctQuestions.putIfAbsent(findQuestion.question, () => false);
     }
 
 
-    distinctQuestions.forEach((element) {
-      setState(() {
-        surveyQuestion =  element.question;
-      });
+    print(distinctQuestions.length);
 
-      print(surveyQuestion);
+    setState(() {
+
     });
 
     }
+  }
+
+  //when next-button pressed
+  _next(BuildContext context, int assessmentId, int networkId, Map questions) async{
+
+  List<String> _selectedQuestions = List();
+  _selectedQuestions.clear();
+
+  //fill list with selected questions from map (values with bool true)
+  questions.forEach((key, value) {
+    if(value) _selectedQuestions.add(key);
+  });
+
+  if(_selectedQuestions != null && _selectedQuestions.length > 0 && _selectedQuestions.length < 3){
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Part_2_4(assessmentId: assessmentId, evaluation: _selectedQuestions, networkId: networkId),
+      ),
+    );
+  }else if(_selectedQuestions.length == 0){
+    showToast(
+      "Wähle eine oder zwei Punkte aus, an denen du arbeiten möchtest",
+      context: context,
+      textAlign: TextAlign.center,
+      textStyle: ThemeTexts.toastText,
+      textPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 12),
+      position: ToastPosition.bottom,
+      backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+      duration: Duration(milliseconds: 3500),
+    );
+  }else if(_selectedQuestions.length > 2){
+    showToast(
+      "Wähle maximal zwei Punkte aus, an denen du arbeiten möchtest",
+      context: context,
+      textAlign: TextAlign.center,
+      textStyle: ThemeTexts.toastText,
+      textPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 12),
+      position: ToastPosition.bottom,
+      backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+      duration: Duration(milliseconds: 3500),
+    );
+  }
+
+
+
+
   }
 

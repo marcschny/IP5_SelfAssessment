@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
-import 'package:provider/provider.dart';
+
 
 class SurveyBox extends StatefulWidget{
 
   final String question;
-  final bool answerable;
+  final bool checked;
+  final Function callback;
 
   const SurveyBox({
     Key key,
     this.question,
-    this.answerable
+    this.checked,
+    this.callback
   });
 
   _SurveyBoxState createState() => _SurveyBoxState();
@@ -21,30 +21,24 @@ class SurveyBox extends StatefulWidget{
 }
 
 class _SurveyBoxState extends State<SurveyBox> {
-  bool _answered;
 
   @override
   void initState() {
     super.initState();
-    _answered = false;
   }
 
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          setState(() {
-            _answered = !this._answered;
-          });
-        },
-
-
-
+      onTap: () {
+        widget.callback(widget.question);
+      },
       child: Container(
-        decoration: _answered && widget.answerable
+        decoration: widget.checked
             ? BoxDecoration(
                 color: ThemeColors.greenShade2,
+                border: Border.all(color: ThemeColors.greenShade2),
                 borderRadius: BorderRadius.all(Radius.circular(12))
         )
             :  BoxDecoration(

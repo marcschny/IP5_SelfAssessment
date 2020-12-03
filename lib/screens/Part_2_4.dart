@@ -1,23 +1,21 @@
-import 'dart:collection';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
+import 'package:ip5_selbsteinschaetzung/components/surveyBoxFilled.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
-import 'Part_3_1.dart';
 
 
 class Part_2_4 extends StatefulWidget {
 
-  final List<Question> evaluation;
+  final List<String> evaluation;
   final int assessmentId;
+  final int networkId;
 
-  const Part_2_4({Key key, this.assessmentId, this.evaluation}) : super(key: key);
+  const Part_2_4({Key key, this.assessmentId, this.evaluation, this.networkId}) : super(key: key);
 
   @override
   _Part_2_4State createState() => _Part_2_4State();
@@ -25,17 +23,9 @@ class Part_2_4 extends StatefulWidget {
 
 class _Part_2_4State extends State<Part_2_4> {
 
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
 
   @override
   Widget build(BuildContext context) {
-
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
 
     return Scaffold(
       body: SafeArea(
@@ -73,9 +63,9 @@ class _Part_2_4State extends State<Part_2_4> {
                           assessmentId: widget.assessmentId,
                         ),
 
-                        SizedBox(height: 20),
+                        SizedBox(height: 24),
 
-
+                        widget.evaluation == null ?
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +81,7 @@ class _Part_2_4State extends State<Part_2_4> {
 
                             Expanded(
                               child: Text(
-                                widget.evaluation == null ? "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen." : "Der Fragekatalog wurde bereits ausgefüllt",
+                                "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
                                 style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                 textAlign: TextAlign.start,
                                 softWrap: true,
@@ -101,7 +91,7 @@ class _Part_2_4State extends State<Part_2_4> {
                             ),
 
                             ],
-                        ),
+                        ) : Container(),
 
 
                             widget.evaluation == null ? Padding(
@@ -112,7 +102,13 @@ class _Part_2_4State extends State<Part_2_4> {
                                 padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
                                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                                 onPressed: () {
-                                  Navigator.of(context).pushNamed("/part_3_1", arguments: widget.assessmentId);
+                                  Navigator.of(context).pushNamed(
+                                      "/part_3_1",
+                                      arguments: <String, int>{
+                                        "assessmentId": widget.assessmentId,
+                                        "networkId": widget.networkId
+                                      }
+                                  );
                                 },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
@@ -162,7 +158,13 @@ class _Part_2_4State extends State<Part_2_4> {
                  Navigator.of(context).pop();
                  },
                callbackNext: (){
-                 Navigator.of(context).pushNamed("/part_2_5", arguments: widget.assessmentId);
+                 Navigator.of(context).pushNamed(
+                     "/part_2_5",
+                     arguments: <String, int>{
+                       "assessmentId": widget.assessmentId,
+                       "networkId": widget.networkId
+                     }
+                 );
                }
             ),
 
@@ -188,8 +190,9 @@ class _Part_2_4State extends State<Part_2_4> {
               ),
 
               Container(
+                padding: EdgeInsets.only(top: 4),
                   child: Text(
-                      widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Projekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Projekt arbeiten:",
+                      widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Veränderungsprojekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Veränderungsprojekt arbeiten:",
                       style: ThemeTexts.assessmentIntro,
                       overflow: TextOverflow.clip,
                     ),
@@ -203,9 +206,8 @@ class _Part_2_4State extends State<Part_2_4> {
                         shrinkWrap: true,
                         itemCount: widget.evaluation.length,
                         itemBuilder: (context, index) {
-                          return new SurveyBox(
-                              question: '${widget.evaluation[index].question}',
-                              answerable: false,
+                          return SurveyBoxFilled(
+                            question: widget.evaluation[index],
                           );
                         },
 

@@ -1,10 +1,12 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 
-import 'Part_3_3.dart';
+
 
 class Part_3_2 extends StatefulWidget {
   const Part_3_2({Key key}) : super(key: key);
@@ -16,11 +18,16 @@ class Part_3_2 extends StatefulWidget {
 class _Part_3_2State extends State<Part_3_2> {
 
   int assessmentId;
+  int networkId;
+  LinkedHashMap<String, int> routeArgs;
 
   @override
   Widget build(BuildContext context) {
 
-    assessmentId = ModalRoute.of(context).settings.arguments;
+    //get passed arguments
+    routeArgs = ModalRoute.of(context).settings.arguments;
+    assessmentId = routeArgs["assessmentId"];
+    networkId = routeArgs["networkId"];
 
     return Scaffold(
       body: SafeArea(
@@ -48,7 +55,7 @@ class _Part_3_2State extends State<Part_3_2> {
 
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                 child: ListView(
                   children: [
 
@@ -101,7 +108,13 @@ class _Part_3_2State extends State<Part_3_2> {
 
                 callbackNext: () {
                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_3()));
-                 Navigator.of(context).pushNamed("/part_3_3", arguments: assessmentId);
+                  Navigator.of(context).pushNamed(
+                      "/part_3_3",
+                      arguments: <String, int>{
+                        "assessmentId": assessmentId,
+                        "networkId": networkId
+                      }
+                  );
                 }
 
             ),
