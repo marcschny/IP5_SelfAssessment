@@ -22,9 +22,11 @@ class LifeAreas extends StatefulWidget{
 
 class _LifeAreasState extends State<LifeAreas>{
 
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   bool alreadyExists = false; //check if network card already exists (for navigator.pop)
   int netwId = -1;  //will be reset when new network card is created
+
 
   //update variable 'alreadyExists' when navigator popped
   void updateAlreadyExists(bool boolValue){
@@ -96,15 +98,22 @@ class _LifeAreasState extends State<LifeAreas>{
                   child: Container(
                     color: Colors.transparent,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
-                    child: ListView.builder(
-                      itemCount: _lifeAreasMap.length,
-                      itemBuilder: (context, index){
-                        return CheckBoxComponent(
-                          checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
-                          checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
-                          callback: (checkBoxTitle){
-                            _switchChecked(checkBoxTitle);
-                          }
+                    child: AnimatedList(
+                      key: _listKey,
+                      initialItemCount: _lifeAreasMap.length,
+                      itemBuilder: (context, index, animation){
+                        return SlideTransition(
+                          position: Tween<Offset>(
+                            begin: const Offset(0, -1),
+                            end: Offset(0, 0),
+                          ).animate(animation),
+                          child: CheckBoxComponent(
+                            checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
+                            checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
+                            callback: (checkBoxTitle){
+                              _switchChecked(checkBoxTitle);
+                            }
+                          ),
                         );
                       },
                     ),
@@ -165,9 +174,12 @@ class _LifeAreasState extends State<LifeAreas>{
   //when textfield is submitted
   _onSubmit(String value){
     print(value);
-    if(value.length > 2) _lifeAreasMap.putIfAbsent(value, () => true);
-    _textController.clear();
-    setState(() {});
+    if(value.length > 2) {
+      _listKey.currentState.insertItem(0, duration: const Duration(milliseconds: 200));
+      _lifeAreasMap.putIfAbsent(value, () => true);
+      _textController.clear();
+      //setState(() {});
+    }
   }
 
   //switch checkbox state
