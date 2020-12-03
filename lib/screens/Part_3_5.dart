@@ -25,8 +25,9 @@ class Part_3_5 extends StatefulWidget {
   _Part_3_5State createState() => _Part_3_5State();
 }
 
-class _Part_3_5State extends State<Part_3_5> {
+class _Part_3_5State extends State<Part_3_5> with SingleTickerProviderStateMixin{
 
+  AnimationController _animationController;
 
   String surveyQuestion;
 
@@ -34,17 +35,26 @@ class _Part_3_5State extends State<Part_3_5> {
 
 
   @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
+
+  @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
+    _animationController.forward();
     distinctQuestions = Map();
     distinctQuestions.clear();
     getSurveyAnswers();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -70,22 +80,25 @@ class _Part_3_5State extends State<Part_3_5> {
 
 
               Expanded(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
-                    child: ListView.builder(
-                      itemCount: distinctQuestions.length,
-                      itemBuilder: (context, index) {
+                child: FadeTransition(
+                  opacity: _animationController,
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                      child: ListView.builder(
+                        itemCount: distinctQuestions.length,
+                        itemBuilder: (context, index) {
 
-                          return new SurveyBox(
-                          question: distinctQuestions.keys.elementAt(index),
-                          checked: distinctQuestions.values.elementAt(index),
-                          callback: (question){
-                            _switchChecked(question);
-                          }
-                          );
-                      },
-                    ),
+                            return new SurveyBox(
+                            question: distinctQuestions.keys.elementAt(index),
+                            checked: distinctQuestions.values.elementAt(index),
+                            callback: (question){
+                              _switchChecked(question);
+                            }
+                            );
+                        },
+                      ),
               ),
+                ),
 
               ),
             ],
@@ -161,10 +174,27 @@ class _Part_3_5State extends State<Part_3_5> {
   });
 
   if(_selectedQuestions != null && _selectedQuestions.length > 0 && _selectedQuestions.length < 3){
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Part_2_4(assessmentId: assessmentId, evaluation: _selectedQuestions, networkId: networkId),
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 500),
+        pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return Part_2_4(assessmentId: assessmentId, networkId: networkId, evaluation: _selectedQuestions);
+        },
+        transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return Align(
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
       ),
     );
   }else if(_selectedQuestions.length == 0){

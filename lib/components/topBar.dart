@@ -29,72 +29,92 @@ class TopBar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.only(right: 8, left: 6),
-                child: Text(
-                  titleNumber.toString(),
-                  style: ThemeTexts.assessmentNumberTitle,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                ),
-              ),
-              Spacer(),
-              Expanded(
-                flex: 100,
-                child: Text(
-                  title,
-                  style: ThemeTexts.assessmentTitle,
-                  textAlign: TextAlign.start,
-                  maxLines: 3,
-                  overflow: TextOverflow.clip,
-                ),
-              ),
-              Spacer(flex: 4),
-              Container(
-                child: Center(
-                  child: GestureDetector(
-                    child: Icon(
-                      Icons.close,
-                      size: 32,
-                      color: Color.fromRGBO(80, 80, 80, 1),
+    return Hero(
+      tag: "topBar",
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(right: 8, left: 6),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      titleNumber.toString(),
+                      style: ThemeTexts.assessmentNumberTitle,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.clip,
                     ),
-                    onTap: onClose,
                   ),
                 ),
-              )
-            ],
-          ),
-          ProgressBar(
-            percent: percent,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-            child: Text(
-              subtitle,
-              style: ThemeTexts.assessmentSubtitle,
+                Spacer(),
+                Expanded(
+                  flex: 100,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      title,
+                      style: ThemeTexts.assessmentTitle,
+                      textAlign: TextAlign.start,
+                      maxLines: 3,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ),
+                Spacer(flex: 4),
+                Container(
+                  child: Center(
+                    child: GestureDetector(
+                      child: Icon(
+                        Icons.close,
+                        size: 32,
+                        color: Color.fromRGBO(80, 80, 80, 1),
+                      ),
+                      onTap: onClose,
+                    ),
+                  ),
+                )
+              ],
             ),
-          ),
-          intro != null && intro != "" ?
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(5, 5, 5, 10),
-            child: Text(
-              intro,
-              style: ThemeTexts.assessmentIntro,
-              textAlign: TextAlign.start,
+            ProgressBar(
+              percent: percent,
             ),
-          ) : Container(),
-        ],
+            Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+              child: Material(
+                color: Colors.transparent,
+                child: Text(
+                  subtitle,
+                  style: ThemeTexts.assessmentSubtitle,
+                ),
+              ),
+            ),
+            intro != null && intro != "" ?
+            Flexible(
+              fit: FlexFit.loose,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.fromLTRB(5, 5, 5, 10),
+                child: Material(
+                  color: Colors.transparent,
+                  child: Text(
+                    intro,
+                    style: ThemeTexts.assessmentIntro,
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+              ),
+            ) : Container(),
+          ],
+        ),
       ),
     );
   }

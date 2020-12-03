@@ -5,6 +5,7 @@ import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
+import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -14,13 +15,20 @@ import 'package:oktoast/oktoast.dart';
 //Screen 1.1
 class LifeAreas extends StatefulWidget{
 
-  const LifeAreas({Key key});
+  final int assessmentId;
+
+  const LifeAreas({
+    Key key,
+    @required this.assessmentId
+  });
 
   _LifeAreasState createState() => _LifeAreasState();
 
 }
 
-class _LifeAreasState extends State<LifeAreas>{
+class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMixin{
+
+  AnimationController _animationController;
 
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
@@ -51,19 +59,20 @@ class _LifeAreasState extends State<LifeAreas>{
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
+    _animationController.forward();
   }
 
   @override
   void dispose() {
     super.dispose();
     _textController.dispose();
+    _animationController.dispose();
   }
 
 
   @override
   Widget build(BuildContext context) {
-    final int assessmentId = ModalRoute.of(context).settings.arguments;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -95,27 +104,30 @@ class _LifeAreasState extends State<LifeAreas>{
                 _customCheckBox(),
 
                 Expanded(
-                  child: Container(
-                    color: Colors.transparent,
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
-                    child: AnimatedList(
-                      key: _listKey,
-                      initialItemCount: _lifeAreasMap.length,
-                      itemBuilder: (context, index, animation){
-                        return SlideTransition(
-                          position: Tween<Offset>(
-                            begin: const Offset(0, -1),
-                            end: Offset(0, 0),
-                          ).animate(animation),
-                          child: CheckBoxComponent(
-                            checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
-                            checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
-                            callback: (checkBoxTitle){
-                              _switchChecked(checkBoxTitle);
-                            }
-                          ),
-                        );
-                      },
+                  child: FadeTransition(
+                    opacity: _animationController,
+                    child: Container(
+                      color: Colors.transparent,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
+                      child: AnimatedList(
+                        key: _listKey,
+                        initialItemCount: _lifeAreasMap.length,
+                        itemBuilder: (context, index, animation){
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(0, -1),
+                              end: Offset(0, 0),
+                            ).animate(animation),
+                            child: CheckBoxComponent(
+                              checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
+                              checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
+                              callback: (checkBoxTitle){
+                                _switchChecked(checkBoxTitle);
+                              }
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -128,7 +140,7 @@ class _LifeAreasState extends State<LifeAreas>{
               showBackButton: false,
               nextTitle: "Wichtige Personen",
               callbackNext: (){
-                _next(context, assessmentId);
+                _next(context, widget.assessmentId);
               },
             ),
           ],
@@ -224,12 +236,29 @@ class _LifeAreasState extends State<LifeAreas>{
       if(!alreadyExists) {
         assessmentRepo.createNetworkCard(newNetworkCard).then((
             networkId) async {
-          final boolValue = await Navigator.of(context).pushNamed(
-            '/importantPersons',
-            arguments: <String, int>{
-              "assessmentId": assessmentId,
-              "networkId": networkId
-            },
+          print("network card created: "+networkId.toString());
+          final boolValue = await Navigator.of(context).push(
+            PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 500),
+              pageBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation) {
+                return ImportantPersons(assessmentId: assessmentId, networkId: networkId);
+              },
+              transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return Align(
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
+                );
+              },
+            ),
           );
           updateAlreadyExists(boolValue);
           setState(() {
@@ -244,13 +273,29 @@ class _LifeAreasState extends State<LifeAreas>{
       //if record already exists -> update it
       else{
         assessmentRepo.updateNetworkCard(newNetworkCard);
-          Navigator.of(context).pushNamed(
-            '/importantPersons',
-            arguments: <String, int>{
-              "assessmentId": assessmentId,
-              "networkId": netwId
+        Navigator.of(context).push(
+          PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 500),
+            pageBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              return ImportantPersons(assessmentId: assessmentId, networkId: netwId);
             },
-          );
+            transitionsBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child) {
+              return Align(
+                child: FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+              );
+            },
+          ),
+        );
       }
     }else{
       showToast(

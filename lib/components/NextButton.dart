@@ -43,6 +43,7 @@ class NextButton extends StatelessWidget{
                   child: Wrap(
                     children: [
                       Material(
+                        color: Colors.transparent,
                         child: Text(
                         nextTitle,
                         textAlign: TextAlign.end,

@@ -9,6 +9,7 @@ import 'package:ip5_selbsteinschaetzung/components/personDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Visualization.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -17,19 +18,23 @@ import 'package:oktoast/oktoast.dart';
 //Screen 1.2
 class ImportantPersons extends StatefulWidget{
 
+  final int assessmentId;
+  final int networkId;
+
+
   const ImportantPersons({
-    Key key
+    Key key,
+    @required this.assessmentId,
+    @required this.networkId
   }) : super(key: key);
 
   _ImportantPersonsState createState() => _ImportantPersonsState();
 
 }
 
-class _ImportantPersonsState extends State<ImportantPersons>{
+class _ImportantPersonsState extends State<ImportantPersons> with SingleTickerProviderStateMixin{
 
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
+  AnimationController _animationController;
 
   List<ImportantPersonTile> widgetList;
   List<Person> personList;
@@ -38,6 +43,8 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
+    _animationController.forward();
     personList = List();
     widgetList = List();
     Future.delayed(Duration.zero, _getTiles);
@@ -47,6 +54,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   @override
   void dispose() {
     super.dispose();
+    _animationController.dispose();
   }
 
   //when popped back from dialog screen
@@ -65,7 +73,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     widgetList.clear();
 
     //get all persons by network card
-    final persons = await assessmentRepo.getAllPersonsByNetworkCard(networkId);
+    final persons = await assessmentRepo.getAllPersonsByNetworkCard(widget.networkId);
 
     //refresh personList asynchronously
     setState(() {
@@ -89,13 +97,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
 
   @override
   Widget build(BuildContext context) {
-
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
-
-
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -124,70 +125,76 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   intro: "Wer ist für Dich in Deinem Leben ganz wichtig?  Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie du zu dieser Person stehst. je weiter weg von der Mitte (und damit von Dir)  Du eine Person einträgst, desto weniger wichtig  ist sie aktuell in Deinem Leben.",
                 ),
 
-                Padding(
-                  padding: EdgeInsets.only(left: 18),
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      side: BorderSide(width: 1.2, color: ThemeColors.greenShade1),
+                FadeTransition(
+                  opacity: _animationController,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 18),
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        side: BorderSide(width: 1.2, color: ThemeColors.greenShade1),
+                      ),
+                      color: Colors.transparent,
+                      elevation: 0,
+                      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                      highlightColor: ThemeColors.greenShade3,
+                      splashColor: Colors.transparent,
+                      focusElevation: 0,
+                      highlightElevation: 0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            size: 20.5,
+                            color: ThemeColors.greenShade1,
+                          ),
+                          SizedBox(width: 6),
+                          Text(
+                            "Person hinzufügen",
+                            style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
+                          ),
+                        ],
+                      ),
+                      onPressed: (){
+                        showDialog(
+                          context: context,
+                          child: PersonDialog(assessmentId: widget.assessmentId, networkId: widget.networkId),
+                        ).then(onGoBack);
+                      },
                     ),
-                    color: Colors.transparent,
-                    elevation: 0,
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-                    highlightColor: ThemeColors.greenShade3,
-                    splashColor: Colors.transparent,
-                    focusElevation: 0,
-                    highlightElevation: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.add,
-                          size: 20.5,
-                          color: ThemeColors.greenShade1,
-                        ),
-                        SizedBox(width: 6),
-                        Text(
-                          "Person hinzufügen",
-                          style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
-                        ),
-                      ],
-                    ),
-                    onPressed: (){
-                      showDialog(
-                        context: context,
-                        child: PersonDialog(assessmentId: assessmentId, networkId: networkId),
-                      ).then(onGoBack);
-                    },
                   ),
                 ),
 
                 Expanded(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
-                    width: MediaQuery.of(context).size.width,
-                    child: widgetList.length > 0 && widgetList != null ?
-                    ListView.builder(
-                      itemCount: widgetList.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index){
-                        return GestureDetector(
-                          child: widgetList[index],
-                          onTap: (){
-                            showDialog(
-                              context: context,
-                              child: PersonDialog(
-                                assessmentId: assessmentId,
-                                networkId: networkId,
-                                person: widgetList[index].person,
-                              ),
-                            ).then(onGoBack);
-                          },
-                        );
-                      },
-                    ) :
-                      Container(),
+                  child: FadeTransition(
+                    opacity: _animationController,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
+                      width: MediaQuery.of(context).size.width,
+                      child: widgetList.length > 0 && widgetList != null ?
+                      ListView.builder(
+                        itemCount: widgetList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index){
+                          return GestureDetector(
+                            child: widgetList[index],
+                            onTap: (){
+                              showDialog(
+                                context: context,
+                                child: PersonDialog(
+                                  assessmentId: widget.assessmentId,
+                                  networkId: widget.networkId,
+                                  person: widgetList[index].person,
+                                ),
+                              ).then(onGoBack);
+                            },
+                          );
+                        },
+                      ) :
+                        Container(),
+                    ),
                   ),
                 ),
 
@@ -200,7 +207,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
               showBackButton: true,
               nextTitle: "Visualisierung",
               callbackNext: (){
-                _next(context, assessmentId, networkId);
+                _next(context, widget.assessmentId, widget.networkId);
               },
               callbackBack: (){
                 Navigator.of(context).pop(true);
@@ -215,11 +222,29 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   //next page
   void _next(BuildContext context, int assessmentId, int networkId) {
     if (personList.length >= 2) {
-      Navigator.of(context).pushNamed('/visualization',
-        arguments: <String, int>{
-          "assessmentId": assessmentId,
-          "networkId": networkId
-        },);
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 500),
+          pageBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return Visualization(assessmentId: assessmentId, networkId: networkId);
+          },
+          transitionsBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return Align(
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            );
+          },
+        ),
+      );
     } else {
       showToast(
         "Füge mindestens zwei Personen hinzu",

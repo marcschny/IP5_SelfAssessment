@@ -19,7 +19,7 @@ class ProgressBar extends StatelessWidget{
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
       child: LinearPercentIndicator(
         width: MediaQuery.of(context).size.width-32, //subtract topBar horizontally padding
-        animation: true,
+        animation: false,
         lineHeight: 9.0,
         animationDuration: 1000,
         percent: percent,
