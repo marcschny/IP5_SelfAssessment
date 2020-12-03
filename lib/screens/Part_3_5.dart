@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -13,7 +15,7 @@ import 'package:oktoast/oktoast.dart';
 import 'Part_2_4.dart';
 
 
-
+//todo: what if no 'bad' answers selected before? -> handle this case
 class Part_3_5 extends StatefulWidget {
 
   final int assessmentId;
@@ -24,6 +26,7 @@ class Part_3_5 extends StatefulWidget {
   @override
   _Part_3_5State createState() => _Part_3_5State();
 }
+
 
 class _Part_3_5State extends State<Part_3_5> with SingleTickerProviderStateMixin{
 
@@ -45,7 +48,9 @@ class _Part_3_5State extends State<Part_3_5> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    _animationController.forward();
+    Timer(Duration(milliseconds: 800), (){
+      _animationController.forward();
+    });
     distinctQuestions = Map();
     distinctQuestions.clear();
     getSurveyAnswers();

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
 
@@ -33,7 +34,10 @@ class Visualization extends StatefulWidget{
 }
 
 //todo: put methods to build network card in separate file (so you can use it here and in networkcardDialog)
-class _VisualizationState extends State<Visualization>{
+class _VisualizationState extends State<Visualization> with SingleTickerProviderStateMixin{
+
+
+  AnimationController _animationController;
 
   //necessary lists
   List<String> lifeAreas;
@@ -54,6 +58,10 @@ class _VisualizationState extends State<Visualization>{
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
+    Timer(Duration(milliseconds: 800), (){
+      _animationController.forward();
+    });
     lifeAreas = List();
     personList = List();
     personCircleList = List();
@@ -65,6 +73,7 @@ class _VisualizationState extends State<Visualization>{
   @override
   void dispose() {
     super.dispose();
+    _animationController.dispose();
   }
 
   //computations methods for positioning the person circles
@@ -321,14 +330,17 @@ class _VisualizationState extends State<Visualization>{
                       ]..addAll(personCircleList),
                     ),
 
-                    Container(
-                      padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
-                      width: MediaQuery.of(context).size.width,
-                      child: Wrap(
-                        alignment: WrapAlignment.start,
-                        children: [
+                    FadeTransition(
+                      opacity: _animationController,
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                        width: MediaQuery.of(context).size.width,
+                        child: Wrap(
+                          alignment: WrapAlignment.start,
+                          children: [
 
-                        ]..addAll(legendList),
+                          ]..addAll(legendList),
+                        ),
                       ),
                     ),
 

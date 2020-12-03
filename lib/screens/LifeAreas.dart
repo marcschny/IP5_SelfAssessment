@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -60,7 +62,9 @@ class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMix
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    _animationController.forward();
+    Timer(Duration(milliseconds: 800), (){
+      _animationController.forward();
+    });
   }
 
   @override
@@ -101,7 +105,11 @@ class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMix
                   intro: "Um deine Karte zu erstellen musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
                 ),
 
-                _customCheckBox(),
+                FadeTransition(
+                  opacity: _animationController,
+                  child: _customCheckBox(),
+                ),
+
 
                 Expanded(
                   child: FadeTransition(

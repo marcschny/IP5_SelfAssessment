@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
@@ -32,7 +33,9 @@ class _Part_2_5State extends State<Part_2_5> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    _animationController.forward();
+    Timer(Duration(milliseconds: 800), (){
+      _animationController.forward();
+    });
   }
 
   @override

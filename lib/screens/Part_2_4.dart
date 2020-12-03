@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -31,7 +33,9 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    _animationController.forward();
+    Timer(Duration(milliseconds: 800), (){
+      _animationController.forward();
+    });
   }
 
   @override
