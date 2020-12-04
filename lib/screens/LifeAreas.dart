@@ -7,6 +7,7 @@ import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -105,16 +106,16 @@ class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMix
                   intro: "Um deine Karte zu erstellen musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
                 ),
 
-                FadeTransition(
-                  opacity: _animationController,
-                  child: _customCheckBox(),
+                FadeIn(
+                  1.9,
+                  _customCheckBox(),
                 ),
 
 
                 Expanded(
-                  child: FadeTransition(
-                    opacity: _animationController,
-                    child: Container(
+                  child: FadeIn(
+                    2,
+                    Container(
                       color: Colors.transparent,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
                       child: AnimatedList(

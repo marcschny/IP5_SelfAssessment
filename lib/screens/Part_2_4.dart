@@ -7,6 +7,7 @@ import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
 import 'package:ip5_selbsteinschaetzung/components/surveyBoxFilled.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_1.dart';
@@ -90,7 +91,7 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
                         SizedBox(height: 24),
 
                         widget.evaluation == null ?
-                            SlideUpFadeIn(
+                            FadeIn(
                              2.5, Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +123,7 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
 
 
                             widget.evaluation == null ?
-                            SlideUpFadeIn(
+                            FadeIn(
                               2.5,
                               Padding(
                               padding: EdgeInsets.only(left: 34, top: 3),
@@ -200,7 +201,7 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
 
   _evaluationQuestionnaire(){
     return  Expanded(
-      child: SlideUpFadeIn(
+      child: FadeIn(
         2.5,
         SingleChildScrollView(
         child: Column(
@@ -223,18 +224,18 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
               SizedBox(height: 20),
 
               Container(
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: widget.evaluation.length,
-                        itemBuilder: (context, index) {
-                          return SurveyBoxFilled(
-                            question: widget.evaluation[index],
-                          );
-                        },
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: widget.evaluation.length,
+                  itemBuilder: (context, index) {
+                    return SurveyBoxFilled(
+                      question: widget.evaluation[index],
+                    );
+                  },
 
-                      ),
-                    ),
+                ),
+              ),
 
             ],
           ),

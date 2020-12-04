@@ -7,6 +7,8 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/networkcardDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
@@ -70,52 +72,64 @@ class _Part_2_6State extends State<Part_2_6> with SingleTickerProviderStateMixin
               ),
 
               Expanded(
-                child: FadeTransition(
-                  opacity: _animationController,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(18, 10, 18, 94),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(18, 10, 18, 94),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SlideUpFadeIn(
+                        0.5,
                         QuestionCard(
                           questionNumber: "2.6.1",
                           assessmentId: widget.assessmentId,
                         ),
+                      ),
+                      SlideUpFadeIn(
+                        1,
                         QuestionCard(
                           questionNumber: "2.6.2",
                           assessmentId: widget.assessmentId,
                         ),
-
+                      ),
+                      SlideUpFadeIn(
+                        1.5,
                         QuestionCard(
                           questionNumber: "2.6.3",
                           assessmentId: widget.assessmentId,
                         ),
+                      ),
 
-                        SizedBox(height: 16),
+                      SizedBox(height: 16),
+                      FadeIn(
+                        3.5,
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                                child: Icon(
-                                  Icons.info_outline_rounded,
-                                  size: 25,
-                                  color: Colors.black26,
-                                )
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                              child: Icon(
+                                Icons.info_outline_rounded,
+                                size: 25,
+                                color: Colors.black26,
+                              )
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine soziale Karte weiterhelfen",
+                              style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                              textAlign: TextAlign.start,
+                              softWrap: true,
+                              overflow: TextOverflow.clip,
                             ),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: Text(
-                                "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine soziale Karte weiterhelfen",
-                                style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
-                                textAlign: TextAlign.start,
-                                softWrap: true,
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
+                      ),
 
+
+                      FadeIn(
+                        3.5,
                         Padding(
                           padding: EdgeInsets.only(left: 32),
                           child: RaisedButton(
@@ -155,8 +169,9 @@ class _Part_2_6State extends State<Part_2_6> with SingleTickerProviderStateMixin
                           ),
                         ),
 
-                      ],
-                    ),
+                      ),
+
+                    ],
                   ),
                 ),
               ),

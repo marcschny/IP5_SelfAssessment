@@ -9,6 +9,7 @@ import 'package:ip5_selbsteinschaetzung/components/personDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Visualization.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -127,9 +128,9 @@ class _ImportantPersonsState extends State<ImportantPersons> with SingleTickerPr
                   intro: "Wer ist für Dich in Deinem Leben ganz wichtig?  Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie du zu dieser Person stehst. je weiter weg von der Mitte (und damit von Dir)  Du eine Person einträgst, desto weniger wichtig  ist sie aktuell in Deinem Leben.",
                 ),
 
-                FadeTransition(
-                  opacity: _animationController,
-                  child: Padding(
+                FadeIn(
+                  1,
+                  Padding(
                     padding: EdgeInsets.only(left: 18),
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -170,9 +171,9 @@ class _ImportantPersonsState extends State<ImportantPersons> with SingleTickerPr
                 ),
 
                 Expanded(
-                  child: FadeTransition(
-                    opacity: _animationController,
-                    child: Container(
+                  child: FadeIn(
+                    1,
+                    Container(
                       padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
                       width: MediaQuery.of(context).size.width,
                       child: widgetList.length > 0 && widgetList != null ?
