@@ -15,6 +15,7 @@ import 'package:oktoast/oktoast.dart';
 
 
 
+//todo: prevent back button/gesture (do not go back to start screen)
 //Screen 1.1
 class LifeAreas extends StatefulWidget{
 

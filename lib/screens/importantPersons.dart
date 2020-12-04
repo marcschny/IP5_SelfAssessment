@@ -10,6 +10,7 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Visualization.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -157,7 +158,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                       onPressed: (){
                         showDialog(
                           context: context,
-                          child: PersonDialog(assessmentId: widget.assessmentId, networkId: widget.networkId),
+                          child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, networkId: widget.networkId)),
                         ).then(onGoBack);
                       },
                     ),
