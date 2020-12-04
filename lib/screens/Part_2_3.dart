@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_4.dart';
 
 class Part_2_3 extends StatefulWidget{
@@ -31,7 +32,7 @@ class _Part_2_3State extends State<Part_2_3> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 500), (){
       _animationController.forward();
     });
   }
@@ -67,26 +68,30 @@ class _Part_2_3State extends State<Part_2_3> with SingleTickerProviderStateMixin
               ),
 
               Expanded(
-                child: FadeTransition(
-                  opacity: _animationController,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
                       child: Wrap(
                         children: [
-                          QuestionCard(
-                            questionNumber: "2.3.1",
-                            assessmentId: widget.assessmentId,
+
+                          SlideUpFadeIn(
+                            0.5,
+                            QuestionCard(
+                              questionNumber: "2.3.1",
+                              assessmentId: widget.assessmentId,
+                            ),
+                          ),
+                          SlideUpFadeIn(
+                            1,
+                            QuestionCard(
+                              questionNumber: "2.3.2",
+                              assessmentId: widget.assessmentId,
+                            ),
                           ),
 
-                          QuestionCard(
-                            questionNumber: "2.3.2",
-                            assessmentId: widget.assessmentId,
-                          ),
 
                         ],
                       ),
                   ),
-                ),
               ),
 
             ],

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 
 import 'Part_3_4.dart';
 
@@ -34,7 +35,7 @@ class _Part_3_3State extends State<Part_3_3> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 500), (){
       _animationController.forward();
     });
   }
@@ -73,52 +74,65 @@ class _Part_3_3State extends State<Part_3_3> with SingleTickerProviderStateMixin
 
 
             Expanded(
-              child: FadeTransition(
-                opacity: _animationController,
                 child: Container(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                   child: ListView(
                     children: [
 
-                      ExpandableQuestionCard(
-                        questionNumber: "3.3.1",
-                        assessmentId: widget.assessmentId,
-                      ),
 
-                      ExpandableQuestionCard(
-                        questionNumber: "3.3.2",
-                        assessmentId: widget.assessmentId,
+                      SlideUpFadeIn(
+                        0.5,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.1",
+                          assessmentId: widget.assessmentId,
+                        ),
                       ),
-
-                      ExpandableQuestionCard(
-                        questionNumber: "3.3.3",
-                        assessmentId: widget.assessmentId,
+                      SlideUpFadeIn(
+                        1,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.2",
+                          assessmentId: widget.assessmentId,
+                        ),
                       ),
-
-                      ExpandableQuestionCard(
-                        questionNumber: "3.3.4",
-                        assessmentId: widget.assessmentId,
+                      SlideUpFadeIn(
+                        1.5,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.3",
+                          assessmentId: widget.assessmentId,
+                        ),
                       ),
-
-                      ExpandableQuestionCard(
-                        questionNumber: "3.3.5",
-                        assessmentId: widget.assessmentId,
+                      SlideUpFadeIn(
+                        2,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.4",
+                          assessmentId: widget.assessmentId,
+                        ),
                       ),
-
-                      ExpandableQuestionCard(
-                        questionNumber: "3.3.6",
-                        assessmentId: widget.assessmentId,
+                      SlideUpFadeIn(
+                        2.5,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.5",
+                          assessmentId: widget.assessmentId,
+                        ),
                       ),
-
-                      ExpandableQuestionCard(
-                        questionNumber: "3.3.7",
-                        assessmentId: widget.assessmentId,
+                      SlideUpFadeIn(
+                        3,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.6",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        3.5,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.7",
+                          assessmentId: widget.assessmentId,
+                        ),
                       ),
 
                   ],
                   ),
                 ),
-              ),
             ),
 
             ],

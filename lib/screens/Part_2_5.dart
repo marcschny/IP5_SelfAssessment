@@ -33,7 +33,7 @@ class _Part_2_5State extends State<Part_2_5> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 500), (){
       _animationController.forward();
     });
   }

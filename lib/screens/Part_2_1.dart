@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
 
 
@@ -32,7 +33,7 @@ class _Part_2_1State extends State<Part_2_1> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 500), (){
       _animationController.forward();
     });
   }
@@ -71,30 +72,36 @@ class _Part_2_1State extends State<Part_2_1> with SingleTickerProviderStateMixin
               ),
 
               Expanded(
-                child: FadeTransition(
-                  opacity: _animationController,
-                  child: Padding(
-                      padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
-                          child: Wrap(
-                            children: [
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
+                        child: Wrap(
+                          children: [
+                            SlideUpFadeIn(
+                              0.5,
                               QuestionCard(
                                 questionNumber: "2.1.1",
                                 assessmentId: widget.assessmentId,
                               ),
+                            ),
 
+                            SlideUpFadeIn(
+                              1,
                               QuestionCard(
                                 questionNumber: "2.1.2",
                                 assessmentId: widget.assessmentId,
                               ),
+                            ),
 
+                            SlideUpFadeIn(
+                              1.5,
                               QuestionCard(
                                 questionNumber: "2.1.3",
                                 assessmentId: widget.assessmentId,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                ),
+                      ),
               ),
                 ],
             ),

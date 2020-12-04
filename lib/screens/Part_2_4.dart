@@ -7,6 +7,7 @@ import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
 import 'package:ip5_selbsteinschaetzung/components/surveyBoxFilled.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_1.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
@@ -33,7 +34,7 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 500), (){
       _animationController.forward();
     });
   }
@@ -71,92 +72,100 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
               ),
 
               Expanded(
-                child: FadeTransition(
-                  opacity: _animationController,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 
+                        SlideUpFadeIn(
+                          0.5,
                           QuestionCard(
                             questionNumber: "2.4.1",
                             assessmentId: widget.assessmentId,
                           ),
+                        ),
 
-                          SizedBox(height: 24),
+                        SizedBox(height: 24),
 
-                          widget.evaluation == null ?
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Icon(
-                                  Icons.info_outline_rounded,
-                                  size: 25,
-                                  color: Colors.black26,
-                                )
-                              ),
-                              SizedBox(width: 10),
+                        widget.evaluation == null ?
+                            SlideUpFadeIn(
+                             2.5, Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                    child: Icon(
+                                      Icons.info_outline_rounded,
+                                      size: 25,
+                                      color: Colors.black26,
+                                    )
+                                ),
+                                SizedBox(width: 10),
 
-                              Expanded(
-                                child: Text(
-                                  "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
-                                  style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
-                                  textAlign: TextAlign.start,
-                                  softWrap: true,
-                                  overflow: TextOverflow.clip,
+                                Expanded(
+                                  child: Text(
+                                    "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
+                                    style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                    textAlign: TextAlign.start,
+                                    softWrap: true,
+                                    overflow: TextOverflow.clip,
 
                                   ),
-                              ),
+                                ),
 
                               ],
-                          ) : Container(),
+                            )
+                            )
+                         : Container(),
 
 
-                              widget.evaluation == null ? Padding(
-                                padding: EdgeInsets.only(left: 34, top: 3),
-                                child: RaisedButton(
-                                  color: ThemeColors.greenShade4,
-                                  elevation: 0,
-                                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                  onPressed: () {
-                                    _goToQuestionnaire(context, widget.assessmentId, widget.networkId);
-                                  },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: <Widget> [
-                                          Text(
-                                            "Fragekatalog",
-                                            style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
-                                          ),
-                                          SizedBox(width: 8),
-                                          Icon(
-                                            Icons.arrow_forward,
-                                            size: 20
-                                          ),
-                                        ],
+                            widget.evaluation == null ?
+                            SlideUpFadeIn(
+                              2.5,
+                              Padding(
+                              padding: EdgeInsets.only(left: 34, top: 3),
+                              child: RaisedButton(
+                                color: ThemeColors.greenShade4,
+                                elevation: 0,
+                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                onPressed: () {
+                                  _goToQuestionnaire(context, widget.assessmentId, widget.networkId);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: <Widget> [
+                                      Text(
+                                        "Fragekatalog",
+                                        style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
                                       ),
-                                    ),
+                                      SizedBox(width: 8),
+                                      Icon(
+                                          Icons.arrow_forward,
+                                          size: 20
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ) : Container(),
+                              ),
+                            )
+                            )
+                             : Container(),
 
-                                  SizedBox(height: 10),
+                                SizedBox(height: 10),
 
-                              widget.evaluation == null ? Container() : _evaluationQuestionnaire(),
+                            widget.evaluation == null ? Container() : _evaluationQuestionnaire(),
 
-                            ],
+                          ],
 
-                          ),
+                        ),
 
-                  ),
                 ),
 
               ),
@@ -191,7 +200,9 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
 
   _evaluationQuestionnaire(){
     return  Expanded(
-      child: SingleChildScrollView(
+      child: SlideUpFadeIn(
+        2.5,
+        SingleChildScrollView(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -228,6 +239,7 @@ class _Part_2_4State extends State<Part_2_4> with SingleTickerProviderStateMixin
             ],
           ),
     )
+      )
     );
 
   }

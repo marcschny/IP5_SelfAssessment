@@ -50,6 +50,7 @@ dev_dependencies:
   flutter_score_slider: ^1.0.1
   oktoast: ^2.3.2
   super_tooltip: ^0.9.6
+  simple_animations: ^2.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

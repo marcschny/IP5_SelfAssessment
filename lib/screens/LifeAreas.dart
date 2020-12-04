@@ -62,7 +62,7 @@ class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMix
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 500), (){
       _animationController.forward();
     });
   }

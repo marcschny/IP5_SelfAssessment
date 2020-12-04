@@ -44,7 +44,7 @@ class _ImportantPersonsState extends State<ImportantPersons> with SingleTickerPr
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 500), (){
       _animationController.forward();
     });
     personList = List();

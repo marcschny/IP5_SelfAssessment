@@ -59,7 +59,7 @@ class _VisualizationState extends State<Visualization> with SingleTickerProvider
   void initState() {
     super.initState();
     _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 800), (){
+    Timer(Duration(milliseconds: 700), (){
       _animationController.forward();
     });
     lifeAreas = List();
@@ -330,17 +330,14 @@ class _VisualizationState extends State<Visualization> with SingleTickerProvider
                       ]..addAll(personCircleList),
                     ),
 
-                    FadeTransition(
-                      opacity: _animationController,
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
-                        width: MediaQuery.of(context).size.width,
-                        child: Wrap(
-                          alignment: WrapAlignment.start,
-                          children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                      width: MediaQuery.of(context).size.width,
+                      child: Wrap(
+                        alignment: WrapAlignment.start,
+                        children: [
 
-                          ]..addAll(legendList),
-                        ),
+                        ]..addAll(legendList),
                       ),
                     ),
 
