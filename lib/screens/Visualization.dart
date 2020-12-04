@@ -12,6 +12,7 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/components/yourPersonCircle.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:provider/provider.dart';
 
 import 'Part_2_1.dart';
@@ -301,37 +302,46 @@ class _VisualizationState extends State<Visualization>{
                       intro: "",
                     ),
 
-                    Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 18),
-                          child: Center(
-                            child: CustomPaint(
-                              child: Container(
-                                height: MediaQuery.of(context).size.width,
-                                padding: EdgeInsets.all(20),
-                              ),
-                              painter: WheelPainter(
-                                noAreas: lifeAreas.length,
-                                widgetSize: MediaQuery.of(context).size.width-40,
+                    SizedBox(height: 10),
+
+                    FadeIn(
+                      1,
+                      Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            child: Center(
+                              child: CustomPaint(
+                                child: Container(
+                                  height: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.all(20),
+                                ),
+                                painter: WheelPainter(
+                                  noAreas: lifeAreas.length,
+                                  widgetSize: MediaQuery.of(context).size.width-40,
+                                ),
                               ),
                             ),
                           ),
-                        ),
 
-                      ]..addAll(personCircleList),
-                    ),
-
-                    Container(
-                      padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
-                      width: MediaQuery.of(context).size.width,
-                      child: Wrap(
-                        alignment: WrapAlignment.start,
-                        children: [
-
-                        ]..addAll(legendList),
+                        ]..addAll(personCircleList),
                       ),
                     ),
+
+                    FadeIn(
+                      1.25,
+                      Container(
+                        padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                        width: MediaQuery.of(context).size.width,
+                        child: Wrap(
+                          alignment: WrapAlignment.start,
+                          children: [
+
+                          ]..addAll(legendList),
+                        ),
+                      ),
+                    ),
+
 
                   ],
                 ),

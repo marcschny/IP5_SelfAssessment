@@ -221,7 +221,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     if (personList.length >= 2) {
       Navigator.of(context).push(
         PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 500),
+          transitionDuration: Duration(milliseconds: 200),
           pageBuilder: (
               BuildContext context,
               Animation<double> animation,

@@ -29,9 +29,7 @@ class TopBar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: "topBar",
-      child: Container(
+    return Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         child: Column(
@@ -69,18 +67,21 @@ class TopBar extends StatelessWidget{
                   ),
                 ),
                 Spacer(flex: 4),
-                Container(
-                  child: Center(
-                    child: GestureDetector(
-                      child: Icon(
-                        Icons.close,
-                        size: 32,
-                        color: Color.fromRGBO(80, 80, 80, 1),
+                Hero(
+                  tag: "closeButton",
+                  child: Container(
+                    child: Center(
+                      child: GestureDetector(
+                        child: Icon(
+                          Icons.close,
+                          size: 32,
+                          color: Color.fromRGBO(80, 80, 80, 1),
+                        ),
+                        onTap: onClose,
                       ),
-                      onTap: onClose,
                     ),
                   ),
-                )
+                ),
               ],
             ),
             ProgressBar(
@@ -115,8 +116,7 @@ class TopBar extends StatelessWidget{
             ) : Container(),
           ],
         ),
-      ),
-    );
+      );
   }
 
 

@@ -278,7 +278,7 @@ class _LifeAreasState extends State<LifeAreas>{
         assessmentRepo.updateNetworkCard(newNetworkCard);
         Navigator.of(context).push(
           PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 500),
+            transitionDuration: Duration(milliseconds: 200),
             pageBuilder: (
                 BuildContext context,
                 Animation<double> animation,

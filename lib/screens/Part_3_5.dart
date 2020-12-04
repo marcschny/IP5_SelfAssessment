@@ -175,7 +175,7 @@ class _Part_3_5State extends State<Part_3_5>{
   if(_selectedQuestions != null && _selectedQuestions.length > 0 && _selectedQuestions.length < 3){
     Navigator.of(context).push(
       PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 500),
+        transitionDuration: Duration(milliseconds: 200),
         pageBuilder: (
             BuildContext context,
             Animation<double> animation,

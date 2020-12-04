@@ -98,7 +98,7 @@ class _Part_3_1State extends State<Part_3_1> {
   void _next(BuildContext context, int assessmentId, int networkId){
     Navigator.of(context).push(
       PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 500),
+        transitionDuration: Duration(milliseconds: 200),
         pageBuilder: (
             BuildContext context,
             Animation<double> animation,
