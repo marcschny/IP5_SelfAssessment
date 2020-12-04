@@ -121,7 +121,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   onClose: null,
                   subtitle: "Wichtige Personen",
                   percent: 0.1,
-                  intro: "Wer ist für Dich in Deinem Leben ganz wichtig?  Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie du zu dieser Person stehst. je weiter weg von der Mitte (und damit von Dir)  Du eine Person einträgst, desto weniger wichtig  ist sie aktuell in Deinem Leben.",
+                  intro: "Wer ist für Dich in Deinem Leben ganz wichtig?  Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie du zu dieser Person stehst. Je weiter rechts  Du eine Person einträgst, desto wichtiger  ist sie aktuell in Deinem Leben.",
                 ),
 
                 Padding(

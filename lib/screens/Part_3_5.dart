@@ -30,14 +30,14 @@ class _Part_3_5State extends State<Part_3_5> {
 
   String surveyQuestion;
 
-  Map<String, bool> distinctQuestions;
+  Map<String, bool> questions;
 
 
   @override
   void initState() {
     super.initState();
-    distinctQuestions = Map();
-    distinctQuestions.clear();
+    questions = Map();
+    questions.clear();
     getSurveyAnswers();
   }
 
@@ -73,12 +73,12 @@ class _Part_3_5State extends State<Part_3_5> {
                 child: Container(
                   padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                     child: ListView.builder(
-                      itemCount: distinctQuestions.length,
+                      itemCount: questions.length,
                       itemBuilder: (context, index) {
 
                           return new SurveyBox(
-                          question: distinctQuestions.keys.elementAt(index),
-                          checked: distinctQuestions.values.elementAt(index),
+                          question: questions.keys.elementAt(index),
+                          checked: questions.values.elementAt(index),
                           callback: (question){
                             _switchChecked(question);
                           }
@@ -99,7 +99,7 @@ class _Part_3_5State extends State<Part_3_5> {
                   Navigator.of(context).pop();
                 },
                 callbackNext: () {
-                  _next(context, widget.assessmentId, widget.networkId, distinctQuestions);
+                  _next(context, widget.assessmentId, widget.networkId, questions);
                 }
 
             ),
@@ -113,9 +113,9 @@ class _Part_3_5State extends State<Part_3_5> {
 
   //switch checked state of question box
   _switchChecked(String question){
-    distinctQuestions.forEach((key, value) {
+    questions.forEach((key, value) {
       if(key == question){
-        distinctQuestions.update(key, (value) => value ? false : true);
+        questions.update(key, (value) => value ? false : true);
       }
     });
     setState(() { });
@@ -131,16 +131,16 @@ class _Part_3_5State extends State<Part_3_5> {
     print("surveyAnswers: "+surveyAnswers.length.toString());
 
     String questionNumber;
-    distinctQuestions.clear();
+    questions.clear();
     for(Answer answer in surveyAnswers){
       questionNumber = answer.question_number;
       Question findQuestion = await assessmentRepo.findQuestion(questionNumber);
 
-      distinctQuestions.putIfAbsent(findQuestion.question, () => false);
+      questions.putIfAbsent(findQuestion.question, () => false);
     }
 
 
-    print(distinctQuestions.length);
+    print(questions.length);
 
     setState(() {
 
