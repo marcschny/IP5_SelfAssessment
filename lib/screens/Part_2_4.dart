@@ -195,46 +195,53 @@ class _Part_2_4State extends State<Part_2_4>{
 
   _evaluationQuestionnaire(){
     return  Expanded(
-      child: FadeIn(
-        2.5,
-        SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Auswertung Fragebogen",
-                style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
+              FadeIn(
+                2.5,
+                Text(
+                  "Auswertung Fragebogen",
+                  style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
+                ),
               ),
 
-              Container(
-                padding: EdgeInsets.only(top: 4),
+              FadeIn(
+                2.5,
+                Container(
+                  padding: EdgeInsets.only(top: 4),
                   child: Text(
-                      widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Veränderungsprojekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Veränderungsprojekt arbeiten:",
-                      style: ThemeTexts.assessmentIntro,
-                      overflow: TextOverflow.clip,
-                    ),
+                    widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Veränderungsprojekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Veränderungsprojekt arbeiten:",
+                    style: ThemeTexts.assessmentIntro,
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
               ),
 
               SizedBox(height: 20),
 
-              Container(
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: widget.evaluation.length,
-                  itemBuilder: (context, index) {
-                    return SurveyBoxFilled(
-                      question: widget.evaluation[index],
-                    );
-                  },
+              FadeIn(
+                3,
+                Container(
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: widget.evaluation.length,
+                    itemBuilder: (context, index) {
+                      return SurveyBoxFilled(
+                        question: widget.evaluation[index],
+                      );
+                    },
 
+                  ),
                 ),
               ),
+
 
             ],
           ),
     )
-      )
     );
 
   }

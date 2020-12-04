@@ -17,6 +17,7 @@ import 'Part_2_4.dart';
 
 
 //todo: what if no 'bad' answers selected before? -> handle this case
+//todo: pushAndRemove route (prevent back button in part2.4 to go back to questionnaire)
 class Part_3_5 extends StatefulWidget {
 
   final int assessmentId;
@@ -79,7 +80,7 @@ class _Part_3_5State extends State<Part_3_5>{
 
               Expanded(
                 child: FadeIn(
-                  1,
+                  1.5,
                   Container(
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                       child: ListView.builder(
