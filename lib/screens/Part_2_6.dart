@@ -9,6 +9,7 @@ import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
@@ -156,7 +157,7 @@ class _Part_2_6State extends State<Part_2_6>{
                             onPressed: (){
                               showDialog(
                                 context: context,
-                                child: NetworkcardDialog(assessmentId: widget.assessmentId, networkId: widget.networkId),
+                                child: SlideUpFromBottom(0, NetworkcardDialog(assessmentId: widget.assessmentId, networkId: widget.networkId)),
                               );
                               print("show social card");
                             },

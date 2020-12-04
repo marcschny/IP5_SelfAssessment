@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -106,10 +107,13 @@ class _QuestionCardState extends State<QuestionCard>{
           onTap: () {
             showDialog(
                 context: context,
-                child: QuestionDialog(
-                  question: snapshot.data.question,
-                  questionNumber: widget.questionNumber,
-                  assessmentId: widget.assessmentId
+                child: SlideUpFromBottom(
+                  0,
+                  QuestionDialog(
+                    question: snapshot.data.question,
+                    questionNumber: widget.questionNumber,
+                    assessmentId: widget.assessmentId
+                  ),
                 )
             ).then(onGoBack);
           },

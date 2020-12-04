@@ -181,10 +181,13 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                             onTap: (){
                               showDialog(
                                 context: context,
-                                child: PersonDialog(
-                                  assessmentId: widget.assessmentId,
-                                  networkId: widget.networkId,
-                                  person: widgetList[index].person,
+                                child: SlideUpFromBottom(
+                                  0,
+                                  PersonDialog(
+                                    assessmentId: widget.assessmentId,
+                                    networkId: widget.networkId,
+                                    person: widgetList[index].person,
+                                  ),
                                 ),
                               ).then(onGoBack);
                             },
