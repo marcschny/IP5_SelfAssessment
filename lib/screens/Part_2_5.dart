@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_6.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
@@ -25,23 +26,17 @@ class Part_2_5 extends StatefulWidget {
   _Part_2_5State createState() => _Part_2_5State();
 }
 
-class _Part_2_5State extends State<Part_2_5> with SingleTickerProviderStateMixin{
+class _Part_2_5State extends State<Part_2_5>{
 
-  AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 500), (){
-      _animationController.forward();
-    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _animationController.dispose();
   }
 
   TextEditingController _titleController;
@@ -73,9 +68,9 @@ class _Part_2_5State extends State<Part_2_5> with SingleTickerProviderStateMixin
               ),
 
               Expanded(
-                child: FadeTransition(
-                  opacity: _animationController,
-                  child: Padding(
+                child: FadeIn(
+                  1,
+                  Padding(
                     padding: const EdgeInsets.all(20),
                       child: Wrap(
                         children: [

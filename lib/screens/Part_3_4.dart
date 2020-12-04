@@ -25,23 +25,17 @@ class Part_3_4 extends StatefulWidget {
   _Part_3_4State createState() => _Part_3_4State();
 }
 
-class _Part_3_4State extends State<Part_3_4> with SingleTickerProviderStateMixin{
+class _Part_3_4State extends State<Part_3_4>{
 
-  AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 500), (){
-      _animationController.forward();
-    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _animationController.dispose();
   }
 
 

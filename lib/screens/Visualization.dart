@@ -34,10 +34,7 @@ class Visualization extends StatefulWidget{
 }
 
 //todo: put methods to build network card in separate file (so you can use it here and in networkcardDialog)
-class _VisualizationState extends State<Visualization> with SingleTickerProviderStateMixin{
-
-
-  AnimationController _animationController;
+class _VisualizationState extends State<Visualization>{
 
   //necessary lists
   List<String> lifeAreas;
@@ -58,10 +55,6 @@ class _VisualizationState extends State<Visualization> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 700), (){
-      _animationController.forward();
-    });
     lifeAreas = List();
     personList = List();
     personCircleList = List();
@@ -73,7 +66,6 @@ class _VisualizationState extends State<Visualization> with SingleTickerProvider
   @override
   void dispose() {
     super.dispose();
-    _animationController.dispose();
   }
 
   //computations methods for positioning the person circles

@@ -29,10 +29,9 @@ class LifeAreas extends StatefulWidget{
 
 }
 
-class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMixin{
+class _LifeAreasState extends State<LifeAreas>{
 
-  AnimationController _animationController;
-
+  //key for animatedList
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   bool alreadyExists = false; //check if network card already exists (for navigator.pop)
@@ -62,17 +61,12 @@ class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 500), (){
-      _animationController.forward();
-    });
   }
 
   @override
   void dispose() {
     super.dispose();
     _textController.dispose();
-    _animationController.dispose();
   }
 
 
@@ -107,14 +101,14 @@ class _LifeAreasState extends State<LifeAreas> with SingleTickerProviderStateMix
                 ),
 
                 FadeIn(
-                  1.9,
+                  1.5,
                   _customCheckBox(),
                 ),
 
 
                 Expanded(
                   child: FadeIn(
-                    2,
+                    1.7,
                     Container(
                       color: Colors.transparent,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 94),

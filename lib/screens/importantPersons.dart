@@ -33,9 +33,8 @@ class ImportantPersons extends StatefulWidget{
 
 }
 
-class _ImportantPersonsState extends State<ImportantPersons> with SingleTickerProviderStateMixin{
+class _ImportantPersonsState extends State<ImportantPersons>{
 
-  AnimationController _animationController;
 
   List<ImportantPersonTile> widgetList;
   List<Person> personList;
@@ -44,10 +43,6 @@ class _ImportantPersonsState extends State<ImportantPersons> with SingleTickerPr
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 500), (){
-      _animationController.forward();
-    });
     personList = List();
     widgetList = List();
     Future.delayed(Duration.zero, _getTiles);
@@ -57,7 +52,6 @@ class _ImportantPersonsState extends State<ImportantPersons> with SingleTickerPr
   @override
   void dispose() {
     super.dispose();
-    _animationController.dispose();
   }
 
   //when popped back from dialog screen

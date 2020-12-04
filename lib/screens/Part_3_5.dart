@@ -8,6 +8,7 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -28,9 +29,7 @@ class Part_3_5 extends StatefulWidget {
 }
 
 
-class _Part_3_5State extends State<Part_3_5> with SingleTickerProviderStateMixin{
-
-  AnimationController _animationController;
+class _Part_3_5State extends State<Part_3_5>{
 
   String surveyQuestion;
 
@@ -38,24 +37,18 @@ class _Part_3_5State extends State<Part_3_5> with SingleTickerProviderStateMixin
 
 
   @override
-  void dispose() {
-    super.dispose();
-    _animationController.dispose();
-  }
-
-
-  @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
-    Timer(Duration(milliseconds: 500), (){
-      _animationController.forward();
-    });
     distinctQuestions = Map();
     distinctQuestions.clear();
     getSurveyAnswers();
   }
 
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
 
   @override
@@ -85,9 +78,9 @@ class _Part_3_5State extends State<Part_3_5> with SingleTickerProviderStateMixin
 
 
               Expanded(
-                child: FadeTransition(
-                  opacity: _animationController,
-                  child: Container(
+                child: FadeIn(
+                  1,
+                  Container(
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                       child: ListView.builder(
                         itemCount: distinctQuestions.length,
