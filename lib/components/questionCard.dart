@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -90,6 +91,7 @@ class _QuestionCardState extends State<QuestionCard>{
                         style: ThemeTexts.assessmentQuestion,
                       ),
                     ),
+                    SizedBox(width: 5),
                     Center(
                       child: _answered ?
                       Icon(
@@ -107,14 +109,12 @@ class _QuestionCardState extends State<QuestionCard>{
           onTap: () {
             showDialog(
                 context: context,
-                child: SlideUpFromBottom(
-                  0,
-                  QuestionDialog(
+                barrierColor: Colors.black.withOpacity(.3),
+                  child: QuestionDialog(
                     question: snapshot.data.question,
                     questionNumber: widget.questionNumber,
                     assessmentId: widget.assessmentId
                   ),
-                )
             ).then(onGoBack);
           },
         );

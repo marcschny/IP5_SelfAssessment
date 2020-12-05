@@ -50,9 +50,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FadeIn(
-        1,
-        500,
+      body:
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -107,7 +105,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
             ),
           ],
         ),
-      ),
       floatingActionButton: FloatingActionButton(
         elevation: 2.0,
         shape: CircleBorder(),
