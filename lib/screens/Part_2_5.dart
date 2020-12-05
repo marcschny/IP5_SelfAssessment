@@ -69,9 +69,10 @@ class _Part_2_5State extends State<Part_2_5>{
 
               Expanded(
                 child: FadeIn(
-                  1,
+                  1.1,
+                  500,
                   Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.fromLTRB(20, 30, 10, 20),
                       child: Wrap(
                         children: [
                           TextField(
@@ -82,8 +83,8 @@ class _Part_2_5State extends State<Part_2_5>{
                             },
                             textInputAction: TextInputAction.go,
                             decoration: InputDecoration(
-                              hintText: "Title Deines Projekts...",
-                              hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20, color: Colors.grey),
+                              hintText: "Titel Deines Projekts...",
+                              hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20.5, color: Colors.grey, fontWeight: FontWeight.w500),
                               contentPadding: EdgeInsets.all(0),
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: ThemeColors.greenShade3),

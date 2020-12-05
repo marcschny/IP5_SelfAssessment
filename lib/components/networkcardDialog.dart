@@ -265,7 +265,8 @@ class _NetworkcardDialogState extends State<NetworkcardDialog>{
     return Scaffold(
       body: SafeArea(
         child: FadeIn(
-          1,
+          1.32,
+          500,
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.only(bottom: 94),

@@ -103,13 +103,15 @@ class _LifeAreasState extends State<LifeAreas>{
 
                 FadeIn(
                   1.5,
+                  500,
                   _customCheckBox(),
                 ),
 
 
                 Expanded(
                   child: FadeIn(
-                    1.7,
+                    1.6,
+                    500,
                     Container(
                       color: Colors.transparent,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
@@ -243,7 +245,7 @@ class _LifeAreasState extends State<LifeAreas>{
           print("network card created: "+networkId.toString());
           final boolValue = await Navigator.of(context).push(
             PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 500),
+              transitionDuration: Duration(milliseconds: 300),
               pageBuilder: (
                   BuildContext context,
                   Animation<double> animation,
@@ -279,7 +281,7 @@ class _LifeAreasState extends State<LifeAreas>{
         assessmentRepo.updateNetworkCard(newNetworkCard);
         Navigator.of(context).push(
           PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 200),
+            transitionDuration: Duration(milliseconds: 300),
             pageBuilder: (
                 BuildContext context,
                 Animation<double> animation,

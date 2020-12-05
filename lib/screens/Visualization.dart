@@ -306,6 +306,7 @@ class _VisualizationState extends State<Visualization>{
 
                     FadeIn(
                       1,
+                      600,
                       Stack(
                         children: [
                           Padding(
@@ -330,6 +331,7 @@ class _VisualizationState extends State<Visualization>{
 
                     FadeIn(
                       1.25,
+                      500,
                       Container(
                         padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
                         width: MediaQuery.of(context).size.width,
@@ -369,7 +371,7 @@ class _VisualizationState extends State<Visualization>{
   void _next(BuildContext context, int assessmentId, int networkId) {
     Navigator.of(context).push(
       PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 500),
+        transitionDuration: Duration(milliseconds: 300),
         pageBuilder: (
             BuildContext context,
             Animation<double> animation,

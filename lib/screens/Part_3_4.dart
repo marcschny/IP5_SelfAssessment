@@ -75,41 +75,47 @@ class _Part_3_4State extends State<Part_3_4>{
 
                       SlideUpFadeIn(
                         0.5,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.4.1",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1,
+                        0.9,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.4.2",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1.5,
+                        1.1,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.4.3",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        2,
+                        1.3,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.4.4",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        2.5,
+                        1.5,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.4.5",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        3,
+                        1.6,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.4.6",
                           assessmentId: widget.assessmentId,

@@ -9,6 +9,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -79,25 +80,26 @@ class _Part_3_5State extends State<Part_3_5>{
 
 
               Expanded(
-                child: FadeIn(
-                  1.5,
-                  Container(
+                  child: Container(
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
                       child: ListView.builder(
                         itemCount: distinctQuestions.length,
                         itemBuilder: (context, index) {
 
-                            return new SurveyBox(
-                            question: distinctQuestions.keys.elementAt(index),
-                            checked: distinctQuestions.values.elementAt(index),
-                            callback: (question){
-                              _switchChecked(question);
-                            }
+                            return SlideUpFadeIn(
+                              0.6+(index*0.2),
+                              100,
+                              SurveyBox(
+                              question: distinctQuestions.keys.elementAt(index),
+                              checked: distinctQuestions.values.elementAt(index),
+                              callback: (question){
+                                _switchChecked(question);
+                              }
+                              ),
                             );
                         },
                       ),
               ),
-                ),
 
               ),
             ],

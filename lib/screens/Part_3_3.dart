@@ -76,48 +76,55 @@ class _Part_3_3State extends State<Part_3_3>{
 
                       SlideUpFadeIn(
                         0.5,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.3.1",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1,
+                        0.7,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.3.2",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1.5,
+                        0.9,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.3.3",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        2,
+                        1.1,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.3.4",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        2.5,
+                        1.3,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.3.5",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        3,
+                        1.5,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.3.6",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        3.5,
+                        1.6,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.3.7",
                           assessmentId: widget.assessmentId,

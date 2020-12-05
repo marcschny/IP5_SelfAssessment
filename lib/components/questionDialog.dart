@@ -52,6 +52,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
     return Scaffold(
       body: FadeIn(
         1,
+        500,
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

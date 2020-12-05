@@ -107,8 +107,10 @@ class _PersonDialogState extends State<PersonDialog>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: FadeIn(
-        1,
+        1.34,
+        500,
         Padding(
           padding: EdgeInsets.only(bottom: 94),
           child: SingleChildScrollView(

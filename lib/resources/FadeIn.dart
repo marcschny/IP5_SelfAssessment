@@ -6,15 +6,16 @@ enum AniProps {opacity}
 
 class FadeIn extends StatelessWidget {
   final double delay;
+  final int duration;
   final Widget child;
 
-  FadeIn(this.delay, this.child);
+  FadeIn(this.delay, this.duration, this.child);
 
 
   @override
   Widget build(BuildContext context) {
     final _tween = MultiTween<AniProps>()
-      ..add(AniProps.opacity, Tween(begin: 0.0, end: 1.0), Duration(milliseconds: 500));
+      ..add(AniProps.opacity, Tween(begin: 0.0, end: 1.0), Duration(milliseconds: duration));
 
 
 

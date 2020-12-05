@@ -68,6 +68,7 @@ class _Part_2_2State extends State<Part_2_2>{
                         children: [
                           SlideUpFadeIn(
                             0.5,
+                            140,
                             QuestionCard(
                               questionNumber: "2.2.1",
                               assessmentId: widget.assessmentId,
@@ -75,6 +76,7 @@ class _Part_2_2State extends State<Part_2_2>{
                           ),
                           SlideUpFadeIn(
                             1,
+                            140,
                             QuestionCard(
                               questionNumber: "2.2.2",
                               assessmentId: widget.assessmentId,
@@ -82,6 +84,7 @@ class _Part_2_2State extends State<Part_2_2>{
                           ),
                           SlideUpFadeIn(
                             1.5,
+                            140,
                             QuestionCard(
                               questionNumber: "2.2.3",
                               assessmentId: widget.assessmentId,

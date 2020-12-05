@@ -74,20 +74,23 @@ class _Part_2_6State extends State<Part_2_6>{
                     children: [
                       SlideUpFadeIn(
                         0.5,
+                        130,
                         QuestionCard(
                           questionNumber: "2.6.1",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1,
+                        0.7,
+                        140,
                         QuestionCard(
                           questionNumber: "2.6.2",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1.5,
+                        0.8,
+                        140,
                         QuestionCard(
                           questionNumber: "2.6.3",
                           assessmentId: widget.assessmentId,
@@ -96,7 +99,8 @@ class _Part_2_6State extends State<Part_2_6>{
 
                       SizedBox(height: 16),
                       FadeIn(
-                        3.5,
+                        2.9,
+                        600,
                         Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +128,8 @@ class _Part_2_6State extends State<Part_2_6>{
 
 
                       FadeIn(
-                        3.5,
+                        3,
+                        600,
                         Padding(
                           padding: EdgeInsets.only(left: 32),
                           child: RaisedButton(
@@ -157,6 +162,7 @@ class _Part_2_6State extends State<Part_2_6>{
                             onPressed: (){
                               showDialog(
                                 context: context,
+                                barrierColor: Colors.black.withOpacity(.3),
                                 child: SlideUpFromBottom(0, NetworkcardDialog(assessmentId: widget.assessmentId, networkId: widget.networkId)),
                               );
                               print("show social card");

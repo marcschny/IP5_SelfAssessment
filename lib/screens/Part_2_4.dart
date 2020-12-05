@@ -75,7 +75,8 @@ class _Part_2_4State extends State<Part_2_4>{
                       children: [
 
                         SlideUpFadeIn(
-                          0.5,
+                          0.4,
+                          130,
                           QuestionCard(
                             questionNumber: "2.4.1",
                             assessmentId: widget.assessmentId,
@@ -86,7 +87,9 @@ class _Part_2_4State extends State<Part_2_4>{
 
                         widget.evaluation == null ?
                             FadeIn(
-                             2.5, Row(
+                              2.2,
+                              400,
+                              Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -118,7 +121,8 @@ class _Part_2_4State extends State<Part_2_4>{
 
                             widget.evaluation == null ?
                             FadeIn(
-                              2.5,
+                              2.2,
+                              500,
                               Padding(
                               padding: EdgeInsets.only(left: 34, top: 3),
                               child: RaisedButton(
@@ -200,7 +204,8 @@ class _Part_2_4State extends State<Part_2_4>{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FadeIn(
-                2.5,
+                2.2,
+                600,
                 Text(
                   "Auswertung Fragebogen",
                   style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
@@ -208,7 +213,8 @@ class _Part_2_4State extends State<Part_2_4>{
               ),
 
               FadeIn(
-                2.5,
+                2.2,
+                600,
                 Container(
                   padding: EdgeInsets.only(top: 4),
                   child: Text(
@@ -221,20 +227,21 @@ class _Part_2_4State extends State<Part_2_4>{
 
               SizedBox(height: 20),
 
-              FadeIn(
-                3,
-                Container(
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: widget.evaluation.length,
-                    itemBuilder: (context, index) {
-                      return SurveyBoxFilled(
+              Container(
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: widget.evaluation.length,
+                  itemBuilder: (context, index) {
+                    return SlideUpFadeIn(
+                      2.8+(index*0.1),
+                      20,
+                      SurveyBoxFilled(
                         question: widget.evaluation[index],
-                      );
-                    },
+                      ),
+                    );
+                  },
 
-                  ),
                 ),
               ),
 

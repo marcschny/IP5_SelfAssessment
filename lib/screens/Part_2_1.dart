@@ -71,6 +71,7 @@ class _Part_2_1State extends State<Part_2_1>{
                           children: [
                             SlideUpFadeIn(
                               0.5,
+                              140,
                               QuestionCard(
                                 questionNumber: "2.1.1",
                                 assessmentId: widget.assessmentId,
@@ -79,6 +80,7 @@ class _Part_2_1State extends State<Part_2_1>{
 
                             SlideUpFadeIn(
                               1,
+                              140,
                               QuestionCard(
                                 questionNumber: "2.1.2",
                                 assessmentId: widget.assessmentId,
@@ -87,6 +89,7 @@ class _Part_2_1State extends State<Part_2_1>{
 
                             SlideUpFadeIn(
                               1.5,
+                              140,
                               QuestionCard(
                                 questionNumber: "2.1.3",
                                 assessmentId: widget.assessmentId,
@@ -123,7 +126,7 @@ class _Part_2_1State extends State<Part_2_1>{
   void _next(BuildContext context, int assessmentId, int networkId){
     Navigator.of(context).push(
       PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 200),
+        transitionDuration: Duration(milliseconds: 300),
         pageBuilder: (
             BuildContext context,
             Animation<double> animation,

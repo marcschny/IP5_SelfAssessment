@@ -6,16 +6,17 @@ enum AniProps {opacity, translateY}
 
 class SlideUpFadeIn extends StatelessWidget {
   final double delay;
+  final double begin;
   final Widget child;
 
-  SlideUpFadeIn(this.delay, this.child);
+  SlideUpFadeIn(this.delay, this.begin, this.child);
 
 
   @override
   Widget build(BuildContext context) {
     final _tween = MultiTween<AniProps>()
       ..add(AniProps.opacity, Tween(begin: 0.0, end: 1.0), Duration(milliseconds: 500))
-      ..add(AniProps.translateY, Tween(begin: 130.0, end: 0.0), Duration(milliseconds: 400));
+      ..add(AniProps.translateY, Tween(begin: begin, end: 0.0), Duration(milliseconds: 350));
 
 
 

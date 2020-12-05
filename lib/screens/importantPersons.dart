@@ -125,6 +125,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
 
                 FadeIn(
                   1,
+                  500,
                   Padding(
                     padding: EdgeInsets.only(left: 18),
                     child: RaisedButton(
@@ -158,6 +159,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                       onPressed: (){
                         showDialog(
                           context: context,
+                          barrierColor: Colors.black.withOpacity(.3),
                           child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, networkId: widget.networkId)),
                         ).then(onGoBack);
                       },
@@ -168,6 +170,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                 Expanded(
                   child: FadeIn(
                     1,
+                    500,
                     Container(
                       padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
                       width: MediaQuery.of(context).size.width,
@@ -225,7 +228,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     if (personList.length >= 2) {
       Navigator.of(context).push(
         PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 200),
+          transitionDuration: Duration(milliseconds: 300),
           pageBuilder: (
               BuildContext context,
               Animation<double> animation,

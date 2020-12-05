@@ -75,41 +75,47 @@ class _Part_3_2State extends State<Part_3_2> {
 
                       SlideUpFadeIn(
                         0.5,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.2.1",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1,
+                        0.7,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.2.2",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1.5,
+                        0.9,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.2.3",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        2,
+                        1.1,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.2.4",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        2.5,
+                        1.3,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.2.5",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        3,
+                        1.4,
+                        100,
                         ExpandableQuestionCard(
                           questionNumber: "3.2.6",
                           assessmentId: widget.assessmentId,

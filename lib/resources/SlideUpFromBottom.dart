@@ -14,7 +14,7 @@ class SlideUpFromBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _tween = MultiTween<AniProps>()
-      ..add(AniProps.translateY, Tween(begin: MediaQuery.of(context).size.height, end: 0.0), Duration(milliseconds: 300));
+      ..add(AniProps.translateY, Tween(begin: MediaQuery.of(context).size.height, end: 0.0), Duration(milliseconds: 320));
 
     return PlayAnimation<MultiTweenValues<AniProps>>(
       delay: Duration(milliseconds: (300 * delay).round()),
