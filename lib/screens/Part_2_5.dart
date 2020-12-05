@@ -72,7 +72,7 @@ class _Part_2_5State extends State<Part_2_5>{
                   1.1,
                   500,
                   Padding(
-                    padding: EdgeInsets.fromLTRB(20, 30, 10, 20),
+                    padding: EdgeInsets.fromLTRB(30, 30, 34, 20),
                       child: Wrap(
                         children: [
                           TextField(

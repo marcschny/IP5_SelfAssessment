@@ -95,7 +95,7 @@ class _QuestionCardState extends State<QuestionCard>{
                     Center(
                       child: _answered ?
                       Icon(
-                        Icons.check,
+                        Icons.check_rounded,
                         size: 28,
                         color: Color.fromRGBO(80, 80, 80, 1),
                       ) :

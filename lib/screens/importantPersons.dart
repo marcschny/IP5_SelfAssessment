@@ -120,7 +120,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   onClose: null,
                   subtitle: "Wichtige Personen",
                   percent: 0.1,
-                  intro: "Wer ist für Dich in Deinem Leben ganz wichtig?  Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie du zu dieser Person stehst. je weiter weg von der Mitte (und damit von Dir)  Du eine Person einträgst, desto weniger wichtig  ist sie aktuell in Deinem Leben.",
+                  intro: "Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie Du zu dieser Person stehst. Je weiter weg von der Mitte (und damit von Dir) Du eine Person einträgst, desto weniger wichtig ist sie aktuell in Deinem Leben.",
                 ),
 
                 FadeIn(
@@ -180,7 +180,13 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                         shrinkWrap: true,
                         itemBuilder: (context, index){
                           return GestureDetector(
-                            child: widgetList[index],
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                widgetList[index],
+                                widgetList.length-1 != index ? Divider(color: Colors.black26) : Container(),
+                              ],
+                            ),
                             onTap: (){
                               showDialog(
                                 context: context,

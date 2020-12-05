@@ -16,16 +16,10 @@ class ImportantPersonTile extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
-      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      height: 50,
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       decoration: BoxDecoration(
         color: Colors.transparent,
-        border: Border(
-          bottom: BorderSide(
-            color: Color.fromRGBO(220, 220, 220, 1),
-            width: 1
-          )
-        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

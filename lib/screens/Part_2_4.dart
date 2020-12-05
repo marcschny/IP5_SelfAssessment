@@ -104,7 +104,7 @@ class _Part_2_4State extends State<Part_2_4>{
 
                                 Expanded(
                                   child: Text(
-                                    "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragekatalog ausfüllen.",
+                                    "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragebogen ausfüllen.",
                                     style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                     textAlign: TextAlign.start,
                                     softWrap: true,
@@ -128,7 +128,7 @@ class _Part_2_4State extends State<Part_2_4>{
                               child: RaisedButton(
                                 color: ThemeColors.greenShade4,
                                 elevation: 0,
-                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                                 onPressed: () {
                                   _goToQuestionnaire(context, widget.assessmentId, widget.networkId);
@@ -141,7 +141,7 @@ class _Part_2_4State extends State<Part_2_4>{
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: <Widget> [
                                       Text(
-                                        "Fragekatalog",
+                                        "Fragebogen",
                                         style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
                                       ),
                                       SizedBox(width: 8),
