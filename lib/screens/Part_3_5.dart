@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -6,6 +8,8 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -13,7 +17,8 @@ import 'package:oktoast/oktoast.dart';
 import 'Part_2_4.dart';
 
 
-
+//todo: what if no 'bad' answers selected before? -> handle this case
+//todo: pushAndRemove route (prevent back button in part2.4 to go back to questionnaire)
 class Part_3_5 extends StatefulWidget {
 
   final int assessmentId;
@@ -25,8 +30,8 @@ class Part_3_5 extends StatefulWidget {
   _Part_3_5State createState() => _Part_3_5State();
 }
 
-class _Part_3_5State extends State<Part_3_5> {
 
+class _Part_3_5State extends State<Part_3_5>{
 
   String surveyQuestion;
 
@@ -41,10 +46,15 @@ class _Part_3_5State extends State<Part_3_5> {
     getSurveyAnswers();
   }
 
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -70,21 +80,25 @@ class _Part_3_5State extends State<Part_3_5> {
 
 
               Expanded(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
-                    child: ListView.builder(
-                      itemCount: distinctQuestions.length,
-                      itemBuilder: (context, index) {
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                      child: ListView.builder(
+                        itemCount: distinctQuestions.length,
+                        itemBuilder: (context, index) {
 
-                          return new SurveyBox(
-                          question: distinctQuestions.keys.elementAt(index),
-                          checked: distinctQuestions.values.elementAt(index),
-                          callback: (question){
-                            _switchChecked(question);
-                          }
-                          );
-                      },
-                    ),
+                            return SlideUpFadeIn(
+                              0.6+(index*0.2),
+                              100,
+                              SurveyBox(
+                              question: distinctQuestions.keys.elementAt(index),
+                              checked: distinctQuestions.values.elementAt(index),
+                              callback: (question){
+                                _switchChecked(question);
+                              }
+                              ),
+                            );
+                        },
+                      ),
               ),
 
               ),
@@ -161,10 +175,27 @@ class _Part_3_5State extends State<Part_3_5> {
   });
 
   if(_selectedQuestions != null && _selectedQuestions.length > 0 && _selectedQuestions.length < 3){
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Part_2_4(assessmentId: assessmentId, evaluation: _selectedQuestions, networkId: networkId),
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 200),
+        pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return Part_2_4(assessmentId: assessmentId, networkId: networkId, evaluation: _selectedQuestions);
+        },
+        transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return Align(
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
       ),
     );
   }else if(_selectedQuestions.length == 0){

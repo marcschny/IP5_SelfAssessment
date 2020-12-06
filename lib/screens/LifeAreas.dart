@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -5,16 +7,24 @@ import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
 
+//todo: prevent back button/gesture (do not go back to start screen)
 //Screen 1.1
 class LifeAreas extends StatefulWidget{
 
-  const LifeAreas({Key key});
+  final int assessmentId;
+
+  const LifeAreas({
+    Key key,
+    @required this.assessmentId
+  });
 
   _LifeAreasState createState() => _LifeAreasState();
 
@@ -22,9 +32,12 @@ class LifeAreas extends StatefulWidget{
 
 class _LifeAreasState extends State<LifeAreas>{
 
+  //key for animatedList
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   bool alreadyExists = false; //check if network card already exists (for navigator.pop)
   int netwId = -1;  //will be reset when new network card is created
+
 
   //update variable 'alreadyExists' when navigator popped
   void updateAlreadyExists(bool boolValue){
@@ -60,8 +73,6 @@ class _LifeAreasState extends State<LifeAreas>{
 
   @override
   Widget build(BuildContext context) {
-    final int assessmentId = ModalRoute.of(context).settings.arguments;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -90,23 +101,39 @@ class _LifeAreasState extends State<LifeAreas>{
                   intro: "Um deine Karte zu erstellen musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
                 ),
 
-                _customCheckBox(),
+                FadeIn(
+                  1.5,
+                  500,
+                  _customCheckBox(),
+                ),
+
 
                 Expanded(
-                  child: Container(
-                    color: Colors.transparent,
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
-                    child: ListView.builder(
-                      itemCount: _lifeAreasMap.length,
-                      itemBuilder: (context, index){
-                        return CheckBoxComponent(
-                          checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
-                          checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
-                          callback: (checkBoxTitle){
-                            _switchChecked(checkBoxTitle);
-                          }
-                        );
-                      },
+                  child: FadeIn(
+                    1.6,
+                    500,
+                    Container(
+                      color: Colors.transparent,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
+                      child: AnimatedList(
+                        key: _listKey,
+                        initialItemCount: _lifeAreasMap.length,
+                        itemBuilder: (context, index, animation){
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(0, -1),
+                              end: Offset(0, 0),
+                            ).animate(animation),
+                            child: CheckBoxComponent(
+                              checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
+                              checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
+                              callback: (checkBoxTitle){
+                                _switchChecked(checkBoxTitle);
+                              }
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -119,7 +146,7 @@ class _LifeAreasState extends State<LifeAreas>{
               showBackButton: false,
               nextTitle: "Wichtige Personen",
               callbackNext: (){
-                _next(context, assessmentId);
+                _next(context, widget.assessmentId);
               },
             ),
           ],
@@ -165,9 +192,12 @@ class _LifeAreasState extends State<LifeAreas>{
   //when textfield is submitted
   _onSubmit(String value){
     print(value);
-    if(value.length > 2) _lifeAreasMap.putIfAbsent(value, () => true);
-    _textController.clear();
-    setState(() {});
+    if(value.length > 2) {
+      _listKey.currentState.insertItem(0, duration: const Duration(milliseconds: 200));
+      _lifeAreasMap.putIfAbsent(value, () => true);
+      _textController.clear();
+      //setState(() {});
+    }
   }
 
   //switch checkbox state
@@ -212,12 +242,29 @@ class _LifeAreasState extends State<LifeAreas>{
       if(!alreadyExists) {
         assessmentRepo.createNetworkCard(newNetworkCard).then((
             networkId) async {
-          final boolValue = await Navigator.of(context).pushNamed(
-            '/importantPersons',
-            arguments: <String, int>{
-              "assessmentId": assessmentId,
-              "networkId": networkId
-            },
+          print("network card created: "+networkId.toString());
+          final boolValue = await Navigator.of(context).push(
+            PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 300),
+              pageBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation) {
+                return ImportantPersons(assessmentId: assessmentId, networkId: networkId);
+              },
+              transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return Align(
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
+                );
+              },
+            ),
           );
           updateAlreadyExists(boolValue);
           setState(() {
@@ -232,13 +279,29 @@ class _LifeAreasState extends State<LifeAreas>{
       //if record already exists -> update it
       else{
         assessmentRepo.updateNetworkCard(newNetworkCard);
-          Navigator.of(context).pushNamed(
-            '/importantPersons',
-            arguments: <String, int>{
-              "assessmentId": assessmentId,
-              "networkId": netwId
+        Navigator.of(context).push(
+          PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 300),
+            pageBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              return ImportantPersons(assessmentId: assessmentId, networkId: netwId);
             },
-          );
+            transitionsBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child) {
+              return Align(
+                child: FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+              );
+            },
+          ),
+        );
       }
     }else{
       showToast(

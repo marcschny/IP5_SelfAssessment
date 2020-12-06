@@ -3,12 +3,21 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_3_2.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 import 'Part_2_4.dart';
 
 class Part_3_1 extends StatefulWidget {
-  const Part_3_1({Key key}) : super(key: key);
+
+  final int assessmentId;
+  final int networkId;
+
+  const Part_3_1({
+    Key key,
+    this.assessmentId,
+    this.networkId
+  }) : super(key: key);
 
   @override
   _Part_3_1State createState() => _Part_3_1State();
@@ -17,18 +26,8 @@ class Part_3_1 extends StatefulWidget {
 class _Part_3_1State extends State<Part_3_1> {
 
 
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
-
   @override
   Widget build(BuildContext context) {
-
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
-
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -78,13 +77,7 @@ class _Part_3_1State extends State<Part_3_1> {
                 ),
                 onPressed: (){
                   //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_2()));
-                  Navigator.of(context).pushNamed(
-                      "/part_3_2",
-                      arguments: <String, int>{
-                        "assessmentId": assessmentId,
-                        "networkId": networkId
-                      }
-                  );
+                  _next(context, widget.assessmentId, widget.networkId);
                 },
 
               ),
@@ -100,4 +93,32 @@ class _Part_3_1State extends State<Part_3_1> {
     );
 
   }
+
+
+  void _next(BuildContext context, int assessmentId, int networkId){
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 200),
+        pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return Part_3_2(assessmentId: assessmentId, networkId: networkId);
+        },
+        transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return Align(
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
 }

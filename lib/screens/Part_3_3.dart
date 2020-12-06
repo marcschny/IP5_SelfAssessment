@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
@@ -5,30 +6,43 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
+
+import 'Part_3_4.dart';
 
 
 
 class Part_3_3 extends StatefulWidget {
-  const Part_3_3({Key key}) : super(key: key);
+
+  final int assessmentId;
+  final int networkId;
+
+  const Part_3_3({
+    Key key,
+    this.assessmentId,
+    this.networkId
+  }) : super(key: key);
 
   @override
   _Part_3_3State createState() => _Part_3_3State();
 }
 
-class _Part_3_3State extends State<Part_3_3> {
+class _Part_3_3State extends State<Part_3_3>{
 
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
-
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
-
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -54,49 +68,72 @@ class _Part_3_3State extends State<Part_3_3> {
 
 
             Expanded(
-              child: Container(
-                padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
-                child: ListView(
-                  children: [
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                  child: ListView(
+                    children: [
 
-                    ExpandableQuestionCard(
-                      questionNumber: "3.3.1",
-                      assessmentId: assessmentId,
-                    ),
 
-                    ExpandableQuestionCard(
-                      questionNumber: "3.3.2",
-                      assessmentId: assessmentId,
-                    ),
+                      SlideUpFadeIn(
+                        0.5,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.1",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        0.7,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.2",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        0.9,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.3",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        1.1,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.4",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        1.3,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.5",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        1.5,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.6",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        1.6,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.3.7",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
 
-                    ExpandableQuestionCard(
-                      questionNumber: "3.3.3",
-                      assessmentId: assessmentId,
-                    ),
-
-                    ExpandableQuestionCard(
-                      questionNumber: "3.3.4",
-                      assessmentId: assessmentId,
-                    ),
-
-                    ExpandableQuestionCard(
-                      questionNumber: "3.3.5",
-                      assessmentId: assessmentId,
-                    ),
-
-                    ExpandableQuestionCard(
-                      questionNumber: "3.3.6",
-                      assessmentId: assessmentId,
-                    ),
-
-                    ExpandableQuestionCard(
-                      questionNumber: "3.3.7",
-                      assessmentId: assessmentId,
-                    ),
-
-                ],
+                  ],
+                  ),
                 ),
-              ),
             ),
 
             ],
@@ -111,14 +148,7 @@ class _Part_3_3State extends State<Part_3_3> {
                 },
 
                 callbackNext: () {
-                  //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_4()));
-                  Navigator.of(context).pushNamed(
-                      "/part_3_4",
-                      arguments: <String, int>{
-                        "assessmentId": assessmentId,
-                        "networkId": networkId
-                      }
-                  );
+                  _next(context, widget.assessmentId, widget.networkId);
                 }
 
             ),
@@ -128,9 +158,33 @@ class _Part_3_3State extends State<Part_3_3> {
 
 
     );
-
-
-
-
   }
+
+
+  void _next(BuildContext context, int assessmentId, int networkId){
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 200),
+        pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return Part_3_4(assessmentId: assessmentId, networkId: networkId);
+        },
+        transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return Align(
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
 }

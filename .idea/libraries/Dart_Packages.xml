@@ -541,6 +541,13 @@
             </list>
           </value>
         </entry>
+        <entry key="sa_v1_migration">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/sa_v1_migration-1.1.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="shelf">
           <value>
             <list>
@@ -566,6 +573,13 @@
           <value>
             <list>
               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_web_socket-0.2.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="simple_animations">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/simple_animations-2.4.0/lib" />
             </list>
           </value>
         </entry>
@@ -664,6 +678,20 @@
           <value>
             <list>
               <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/super_tooltip-0.9.6/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="supercharged">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/supercharged-1.12.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="supercharged_dart">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/supercharged_dart-1.4.0/lib" />
             </list>
           </value>
         </entry>
@@ -876,10 +904,12 @@
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/pubspec_parse-0.1.5/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.5/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.24.1/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/sa_v1_migration-1.1.2/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shelf-0.7.9/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_packages_handler-2.0.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_static-0.2.8/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_web_socket-0.2.3/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/simple_animations-2.4.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/source_gen-0.9.8/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/source_map_stack_trace-2.1.0-nullsafety.3/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/source_maps-0.10.10-nullsafety.2/lib" />
@@ -893,6 +923,8 @@
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/stream_transform-1.2.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0-nullsafety.1/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/super_tooltip-0.9.6/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/supercharged-1.12.0/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/supercharged_dart-1.4.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/sync_http-0.2.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0+2/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.0-nullsafety.1/lib" />

@@ -42,11 +42,14 @@ class NextButton extends StatelessWidget{
                 WidgetSpan(
                   child: Wrap(
                     children: [
-                      Text(
-                      nextTitle,
-                      textAlign: TextAlign.end,
-                      style: ThemeTexts.assessmentNavigationNext,
-                    )
+                      Material(
+                        color: Colors.transparent,
+                        child: Text(
+                        nextTitle,
+                        textAlign: TextAlign.end,
+                        style: ThemeTexts.assessmentNavigationNext,
+                    ),
+                      )
                     ],
                   ),
                 ),

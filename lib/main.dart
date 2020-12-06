@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
         radius: 30,
         duration: Duration(seconds: 5),
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           initialRoute: "/start",
           routes: {
             "/start": (context) => StartScreen(),
