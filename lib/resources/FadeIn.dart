@@ -24,6 +24,7 @@ class FadeIn extends StatelessWidget {
       duration: _tween.duration,
       tween: _tween,
       child: child,
+      curve: Curves.ease,
       builder: (context, child, animation) => Opacity(
         opacity: animation.get(AniProps.opacity),
         child: child

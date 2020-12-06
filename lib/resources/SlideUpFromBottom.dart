@@ -20,6 +20,7 @@ class SlideUpFromBottom extends StatelessWidget {
       delay: Duration(milliseconds: (300 * delay).round()),
       duration: _tween.duration,
       tween: _tween,
+      curve: Curves.easeInOutQuart,
       child: child,
       builder: (context, child, animation) => (
           Transform.translate(
