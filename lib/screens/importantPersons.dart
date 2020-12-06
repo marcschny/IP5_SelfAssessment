@@ -123,9 +123,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   intro: "Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie Du zu dieser Person stehst. Je weiter weg von der Mitte (und damit von Dir) Du eine Person einträgst, desto weniger wichtig ist sie aktuell in Deinem Leben.",
                 ),
 
-                FadeIn(
-                  1,
-                  500,
+
                   Padding(
                     padding: EdgeInsets.only(left: 18),
                     child: RaisedButton(
@@ -165,7 +163,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                       },
                     ),
                   ),
-                ),
 
                 Expanded(
                   child: FadeIn(

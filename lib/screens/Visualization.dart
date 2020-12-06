@@ -337,6 +337,8 @@ class _VisualizationState extends State<Visualization>{
                         width: MediaQuery.of(context).size.width,
                         child: Wrap(
                           alignment: WrapAlignment.start,
+                          verticalDirection: VerticalDirection.down,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
 
                           ]..addAll(legendList),
