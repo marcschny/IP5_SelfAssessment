@@ -106,145 +106,150 @@ class _StartScreenState extends State<StartScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
+    return WillPopScope(
+      onWillPop: (){
+        Navigator.of(context).canPop();
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
 
-          //background image
-          Image.asset(
-            "assets/background_image/gradient-grey.png",
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
-          ),
-
-
-          //custom curved shape (fills entire screen)
-          Positioned(
-            top: 0,
-            left: 0,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Container(
-              color: Colors.transparent,
-              child: CustomPaint(
-                painter: CurvedShape(ThemeColors.greenShade1, ThemeColors.greenShade3),
-              ),
+            //background image
+            Image.asset(
+              "assets/background_image/gradient-grey.png",
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
             ),
-          ),
 
 
-          //assessment top titles
-          Positioned(
-            top: 0,
-            left: 0,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height*0.25,
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: Center(
-                child: RichText(
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Freund*innen und Beziehungen",
-                        style: ThemeTexts.startAssessmentTitle
-                      ),
-                    ],
-                  ),
+            //custom curved shape (fills entire screen)
+            Positioned(
+              top: 0,
+              left: 0,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Container(
+                color: Colors.transparent,
+                child: CustomPaint(
+                  painter: CurvedShape(ThemeColors.greenShade1, ThemeColors.greenShade3),
                 ),
               ),
             ),
-          ),
 
 
-          //intro texts
-          Positioned(
-            top: MediaQuery.of(context).size.height*0.25+20,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height*0.45,
-                  child: PageView.builder(
-                    scrollDirection: Axis.horizontal,
-                    controller: PageController(
-                      viewportFraction: 1,
-                    ),
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                    itemCount: pageList.length,
-                    itemBuilder: (context, index){
-                      return pageList[index];
-                    },
-                  ),
-                ),
-
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(pageList.length, (i){
-                      return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
-                        width: 11,
-                        height: 11,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: _currentIndex == i
-                                  ? Colors.transparent
-                                  : Color.fromRGBO(200, 200, 200, 1)
-                            ),
-                            color: _currentIndex == i
-                                ? Color.fromRGBO(200, 200, 200, 1)
-                                : Colors.transparent
+            //assessment top titles
+            Positioned(
+              top: 0,
+              left: 0,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height*0.25,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                child: Center(
+                  child: RichText(
+                    maxLines: 2,
+                    overflow: TextOverflow.clip,
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Freund*innen und Beziehungen",
+                          style: ThemeTexts.startAssessmentTitle
                         ),
-                      );
-                    }).toList(),
+                      ],
+                    ),
                   ),
                 ),
-
-              ],
-            ),
-          ),
-
-
-
-          //start button
-          Positioned(
-            bottom: 40,
-            width: MediaQuery.of(context).size.width,
-            height: 60,
-            child: Center(
-              child: RaisedButton(
-                color: ThemeColors.greenShade2,
-                padding: EdgeInsets.symmetric(vertical: 11, horizontal: 34),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)
-                ),
-                elevation: 5.0,
-                child: Text(
-                  "Starten",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.8,
-                  ),
-                ),
-                onPressed: (){
-                  _startAssessment(context);
-                },
               ),
             ),
-          )
 
-        ],
+
+            //intro texts
+            Positioned(
+              top: MediaQuery.of(context).size.height*0.25+20,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height*0.45,
+                    child: PageView.builder(
+                      scrollDirection: Axis.horizontal,
+                      controller: PageController(
+                        viewportFraction: 1,
+                      ),
+                      onPageChanged: (index) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                      itemCount: pageList.length,
+                      itemBuilder: (context, index){
+                        return pageList[index];
+                      },
+                    ),
+                  ),
+
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(pageList.length, (i){
+                        return Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          width: 11,
+                          height: 11,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: _currentIndex == i
+                                    ? Colors.transparent
+                                    : Color.fromRGBO(200, 200, 200, 1)
+                              ),
+                              color: _currentIndex == i
+                                  ? Color.fromRGBO(200, 200, 200, 1)
+                                  : Colors.transparent
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+
+
+
+            //start button
+            Positioned(
+              bottom: 40,
+              width: MediaQuery.of(context).size.width,
+              height: 60,
+              child: Center(
+                child: RaisedButton(
+                  color: ThemeColors.greenShade2,
+                  padding: EdgeInsets.symmetric(vertical: 11, horizontal: 34),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40)
+                  ),
+                  elevation: 5.0,
+                  child: Text(
+                    "Starten",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                  onPressed: (){
+                    _startAssessment(context);
+                  },
+                ),
+              ),
+            )
+
+          ],
+        ),
       ),
     );
   }

@@ -35,7 +35,7 @@ class Visualization extends StatefulWidget{
 
 }
 
-//todo: put methods to build network card in separate file (so you can use it here and in networkcardDialog)
+
 class _VisualizationState extends State<Visualization>{
 
   //necessary lists
