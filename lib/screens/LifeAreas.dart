@@ -73,83 +73,86 @@ class _LifeAreasState extends State<LifeAreas>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Stack(
-          children: [
+    return WillPopScope(
+      onWillPop: (){},
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: Stack(
+            children: [
 
-            //background image
-            Image.asset(
-              "assets/background_image/gradient-grey.png",
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              fit: BoxFit.cover,
-            ),
+              //background image
+              Image.asset(
+                "assets/background_image/gradient-grey.png",
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                fit: BoxFit.cover,
+              ),
 
-            //content
-            Column(
-              children: [
-
-
-                TopBar(
-                  title: "Wer ist mir wichtig?\nMeine wichtigen Personen",
-                  titleNumber: 1,
-                  onClose: null,
-                  subtitle: "Bereiche",
-                  percent: 0.05,
-                  intro: "Um deine Karte zu erstellen musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
-                ),
-
-                FadeIn(
-                  1.5,
-                  500,
-                  _customCheckBox(),
-                ),
+              //content
+              Column(
+                children: [
 
 
-                Expanded(
-                  child: FadeIn(
-                    1.6,
+                  TopBar(
+                    title: "Wer ist mir wichtig?\nMeine wichtigen Personen",
+                    titleNumber: 1,
+                    onClose: null,
+                    subtitle: "Bereiche",
+                    percent: 0.05,
+                    intro: "Um deine Karte zu erstellen musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
+                  ),
+
+                  FadeIn(
+                    1.5,
                     500,
-                    Container(
-                      color: Colors.transparent,
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
-                      child: AnimatedList(
-                        key: _listKey,
-                        initialItemCount: _lifeAreasMap.length,
-                        itemBuilder: (context, index, animation){
-                          return SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(0, -1),
-                              end: Offset(0, 0),
-                            ).animate(animation),
-                            child: CheckBoxComponent(
-                              checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
-                              checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
-                              callback: (checkBoxTitle){
-                                _switchChecked(checkBoxTitle);
-                              }
-                            ),
-                          );
-                        },
+                    _customCheckBox(),
+                  ),
+
+
+                  Expanded(
+                    child: FadeIn(
+                      1.6,
+                      500,
+                      Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
+                        child: AnimatedList(
+                          key: _listKey,
+                          initialItemCount: _lifeAreasMap.length,
+                          itemBuilder: (context, index, animation){
+                            return SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(0, -1),
+                                end: Offset(0, 0),
+                              ).animate(animation),
+                              child: CheckBoxComponent(
+                                checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
+                                checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
+                                callback: (checkBoxTitle){
+                                  _switchChecked(checkBoxTitle);
+                                }
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            //bottom navigation bar
-            BottomNavigation(
-              showNextButton: true,
-              showBackButton: false,
-              nextTitle: "Wichtige Personen",
-              callbackNext: (){
-                _next(context, widget.assessmentId);
-              },
-            ),
-          ],
+              //bottom navigation bar
+              BottomNavigation(
+                showNextButton: true,
+                showBackButton: false,
+                nextTitle: "Wichtige Personen",
+                callbackNext: (){
+                  _next(context, widget.assessmentId);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

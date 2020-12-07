@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
-//todo: load question by questionNumber and assessment id!
+
 class QuestionCard extends StatefulWidget{
 
   final String questionNumber;
