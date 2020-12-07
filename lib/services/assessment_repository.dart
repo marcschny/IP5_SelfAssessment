@@ -64,9 +64,13 @@ abstract class AssessmentRepository{
 
   /* SURVEY ANSWERS */
 
-  //get weakest survery answers
+  //get negative survey answers
   @Query('SELECT * FROM Answer WHERE (answer="Kriege ich hin und wieder hin" OR answer="Schaffe ich selten") AND assessment_id = :assessmentId')
-  Future<List<Answer>> getSurveyAnswers(int assessmentId);
+  Future<List<Answer>> getNegSurveyAnswers(int assessmentId);
+
+  //get positive survey answers
+  @Query('SELECT * FROM Answer WHERE (answer="Mache ich öfters / kann ich meisten") AND assessment_id = :assessmentId')
+  Future<List<Answer>> getPosSurveyAnswers(int assessmentId);
 
 
 

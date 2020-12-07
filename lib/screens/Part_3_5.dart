@@ -17,7 +17,7 @@ import 'package:oktoast/oktoast.dart';
 import 'Part_2_4.dart';
 
 
-//todo: what if no 'bad' answers selected before? -> handle this case
+//todo: what if only top answers were selected -> handle this case
 //todo: pushAndRemove route (prevent back button in part2.4 to go back to questionnaire)
 class Part_3_5 extends StatefulWidget {
 
@@ -33,8 +33,8 @@ class Part_3_5 extends StatefulWidget {
 
 class _Part_3_5State extends State<Part_3_5>{
 
-  String surveyQuestion;
-
+  bool allPositive = false;
+  String _introText = "";
   Map<String, bool> distinctQuestions;
 
 
@@ -74,9 +74,11 @@ class _Part_3_5State extends State<Part_3_5>{
                 titleNumber: 3,
                 onClose: null,
                 subtitle: "Auswertung Fragebogen",
-                intro: "Folgende Punkte sind Dir weniger gut gelungen.  Wähle bis zu zwei davon aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest",
+                intro: _introText,
                 percent: 0.55,
               ),
+
+
 
 
               Expanded(
@@ -140,7 +142,20 @@ class _Part_3_5State extends State<Part_3_5>{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    List<Answer> surveyAnswers = await assessmentRepo.getSurveyAnswers(widget.assessmentId);
+    List<Answer> surveyAnswers = await assessmentRepo.getNegSurveyAnswers(widget.assessmentId);
+    if(surveyAnswers == null || surveyAnswers.length == 0){
+      print(surveyAnswers.length);
+      setState(() {
+        allPositive = true;
+        _introText = "Wähle einen oder zwei der folgenden Punkte aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest, um darin noch besser zu werden.";
+      });
+      surveyAnswers = await assessmentRepo.getPosSurveyAnswers(widget.assessmentId);
+    }else{
+      print("neg");
+      setState(() {
+        _introText = "Folgende Punkte sind Dir weniger gut gelungen. Wähle bis zu zwei davon aus, an welche Du gerne am Veränderungsprojekt arbeiten möchtest.";
+      });
+    }
 
     print("surveyAnswers: "+surveyAnswers.length.toString());
 

@@ -14,7 +14,7 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_3_1.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
-
+//todo: validate: die Frage (die Projektbeschreibung) muss ausgefüllt sein
 class Part_2_4 extends StatefulWidget {
 
   final List<String> evaluation;
