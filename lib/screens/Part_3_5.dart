@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -8,7 +6,6 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
-import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -215,7 +212,7 @@ class _Part_3_5State extends State<Part_3_5>{
     );
   }else if(_selectedQuestions.length == 0){
     showToast(
-      "Wähle eine oder zwei Punkte aus, an denen du arbeiten möchtest",
+      "Wähle einen oder zwei Punkte aus",
       context: context,
       textAlign: TextAlign.center,
       textStyle: ThemeTexts.toastText,
@@ -226,7 +223,7 @@ class _Part_3_5State extends State<Part_3_5>{
     );
   }else if(_selectedQuestions.length > 2){
     showToast(
-      "Wähle maximal zwei Punkte aus, an denen du arbeiten möchtest",
+      "Wähle maximal zwei Punkte aus",
       context: context,
       textAlign: TextAlign.center,
       textStyle: ThemeTexts.toastText,

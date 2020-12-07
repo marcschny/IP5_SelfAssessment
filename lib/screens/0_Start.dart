@@ -4,9 +4,6 @@ import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_1.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_3_1.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_3_2.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 

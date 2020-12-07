@@ -1,7 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -15,7 +12,6 @@ import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/networkCardMethods.dart';
 import 'package:provider/provider.dart';
-
 import 'Part_2_1.dart';
 
 

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -166,6 +164,7 @@ class _LifeAreasState extends State<LifeAreas>{
             children: [
               Checkbox(
                 value: false,
+                onChanged: (value){},
               ),
               Expanded(
                 child: TextField(
