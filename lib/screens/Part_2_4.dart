@@ -43,155 +43,155 @@ class _Part_2_4State extends State<Part_2_4>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children:[
-            Image.asset(
-              "assets/background_image/gradient-grey.png",
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              fit: BoxFit.cover,
-            ),
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              TopBar(
-                  title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
-                  titleNumber: 2,
-                  onClose: null,
-                  subtitle: "Lust auf etwas Neues!",
-                  intro: "",
-                  percent: 0.45,
+    return WillPopScope(
+      onWillPop: (){},
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children:[
+              Image.asset(
+                "assets/background_image/gradient-grey.png",
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                fit: BoxFit.cover,
               ),
 
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                TopBar(
+                    title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
+                    titleNumber: 2,
+                    onClose: null,
+                    subtitle: "Lust auf etwas Neues!",
+                    intro: "",
+                    percent: 0.45,
+                ),
 
-                        SlideUpFadeIn(
-                          0.4,
-                          130,
-                          QuestionCard(
-                            questionNumber: "2.4.1",
-                            assessmentId: widget.assessmentId,
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          SlideUpFadeIn(
+                            0.4,
+                            130,
+                            QuestionCard(
+                              questionNumber: "2.4.1",
+                              assessmentId: widget.assessmentId,
+                            ),
                           ),
-                        ),
 
-                        SizedBox(height: 24),
+                          SizedBox(height: 24),
 
-                        widget.evaluation == null ?
-                            FadeIn(
-                              2.2,
-                              400,
-                              Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                    child: Icon(
-                                      Icons.info_outline_rounded,
-                                      size: 25,
-                                      color: Colors.black26,
-                                    )
-                                ),
-                                SizedBox(width: 10),
+                          widget.evaluation == null ?
+                              FadeIn(
+                                2.2,
+                                400,
+                                Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                      child: Icon(
+                                        Icons.info_outline_rounded,
+                                        size: 25,
+                                        color: Colors.black26,
+                                      )
+                                  ),
+                                  SizedBox(width: 10),
 
-                                Expanded(
-                                  child: Text(
-                                    "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragebogen ausfüllen.",
-                                    style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
-                                    textAlign: TextAlign.start,
-                                    softWrap: true,
-                                    overflow: TextOverflow.clip,
+                                  Expanded(
+                                    child: Text(
+                                      "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragebogen ausfüllen.",
+                                      style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                      textAlign: TextAlign.start,
+                                      softWrap: true,
+                                      overflow: TextOverflow.clip,
 
+                                    ),
+                                  ),
+
+                                ],
+                              )
+                              )
+                           : Container(),
+
+
+                              widget.evaluation == null ?
+                              FadeIn(
+                                2.2,
+                                500,
+                                Padding(
+                                padding: EdgeInsets.only(left: 34, top: 3),
+                                child: RaisedButton(
+                                  color: ThemeColors.greenShade4,
+                                  elevation: 0,
+                                  padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                                  onPressed: () {
+                                    _goToQuestionnaire(context, widget.assessmentId, widget.networkId);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: <Widget> [
+                                        Text(
+                                          "Fragebogen",
+                                          style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
+                                        ),
+                                        SizedBox(width: 8),
+                                        Icon(
+                                            Icons.arrow_forward,
+                                            size: 20
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
+                              )
+                              )
+                               : Container(),
 
-                              ],
-                            )
-                            )
-                         : Container(),
+                                  SizedBox(height: 10),
 
+                              widget.evaluation == null ? Container() : _evaluationQuestionnaire(),
 
-                            widget.evaluation == null ?
-                            FadeIn(
-                              2.2,
-                              500,
-                              Padding(
-                              padding: EdgeInsets.only(left: 34, top: 3),
-                              child: RaisedButton(
-                                color: ThemeColors.greenShade4,
-                                elevation: 0,
-                                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                                onPressed: () {
-                                  _goToQuestionnaire(context, widget.assessmentId, widget.networkId);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget> [
-                                      Text(
-                                        "Fragebogen",
-                                        style: ThemeTexts.assessmentText.copyWith(fontSize: 18),
-                                      ),
-                                      SizedBox(width: 8),
-                                      Icon(
-                                          Icons.arrow_forward,
-                                          size: 20
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
-                            )
-                             : Container(),
+                            ],
 
-                                SizedBox(height: 10),
+                          ),
 
-                            widget.evaluation == null ? Container() : _evaluationQuestionnaire(),
-
-                          ],
-
-                        ),
+                  ),
 
                 ),
 
+                    SizedBox(height: 20),
+
+                ],
               ),
 
-                  SizedBox(height: 20),
 
-              ],
-            ),
-
-
-            BottomNavigation(
-               showNextButton: true,
-               showBackButton: true,
-               nextTitle: "Name it!",
-               callbackBack: () {
-                 Navigator.of(context).pop();
-                 },
-               callbackNext: (){
-                 _next(context, widget.assessmentId, widget.networkId);
-               }
-            ),
+              BottomNavigation(
+                 showNextButton: true,
+                 showBackButton: false,
+                 nextTitle: "Name it!",
+                 callbackNext: (){
+                   _next(context, widget.assessmentId, widget.networkId);
+                 }
+              ),
 
 
-        ]
+          ]
+          ),
         ),
-      ),
 
+      ),
     );
 
   }

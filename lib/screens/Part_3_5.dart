@@ -190,7 +190,7 @@ class _Part_3_5State extends State<Part_3_5>{
   });
 
   if(_selectedQuestions != null && _selectedQuestions.length > 0 && _selectedQuestions.length < 3){
-    Navigator.of(context).push(
+    Navigator.of(context).pushAndRemoveUntil(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
         pageBuilder: (
@@ -212,6 +212,7 @@ class _Part_3_5State extends State<Part_3_5>{
           );
         },
       ),
+      ModalRoute.withName("/part_2_4"),
     );
   }else if(_selectedQuestions.length == 0){
     showToast(
