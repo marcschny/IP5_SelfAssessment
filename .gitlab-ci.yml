@@ -27,8 +27,8 @@ before_script:
   - set -o pipefail
 
   - flutter pub get
-  #- flutter packages pub run build_runner build --delete-conflicting-outputs
-  #- flutter packages pub run build_runner build
+  - flutter packages pub run build_runner build --delete-conflicting-outputs
+  - flutter packages pub run build_runner build
 
 
 stages:
@@ -36,19 +36,19 @@ stages:
   #- build
 
 test:android:
-  only: [merge_requests]
+  #only: [merge_requests]
   stage: test
   script:
     - cd android
 
-### Checks test cases in test folder ###
-#test:flutter:
-#  #only: [merge_requests]
-#  stage: test
-#  script:
-#    - flutter pub get
-#    - flutter packages pub run build_runner build
-#    - flutter test
+## Checks test cases in test folder ###
+test:flutter:
+  #only: [merge_requests]
+  stage: test
+  script:
+    - flutter pub get
+    - flutter packages pub run build_runner build
+    - flutter test
 
 
 #build:apk:
