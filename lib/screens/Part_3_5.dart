@@ -149,7 +149,7 @@ class _Part_3_5State extends State<Part_3_5>{
     }else{
       print("neg");
       setState(() {
-        _introText = "Folgende Punkte sind Dir weniger gut gelungen. Wähle bis zu zwei davon aus, an welche Du gerne am Veränderungsprojekt arbeiten möchtest.";
+        _introText = "Folgende Punkte sind Dir weniger gut gelungen. Wähle bis zu zwei davon aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest.";
       });
     }
 

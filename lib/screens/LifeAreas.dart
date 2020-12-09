@@ -97,7 +97,7 @@ class _LifeAreasState extends State<LifeAreas>{
                     onClose: null,
                     subtitle: "Bereiche",
                     percent: 0.05,
-                    intro: "Um deine Karte zu erstellen musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
+                    intro: "Um deine Visualisierung erstellen zu können musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
                   ),
 
                   FadeIn(

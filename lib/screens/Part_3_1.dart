@@ -46,11 +46,11 @@ class _Part_3_1State extends State<Part_3_1> {
                   onClose: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_4()));},
                   subtitle: "Fragebogen",
                   intro: "Auf den folgenden Screens erhälst Du jeweils  Fragen zu drei Themenblöcken, "
-                  "welche Dir helfen  werden nach Abschluss des Fragebogens ein  mögliches Veränderungsprojekt zu finden. \n"
+                  "welche Dir helfen  werden nach Abschluss des Fragebogens ein  mögliches Ziel für Dein Veränderungsprojekt zu finden. \n"
                   "Beantworte so viele Fragen wie möglich: \n\n"
                   "Wenn Dir etwas unwichtig ist oder dies andere  Menschen gar nicht machen,"
-                  " kannst du die Frage  auslassen. Wenn Dir jedoch etwas wichtig ist oder Du es an  anderen magst, kannst Du Deine "
-                  "Beurteilung  dazu abgeben.",
+                  " kannst du die Frage  auslassen.Wenn Dir jedoch etwas wichtig ist oder Du es an anderen magst, kannst Du Deine "
+                  "Beurteilung dazu abgeben.",
                   percent: 0.55,
                   ),
 

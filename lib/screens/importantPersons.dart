@@ -118,7 +118,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   onClose: null,
                   subtitle: "Wichtige Personen",
                   percent: 0.1,
-                  intro: "Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie Du zu dieser Person stehst. Je weiter weg von der Mitte (und damit von Dir) Du eine Person einträgst, desto weniger wichtig ist sie aktuell in Deinem Leben.",
+                  intro: "Hier kannst Du wichtige Personen aus deinem Leben hinzufügen und bestimmen, wie Du zu dieser Person stehst. Je weniger Wichtig Du eine Person einträgst, desto weiter weg erscheint diese auf der Visualisierung.",
                 ),
 
 

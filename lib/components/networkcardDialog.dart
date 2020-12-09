@@ -182,7 +182,7 @@ class _NetworkcardDialogState extends State<NetworkcardDialog>{
                     padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
                     margin: EdgeInsets.only(bottom: 10),
                     child: Text(
-                      "So sieht Deine Karte aus",
+                      "So sieht Deine Visualisierung aus",
                       style: ThemeTexts.assessmentSubtitle,
                     ),
                   ),
