@@ -112,7 +112,7 @@ class _Part_2_6State extends State<Part_2_6>{
                           SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine soziale Karte weiterhelfen",
+                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen",
                               style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                               textAlign: TextAlign.start,
                               softWrap: true,
@@ -151,7 +151,7 @@ class _Part_2_6State extends State<Part_2_6>{
                                 ),
                                 SizedBox(width: 6),
                                 Text(
-                                  "Karte anzeigen",
+                                  "Visualisierung anzeigen",
                                   style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 16.5, fontWeight: FontWeight.normal),
                                 ),
                               ],

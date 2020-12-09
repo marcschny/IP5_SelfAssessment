@@ -60,7 +60,7 @@ class _Part_2_5State extends State<Part_2_5>{
                   titleNumber: 2,
                   onClose: null,
                   subtitle: "Name it!",
-                  intro: "Wie lautet der Titel deines “Ja klar, das schaff  ich”-Projekts ?",
+                  intro: "Wie lautet der Titel deines Veränderungsprojekts?",
                   percent: 0.5,
               ),
 
@@ -80,7 +80,7 @@ class _Part_2_5State extends State<Part_2_5>{
                             },
                             textInputAction: TextInputAction.go,
                             decoration: InputDecoration(
-                              hintText: "Titel Deines Projekts...",
+                              hintText: "Titel hier eingeben...",
                               hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20.5, color: Colors.grey, fontWeight: FontWeight.w500),
                               contentPadding: EdgeInsets.all(0),
                               focusedBorder: UnderlineInputBorder(

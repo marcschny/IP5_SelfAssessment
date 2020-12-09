@@ -197,10 +197,10 @@ class _VisualizationState extends State<Visualization>{
                   children: [
 
                     TopBar(
-                      title: "Wer ist mir wichtig?\nMeine Karte",
+                      title: "Wer ist mir wichtig?\nMeine Visualisierung",
                       titleNumber: 1,
                       onClose: null,
-                      subtitle: "So sieht deine Karte aus",
+                      subtitle: "So sieht deine Visualisierung aus",
                       percent: 0.2,
                       intro: "",
                     ),
