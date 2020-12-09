@@ -176,7 +176,7 @@ class _PersonDialogState extends State<PersonDialog>{
                                   OutlineButton(
                                     onPressed: (){
                                       setState(() {
-                                        _selectedIcon = "Erwachsener";
+                                        _selectedIcon = "Erwachsene";
                                       });
                                     },
                                     color: Colors.transparent,
@@ -185,8 +185,8 @@ class _PersonDialogState extends State<PersonDialog>{
                                     padding: EdgeInsets.all(10),
                                     shape: CircleBorder(),
                                     borderSide: BorderSide(
-                                        color: _selectedIcon == "Erwachsener" ? ThemeColors.greenShade2 : Colors.transparent,
-                                        width: _selectedIcon == "Erwachsener" ? 1.5 : 0,
+                                        color: _selectedIcon == "Erwachsene" ? ThemeColors.greenShade2 : Colors.transparent,
+                                        width: _selectedIcon == "Erwachsene" ? 1.5 : 0,
                                     ),
                                     child: Icon(
                                       Icons.person,
@@ -196,7 +196,7 @@ class _PersonDialogState extends State<PersonDialog>{
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    "Erwachsener",
+                                    "Erwachsene",
                                     style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
                                   ),
                                 ],
@@ -258,7 +258,7 @@ class _PersonDialogState extends State<PersonDialog>{
                                   ),
                                   SizedBox(height: 0),
                                   Text(
-                                    "Andere\nKategorien",
+                                    "Weitere\nKategorien",
                                     style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400, color: ThemeColors.greenShade2),
                                     textAlign: TextAlign.center,
                                   ),
