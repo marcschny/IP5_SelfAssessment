@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
+import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,30 @@ class _StartScreenState extends State<StartScreen>{
     final assessmentRepo = appDataBase.assessmentRepository;
     assessmentRepo.createAssessment(newAssessment).then((assessmentId) {
       print(assessmentId);
-      Navigator.of(context).pushNamed("/lifeAreas", arguments: assessmentId);
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 500),
+          pageBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return LifeAreas(assessmentId: assessmentId);
+            //return Part_3_2(assessmentId: assessmentId, networkId: 1);
+          },
+          transitionsBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return Align(
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            );
+          },
+        ),
+      );
     });
   }
 
@@ -79,145 +103,150 @@ class _StartScreenState extends State<StartScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
+    return WillPopScope(
+      onWillPop: (){
+        Navigator.of(context).canPop();
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
 
-          //background image
-          Image.asset(
-            "assets/background_image/gradient-grey.png",
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
-          ),
-
-
-          //custom curved shape (fills entire screen)
-          Positioned(
-            top: 0,
-            left: 0,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: Container(
-              color: Colors.transparent,
-              child: CustomPaint(
-                painter: CurvedShape(ThemeColors.greenShade1, ThemeColors.greenShade3),
-              ),
+            //background image
+            Image.asset(
+              "assets/background_image/gradient-grey.png",
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
             ),
-          ),
 
 
-          //assessment top titles
-          Positioned(
-            top: 0,
-            left: 0,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height*0.25,
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: Center(
-                child: RichText(
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Freund*innen und Beziehungen",
-                        style: ThemeTexts.startAssessmentTitle
-                      ),
-                    ],
-                  ),
+            //custom curved shape (fills entire screen)
+            Positioned(
+              top: 0,
+              left: 0,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Container(
+                color: Colors.transparent,
+                child: CustomPaint(
+                  painter: CurvedShape(ThemeColors.greenShade1, ThemeColors.greenShade3),
                 ),
               ),
             ),
-          ),
 
 
-          //intro texts
-          Positioned(
-            top: MediaQuery.of(context).size.height*0.25+20,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height*0.45,
-                  child: PageView.builder(
-                    scrollDirection: Axis.horizontal,
-                    controller: PageController(
-                      viewportFraction: 1,
-                    ),
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                    itemCount: pageList.length,
-                    itemBuilder: (context, index){
-                      return pageList[index];
-                    },
-                  ),
-                ),
-
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(pageList.length, (i){
-                      return Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
-                        width: 11,
-                        height: 11,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: _currentIndex == i
-                                  ? Colors.transparent
-                                  : Color.fromRGBO(200, 200, 200, 1)
-                            ),
-                            color: _currentIndex == i
-                                ? Color.fromRGBO(200, 200, 200, 1)
-                                : Colors.transparent
+            //assessment top titles
+            Positioned(
+              top: 0,
+              left: 0,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height*0.25,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                child: Center(
+                  child: RichText(
+                    maxLines: 2,
+                    overflow: TextOverflow.clip,
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Freund*innen und Beziehungen",
+                          style: ThemeTexts.startAssessmentTitle
                         ),
-                      );
-                    }).toList(),
+                      ],
+                    ),
                   ),
                 ),
-
-              ],
-            ),
-          ),
-
-
-
-          //start button
-          Positioned(
-            bottom: 40,
-            width: MediaQuery.of(context).size.width,
-            height: 60,
-            child: Center(
-              child: RaisedButton(
-                color: ThemeColors.greenShade2,
-                padding: EdgeInsets.symmetric(vertical: 11, horizontal: 34),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)
-                ),
-                elevation: 5.0,
-                child: Text(
-                  "Starten",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.8,
-                  ),
-                ),
-                onPressed: (){
-                  _startAssessment(context);
-                },
               ),
             ),
-          )
 
-        ],
+
+            //intro texts
+            Positioned(
+              top: MediaQuery.of(context).size.height*0.25+20,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height*0.45,
+                    child: PageView.builder(
+                      scrollDirection: Axis.horizontal,
+                      controller: PageController(
+                        viewportFraction: 1,
+                      ),
+                      onPageChanged: (index) {
+                        setState(() {
+                          _currentIndex = index;
+                        });
+                      },
+                      itemCount: pageList.length,
+                      itemBuilder: (context, index){
+                        return pageList[index];
+                      },
+                    ),
+                  ),
+
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(pageList.length, (i){
+                        return Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          width: 11,
+                          height: 11,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: _currentIndex == i
+                                    ? Colors.transparent
+                                    : Color.fromRGBO(200, 200, 200, 1)
+                              ),
+                              color: _currentIndex == i
+                                  ? Color.fromRGBO(200, 200, 200, 1)
+                                  : Colors.transparent
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+
+
+
+            //start button
+            Positioned(
+              bottom: 40,
+              width: MediaQuery.of(context).size.width,
+              height: 60,
+              child: Center(
+                child: RaisedButton(
+                  color: ThemeColors.greenShade2,
+                  padding: EdgeInsets.symmetric(vertical: 11, horizontal: 34),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40)
+                  ),
+                  elevation: 5.0,
+                  child: Text(
+                    "Starten",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.8,
+                    ),
+                  ),
+                  onPressed: (){
+                    _startAssessment(context);
+                  },
+                ),
+              ),
+            )
+
+          ],
+        ),
       ),
     );
   }
@@ -275,14 +304,14 @@ class Part1 extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "In einem ersten Schritt erstellst Du eine  soziale Karte über Deine Freun*innen und Beziehungen. Dazu wählst Du die für Dich wichtigsten Bereiche und fügst danach Personen hinzu, welche Dir entweder sehr wichtig oder nicht wichtig sind.\n\n",
+                  text: "In einem ersten Schritt erstellst Du eine  Visualisierung deines sozialen Umfelds. Dazu wählst Du die für Dich wichtigsten Bereiche aus und fügst anschliessend Personen hinzu, welche Dir entweder sehr wichtig oder eher weniger wichtig sind.\n\n",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
                   ),
                 ),
                 TextSpan(
-                  text: "Nach Abschluss des Teil 1 siehst Du eine Karte über Deine Freund*innen und Beziehungen.",
+                  text: "Zum Abschluss des Teil 1 siehst du Deine Visualisierung ",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
@@ -316,14 +345,14 @@ class Part2 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Danach kannst Du mit Hilfe einiger persönlicher Fragen herausfinden, was Du bereits sehr gut kannst im Umgang mit anderen Menschen und wo Du selber noch nicht so zufrieden bist mit Dir. \n\n",
+                    text: "Im zweiten Teil kannst Du mit Hilfe einiger persönlicher Fragen herausfinden, was Du bereits sehr gut kannst im Umgang mit anderen Menschen und wo Du selber noch nicht so zufrieden bist mit Dir. \n\n",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
                     ),
                   ),
                   TextSpan(
-                    text: "Zum Abschluss des Teil 2 machst Du Dir erste Gedanken zu deinem Veränderungsprojekt, welches Du dann starten kannst",
+                    text: "Zum Abschluss des Teil 2 machst Du Dir erste Gedanken zu deinem Veränderungsprojekt, welches Du dann im Teil 4 starten kannst",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -357,7 +386,7 @@ class Part3 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "In einem dritten Teil, welcher optional ist, kannst du mit Hilfe eines dreiteiligen Fragebogens herausfinden, worin Deine Stärken und Schwächen liegen, um damit Dein Veränderungsprojekt starten zu können.",
+                    text: "In einem dritten Teil, welcher optional ist, kannst du mit Hilfe eines dreiteiligen Fragebogens herausfinden, worin Deine Stärken und Schwächen liegen. Dies hilft Dir bei der Wahl Deines Veränderungsprojekts",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -391,7 +420,7 @@ class Part4 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Teil 4 ist Dein Veränderungsprojekt  “Hey, das kann ich!”. Hier kannst Du täglich Deine Gedanken, Deine Ideen oder Deinen Fortschritt als Notizen festhalten.",
+                    text: "Teil 4 ist Dein Veränderungsprojekt  “Hey, das kann ich!”. Hier kannst Du täglich Deine Gedanken, Deine Ideen oder Deinen Fortschritt festhalten.",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -425,7 +454,7 @@ class Part5 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du eine visuelle Auswertung Deines Assessments.\n\n\n",
+                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du eine Auswertung dazu.\n\n\n",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black

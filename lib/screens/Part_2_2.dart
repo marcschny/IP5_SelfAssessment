@@ -1,36 +1,41 @@
-import 'dart:collection';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
 
 
 class Part_2_2 extends StatefulWidget {
-  const Part_2_2({Key key}) : super(key: key);
+
+  final int assessmentId;
+  final int networkId;
+
+  const Part_2_2({
+    Key key,
+    this.assessmentId,
+    this.networkId
+  }) : super(key: key);
 
   @override
   _Part_2_2State createState() => _Part_2_2State();
 }
 
-class _Part_2_2State extends State<Part_2_2> {
+class _Part_2_2State extends State<Part_2_2>{
 
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  int assessmentId;
-  int networkId;
-  LinkedHashMap<String, int> routeArgs;
-
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-
-
-    //get passed arguments
-    routeArgs = ModalRoute.of(context).settings.arguments;
-    assessmentId = routeArgs["assessmentId"];
-    networkId = routeArgs["networkId"];
-
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -54,28 +59,38 @@ class _Part_2_2State extends State<Part_2_2> {
               ),
 
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
-                    child: Wrap(
-                      children: [
-                        QuestionCard(
-                          questionNumber: "2.2.1",
-                          assessmentId: assessmentId,
-                        ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
+                      child: Wrap(
+                        children: [
+                          SlideUpFadeIn(
+                            0.5,
+                            140,
+                            QuestionCard(
+                              questionNumber: "2.2.1",
+                              assessmentId: widget.assessmentId,
+                            ),
+                          ),
+                          SlideUpFadeIn(
+                            1,
+                            140,
+                            QuestionCard(
+                              questionNumber: "2.2.2",
+                              assessmentId: widget.assessmentId,
+                            ),
+                          ),
+                          SlideUpFadeIn(
+                            1.5,
+                            140,
+                            QuestionCard(
+                              questionNumber: "2.2.3",
+                              assessmentId: widget.assessmentId,
+                            ),
+                          ),
 
-                        QuestionCard(
-                          questionNumber: "2.2.2",
-                          assessmentId: assessmentId,
-                        ),
-
-                        QuestionCard(
-                          questionNumber: "2.2.3",
-                          assessmentId: assessmentId,
-                        ),
-
-                      ],
+                        ],
+                    ),
                   ),
-                ),
               ),
 
 
@@ -91,13 +106,7 @@ class _Part_2_2State extends State<Part_2_2> {
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                Navigator.of(context).pushNamed(
-                    "/part_2_3",
-                    arguments: <String, int>{
-                      "assessmentId": assessmentId,
-                      "networkId": networkId
-                    }
-                );
+                _next(context, widget.assessmentId, widget.networkId);
               }
           ),
         ],
@@ -107,4 +116,32 @@ class _Part_2_2State extends State<Part_2_2> {
     );
 
   }
+
+
+  void _next(BuildContext context, int assessmentId, int networkId){
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 200),
+        pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return Part_2_3(assessmentId: assessmentId, networkId: networkId);
+        },
+        transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return Align(
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
 }

@@ -5,6 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
+//todo: bug: sometimes there appears a renderflex overflow when navigator pops
 class QuestionDialog extends StatefulWidget{
 
   final int assessmentId;
@@ -49,60 +50,61 @@ class _QuestionDialogState extends State<QuestionDialog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                      text: widget.question,
-                      style: ThemeTexts.assessmentQuestion
-                  ),
-                  WidgetSpan(
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 20,
+      body:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                        text: widget.question,
+                        style: ThemeTexts.assessmentQuestion
                     ),
-                  ),
-                  TextSpan(
-                    text: subquestion,
-                    style: ThemeTexts.assessmentSubquestion,
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                color: ThemeColors.greenShade4,
-              ),
-              child: TextField(
-                autofocus: true,
-                style: ThemeTexts.assessmentAnswer,
-                decoration: InputDecoration(
-                  hintText: "Deine Antwort...",
-                  border: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  disabledBorder: InputBorder.none,
+                    WidgetSpan(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 20,
+                      ),
+                    ),
+                    TextSpan(
+                      text: subquestion,
+                      style: ThemeTexts.assessmentSubquestion,
+                    ),
+                  ],
                 ),
-                keyboardType: TextInputType.multiline,
-                maxLines: 16,
-                controller: answerController,
               ),
-
             ),
-          ),
-        ],
-      ),
+
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  color: ThemeColors.greenShade4,
+                ),
+                child: TextField(
+                  autofocus: true,
+                  style: ThemeTexts.assessmentAnswer,
+                  decoration: InputDecoration(
+                    hintText: "Deine Antwort...",
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                  ),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 16,
+                  controller: answerController,
+                ),
+
+              ),
+            ),
+          ],
+        ),
       floatingActionButton: FloatingActionButton(
         elevation: 2.0,
         shape: CircleBorder(),

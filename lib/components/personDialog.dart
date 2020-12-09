@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:flutter_score_slider/flutter_score_slider.dart';
 import 'package:provider/provider.dart';
@@ -107,351 +108,356 @@ class _PersonDialogState extends State<PersonDialog>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(bottom: 94),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 22),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+      backgroundColor: Colors.white,
+      body: FadeIn(
+        1.34,
+        500,
+        Padding(
+          padding: EdgeInsets.only(bottom: 94),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 22),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
 
-                //title
-                Container(
-                  padding: EdgeInsets.only(top: 10, bottom: 14),
-                  child: Text(
-                    "Person hinzufügen",
-                    style: ThemeTexts.assessmentDialogTitle,
-                    overflow: TextOverflow.clip,
-                  ),
-                ),
-
-                //textfield for name input
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                  margin: EdgeInsets.only(bottom: 20),
-                  child: TextField(
-                    maxLines: 1,
-                    controller: _nameController,
-                    onSubmitted: (value){
-
-                    },
-                    textInputAction: TextInputAction.go,
-                    decoration: InputDecoration(
-                      hintText: "Name der Person...",
-                      hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20, color: Colors.grey),
-                      contentPadding: EdgeInsets.all(0),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: ThemeColors.greenShade3),
-                      ),
+                  //title
+                  Container(
+                    padding: EdgeInsets.only(top: 10, bottom: 14),
+                    child: Text(
+                      "Person hinzufügen",
+                      style: ThemeTexts.assessmentDialogTitle,
+                      overflow: TextOverflow.clip,
                     ),
-                    style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
                   ),
-                ),
 
-                //icons for category
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Wähle eine Kategorie",
-                        style: ThemeTexts.assessmentDialogSubtitle,
-                        overflow: TextOverflow.clip,
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                              Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                OutlineButton(
-                                  onPressed: (){
-                                    setState(() {
-                                      _selectedIcon = "Erwachsener";
-                                    });
-                                  },
-                                  color: Colors.transparent,
-                                  highlightColor: ThemeColors.greenShade3,
-                                  highlightedBorderColor: ThemeColors.greenShade2,
-                                  padding: EdgeInsets.all(10),
-                                  shape: CircleBorder(),
-                                  borderSide: BorderSide(
-                                      color: _selectedIcon == "Erwachsener" ? ThemeColors.greenShade2 : Colors.transparent,
-                                      width: _selectedIcon == "Erwachsener" ? 1.5 : 0,
-                                  ),
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 30,
-                                    color: Color.fromRGBO(80, 80, 80, 1),
-                                  ),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "Erwachsener",
-                                  style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                OutlineButton(
-                                  onPressed: (){
-                                    setState(() {
-                                      _selectedIcon = "Gleichaltrige";
-                                    });
-                                  },
-                                  color: Colors.transparent,
-                                  highlightColor: ThemeColors.greenShade3,
-                                  highlightedBorderColor: ThemeColors.greenShade2,
-                                  padding: EdgeInsets.all(10),
-                                  shape: CircleBorder(),
-                                  borderSide: BorderSide(
-                                    color: _selectedIcon == "Gleichaltrige" ? ThemeColors.greenShade2 : Colors.transparent,
-                                    width: _selectedIcon == "Gleichaltrige" ? 1.5 : 0,
-                                  ),
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 30,
-                                    color: Color.fromRGBO(80, 80, 80, 1),
-                                  ),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                  "Gleichaltrige",
-                                  style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                OutlineButton(
-                                  onPressed: (){
-                                    setState(() {
-                                      _showAdditionalCategories = !_showAdditionalCategories;
-                                    });
-                                  },
-                                  color: Colors.transparent,
-                                  padding: EdgeInsets.all(10),
-                                  shape: CircleBorder(),
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 0,
-                                  ),
-                                  child: Icon(
-                                    Icons.arrow_downward_rounded,
-                                    size: 30,
-                                    color: ThemeColors.greenShade2,
-                                  ),
-                                ),
-                                SizedBox(height: 0),
-                                Text(
-                                  "Andere\nKategorien",
-                                  style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400, color: ThemeColors.greenShade2),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ),
+                  //textfield for name input
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    margin: EdgeInsets.only(bottom: 20),
+                    child: TextField(
+                      maxLines: 1,
+                      controller: _nameController,
+                      onSubmitted: (value){
 
-                      Visibility(
-                        visible: _showAdditionalCategories,
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    OutlineButton(
-                                      onPressed: (){
-                                        setState(() {
-                                          _selectedIcon = "Verstorbene";
-                                        });
-                                      },
-                                      color: Colors.transparent,
-                                      highlightColor: ThemeColors.greenShade3,
-                                      highlightedBorderColor: ThemeColors.greenShade2,
-                                      padding: EdgeInsets.all(10),
-                                      shape: CircleBorder(),
-                                      borderSide: BorderSide(
-                                        color: _selectedIcon == "Verstorbene" ? ThemeColors.greenShade2 : Colors.transparent,
-                                        width: _selectedIcon == "Verstorbene" ? 1.5 : 0,
-                                      ),
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 30,
-                                        color: Color.fromRGBO(80, 80, 80, 1),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4),
-                                    Text(
-                                      "Verstorbene",
-                                      style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    OutlineButton(
-                                      onPressed: (){
-                                        setState(() {
-                                          _selectedIcon = "Tiere";
-                                        });
-                                      },
-                                      color: Colors.transparent,
-                                      highlightColor: ThemeColors.greenShade3,
-                                      highlightedBorderColor: ThemeColors.greenShade2,
-                                      padding: EdgeInsets.all(10),
-                                      shape: CircleBorder(),
-                                      borderSide: BorderSide(
-                                        color: _selectedIcon == "Tiere" ? ThemeColors.greenShade2 : Colors.transparent,
-                                        width: _selectedIcon == "Tiere" ? 1.5 : 0,
-                                      ),
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 30,
-                                        color: Color.fromRGBO(80, 80, 80, 1),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4),
-                                    Text(
-                                      "Tiere",
-                                      style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    OutlineButton(
-                                      onPressed: (){
-                                        setState(() {
-                                          _selectedIcon = "Kinder";
-                                        });
-                                      },
-                                      color: Colors.transparent,
-                                      highlightColor: ThemeColors.greenShade3,
-                                      highlightedBorderColor: ThemeColors.greenShade2,
-                                      padding: EdgeInsets.all(10),
-                                      shape: CircleBorder(),
-                                      borderSide: BorderSide(
-                                        color: _selectedIcon == "Kinder" ? ThemeColors.greenShade2 : Colors.transparent,
-                                        width: _selectedIcon == "Kinder" ? 1.5 : 0,
-                                      ),
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 30,
-                                        color: Color.fromRGBO(80, 80, 80, 1),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4),
-                                    Text(
-                                      "Kinder",
-                                      style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-
-                              ],
-                            )
+                      },
+                      textInputAction: TextInputAction.go,
+                      decoration: InputDecoration(
+                        hintText: "Name der Person...",
+                        hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20, color: Colors.grey),
+                        contentPadding: EdgeInsets.all(0),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: ThemeColors.greenShade3),
                         ),
                       ),
-                    ],
+                      style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
+                    ),
                   ),
-                ),
 
-              //dropdown list for life areas
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 28),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Wähle den zugehörigen Bereich",
-                      style: ThemeTexts.assessmentDialogSubtitle,
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.center,
+                  //icons for category
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Wähle eine Kategorie",
+                          style: ThemeTexts.assessmentDialogSubtitle,
+                          overflow: TextOverflow.clip,
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                                Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  OutlineButton(
+                                    onPressed: (){
+                                      setState(() {
+                                        _selectedIcon = "Erwachsene";
+                                      });
+                                    },
+                                    color: Colors.transparent,
+                                    highlightColor: ThemeColors.greenShade3,
+                                    highlightedBorderColor: ThemeColors.greenShade2,
+                                    padding: EdgeInsets.all(10),
+                                    shape: CircleBorder(),
+                                    borderSide: BorderSide(
+                                        color: _selectedIcon == "Erwachsene" ? ThemeColors.greenShade2 : Colors.transparent,
+                                        width: _selectedIcon == "Erwachsene" ? 1.5 : 0,
+                                    ),
+                                    child: Icon(
+                                      Icons.person,
+                                      size: 30,
+                                      color: Color.fromRGBO(80, 80, 80, 1),
+                                    ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "Erwachsene",
+                                    style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  OutlineButton(
+                                    onPressed: (){
+                                      setState(() {
+                                        _selectedIcon = "Gleichaltrige";
+                                      });
+                                    },
+                                    color: Colors.transparent,
+                                    highlightColor: ThemeColors.greenShade3,
+                                    highlightedBorderColor: ThemeColors.greenShade2,
+                                    padding: EdgeInsets.all(10),
+                                    shape: CircleBorder(),
+                                    borderSide: BorderSide(
+                                      color: _selectedIcon == "Gleichaltrige" ? ThemeColors.greenShade2 : Colors.transparent,
+                                      width: _selectedIcon == "Gleichaltrige" ? 1.5 : 0,
+                                    ),
+                                    child: Icon(
+                                      Icons.person,
+                                      size: 30,
+                                      color: Color.fromRGBO(80, 80, 80, 1),
+                                    ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "Gleichaltrige",
+                                    style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  OutlineButton(
+                                    onPressed: (){
+                                      setState(() {
+                                        _showAdditionalCategories = !_showAdditionalCategories;
+                                      });
+                                    },
+                                    color: Colors.transparent,
+                                    padding: EdgeInsets.all(10),
+                                    shape: CircleBorder(),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 0,
+                                    ),
+                                    child: Icon(
+                                      Icons.arrow_downward_rounded,
+                                      size: 30,
+                                      color: ThemeColors.greenShade2,
+                                    ),
+                                  ),
+                                  SizedBox(height: 0),
+                                  Text(
+                                    "Weitere\nKategorien",
+                                    style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400, color: ThemeColors.greenShade2),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ),
+
+                        Visibility(
+                          visible: _showAdditionalCategories,
+                          child: Container(
+                            margin: EdgeInsets.only(top: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      OutlineButton(
+                                        onPressed: (){
+                                          setState(() {
+                                            _selectedIcon = "Verstorbene";
+                                          });
+                                        },
+                                        color: Colors.transparent,
+                                        highlightColor: ThemeColors.greenShade3,
+                                        highlightedBorderColor: ThemeColors.greenShade2,
+                                        padding: EdgeInsets.all(10),
+                                        shape: CircleBorder(),
+                                        borderSide: BorderSide(
+                                          color: _selectedIcon == "Verstorbene" ? ThemeColors.greenShade2 : Colors.transparent,
+                                          width: _selectedIcon == "Verstorbene" ? 1.5 : 0,
+                                        ),
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 30,
+                                          color: Color.fromRGBO(80, 80, 80, 1),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "Verstorbene",
+                                        style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      OutlineButton(
+                                        onPressed: (){
+                                          setState(() {
+                                            _selectedIcon = "Tiere";
+                                          });
+                                        },
+                                        color: Colors.transparent,
+                                        highlightColor: ThemeColors.greenShade3,
+                                        highlightedBorderColor: ThemeColors.greenShade2,
+                                        padding: EdgeInsets.all(10),
+                                        shape: CircleBorder(),
+                                        borderSide: BorderSide(
+                                          color: _selectedIcon == "Tiere" ? ThemeColors.greenShade2 : Colors.transparent,
+                                          width: _selectedIcon == "Tiere" ? 1.5 : 0,
+                                        ),
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 30,
+                                          color: Color.fromRGBO(80, 80, 80, 1),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "Tiere",
+                                        style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      OutlineButton(
+                                        onPressed: (){
+                                          setState(() {
+                                            _selectedIcon = "Kinder";
+                                          });
+                                        },
+                                        color: Colors.transparent,
+                                        highlightColor: ThemeColors.greenShade3,
+                                        highlightedBorderColor: ThemeColors.greenShade2,
+                                        padding: EdgeInsets.all(10),
+                                        shape: CircleBorder(),
+                                        borderSide: BorderSide(
+                                          color: _selectedIcon == "Kinder" ? ThemeColors.greenShade2 : Colors.transparent,
+                                          width: _selectedIcon == "Kinder" ? 1.5 : 0,
+                                        ),
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 30,
+                                          color: Color.fromRGBO(80, 80, 80, 1),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "Kinder",
+                                        style: ThemeTexts.assessmentNavigationNext.copyWith(fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+
+                                ],
+                              )
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 10),
-                    _selectedLifeArea.isEmpty ?
-                    DropdownButton(
-                      isExpanded: true,
-                      icon: Icon(Icons.keyboard_arrow_down_rounded),
-                      iconSize: 32,
-                      hint: Text("Bereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
-                      items: _dropdownMenuItems,
-                      onChanged: onChangeDropdownItem,
-                    ) :
-                    DropdownButton(
-                      isExpanded: true,
-                      icon: Icon(Icons.keyboard_arrow_down_rounded),
-                      iconSize: 32,
-                      hint: Text("Bereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
-                      value: _selectedLifeArea,
-                      items: _dropdownMenuItems,
-                      onChanged: onChangeDropdownItem,
-                    ),
+                  ),
 
-                  ],
-                ),
-              ),
-
-                //slider for distance
+                //dropdown list for life areas
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 4, vertical: 28),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 28),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Wie wichtig ist Dir diese Person?",
+                        "Wähle den zugehörigen Bereich",
                         style: ThemeTexts.assessmentDialogSubtitle,
                         overflow: TextOverflow.clip,
+                        textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 4),
-                      Text(
-                        "Ziehe den Kreis nach links oder rechts",
-                        style: ThemeTexts.assessmentText.copyWith(fontSize: 14, color: Color.fromRGBO(200, 200, 200, 1)),
-                        overflow: TextOverflow.clip,
+                      SizedBox(height: 10),
+                      _selectedLifeArea.isEmpty ?
+                      DropdownButton(
+                        isExpanded: true,
+                        icon: Icon(Icons.keyboard_arrow_down_rounded),
+                        iconSize: 32,
+                        hint: Text("Bereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
+                        items: _dropdownMenuItems,
+                        onChanged: onChangeDropdownItem,
+                      ) :
+                      DropdownButton(
+                        isExpanded: true,
+                        icon: Icon(Icons.keyboard_arrow_down_rounded),
+                        iconSize: 32,
+                        hint: Text("Bereich auswählen", style: ThemeTexts.assessmentText.copyWith(color: Color.fromRGBO(180, 180, 180, 1), fontWeight: FontWeight.w400)),
+                        value: _selectedLifeArea,
+                        items: _dropdownMenuItems,
+                        onChanged: onChangeDropdownItem,
                       ),
-                      SizedBox(height: 14),
-                      ScoreSlider(
-                        maxScore: 8,
-                        score: _currentDistance,
-                        onScoreChanged: (newDistance){
-                          setState(() {
-                            _currentDistance = newDistance;
-                          });
-                        },
-                        backgroundColor: Colors.transparent,
-                        scoreDotColor: ThemeColors.greenShade3,
-                        thumbColor: ThemeColors.greenShade2,
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        "Wichtigkeit: "+_distanceMap[_currentDistance],
-                        style: ThemeTexts.assessmentText.copyWith(fontSize: 14, color: Color.fromRGBO(110, 110, 110, 1), fontWeight: FontWeight.w500),
-                        overflow: TextOverflow.clip,
-                      ),
+
                     ],
                   ),
                 ),
-              ],
+
+                  //slider for distance
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 28),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Wie wichtig ist Dir diese Person?",
+                          style: ThemeTexts.assessmentDialogSubtitle,
+                          overflow: TextOverflow.clip,
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "Ziehe den Kreis nach links oder rechts",
+                          style: ThemeTexts.assessmentText.copyWith(fontSize: 14, color: Color.fromRGBO(200, 200, 200, 1)),
+                          overflow: TextOverflow.clip,
+                        ),
+                        SizedBox(height: 14),
+                        ScoreSlider(
+                          maxScore: 8,
+                          score: _currentDistance,
+                          onScoreChanged: (newDistance){
+                            setState(() {
+                              _currentDistance = newDistance;
+                            });
+                          },
+                          backgroundColor: Colors.transparent,
+                          scoreDotColor: ThemeColors.greenShade3,
+                          thumbColor: ThemeColors.greenShade2,
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "Wichtigkeit: "+_distanceMap[_currentDistance],
+                          style: ThemeTexts.assessmentText.copyWith(fontSize: 14, color: Color.fromRGBO(110, 110, 110, 1), fontWeight: FontWeight.w500),
+                          overflow: TextOverflow.clip,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
