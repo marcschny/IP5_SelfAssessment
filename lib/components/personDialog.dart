@@ -56,15 +56,16 @@ class _PersonDialogState extends State<PersonDialog>{
   //distance
   int _currentDistance = 4;
   Map<int, String> _distanceMap = {
-    8: "Gar nicht wichtig",
-    7: "Weniger wichtig",
-    6: "Weniger wichtig",
-    5: "Etwas wichtig",
+
+    8: "Sehr sehr wichtig",
+    7: "Sehr wichtig" ,
+    6: "Sehr wichtig",
+    5: "Wichtig",
     4: "Wichtig",
-    3: "Wichtig",
-    2: "Sehr wichtig",
-    1: "Sehr wichtig",
-    0: "Sehr sehr wichtig"
+    3: "Etwas wichtig" ,
+    2: "Weniger wichtig",
+    1: "Weniger wichtig",
+    0: "Gar nicht wichtig"
   };
 
 
@@ -522,7 +523,7 @@ class _PersonDialogState extends State<PersonDialog>{
                         _nameController.text,
                         _selectedIcon,
                         _selectedLifeArea,
-                        _currentDistance.toDouble(),
+                        8 - _currentDistance.toDouble(),
                         widget.networkId,
                         widget.assessmentId
                       );
