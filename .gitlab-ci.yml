@@ -48,7 +48,7 @@ test:flutter:
   script:
     - flutter pub get
     - flutter packages pub run build_runner build
-    - flutter test
+    - flutter test test/db_tests.dart
 
 
 #build:apk:
