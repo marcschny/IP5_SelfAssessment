@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-
+//todo: write visualization on "start" to db and adjust functions and vars in this file (like "visId")
 //Screen 1.1
 class LifeAreas extends StatefulWidget{
 

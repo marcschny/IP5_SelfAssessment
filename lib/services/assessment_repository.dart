@@ -9,7 +9,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 
 
-//these repository contains all DAOs for this assessment
+//this repository contains all DAOs for this assessment
 @dao
 abstract class AssessmentRepository{
 
@@ -99,32 +99,28 @@ abstract class AssessmentRepository{
 
 
 
-  /* CHANGE PROJECT */
+  /* PROJECT CARD */
 
-  /*//get all change projects
-  @Query('SELECT * FROM ChangeProject')
-  Future<List<ChangeProject>> getAllChangeProjects();
+  //get all project cards
+  @Query('SELECT * FROM ProjectCard')
+  Future<List<ProjectCard>> getAllProjectCards();
 
-  //find changeproject by assessment_id
-  @Query('SELECT * FROM ChangeProject WHERE assessment_id = :id')
-  Future<ChangeProject> findChangeProject(int id);
+  //find projectcard by assessment_id
+  @Query('SELECT * FROM ProjectCard WHERE assessment_id = :id')
+  Future<ProjectCard> findProjectCard(int id);
 
-  //new changeproject
+  //new ProjectCard
   @insert
-  Future<int> createChangeProject(ChangeProject changeProject);
+  Future<int> createProjectCard(ProjectCard projectCard);
 
-  //update changeproject
+  //update ProjectCard
   @update
-  Future<int> updateChangeProject(ChangeProject changeProject);
+  Future<int> updateProjectCard(ProjectCard projectCard);
 
-  //delete changeproject
+
+  //delete ProjectCard
   @delete
-  Future<int> deleteChangeProject(ChangeProject changeProject);*/
-
-
-
-
-
+  Future<int> deleteProjectCard(ProjectCard projectCard);
 
 
   /* VISUALIZATION*/

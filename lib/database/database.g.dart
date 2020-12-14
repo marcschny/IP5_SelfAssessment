@@ -125,6 +125,17 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
+        _projectCardInsertionAdapter = InsertionAdapter(
+            database,
+            'ProjectCard',
+            (ProjectCard item) => <String, dynamic>{
+                  'id': item.id,
+                  'mood': item.mood,
+                  'description': item.description,
+                  'explanation': item.explanation,
+                  'date_created': item.date_created,
+                  'assessment_id': item.assessment_id
+                }),
         _visualizationInsertionAdapter = InsertionAdapter(
             database,
             'Visualization',
@@ -176,6 +187,18 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
+        _projectCardUpdateAdapter = UpdateAdapter(
+            database,
+            'ProjectCard',
+            ['id'],
+            (ProjectCard item) => <String, dynamic>{
+                  'id': item.id,
+                  'mood': item.mood,
+                  'description': item.description,
+                  'explanation': item.explanation,
+                  'date_created': item.date_created,
+                  'assessment_id': item.assessment_id
+                }),
         _visualizationUpdateAdapter = UpdateAdapter(
             database,
             'Visualization',
@@ -218,6 +241,18 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
+        _projectCardDeletionAdapter = DeletionAdapter(
+            database,
+            'ProjectCard',
+            ['id'],
+            (ProjectCard item) => <String, dynamic>{
+                  'id': item.id,
+                  'mood': item.mood,
+                  'description': item.description,
+                  'explanation': item.explanation,
+                  'date_created': item.date_created,
+                  'assessment_id': item.assessment_id
+                }),
         _visualizationDeletionAdapter = DeletionAdapter(
             database,
             'Visualization',
@@ -252,6 +287,8 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final InsertionAdapter<Assessment> _assessmentInsertionAdapter;
 
+  final InsertionAdapter<ProjectCard> _projectCardInsertionAdapter;
+
   final InsertionAdapter<Visualization> _visualizationInsertionAdapter;
 
   final InsertionAdapter<Person> _personInsertionAdapter;
@@ -262,6 +299,8 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final UpdateAdapter<Assessment> _assessmentUpdateAdapter;
 
+  final UpdateAdapter<ProjectCard> _projectCardUpdateAdapter;
+
   final UpdateAdapter<Visualization> _visualizationUpdateAdapter;
 
   final UpdateAdapter<Person> _personUpdateAdapter;
@@ -269,6 +308,8 @@ class _$AssessmentRepository extends AssessmentRepository {
   final DeletionAdapter<Answer> _answerDeletionAdapter;
 
   final DeletionAdapter<Assessment> _assessmentDeletionAdapter;
+
+  final DeletionAdapter<ProjectCard> _projectCardDeletionAdapter;
 
   final DeletionAdapter<Visualization> _visualizationDeletionAdapter;
 
@@ -375,6 +416,32 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
+  Future<List<ProjectCard>> getAllProjectCards() async {
+    return _queryAdapter.queryList('SELECT * FROM ProjectCard',
+        mapper: (Map<String, dynamic> row) => ProjectCard(
+            row['id'] as int,
+            row['mood'] as int,
+            row['description'] as String,
+            row['explanation'] as String,
+            row['date_created'] as String,
+            row['assessment_id'] as int));
+  }
+
+  @override
+  Future<ProjectCard> findProjectCard(int id) async {
+    return _queryAdapter.query(
+        'SELECT * FROM ProjectCard WHERE assessment_id = ?',
+        arguments: <dynamic>[id],
+        mapper: (Map<String, dynamic> row) => ProjectCard(
+            row['id'] as int,
+            row['mood'] as int,
+            row['description'] as String,
+            row['explanation'] as String,
+            row['date_created'] as String,
+            row['assessment_id'] as int));
+  }
+
+  @override
   Future<List<Visualization>> getAllVisualizations() async {
     return _queryAdapter.queryList('SELECT * FROM Visualization',
         mapper: (Map<String, dynamic> row) => Visualization(
@@ -451,6 +518,12 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
+  Future<int> createProjectCard(ProjectCard projectCard) {
+    return _projectCardInsertionAdapter.insertAndReturnId(
+        projectCard, OnConflictStrategy.abort);
+  }
+
+  @override
   Future<int> createVisualization(Visualization visualization) {
     return _visualizationInsertionAdapter.insertAndReturnId(
         visualization, OnConflictStrategy.abort);
@@ -481,6 +554,12 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
+  Future<int> updateProjectCard(ProjectCard projectCard) {
+    return _projectCardUpdateAdapter.updateAndReturnChangedRows(
+        projectCard, OnConflictStrategy.abort);
+  }
+
+  @override
   Future<int> updateVisualization(Visualization visualization) {
     return _visualizationUpdateAdapter.updateAndReturnChangedRows(
         visualization, OnConflictStrategy.abort);
@@ -500,6 +579,11 @@ class _$AssessmentRepository extends AssessmentRepository {
   @override
   Future<int> deleteAssessment(Assessment assessment) {
     return _assessmentDeletionAdapter.deleteAndReturnChangedRows(assessment);
+  }
+
+  @override
+  Future<int> deleteProjectCard(ProjectCard projectCard) {
+    return _projectCardDeletionAdapter.deleteAndReturnChangedRows(projectCard);
   }
 
   @override
