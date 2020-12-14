@@ -12,12 +12,12 @@ import 'Part_3_3.dart';
 class Part_3_2 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_3_2({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -138,7 +138,7 @@ class _Part_3_2State extends State<Part_3_2> {
                 },
 
                 callbackNext: () {
-                 _next(context, widget.assessmentId, widget.networkId);
+                 _next(context, widget.assessmentId, widget.visualizationId);
                 }
 
             ),
@@ -150,7 +150,7 @@ class _Part_3_2State extends State<Part_3_2> {
     );
   }
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -158,7 +158,7 @@ class _Part_3_2State extends State<Part_3_2> {
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_3(assessmentId: assessmentId, networkId: networkId);
+          return Part_3_3(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

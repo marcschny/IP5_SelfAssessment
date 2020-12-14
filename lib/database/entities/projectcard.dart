@@ -5,7 +5,7 @@ import 'package:floor/floor.dart';
 import 'assessment.dart';
 
 @Entity(
-  tableName: 'ChangeProject',
+  tableName: 'ProjectCard',
   foreignKeys: [
     ForeignKey(
       childColumns: ['assessment_id'],
@@ -14,13 +14,14 @@ import 'assessment.dart';
     )
   ],
 )
-class ChangeProject{
+class ProjectCard{
   @PrimaryKey(autoGenerate: true)
   final int id;
-  final String title;
-  final String date_started;
-  final String date_finished;
+  final int mood;
+  final String description;
+  final String explanation;
+  final String date_created;
   final int assessment_id;
 
-  ChangeProject(this.id, this.title, this.date_started, this.date_finished, this.assessment_id);
+  ProjectCard(this.id, this.mood, this.description, this.explanation,this.date_created, this.assessment_id);
 }

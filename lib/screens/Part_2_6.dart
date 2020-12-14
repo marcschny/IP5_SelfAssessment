@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
-import 'package:ip5_selbsteinschaetzung/components/networkcardDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/visualizationDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
@@ -13,12 +13,12 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 class Part_2_6 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_2_6({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -160,9 +160,8 @@ class _Part_2_6State extends State<Part_2_6>{
                               showDialog(
                                 context: context,
                                 barrierColor: Colors.black.withOpacity(.3),
-                                child: SlideUpFromBottom(0, NetworkcardDialog(assessmentId: widget.assessmentId, networkId: widget.networkId)),
+                                child: SlideUpFromBottom(0, VisualizationDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
                               );
-                              print("show social card");
                             },
                           ),
                         ),

@@ -10,29 +10,29 @@ import 'package:ip5_selbsteinschaetzung/components/yourPersonCircle.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/resources/networkCardMethods.dart';
+import 'package:ip5_selbsteinschaetzung/resources/visualizationMethods.dart';
 import 'package:provider/provider.dart';
 import 'Part_2_1.dart';
 
 
 //Screen 1.3
-class Visualization extends StatefulWidget{
+class MyVisualization extends StatefulWidget{
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
-  const Visualization({
+  const MyVisualization({
     Key key,
     @required this.assessmentId,
-    @required this.networkId
+    @required this.visualizationId
   }) : super(key: key);
 
-  _VisualizationState createState() => _VisualizationState();
+  _MyVisualizationState createState() => _MyVisualizationState();
 
 }
 
 
-class _VisualizationState extends State<Visualization>{
+class _MyVisualizationState extends State<MyVisualization>{
 
   //necessary lists
   List<String> lifeAreas;
@@ -143,7 +143,7 @@ class _VisualizationState extends State<Visualization>{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    final persons = await assessmentRepo.getAllPersonsByNetworkCard(widget.networkId);
+    final persons = await assessmentRepo.getAllPersonsByVisualization(widget.visualizationId);
 
     setState(() {
       personList = persons;
@@ -261,7 +261,7 @@ class _VisualizationState extends State<Visualization>{
               showBackButton: true,
               nextTitle: "Hey, das kann ich bereits!",
               callbackNext: (){
-                _next(context, widget.assessmentId, widget.networkId);
+                _next(context, widget.assessmentId, widget.visualizationId);
               },
               callbackBack: (){
                 Navigator.of(context).pop();
@@ -273,7 +273,7 @@ class _VisualizationState extends State<Visualization>{
     );
   }
 
-  void _next(BuildContext context, int assessmentId, int networkId) {
+  void _next(BuildContext context, int assessmentId, int visualizationId) {
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 300),
@@ -281,7 +281,7 @@ class _VisualizationState extends State<Visualization>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_1(assessmentId: assessmentId, networkId: networkId);
+          return Part_2_1(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

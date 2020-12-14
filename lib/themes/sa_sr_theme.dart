@@ -14,7 +14,7 @@ abstract class ThemeColors{
   static const Color greyShade0 = Color.fromRGBO(170, 170, 170, 1);   //title color
   static const Color greyShade1 = Color.fromRGBO(229, 229, 229, 1);   //back button color
 
-  //network card colors
+  //visualization colors
   static const Color firstColor = Color.fromRGBO(212, 219, 200, 1);
   static const Color secondColor = Color.fromRGBO(200, 219, 215, 1);
   static const Color thirdColor =  Color.fromRGBO(217, 200, 219, 1);

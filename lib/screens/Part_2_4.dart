@@ -16,9 +16,9 @@ class Part_2_4 extends StatefulWidget {
 
   final List<String> evaluation;
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
-  const Part_2_4({Key key, this.assessmentId, this.evaluation, this.networkId}) : super(key: key);
+  const Part_2_4({Key key, this.assessmentId, this.evaluation, this.visualizationId}) : super(key: key);
 
   @override
   _Part_2_4State createState() => _Part_2_4State();
@@ -130,7 +130,7 @@ class _Part_2_4State extends State<Part_2_4>{
                                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                                   onPressed: () {
-                                    _goToQuestionnaire(context, widget.assessmentId, widget.networkId);
+                                    _goToQuestionnaire(context, widget.assessmentId, widget.visualizationId);
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
@@ -179,7 +179,7 @@ class _Part_2_4State extends State<Part_2_4>{
                  showBackButton: false,
                  nextTitle: "Name it!",
                  callbackNext: (){
-                   _next(context, widget.assessmentId, widget.networkId);
+                   _next(context, widget.assessmentId, widget.visualizationId);
                  }
               ),
 
@@ -251,7 +251,7 @@ class _Part_2_4State extends State<Part_2_4>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -259,7 +259,7 @@ class _Part_2_4State extends State<Part_2_4>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_5(assessmentId: assessmentId, networkId: networkId);
+          return Part_2_5(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,
@@ -277,7 +277,7 @@ class _Part_2_4State extends State<Part_2_4>{
     );
   }
 
-  void _goToQuestionnaire(BuildContext context, int assessmentId, int networkId){
+  void _goToQuestionnaire(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -285,7 +285,7 @@ class _Part_2_4State extends State<Part_2_4>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_1(assessmentId: assessmentId, networkId: networkId);
+          return Part_3_1(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

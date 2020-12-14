@@ -11,12 +11,12 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 class Part_2_5 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_2_5({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -106,7 +106,7 @@ class _Part_2_5State extends State<Part_2_5>{
                   Navigator.of(context).pop();
                 },
                 callbackNext: (){
-                  _next(context, widget.assessmentId, widget.networkId);
+                  _next(context, widget.assessmentId, widget.visualizationId);
                 }
             ),
           ],
@@ -118,7 +118,7 @@ class _Part_2_5State extends State<Part_2_5>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -126,7 +126,7 @@ class _Part_2_5State extends State<Part_2_5>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_6(assessmentId: assessmentId, networkId: networkId);
+          return Part_2_6(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

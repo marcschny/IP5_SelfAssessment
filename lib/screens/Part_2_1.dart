@@ -10,12 +10,12 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
 class Part_2_1 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_2_1({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -108,7 +108,7 @@ class _Part_2_1State extends State<Part_2_1>{
                 },
 
                 callbackNext: () {
-                  _next(context, widget.assessmentId, widget.networkId);
+                  _next(context, widget.assessmentId, widget.visualizationId);
                 }
 
             ),
@@ -120,7 +120,7 @@ class _Part_2_1State extends State<Part_2_1>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 300),
@@ -128,7 +128,7 @@ class _Part_2_1State extends State<Part_2_1>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_2(assessmentId: assessmentId, networkId: networkId);
+          return Part_2_2(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

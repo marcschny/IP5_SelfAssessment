@@ -2,10 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:matcher/matcher.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
-
 import 'package:ip5_selbsteinschaetzung/services/assessment_repository.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
@@ -34,10 +33,10 @@ void main() {
           .build();
       repository = database.assessmentRepository;
       final Assessment assessment = Assessment(1, "28-11-2020", "29-11-2020");
-      final NetworkCard networkCard = NetworkCard(1, 1, 5, "lifeAreas");
+      final Visualization visualization = Visualization(1, 1, 5, "lifeAreas");
       repository
         ..createAssessment(assessment)
-        ..createNetworkCard(networkCard);
+        ..createVisualization(visualization);
     });
 
     tearDown(() async {
@@ -68,7 +67,7 @@ void main() {
       test('update person', () async{
         final person = Person(2, "Michael", "michaelIcon", "michaelArea", 5, 1, 1);
         await repository.createPerson(person);
-        final updatePerson = Person(person.id, "Angelo", person.icon, person.lifeArea, person.distance, person.network_id, person.assessment_id);
+        final updatePerson = Person(person.id, "Angelo", person.icon, person.lifeArea, person.distance, person.visualization_id, person.assessment_id);
 
         await repository.updatePerson(updatePerson);
 
@@ -146,33 +145,33 @@ void main() {
 
     });
 
-    group('network card tests', (){
+    group('visualization tests', (){
 
       //todo: repo: create find NC by NC.id
-      test('update network card', () async{
+      test('update visualization', () async{
 
-        final updateNetworkCard = NetworkCard(1, 1, 4, "updated life areas");
-        await repository.updateNetworkCard(updateNetworkCard);
+        final updateVisualization = Visualization(1, 1, 4, "updated life areas");
+        await repository.updateVisualization(updateVisualization);
 
-        final actual = await repository.findNetworkCard(1);
-        expect(actual.noLifeAreas, updateNetworkCard.noLifeAreas);
-        expect(actual.lifeAreas, updateNetworkCard.lifeAreas);
+        final actual = await repository.findVisualization(1);
+        expect(actual.noLifeAreas, updateVisualization.noLifeAreas);
+        expect(actual.lifeAreas, updateVisualization.lifeAreas);
       });
 
-      test('create network card', () async{
+      test('create Visualization', () async{
         //one nc has been created in setup()
-        final actual = await repository.getAllNetworkCards();
+        final actual = await repository.getAllVisualizations();
         expect(actual, hasLength(1));
       });
 
-      test('delete network card', () async{
+      test('delete Visualization', () async{
         //one nc has been created in setup()
-        final networkCard = NetworkCard(2, 1, 5, "lifeAreas");
-        await repository.createNetworkCard(networkCard);
+        final visualization = Visualization(2, 1, 5, "lifeAreas");
+        await repository.createVisualization(visualization);
 
-        await repository.deleteNetworkCard(networkCard);
+        await repository.deleteVisualization(visualization);
 
-        final actual = await repository.getAllNetworkCards();
+        final actual = await repository.getAllVisualizations();
         expect(actual, hasLength(1));
       });
 

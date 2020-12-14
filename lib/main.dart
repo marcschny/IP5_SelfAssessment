@@ -16,7 +16,7 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_3_2.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_3.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_4.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_5.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Visualization.dart';
+import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
             "/lifeAreas": (context) => LifeAreas(),
             "/importantPersons": (context) => ImportantPersons(),
             "/personDialog": (context) => PersonDialog(),
-            "/visualization": (context) => Visualization(),
+            "/visualization": (context) => MyVisualization(),
             "/part_2_1": (context) => Part_2_1(),
             "/part_2_2": (context) => Part_2_2(),
             "/part_2_3": (context) => Part_2_3(),

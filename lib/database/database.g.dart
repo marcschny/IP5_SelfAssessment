@@ -86,13 +86,11 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Question` (`id` INTEGER, `question_number` TEXT, `question` TEXT, `subquestion` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, PRIMARY KEY (`question_number`))');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `NetworkCard` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `noLifeAreas` INTEGER, `lifeAreas` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
+            'CREATE TABLE IF NOT EXISTS `Visualization` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `noLifeAreas` INTEGER, `lifeAreas` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Person` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `icon` TEXT, `lifeArea` TEXT, `distance` REAL, `network_id` INTEGER, `assessment_id` INTEGER, FOREIGN KEY (`network_id`) REFERENCES `NetworkCard` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
+            'CREATE TABLE IF NOT EXISTS `Person` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `icon` TEXT, `lifeArea` TEXT, `distance` REAL, `visualization_id` INTEGER, `assessment_id` INTEGER, FOREIGN KEY (`visualization_id`) REFERENCES `Visualization` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `ChangeProject` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `date_started` TEXT, `date_finished` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
-        await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Note` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `note` TEXT, `date_created` TEXT, `project_id` INTEGER, `assessment_id` INTEGER, FOREIGN KEY (`project_id`) REFERENCES `ChangeProject` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
+            'CREATE TABLE IF NOT EXISTS `ProjectCard` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `mood` INTEGER, `description` TEXT, `explanation` TEXT, `date_created` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -127,30 +125,10 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
-        _changeProjectInsertionAdapter = InsertionAdapter(
+        _visualizationInsertionAdapter = InsertionAdapter(
             database,
-            'ChangeProject',
-            (ChangeProject item) => <String, dynamic>{
-                  'id': item.id,
-                  'title': item.title,
-                  'date_started': item.date_started,
-                  'date_finished': item.date_finished,
-                  'assessment_id': item.assessment_id
-                }),
-        _noteInsertionAdapter = InsertionAdapter(
-            database,
-            'Note',
-            (Note item) => <String, dynamic>{
-                  'id': item.id,
-                  'note': item.note,
-                  'date_created': item.date_created,
-                  'project_id': item.project_id,
-                  'assessment_id': item.assessment_id
-                }),
-        _networkCardInsertionAdapter = InsertionAdapter(
-            database,
-            'NetworkCard',
-            (NetworkCard item) => <String, dynamic>{
+            'Visualization',
+            (Visualization item) => <String, dynamic>{
                   'id': item.id,
                   'noLifeAreas': item.noLifeAreas,
                   'lifeAreas': item.lifeAreas,
@@ -165,7 +143,7 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'icon': item.icon,
                   'lifeArea': item.lifeArea,
                   'distance': item.distance,
-                  'network_id': item.network_id,
+                  'visualization_id': item.visualization_id,
                   'assessment_id': item.assessment_id
                 }),
         _questionUpdateAdapter = UpdateAdapter(
@@ -198,33 +176,11 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
-        _changeProjectUpdateAdapter = UpdateAdapter(
+        _visualizationUpdateAdapter = UpdateAdapter(
             database,
-            'ChangeProject',
+            'Visualization',
             ['id'],
-            (ChangeProject item) => <String, dynamic>{
-                  'id': item.id,
-                  'title': item.title,
-                  'date_started': item.date_started,
-                  'date_finished': item.date_finished,
-                  'assessment_id': item.assessment_id
-                }),
-        _noteUpdateAdapter = UpdateAdapter(
-            database,
-            'Note',
-            ['id'],
-            (Note item) => <String, dynamic>{
-                  'id': item.id,
-                  'note': item.note,
-                  'date_created': item.date_created,
-                  'project_id': item.project_id,
-                  'assessment_id': item.assessment_id
-                }),
-        _networkCardUpdateAdapter = UpdateAdapter(
-            database,
-            'NetworkCard',
-            ['id'],
-            (NetworkCard item) => <String, dynamic>{
+            (Visualization item) => <String, dynamic>{
                   'id': item.id,
                   'noLifeAreas': item.noLifeAreas,
                   'lifeAreas': item.lifeAreas,
@@ -240,7 +196,7 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'icon': item.icon,
                   'lifeArea': item.lifeArea,
                   'distance': item.distance,
-                  'network_id': item.network_id,
+                  'visualization_id': item.visualization_id,
                   'assessment_id': item.assessment_id
                 }),
         _answerDeletionAdapter = DeletionAdapter(
@@ -262,33 +218,11 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
-        _changeProjectDeletionAdapter = DeletionAdapter(
+        _visualizationDeletionAdapter = DeletionAdapter(
             database,
-            'ChangeProject',
+            'Visualization',
             ['id'],
-            (ChangeProject item) => <String, dynamic>{
-                  'id': item.id,
-                  'title': item.title,
-                  'date_started': item.date_started,
-                  'date_finished': item.date_finished,
-                  'assessment_id': item.assessment_id
-                }),
-        _noteDeletionAdapter = DeletionAdapter(
-            database,
-            'Note',
-            ['id'],
-            (Note item) => <String, dynamic>{
-                  'id': item.id,
-                  'note': item.note,
-                  'date_created': item.date_created,
-                  'project_id': item.project_id,
-                  'assessment_id': item.assessment_id
-                }),
-        _networkCardDeletionAdapter = DeletionAdapter(
-            database,
-            'NetworkCard',
-            ['id'],
-            (NetworkCard item) => <String, dynamic>{
+            (Visualization item) => <String, dynamic>{
                   'id': item.id,
                   'noLifeAreas': item.noLifeAreas,
                   'lifeAreas': item.lifeAreas,
@@ -304,7 +238,7 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'icon': item.icon,
                   'lifeArea': item.lifeArea,
                   'distance': item.distance,
-                  'network_id': item.network_id,
+                  'visualization_id': item.visualization_id,
                   'assessment_id': item.assessment_id
                 });
 
@@ -318,11 +252,7 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final InsertionAdapter<Assessment> _assessmentInsertionAdapter;
 
-  final InsertionAdapter<ChangeProject> _changeProjectInsertionAdapter;
-
-  final InsertionAdapter<Note> _noteInsertionAdapter;
-
-  final InsertionAdapter<NetworkCard> _networkCardInsertionAdapter;
+  final InsertionAdapter<Visualization> _visualizationInsertionAdapter;
 
   final InsertionAdapter<Person> _personInsertionAdapter;
 
@@ -332,11 +262,7 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final UpdateAdapter<Assessment> _assessmentUpdateAdapter;
 
-  final UpdateAdapter<ChangeProject> _changeProjectUpdateAdapter;
-
-  final UpdateAdapter<Note> _noteUpdateAdapter;
-
-  final UpdateAdapter<NetworkCard> _networkCardUpdateAdapter;
+  final UpdateAdapter<Visualization> _visualizationUpdateAdapter;
 
   final UpdateAdapter<Person> _personUpdateAdapter;
 
@@ -344,11 +270,7 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final DeletionAdapter<Assessment> _assessmentDeletionAdapter;
 
-  final DeletionAdapter<ChangeProject> _changeProjectDeletionAdapter;
-
-  final DeletionAdapter<Note> _noteDeletionAdapter;
-
-  final DeletionAdapter<NetworkCard> _networkCardDeletionAdapter;
+  final DeletionAdapter<Visualization> _visualizationDeletionAdapter;
 
   final DeletionAdapter<Person> _personDeletionAdapter;
 
@@ -453,69 +375,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<ChangeProject>> getAllChangeProjects() async {
-    return _queryAdapter.queryList('SELECT * FROM ChangeProject',
-        mapper: (Map<String, dynamic> row) => ChangeProject(
-            row['id'] as int,
-            row['title'] as String,
-            row['date_started'] as String,
-            row['date_finished'] as String,
-            row['assessment_id'] as int));
-  }
-
-  @override
-  Future<ChangeProject> findChangeProject(int id) async {
-    return _queryAdapter.query(
-        'SELECT * FROM ChangeProject WHERE assessment_id = ?',
-        arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => ChangeProject(
-            row['id'] as int,
-            row['title'] as String,
-            row['date_started'] as String,
-            row['date_finished'] as String,
-            row['assessment_id'] as int));
-  }
-
-  @override
-  Future<List<Note>> getAllNotes() async {
-    return _queryAdapter.queryList('SELECT * FROM Note',
-        mapper: (Map<String, dynamic> row) => Note(
-            row['id'] as int,
-            row['note'] as String,
-            row['date_created'] as String,
-            row['project_id'] as int,
-            row['assessment_id'] as int));
-  }
-
-  @override
-  Future<List<Note>> getAllNotesByAssessment(int pid, int aid) async {
-    return _queryAdapter.queryList(
-        'SELECT * FROM Note WHERE project_id = ? AND assessment_id = ?',
-        arguments: <dynamic>[pid, aid],
-        mapper: (Map<String, dynamic> row) => Note(
-            row['id'] as int,
-            row['note'] as String,
-            row['date_created'] as String,
-            row['project_id'] as int,
-            row['assessment_id'] as int));
-  }
-
-  @override
-  Future<Note> findNote(int id) async {
-    return _queryAdapter.query('SELECT * FROM Note WHERE id = ?',
-        arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => Note(
-            row['id'] as int,
-            row['note'] as String,
-            row['date_created'] as String,
-            row['project_id'] as int,
-            row['assessment_id'] as int));
-  }
-
-  @override
-  Future<List<NetworkCard>> getAllNetworkCards() async {
-    return _queryAdapter.queryList('SELECT * FROM NetworkCard',
-        mapper: (Map<String, dynamic> row) => NetworkCard(
+  Future<List<Visualization>> getAllVisualizations() async {
+    return _queryAdapter.queryList('SELECT * FROM Visualization',
+        mapper: (Map<String, dynamic> row) => Visualization(
             row['id'] as int,
             row['assessment_id'] as int,
             row['noLifeAreas'] as int,
@@ -523,11 +385,11 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<NetworkCard> findNetworkCard(int id) async {
+  Future<Visualization> findVisualization(int id) async {
     return _queryAdapter.query(
-        'SELECT * FROM NetworkCard WHERE assessment_id = ?',
+        'SELECT * FROM Visualization WHERE assessment_id = ?',
         arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => NetworkCard(
+        mapper: (Map<String, dynamic> row) => Visualization(
             row['id'] as int,
             row['assessment_id'] as int,
             row['noLifeAreas'] as int,
@@ -543,13 +405,14 @@ class _$AssessmentRepository extends AssessmentRepository {
             row['icon'] as String,
             row['lifeArea'] as String,
             row['distance'] as double,
-            row['network_id'] as int,
+            row['visualization_id'] as int,
             row['assessment_id'] as int));
   }
 
   @override
-  Future<List<Person>> getAllPersonsByNetworkCard(int id) async {
-    return _queryAdapter.queryList('SELECT * FROM Person WHERE network_id = ?',
+  Future<List<Person>> getAllPersonsByVisualization(int id) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM Person WHERE Visualization_id = ?',
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => Person(
             row['id'] as int,
@@ -557,7 +420,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             row['icon'] as String,
             row['lifeArea'] as String,
             row['distance'] as double,
-            row['network_id'] as int,
+            row['visualization_id'] as int,
             row['assessment_id'] as int));
   }
 
@@ -571,7 +434,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             row['icon'] as String,
             row['lifeArea'] as String,
             row['distance'] as double,
-            row['network_id'] as int,
+            row['visualization_id'] as int,
             row['assessment_id'] as int));
   }
 
@@ -588,21 +451,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<int> createChangeProject(ChangeProject changeProject) {
-    return _changeProjectInsertionAdapter.insertAndReturnId(
-        changeProject, OnConflictStrategy.abort);
-  }
-
-  @override
-  Future<int> createNote(Note note) {
-    return _noteInsertionAdapter.insertAndReturnId(
-        note, OnConflictStrategy.abort);
-  }
-
-  @override
-  Future<int> createNetworkCard(NetworkCard networkCard) {
-    return _networkCardInsertionAdapter.insertAndReturnId(
-        networkCard, OnConflictStrategy.abort);
+  Future<int> createVisualization(Visualization visualization) {
+    return _visualizationInsertionAdapter.insertAndReturnId(
+        visualization, OnConflictStrategy.abort);
   }
 
   @override
@@ -630,21 +481,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<int> updateChangeProject(ChangeProject changeProject) {
-    return _changeProjectUpdateAdapter.updateAndReturnChangedRows(
-        changeProject, OnConflictStrategy.abort);
-  }
-
-  @override
-  Future<int> updateNote(Note note) {
-    return _noteUpdateAdapter.updateAndReturnChangedRows(
-        note, OnConflictStrategy.abort);
-  }
-
-  @override
-  Future<int> updateNetworkCard(NetworkCard networkCard) {
-    return _networkCardUpdateAdapter.updateAndReturnChangedRows(
-        networkCard, OnConflictStrategy.abort);
+  Future<int> updateVisualization(Visualization visualization) {
+    return _visualizationUpdateAdapter.updateAndReturnChangedRows(
+        visualization, OnConflictStrategy.abort);
   }
 
   @override
@@ -664,19 +503,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<int> deleteChangeProject(ChangeProject changeProject) {
-    return _changeProjectDeletionAdapter
-        .deleteAndReturnChangedRows(changeProject);
-  }
-
-  @override
-  Future<int> deleteNote(Note note) {
-    return _noteDeletionAdapter.deleteAndReturnChangedRows(note);
-  }
-
-  @override
-  Future<int> deleteNetworkCard(NetworkCard networkCard) {
-    return _networkCardDeletionAdapter.deleteAndReturnChangedRows(networkCard);
+  Future<int> deleteVisualization(Visualization visualization) {
+    return _visualizationDeletionAdapter
+        .deleteAndReturnChangedRows(visualization);
   }
 
   @override

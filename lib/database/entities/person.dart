@@ -2,15 +2,16 @@
 
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
+import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
 
 @Entity(
   tableName: 'Person',
   foreignKeys: [
     ForeignKey(
-      childColumns: ['network_id'],
+      childColumns: ['visualization_id'],
       parentColumns: ['id'],
-      entity: NetworkCard,
+      entity: Visualization,
     ),
     ForeignKey(
       childColumns: ['assessment_id'],
@@ -26,8 +27,8 @@ class Person{
   final String icon;
   final String lifeArea;
   final double distance;
-  final int network_id;
+  final int visualization_id;
   final int assessment_id;
 
-  Person(this.id, this.name, this.icon, this.lifeArea, this.distance, this.network_id, this.assessment_id);
+  Person(this.id, this.name, this.icon, this.lifeArea, this.distance, this.visualization_id, this.assessment_id);
 }
