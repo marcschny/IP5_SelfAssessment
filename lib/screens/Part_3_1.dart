@@ -52,6 +52,7 @@ class _Part_3_1State extends State<Part_3_1> {
                   " kannst du die Frage  auslassen.Wenn Dir jedoch etwas wichtig ist oder Du es an anderen magst, kannst Du Deine "
                   "Beurteilung dazu abgeben.",
                   percent: 0.55,
+                  showProgressbar: true,
                   ),
 
 

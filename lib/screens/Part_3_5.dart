@@ -72,6 +72,7 @@ class _Part_3_5State extends State<Part_3_5>{
                 subtitle: "Auswertung Fragebogen",
                 intro: _introText,
                 percent: 0.55,
+                showProgressbar: true,
               ),
 
 

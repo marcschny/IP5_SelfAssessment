@@ -61,6 +61,7 @@ class _Part_3_2State extends State<Part_3_2> {
                 subtitle: "Kommunikation mit Mitmenschen",
                 intro: "",
                 percent: 0.55,
+                showProgressbar: true,
               ),
 
 

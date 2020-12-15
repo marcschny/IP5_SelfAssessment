@@ -61,6 +61,7 @@ class _Part_2_6State extends State<Part_2_6>{
                   subtitle: "Wer oder was hilft Dir dabei?",
                   intro: "",
                   percent: 0.55,
+                  showProgressbar: true,
               ),
 
               Expanded(

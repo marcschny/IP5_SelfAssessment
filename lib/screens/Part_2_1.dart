@@ -59,6 +59,7 @@ class _Part_2_1State extends State<Part_2_1>{
                 subtitle: "Hey, das kann ich bereits!",
                 intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                 percent: 0.3,
+                showProgressbar: true,
               ),
 
               Expanded(

@@ -203,6 +203,7 @@ class _MyVisualizationState extends State<MyVisualization>{
                       subtitle: "So sieht deine Visualisierung aus",
                       percent: 0.2,
                       intro: "",
+                      showProgressbar: true,
                     ),
 
                     SizedBox(height: 10),

@@ -12,6 +12,8 @@ class TopBar extends StatelessWidget{
   final String subtitle;
   final String intro;
   final double percent;
+  final bool showProgressbar;
+  final Widget widget;
 
 
   const TopBar({
@@ -21,7 +23,9 @@ class TopBar extends StatelessWidget{
     @required this.onClose,
     @required this.subtitle,
     this.intro,
-    @required this.percent
+    @required this.percent,
+    @required this.showProgressbar,
+    this.widget
   }) : super(key: key);
 
 
@@ -84,9 +88,9 @@ class TopBar extends StatelessWidget{
                 ),
               ],
             ),
-            ProgressBar(
+            showProgressbar ? ProgressBar(
               percent: percent,
-            ),
+            ) : Container(),
             Container(
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
@@ -98,6 +102,9 @@ class TopBar extends StatelessWidget{
                 ),
               ),
             ),
+            widget != null ? Flexible(
+                fit: FlexFit.loose,
+                child: widget) : Container(),
             intro != null && intro != "" ?
             Flexible(
               fit: FlexFit.loose,

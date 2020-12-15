@@ -63,6 +63,7 @@ class _Part_2_4State extends State<Part_2_4>{
                     subtitle: "Lust auf etwas Neues!",
                     intro: "Beschreibe bei dieser Frage, was du genau mit deinem Veränderungsprojekt ausproberen möchtest",
                     percent: 0.45,
+                    showProgressbar: true,
                 ),
 
                 Expanded(

@@ -56,6 +56,7 @@ class _Part_2_2State extends State<Part_2_2>{
                   subtitle: "Das möchte ich gerne besser können",
                   intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                   percent: 0.35,
+                  showProgressbar: true,
               ),
 
               Expanded(

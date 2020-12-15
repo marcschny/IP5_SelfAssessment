@@ -62,6 +62,7 @@ class _Part_2_5State extends State<Part_2_5>{
                   subtitle: "Name it!",
                   intro: "Wie lautet der Titel deines Veränderungsprojekts?",
                   percent: 0.5,
+                  showProgressbar: true,
               ),
 
               Expanded(
