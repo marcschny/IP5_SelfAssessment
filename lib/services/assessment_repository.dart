@@ -111,7 +111,7 @@ abstract class AssessmentRepository{
 
   //get projectcard by assessment_id
   @Query('SELECT * FROM ProjectCard WHERE assessment_id = :id')
-  Future<ProjectCard> getProjectCardsByAssessment(int id);
+  Future<List<ProjectCard>> getProjectCardsByAssessment(int id);
 
   //find specific projectcard by id
   @Query('SELECT * FROM ProjectCard WHERE id = :id')

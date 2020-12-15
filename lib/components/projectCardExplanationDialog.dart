@@ -37,6 +37,8 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
   @override
   void initState() {
     super.initState();
+    widget.projectCard != null ? print("pced pj != null") : print("pced pj == null");
+    _explanationController.text = widget.projectCard != null ? widget.projectCard.explanation : "";
   }
 
   @override
@@ -154,11 +156,11 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
         final updateProjectCard = ProjectCard(
             widget.projectCard.id, widget.smiley,
             widget.description, _explanationController.text,
-            widget.projectCard.date_created, widget.projectCard.assessment_id);
+            widget.projectCard.date_created, widget.assessmentId);
 
-        assessmentRepo.updateProjectCard(updateProjectCard);
+        assessmentRepo.updateProjectCard(updateProjectCard).then((assId) => print("then: "+assId.toString()));
         print("project card updated: " + updateProjectCard.mood + ", " +
-            updateProjectCard.description);
+            updateProjectCard.description+", "+updateProjectCard.explanation+" ["+updateProjectCard.assessment_id.toString()+"]");
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),
@@ -188,9 +190,9 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
             null, widget.smiley, widget.description, _explanationController.text,
             DateTime.now().toString(), widget.assessmentId);
 
-        assessmentRepo.createProjectCard(newProjectCard);
+        assessmentRepo.createProjectCard(newProjectCard).then((assId) => print("then: "+assId.toString()));
         print("project card created: " + newProjectCard.mood + ", " +
-            newProjectCard.description);
+            newProjectCard.description+", "+newProjectCard.explanation+" ["+newProjectCard.assessment_id.toString()+"]");
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),

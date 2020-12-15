@@ -4,11 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/emptyProjectCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/myProjectCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/projectCardDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/projectDescriptionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 class ChangeProject extends StatefulWidget{
 
@@ -25,6 +28,9 @@ class ChangeProject extends StatefulWidget{
 
 class _ChangeProjectState extends State<ChangeProject>{
 
+  String projectTitle = "";
+  List<Widget> widgetList;
+  int noProjectCards;
 
   Widget headerRow(BuildContext context) {
     return Container(
@@ -98,6 +104,62 @@ class _ChangeProjectState extends State<ChangeProject>{
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    widgetList = List();
+    noProjectCards = 0;
+    _getProjectTitle();
+    Future.delayed(Duration.zero, _getProjectCards);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  _getProjectTitle() async{
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    final assessment = await assessmentRepo.getProjectTitle(widget.assessmentId);
+    final answer = await assessmentRepo.findAnswer("2.4.1", widget.assessmentId);
+
+    setState(() {
+      projectTitle = assessment?.project_title != null ? assessment.project_title : "Kein Projekttitel";
+    });
+
+    print(assessment?.project_title);
+
+  }
+
+  _getProjectCards() async{
+    //initialize app db
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    widgetList.clear();
+
+    final projectCards = await assessmentRepo.getProjectCardsByAssessment(widget.assessmentId);
+
+    print("projectCards.length: "+projectCards.length.toString());
+
+    setState(() {
+      projectCards.reversed.forEach((element){
+        widgetList.add(
+          MyProjectCard(projectCard: element)
+        );
+      });
+      noProjectCards = projectCards.length;
+      for(int i=0; i<10-noProjectCards; i++){
+        widgetList.add(
+          EmptyProjectCard()
+        );
+      }
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +184,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                     title: "Veränderungsprojekt",
                     titleNumber: 4,
                     onClose: null,
-                    subtitle: "Titel meines Projekts",
+                    subtitle: projectTitle,
                     percent: 0,
                     showProgressbar: false,
                     widget: headerRow(context),
@@ -138,6 +200,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
                           Padding(
@@ -197,23 +260,25 @@ class _ChangeProjectState extends State<ChangeProject>{
                           Container(
                             height: 170,
                             child: ListView.builder(
-                                padding: EdgeInsets.only(top: 14, left: 18, bottom: 10, right: 14),
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount: 10,
-                                itemBuilder: (context, index) {
-                                  return EmptyProjectCard();
-                                },
+                              padding: EdgeInsets.only(top: 14, left: 18, bottom: 10, right: 14),
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+
+                              itemCount: widgetList.length,
+                              itemBuilder: (context, index) {
+                                return widgetList[index];
+                              },
 
                             ),
                           ),
+
 
 
                           Container(
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 22),
                             child: Text(
-                              "0/10 Karten",
+                              "${noProjectCards}/10 Karten",
                               textAlign: TextAlign.right,
                               style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
                             ),

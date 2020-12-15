@@ -44,6 +44,7 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
     _selectedSmiley = "";
     _descriptionController.text = widget.projectCard != null ? widget.projectCard.description : "";
     _selectedSmiley = widget.projectCard != null ? widget.projectCard.mood : "";
+    widget.projectCard != null ? print("pcd pj != null") : print("pcd pj == null");
   }
 
   @override
@@ -319,7 +320,7 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
                               context: context,
                               barrierColor: Colors.black.withOpacity(.0),
                               child: widget.projectCard != null ?
-                              SlideUpFromBottom(0, ProjectCardExplanationDialog(assessmentId: widget.projectCard.id, smiley: _selectedSmiley, description: _descriptionController.text, projectCard: widget.projectCard)) :
+                              SlideUpFromBottom(0, ProjectCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text, projectCard: widget.projectCard)) :
                               SlideUpFromBottom(0, ProjectCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text)),
                             );
                           }else{

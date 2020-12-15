@@ -449,8 +449,8 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<ProjectCard> getProjectCardsByAssessment(int id) async {
-    return _queryAdapter.query(
+  Future<List<ProjectCard>> getProjectCardsByAssessment(int id) async {
+    return _queryAdapter.queryList(
         'SELECT * FROM ProjectCard WHERE assessment_id = ?',
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => ProjectCard(

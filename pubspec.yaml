@@ -51,6 +51,7 @@ dev_dependencies:
   oktoast: ^2.3.2
   super_tooltip: ^0.9.6
   simple_animations: ^2.4.0
+  intl: ^0.16.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
