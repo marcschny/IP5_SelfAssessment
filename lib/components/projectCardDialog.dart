@@ -10,7 +10,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:ip5_selbsteinschaetzung/components/projectCardExplanationDialog.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 class ProjectCardDialog extends StatefulWidget{
@@ -71,7 +74,7 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
                       Text(
                         "Wie ist es Dir heute mit deinem Veränderungsprojekt ergangen?",
                         textAlign: TextAlign.center,
-                        style: ThemeTexts.assessmentDialogTitle.copyWith(color: Color.fromRGBO(85, 85, 85, 1)),
+                        style: ThemeTexts.assessmentDialogTitle.copyWith(color: Color.fromRGBO(85, 85, 85, 1), fontSize: 18),
                       ),
                       SizedBox(height: 6),
                       Container(
@@ -244,9 +247,9 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
                   Column(
                     children: [
                       Text(
-                        "Beschreibe in einem Satz was Du erreicht hast oder was noch nicht geklappt hat",
+                        "Beschreibe kurz was Du erreicht hast oder was noch nicht geklappt hat",
                         textAlign: TextAlign.center,
-                        style: ThemeTexts.assessmentDialogTitle.copyWith(color: Color.fromRGBO(85, 85, 85, 1)),
+                        style: ThemeTexts.assessmentDialogTitle.copyWith(color: Color.fromRGBO(85, 85, 85, 1), fontSize: 18),
                       ),
                       SizedBox(height: 4),
                       Container(
@@ -282,7 +285,7 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
                       Text(
                         "Möchtest Du näher erläutern wie das war?",
                         textAlign: TextAlign.center,
-                        style: ThemeTexts.assessmentDialogTitle.copyWith(color: Color.fromRGBO(85, 85, 85, 1)),
+                        style: ThemeTexts.assessmentDialogTitle.copyWith(color: Color.fromRGBO(85, 85, 85, 1), fontSize: 18),
                       ),
                       SizedBox(height: 10),
                       RaisedButton(
@@ -303,14 +306,11 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
                         ),
                         onPressed: () {
                           print("open explanation dialog/screen");
-                          /*showDialog(
+                          showDialog(
                             context: context,
-                            barrierColor: Colors.black.withOpacity(.55),
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 120),
-                              child: SlideUpFromBottom(0, ProjectDescriptionDialog(assessmentId: widget.assessmentId)),
-                            ),
-                          );*/
+                            barrierColor: Colors.black.withOpacity(.0),
+                            child: SlideUpFromBottom(0, ProjectCardExplanationDialog(assessmentId: widget.assessmentId)),
+                          );
                         },
                       ),
                     ],
