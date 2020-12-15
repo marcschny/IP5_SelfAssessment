@@ -7,6 +7,7 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
@@ -188,9 +189,30 @@ class _Part_2_6State extends State<Part_2_6>{
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                //todo: go to change project
                 print("Go to change project...");
-                //Navigator.of(context).pushNamed("/part_4", arguments: assessmentId);
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 200),
+                    pageBuilder: (
+                        BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return ChangeProject(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId);
+                    },
+                    transitionsBuilder: (
+                        BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation,
+                        Widget child) {
+                      return Align(
+                        child: FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        ),
+                      );
+                    },
+                  ),
+                );
               }
           ),
         ],

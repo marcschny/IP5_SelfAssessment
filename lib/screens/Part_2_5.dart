@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_6.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -26,18 +29,37 @@ class Part_2_5 extends StatefulWidget {
 class _Part_2_5State extends State<Part_2_5>{
 
 
+  TextEditingController _titleController;
+
   @override
   void initState() {
     super.initState();
+    _titleController = new TextEditingController();
   }
 
   @override
   void dispose() {
     super.dispose();
+    _titleController.dispose();
   }
 
-  TextEditingController _titleController;
 
+
+  setProjectTitle() async{
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    String projectTitle;
+    _titleController.text != null && _titleController.text != "" ? projectTitle = _titleController.text : "Mein Veränderungsprojekt";
+
+
+    final thisAssessment = await assessmentRepo.findAssessment(widget.assessmentId);
+    final updateAssessment = Assessment(widget.assessmentId, projectTitle, thisAssessment.date_created, "");
+
+    assessmentRepo.updateAssessment(updateAssessment);
+
+    print("set project title to: "+projectTitle);
+  }
 
 
   @override
@@ -76,9 +98,7 @@ class _Part_2_5State extends State<Part_2_5>{
                           TextField(
                             maxLines: 1,
                             controller: _titleController,
-                            onSubmitted: (value){
-                              //todo: write title to db (change project)
-                            },
+                            onSubmitted: (value){ },
                             textInputAction: TextInputAction.go,
                             decoration: InputDecoration(
                               hintText: "Titel hier eingeben...",
@@ -120,6 +140,9 @@ class _Part_2_5State extends State<Part_2_5>{
 
 
   void _next(BuildContext context, int assessmentId, int visualizationId){
+
+    setProjectTitle();
+
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
