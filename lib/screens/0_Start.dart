@@ -49,7 +49,7 @@ class _StartScreenState extends State<StartScreen>{
 
   //start assessment
   void _startAssessment(BuildContext context){
-    final Assessment newAssessment = new Assessment(null, DateTime.now().toString(), null);
+    final Assessment newAssessment = new Assessment(null, null, DateTime.now().toString(), null);
 
     final appDataBase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDataBase.assessmentRepository;

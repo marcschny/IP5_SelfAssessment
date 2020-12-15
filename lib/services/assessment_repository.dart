@@ -84,6 +84,10 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM Assessment WHERE id = :id')
   Future<Assessment> findAssessment(int id);
 
+  //get project title
+  @Query('SELECT project_title FROM Assessment WHERE id = :id')
+  Future<Assessment> getProjectTitle(int id);
+
   //new assessment
   @insert
   Future<int> createAssessment(Assessment assessment);
@@ -105,8 +109,12 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM ProjectCard')
   Future<List<ProjectCard>> getAllProjectCards();
 
-  //find projectcard by assessment_id
+  //get projectcard by assessment_id
   @Query('SELECT * FROM ProjectCard WHERE assessment_id = :id')
+  Future<ProjectCard> getProjectCardsByAssessment(int id);
+
+  //find specific projectcard by id
+  @Query('SELECT * FROM ProjectCard WHERE id = :id')
   Future<ProjectCard> findProjectCard(int id);
 
   //new ProjectCard
@@ -121,6 +129,8 @@ abstract class AssessmentRepository{
   //delete ProjectCard
   @delete
   Future<int> deleteProjectCard(ProjectCard projectCard);
+
+
 
 
   /* VISUALIZATION*/

@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Assessment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date_created` TEXT, `date_finished` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `Assessment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `project_title` TEXT, `date_created` TEXT, `date_finished` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Answer` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `answer` TEXT, `question_number` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`question_number`) REFERENCES `Question` (`question_number`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
@@ -122,6 +122,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             'Assessment',
             (Assessment item) => <String, dynamic>{
                   'id': item.id,
+                  'project_title': item.project_title,
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
@@ -184,6 +185,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             ['id'],
             (Assessment item) => <String, dynamic>{
                   'id': item.id,
+                  'project_title': item.project_title,
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
@@ -238,6 +240,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             ['id'],
             (Assessment item) => <String, dynamic>{
                   'id': item.id,
+                  'project_title': item.project_title,
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
@@ -403,16 +406,34 @@ class _$AssessmentRepository extends AssessmentRepository {
   @override
   Future<List<Assessment>> getAllAssessments() async {
     return _queryAdapter.queryList('SELECT * FROM Assessment',
-        mapper: (Map<String, dynamic> row) => Assessment(row['id'] as int,
-            row['date_created'] as String, row['date_finished'] as String));
+        mapper: (Map<String, dynamic> row) => Assessment(
+            row['id'] as int,
+            row['project_title'] as String,
+            row['date_created'] as String,
+            row['date_finished'] as String));
   }
 
   @override
   Future<Assessment> findAssessment(int id) async {
     return _queryAdapter.query('SELECT * FROM Assessment WHERE id = ?',
         arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => Assessment(row['id'] as int,
-            row['date_created'] as String, row['date_finished'] as String));
+        mapper: (Map<String, dynamic> row) => Assessment(
+            row['id'] as int,
+            row['project_title'] as String,
+            row['date_created'] as String,
+            row['date_finished'] as String));
+  }
+
+  @override
+  Future<Assessment> getProjectTitle(int id) async {
+    return _queryAdapter.query(
+        'SELECT project_title FROM Assessment WHERE id = ?',
+        arguments: <dynamic>[id],
+        mapper: (Map<String, dynamic> row) => Assessment(
+            row['id'] as int,
+            row['project_title'] as String,
+            row['date_created'] as String,
+            row['date_finished'] as String));
   }
 
   @override
@@ -428,9 +449,22 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<ProjectCard> findProjectCard(int id) async {
+  Future<ProjectCard> getProjectCardsByAssessment(int id) async {
     return _queryAdapter.query(
         'SELECT * FROM ProjectCard WHERE assessment_id = ?',
+        arguments: <dynamic>[id],
+        mapper: (Map<String, dynamic> row) => ProjectCard(
+            row['id'] as int,
+            row['mood'] as int,
+            row['description'] as String,
+            row['explanation'] as String,
+            row['date_created'] as String,
+            row['assessment_id'] as int));
+  }
+
+  @override
+  Future<ProjectCard> findProjectCard(int id) async {
+    return _queryAdapter.query('SELECT * FROM ProjectCard WHERE id = ?',
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => ProjectCard(
             row['id'] as int,

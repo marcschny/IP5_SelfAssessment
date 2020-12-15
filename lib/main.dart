@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_1.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
             "/part_3_3": (context) => Part_3_3(),
             "/part_3_4": (context) => Part_3_4(),
             "/part_3_5": (context) => Part_3_5(),
+            "/changeProject": (context) => ChangeProject(),
           },
         ),
       ),

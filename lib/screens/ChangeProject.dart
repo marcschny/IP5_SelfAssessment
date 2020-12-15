@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/emptyProjectCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/projectDescriptionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 class ChangeProject extends StatefulWidget{
@@ -25,68 +27,77 @@ class ChangeProject extends StatefulWidget{
 class _ChangeProjectState extends State<ChangeProject>{
 
 
-  final headerRow =
-  Container(
-    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
+  Widget headerRow(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
 
-        RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          color: ThemeColors.greenShade3,
-          elevation: 0,
-          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-          highlightColor: ThemeColors.greenShade3,
-          focusElevation: 0,
-          highlightElevation: 0,
-          child: Text(
-            "Beschreibung",
-            style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: Colors.black87, fontSize: 16.5, fontWeight: FontWeight.normal),
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              color: ThemeColors.greenShade3,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              highlightColor: ThemeColors.greenShade3,
+              focusElevation: 0,
+              highlightElevation: 0,
+              child: Text(
+                "Beschreibung",
+                style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                    color: Colors.black87,
+                    fontSize: 16.5,
+                    fontWeight: FontWeight.normal),
+              ),
+              onPressed: () {
+                print("show description dialog");
+                showDialog(
+                  context: context,
+                  barrierColor: Colors.black.withOpacity(.55),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 120),
+                    child: SlideUpFromBottom(0, ProjectDescriptionDialog(assessmentId: widget.assessmentId)),
+                  ),
+                );
+              },
             ),
-          onPressed: (){
-            //todo: show description dialog
-            print("show description dialog");
-            /*showDialog(
+
+            SizedBox(width: 10),
+
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              color: ThemeColors.greenShade3,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              highlightColor: ThemeColors.greenShade3,
+              focusElevation: 0,
+              highlightElevation: 0,
+              child: Text(
+                "Hilfestellungen",
+                style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                    color: Colors.black87,
+                    fontSize: 16.5,
+                    fontWeight: FontWeight.normal),
+              ),
+              onPressed: () {
+                //todo: show help dialog
+                print("show help dialog");
+                /*showDialog(
               context: context,
               barrierColor: Colors.black.withOpacity(.3),
               child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
             ).then(onGoBack);*/
-          },
-        ),
-
-        SizedBox(width: 10),
-
-        RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          color: ThemeColors.greenShade3,
-          elevation: 0,
-          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-          highlightColor: ThemeColors.greenShade3,
-          focusElevation: 0,
-          highlightElevation: 0,
-          child: Text(
-            "Hilfestellungen",
-            style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: Colors.black87, fontSize: 16.5, fontWeight: FontWeight.normal),
+              },
             ),
-          onPressed: (){
-            //todo: show help dialog
-            print("show help dialog");
-            /*showDialog(
-              context: context,
-              barrierColor: Colors.black.withOpacity(.3),
-              child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
-            ).then(onGoBack);*/
-          },
-        ),
 
-      ],
-    )
-  );
+          ],
+        )
+    );
+  }
 
 
   @override
@@ -115,7 +126,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                     subtitle: "Titel meines Projekts",
                     percent: 0,
                     showProgressbar: false,
-                    widget: headerRow,
+                    widget: headerRow(context),
                     intro: "Dokumentiere in den nächsten Wochen möglichst jeden Tag, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Neue Karte\" eine neue Karte erstellen. Erstelle mindestens 10 Karten um dein Projekt abzuschiessen",
                 ),
 
