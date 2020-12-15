@@ -93,7 +93,7 @@ class TopBar extends StatelessWidget{
             ) : Container(),
             Container(
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+              padding: widget != null ? EdgeInsets.fromLTRB(5, 0, 5, 0) : EdgeInsets.fromLTRB(5, 10, 5, 0),
               child: Material(
                 color: Colors.transparent,
                 child: Text(
