@@ -14,7 +14,6 @@ import 'package:ip5_selbsteinschaetzung/components/projectCardExplanationDialog.
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/projectcard.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
@@ -44,7 +43,6 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
     _selectedSmiley = "";
     _descriptionController.text = widget.projectCard != null ? widget.projectCard.description : "";
     _selectedSmiley = widget.projectCard != null ? widget.projectCard.mood : "";
-    widget.projectCard != null ? print("pcd pj != null") : print("pcd pj == null");
   }
 
   @override
@@ -314,7 +312,6 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
                               fontWeight: FontWeight.normal),
                         ),
                         onPressed: () {
-                          print("open explanation dialog/screen");
                           if(_validate()){
                             showDialog(
                               context: context,
@@ -405,6 +402,7 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
   String _missingInput(){
     if(_selectedSmiley == "") return "Du hast noch keinen Smiley ausgewählt";
     else if(_descriptionController.text == "") return "Du hast noch nichts eingegeben";
+    else return "";
   }
 
   _save() async{
@@ -417,7 +415,6 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
             _descriptionController.text, "", widget.projectCard.date_created, widget.projectCard.assessment_id);
 
         assessmentRepo.updateProjectCard(updateProjectCard);
-        print("project card updated: "+updateProjectCard.mood+", "+updateProjectCard.description);
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),
@@ -448,7 +445,6 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
             DateTime.now().toString(), widget.assessmentId);
 
         assessmentRepo.createProjectCard(newProjectCard);
-        print("project card created: "+newProjectCard.mood+", "+newProjectCard.description);
         Navigator.of(context).pushAndRemoveUntil(
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 300),

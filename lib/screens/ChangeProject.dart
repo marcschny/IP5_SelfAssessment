@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
@@ -12,6 +10,8 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
+
+
 
 class ChangeProject extends StatefulWidget{
 
@@ -57,7 +57,6 @@ class _ChangeProjectState extends State<ChangeProject>{
                     fontWeight: FontWeight.normal),
               ),
               onPressed: () {
-                print("show description dialog");
                 showDialog(
                   context: context,
                   barrierColor: Colors.black.withOpacity(.55),
@@ -91,11 +90,7 @@ class _ChangeProjectState extends State<ChangeProject>{
               onPressed: () {
                 //todo: show help dialog
                 print("show help dialog");
-                /*showDialog(
-              context: context,
-              barrierColor: Colors.black.withOpacity(.3),
-              child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
-            ).then(onGoBack);*/
+
               },
             ),
 
@@ -109,7 +104,7 @@ class _ChangeProjectState extends State<ChangeProject>{
     super.initState();
     widgetList = List();
     noProjectCards = 0;
-    _getProjectTitle();
+    Future.delayed(Duration.zero, _getProjectTitle);
     Future.delayed(Duration.zero, _getProjectCards);
   }
 
@@ -123,7 +118,6 @@ class _ChangeProjectState extends State<ChangeProject>{
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final assessment = await assessmentRepo.getProjectTitle(widget.assessmentId);
-    final answer = await assessmentRepo.findAnswer("2.4.1", widget.assessmentId);
 
     setState(() {
       projectTitle = assessment?.project_title != null ? assessment.project_title : "Kein Projekttitel";
@@ -192,7 +186,6 @@ class _ChangeProjectState extends State<ChangeProject>{
                 ),
 
                 SizedBox(height: 12),
-
 
                 Expanded(
                   child: Container(
@@ -278,7 +271,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 22),
                             child: Text(
-                              "${noProjectCards}/10 Karten",
+                              "$noProjectCards/10 Karten",
                               textAlign: TextAlign.right,
                               style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
                             ),
@@ -289,8 +282,6 @@ class _ChangeProjectState extends State<ChangeProject>{
                     ),
                   ),
                 ),
-
-
 
               ],
             ),
@@ -305,7 +296,9 @@ class _ChangeProjectState extends State<ChangeProject>{
               callbackNext: (){
                 _next(context, widget.assessmentId);
               },
-              callbackBack: (){},
+              callbackBack: (){
+                _next(context, widget.assessmentId);
+              },
             )
 
           ],
@@ -318,42 +311,8 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   //next page
   void _next(BuildContext context, int assessmentId) {
-    /*if (personList.length >= 2) {
-      Navigator.of(context).push(
-        PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 300),
-          pageBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return MyVisualization(assessmentId: assessmentId, visualizationId: visualizationId);
-          },
-          transitionsBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child) {
-            return Align(
-              child: FadeTransition(
-                opacity: animation,
-                child: child,
-              ),
-            );
-          },
-        ),
-      );
-    } else {
-      showToast(
-        "Füge mindestens zwei Personen hinzu",
-        context: context,
-        textAlign: TextAlign.center,
-        textStyle: ThemeTexts.toastText,
-        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-        position: ToastPosition.bottom,
-        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
-        duration: Duration(milliseconds: 2500),
-      );
-    }*/
+    //todo: validate and go to evaluation
+    print("validate and go to evaluation");
   }
 
 

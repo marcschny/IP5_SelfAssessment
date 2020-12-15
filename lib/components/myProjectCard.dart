@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/projectCardDialog.dart';
@@ -7,6 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/projectcard.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:intl/intl.dart';
+
 
 class MyProjectCard extends StatelessWidget{
 
@@ -84,7 +83,6 @@ class MyProjectCard extends StatelessWidget{
         ),
       ),
       onTap: (){
-        print("open project card: "+projectCard.description);
         showDialog(
           context: context,
           barrierColor: Colors.black.withOpacity(.3),

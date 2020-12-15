@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
-import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -62,8 +61,8 @@ class _StartScreenState extends State<StartScreen>{
               BuildContext context,
               Animation<double> animation,
               Animation<double> secondaryAnimation) {
-            //return LifeAreas(assessmentId: assessmentId);
-            return ChangeProject(assessmentId: assessmentId);
+            return LifeAreas(assessmentId: assessmentId);
+
           },
           transitionsBuilder: (
               BuildContext context,

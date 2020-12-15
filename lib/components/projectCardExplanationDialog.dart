@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
@@ -37,7 +36,6 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
   @override
   void initState() {
     super.initState();
-    widget.projectCard != null ? print("pced pj != null") : print("pced pj == null");
     _explanationController.text = widget.projectCard != null ? widget.projectCard.explanation : "";
   }
 
@@ -46,6 +44,7 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
     super.dispose();
     _explanationController.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -158,9 +157,7 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
             widget.description, _explanationController.text,
             widget.projectCard.date_created, widget.assessmentId);
 
-        assessmentRepo.updateProjectCard(updateProjectCard).then((assId) => print("then: "+assId.toString()));
-        print("project card updated: " + updateProjectCard.mood + ", " +
-            updateProjectCard.description+", "+updateProjectCard.explanation+" ["+updateProjectCard.assessment_id.toString()+"]");
+        assessmentRepo.updateProjectCard(updateProjectCard);
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),
@@ -190,9 +187,7 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
             null, widget.smiley, widget.description, _explanationController.text,
             DateTime.now().toString(), widget.assessmentId);
 
-        assessmentRepo.createProjectCard(newProjectCard).then((assId) => print("then: "+assId.toString()));
-        print("project card created: " + newProjectCard.mood + ", " +
-            newProjectCard.description+", "+newProjectCard.explanation+" ["+newProjectCard.assessment_id.toString()+"]");
+        assessmentRepo.createProjectCard(newProjectCard);
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),

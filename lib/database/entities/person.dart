@@ -3,7 +3,6 @@
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
-import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
 
 @Entity(
   tableName: 'Person',
