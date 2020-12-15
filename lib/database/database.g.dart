@@ -90,7 +90,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Person` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `icon` TEXT, `lifeArea` TEXT, `distance` REAL, `visualization_id` INTEGER, `assessment_id` INTEGER, FOREIGN KEY (`visualization_id`) REFERENCES `Visualization` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `ProjectCard` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `mood` INTEGER, `description` TEXT, `explanation` TEXT, `date_created` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
+            'CREATE TABLE IF NOT EXISTS `ProjectCard` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `mood` TEXT, `description` TEXT, `explanation` TEXT, `date_created` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -441,7 +441,7 @@ class _$AssessmentRepository extends AssessmentRepository {
     return _queryAdapter.queryList('SELECT * FROM ProjectCard',
         mapper: (Map<String, dynamic> row) => ProjectCard(
             row['id'] as int,
-            row['mood'] as int,
+            row['mood'] as String,
             row['description'] as String,
             row['explanation'] as String,
             row['date_created'] as String,
@@ -455,7 +455,7 @@ class _$AssessmentRepository extends AssessmentRepository {
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => ProjectCard(
             row['id'] as int,
-            row['mood'] as int,
+            row['mood'] as String,
             row['description'] as String,
             row['explanation'] as String,
             row['date_created'] as String,
@@ -468,7 +468,7 @@ class _$AssessmentRepository extends AssessmentRepository {
         arguments: <dynamic>[id],
         mapper: (Map<String, dynamic> row) => ProjectCard(
             row['id'] as int,
-            row['mood'] as int,
+            row['mood'] as String,
             row['description'] as String,
             row['explanation'] as String,
             row['date_created'] as String,

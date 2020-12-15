@@ -197,7 +197,7 @@ class _Part_2_6State extends State<Part_2_6>{
                         BuildContext context,
                         Animation<double> animation,
                         Animation<double> secondaryAnimation) {
-                      return ChangeProject(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId);
+                      return ChangeProject(assessmentId: widget.assessmentId,);
                     },
                     transitionsBuilder: (
                         BuildContext context,

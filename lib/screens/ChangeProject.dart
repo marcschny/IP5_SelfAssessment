@@ -13,12 +13,10 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 class ChangeProject extends StatefulWidget{
 
   final int assessmentId;
-  final int visualizationId;
 
   const ChangeProject({
     Key key,
     @required this.assessmentId,
-    @required this.visualizationId
   }) : super(key: key);
 
   _ChangeProjectState createState() => _ChangeProjectState();
@@ -240,7 +238,7 @@ class _ChangeProjectState extends State<ChangeProject>{
               showBackButton: false,
               nextTitle: "Auswertung",
               callbackNext: (){
-                _next(context, widget.assessmentId, widget.visualizationId);
+                _next(context, widget.assessmentId);
               },
               callbackBack: (){},
             )
@@ -254,7 +252,7 @@ class _ChangeProjectState extends State<ChangeProject>{
 
 
   //next page
-  void _next(BuildContext context, int assessmentId, int visualizationId) {
+  void _next(BuildContext context, int assessmentId) {
     /*if (personList.length >= 2) {
       Navigator.of(context).push(
         PageRouteBuilder(

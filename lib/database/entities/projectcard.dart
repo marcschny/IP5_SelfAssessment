@@ -17,7 +17,7 @@ import 'assessment.dart';
 class ProjectCard{
   @PrimaryKey(autoGenerate: true)
   final int id;
-  final int mood;
+  final String mood;
   final String description;
   final String explanation;
   final String date_created;

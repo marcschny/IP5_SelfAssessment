@@ -1,14 +1,29 @@
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/projectcard.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
+
+
 
 class ProjectCardExplanationDialog extends StatefulWidget{
 
   final int assessmentId;
+  final String smiley;
+  final String description;
+  final ProjectCard projectCard;
 
-  const ProjectCardExplanationDialog({Key key, this.assessmentId}) : super(key: key);
+  const ProjectCardExplanationDialog({
+    Key key,
+    @required this.assessmentId,
+    @required this.smiley,
+    @required this.description,
+    this.projectCard
+  }) : super(key: key);
 
   _ProjectCardExplanationDialogState createState() => _ProjectCardExplanationDialogState();
 
@@ -118,7 +133,7 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
                   color: Color.fromRGBO(80, 80, 80, 1),
                 ),
                 onPressed: (){
-                  //todo: save project card
+                  _save(context);
                 },
               ),
             ),
@@ -130,6 +145,91 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
     );
   }
 
+  _save(BuildContext context) async{
+    if(_explanationController.text != null && _explanationController.text != "") {
+      final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+      final assessmentRepo = appDatabase.assessmentRepository;
+
+      if (widget.projectCard != null) {
+        final updateProjectCard = ProjectCard(
+            widget.projectCard.id, widget.smiley,
+            widget.description, _explanationController.text,
+            widget.projectCard.date_created, widget.projectCard.assessment_id);
+
+        assessmentRepo.updateProjectCard(updateProjectCard);
+        print("project card updated: " + updateProjectCard.mood + ", " +
+            updateProjectCard.description);
+        Navigator.of(context).pushAndRemoveUntil(
+            PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 300),
+              pageBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation) {
+                return ChangeProject(assessmentId: widget.assessmentId);
+              },
+              transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return Align(
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
+                );
+              },
+            ),
+            ModalRoute.withName("/changeProject")
+        );
+      } else {
+        final newProjectCard = ProjectCard(
+            null, widget.smiley, widget.description, _explanationController.text,
+            DateTime.now().toString(), widget.assessmentId);
+
+        assessmentRepo.createProjectCard(newProjectCard);
+        print("project card created: " + newProjectCard.mood + ", " +
+            newProjectCard.description);
+        Navigator.of(context).pushAndRemoveUntil(
+            PageRouteBuilder(
+              transitionDuration: Duration(milliseconds: 300),
+              pageBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation) {
+                return ChangeProject(assessmentId: widget.assessmentId);
+              },
+              transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return Align(
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
+                );
+              },
+            ),
+            ModalRoute.withName("/changeProject")
+        );
+      }
+    }else{
+      showToast(
+        "Du hast noch nichts eingetippt",
+        context: context,
+        textAlign: TextAlign.center,
+        textStyle: ThemeTexts.toastText,
+        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        position: ToastPosition.bottom,
+        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+        duration: Duration(milliseconds: 2500),
+      );
+    }
+
+  }
 
 
 }
