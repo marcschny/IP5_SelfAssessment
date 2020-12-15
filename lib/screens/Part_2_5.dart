@@ -50,7 +50,7 @@ class _Part_2_5State extends State<Part_2_5>{
     final assessmentRepo = appDatabase.assessmentRepository;
 
     String projectTitle;
-    _titleController.text != null && _titleController.text != "" ? projectTitle = _titleController.text : "Mein Veränderungsprojekt";
+    projectTitle = _titleController.text != null && _titleController.text != "" ? _titleController.text : "Mein Veränderungsprojekt";
 
 
     final thisAssessment = await assessmentRepo.findAssessment(widget.assessmentId);

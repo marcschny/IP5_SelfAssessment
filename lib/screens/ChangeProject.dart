@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/emptyProjectCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/projectCardDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/projectDescriptionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
@@ -182,13 +183,12 @@ class _ChangeProjectState extends State<ChangeProject>{
                                     ],
                                   ),
                                   onPressed: (){
-                                    //todo: show new-card dialog
                                     print("open new card dialog");
-                                    /*showDialog(
-                                    context: context,
-                                    barrierColor: Colors.black.withOpacity(.3),
-                                    child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
-                                  ).then(onGoBack);*/
+                                    showDialog(
+                                      context: context,
+                                      barrierColor: Colors.black.withOpacity(.3),
+                                      child: SlideUpFromBottom(0, ProjectCardDialog(assessmentId: widget.assessmentId)),
+                                    );
                                   },
                                 ),
 

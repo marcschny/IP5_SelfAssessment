@@ -62,8 +62,8 @@ class _StartScreenState extends State<StartScreen>{
               BuildContext context,
               Animation<double> animation,
               Animation<double> secondaryAnimation) {
-            return LifeAreas(assessmentId: assessmentId);
-            //return ChangeProject(assessmentId: assessmentId, visualizationId: 1);
+            //return LifeAreas(assessmentId: assessmentId);
+            return ChangeProject(assessmentId: assessmentId, visualizationId: 1);
           },
           transitionsBuilder: (
               BuildContext context,

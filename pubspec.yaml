@@ -75,6 +75,11 @@ flutter:
     - assets/illustrations/Part3.png
     - assets/illustrations/Part4.png
     - assets/illustrations/Part5.png
+    - assets/smileys/verygreat.png
+    - assets/smileys/great.png
+    - assets/smileys/ok.png
+    - assets/smileys/bad.png
+    - assets/smileys/verybad.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
