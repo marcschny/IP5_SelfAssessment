@@ -4,9 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
+import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Experience.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
 
 class Evaluation extends StatefulWidget{
 
@@ -22,12 +25,19 @@ class _EvaluationState extends State<Evaluation>{
 
   String projectTitle = "";
   String _selectedSmiley;
+  int noProjectCards;
+  int noPositiveProjectCards;
+  int noNegativeProjectCards;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, _getProjectTitle);
     _selectedSmiley = "";
+    noPositiveProjectCards = 0;
+    noNegativeProjectCards = 0;
+    noProjectCards = 0;
+    Future.delayed(Duration.zero, _getProjectTitle);
+    Future.delayed(Duration.zero, _getProjectCards);
   }
 
 
@@ -42,6 +52,25 @@ class _EvaluationState extends State<Evaluation>{
     });
 
     print(assessment?.project_title);
+
+  }
+
+  _getProjectCards() async{
+    //initialize app db
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+
+    final projectCards = await assessmentRepo.getProjectCardsByAssessment(widget.assessmentId);
+    final positiveProjectCards = await assessmentRepo.getPositiveProjectCards(widget.assessmentId);
+    final negativeProjectCards = await assessmentRepo.getNegativeProjectCards(widget.assessmentId);
+
+
+    setState(() {
+      noProjectCards = projectCards.length;
+      noPositiveProjectCards = positiveProjectCards.length;
+      noNegativeProjectCards = negativeProjectCards.length;
+    });
 
   }
 
@@ -94,16 +123,17 @@ class _EvaluationState extends State<Evaluation>{
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Du hattest x/10 gut gelungene Erlebnisse während Deines Veränderungsprojekts.",
+                                    "Du hattest $noPositiveProjectCards/$noProjectCards gut gelungene Erlebnisse während Deines Veränderungsprojekts.",
                                     textAlign: TextAlign.start,
                                     style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
                                   ),
                                   SizedBox(height: 5),
+                                  noNegativeProjectCards >=  noPositiveProjectCards ?
                                   Text(
                                     "Auch wenn Du selber noch nicht zufrieden bist: Du hast viel gemacht!",
                                     textAlign: TextAlign.start,
                                     style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
-                                  ),
+                                  ) : Container(),
 
                                   SizedBox(height: 5),
 
@@ -169,6 +199,8 @@ class _EvaluationState extends State<Evaluation>{
 
                             SizedBox(height: 22),
 
+
+                            noNegativeProjectCards >=  noPositiveProjectCards ?
                             Padding(
                               padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
                               child: Column(
@@ -212,15 +244,15 @@ class _EvaluationState extends State<Evaluation>{
                                       ],
                                     ),
                                     onPressed: () {
-                                      //todo: open experience page
-                                      print("open experience page");
+                                      //todo: reopen change project
+                                      print("reopen change project");
 
                                     },
                                   ),
 
                                 ],
                               ),
-                            ),
+                            ) : Container(),
 
 
                             SizedBox(height: 22),
@@ -448,9 +480,7 @@ class _EvaluationState extends State<Evaluation>{
                               fontWeight: FontWeight.normal),
                         ),
                         onPressed: () {
-                          //todo: end assessment
-                          print("end assessment");
-
+                          _finishAssessment();
                         },
                       ),
 
@@ -473,8 +503,7 @@ class _EvaluationState extends State<Evaluation>{
                               fontWeight: FontWeight.normal),
                         ),
                         onPressed: () {
-                          //todo: restart assessment
-                          print("restart assessment");
+                          _restartAssessment();
 
                         },
                       ),
@@ -491,6 +520,64 @@ class _EvaluationState extends State<Evaluation>{
     );
   }
 
+
+  _finishAssessment() async{
+    if(_selectedSmiley != "") {
+      final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+      final assessmentRepo = appDatabase.assessmentRepository;
+
+      final assessment = await assessmentRepo.findAssessment(
+          widget.assessmentId);
+
+      final finishAssessment = Assessment(
+          assessment.id, assessment.project_title, _selectedSmiley,
+          assessment.date_created, DateTime.now().toString());
+
+      assessmentRepo.updateAssessment(finishAssessment);
+    }else{
+      showToast(
+        "Du hast noch kein Smiley ausgewählt",
+        context: context,
+        textAlign: TextAlign.center,
+        textStyle: ThemeTexts.toastText,
+        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        position: ToastPosition.bottom,
+        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+        duration: Duration(milliseconds: 2500),
+      );
+    }
+
+  }
+
+  _restartAssessment() async{
+    if(_selectedSmiley != "") {
+      final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+      final assessmentRepo = appDatabase.assessmentRepository;
+
+      final assessment = await assessmentRepo.findAssessment(
+          widget.assessmentId);
+
+      final finishAssessment = Assessment(
+          assessment.id, assessment.project_title, _selectedSmiley,
+          assessment.date_created, DateTime.now().toString());
+
+      assessmentRepo.updateAssessment(finishAssessment);
+
+      Navigator.of(context).pushNamedAndRemoveUntil('/start', (Route<dynamic> route) => false);
+    }else{
+      showToast(
+        "Du hast noch kein Smiley ausgewählt",
+        context: context,
+        textAlign: TextAlign.center,
+        textStyle: ThemeTexts.toastText,
+        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        position: ToastPosition.bottom,
+        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+        duration: Duration(milliseconds: 2500),
+      );
+    }
+
+  }
 
 
 

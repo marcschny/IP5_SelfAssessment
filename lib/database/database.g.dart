@@ -482,6 +482,34 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
+  Future<List<ProjectCard>> getPositiveProjectCards(int id) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM ProjectCard WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = ?',
+        arguments: <dynamic>[id],
+        mapper: (Map<String, dynamic> row) => ProjectCard(
+            row['id'] as int,
+            row['mood'] as String,
+            row['description'] as String,
+            row['explanation'] as String,
+            row['date_created'] as String,
+            row['assessment_id'] as int));
+  }
+
+  @override
+  Future<List<ProjectCard>> getNegativeProjectCards(int id) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM ProjectCard WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = ?',
+        arguments: <dynamic>[id],
+        mapper: (Map<String, dynamic> row) => ProjectCard(
+            row['id'] as int,
+            row['mood'] as String,
+            row['description'] as String,
+            row['explanation'] as String,
+            row['date_created'] as String,
+            row['assessment_id'] as int));
+  }
+
+  @override
   Future<List<Visualization>> getAllVisualizations() async {
     return _queryAdapter.queryList('SELECT * FROM Visualization',
         mapper: (Map<String, dynamic> row) => Visualization(

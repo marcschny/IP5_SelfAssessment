@@ -117,6 +117,15 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM ProjectCard WHERE id = :id')
   Future<ProjectCard> findProjectCard(int id);
 
+  //get all positive projectcards
+  @Query('SELECT * FROM ProjectCard WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = :id')
+  Future<List<ProjectCard>> getPositiveProjectCards(int id);
+
+
+  //get all negative projectcards
+  @Query('SELECT * FROM ProjectCard WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = :id')
+  Future<List<ProjectCard>> getNegativeProjectCards(int id);
+
   //new ProjectCard
   @insert
   Future<int> createProjectCard(ProjectCard projectCard);
