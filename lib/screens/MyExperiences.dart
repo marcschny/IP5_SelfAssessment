@@ -8,6 +8,8 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
+
+//todo: create subolder in components for all dialogs
 class MyExperiences extends StatefulWidget{
 
   final int assessmentId;
@@ -55,17 +57,17 @@ class _ExperienceState extends State<MyExperiences>{
       noExperiences = allExperiences.length;
       positiveExperiences.reversed.forEach((element) {
         goodWidgetList.add(
-          ExperienceCard(experience: element)
+          ExperienceCard(experience: element, editable: false)
         );
       });
       negativeExperiences.reversed.forEach((element) {
         badWidgetList.add(
-            ExperienceCard(experience: element)
+            ExperienceCard(experience: element, editable: false)
         );
       });
       allExperiences.reversed.forEach((element) {
         allWidgetList.add(
-            ExperienceCard(experience: element)
+            ExperienceCard(experience: element, editable: false)
         );
       });
     });
@@ -100,35 +102,41 @@ class _ExperienceState extends State<MyExperiences>{
 
             SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
+                padding: EdgeInsets.fromLTRB(0, 20, 0, 94),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
 
-                    Text(
-                      "Deine Erlebnisse",
-                      style: ThemeTexts.assessmentTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 28),
-                      textAlign: TextAlign.center,
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 18),
+                      child: Text(
+                        "Deine Erlebnisse",
+                        style: ThemeTexts.assessmentTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 28),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     SizedBox(height: 3),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 18),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
 
-                        Icon(
-                          Icons.date_range_rounded,
-                          size: 19,
-                          color: ThemeColors.greyShade0,
-                        ),
-                        SizedBox(width: 3),
+                          Icon(
+                            Icons.date_range_rounded,
+                            size: 19,
+                            color: ThemeColors.greyShade0,
+                          ),
+                          SizedBox(width: 3),
 
-                        Text(
-                          _datesString,
-                          style: ThemeTexts.assessmentText.copyWith(color: ThemeColors.greyShade0, fontSize: 15),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                          Text(
+                            _datesString,
+                            style: ThemeTexts.assessmentText.copyWith(color: ThemeColors.greyShade0, fontSize: 15),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
 
 
@@ -139,23 +147,26 @@ class _ExperienceState extends State<MyExperiences>{
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Gute Erlebnisse",
-                              style: ThemeTexts.assessmentDialogTitle,
-                              textAlign: TextAlign.left,
-                            ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Gute Erlebnisse",
+                                style: ThemeTexts.assessmentDialogTitle,
+                                textAlign: TextAlign.left,
+                              ),
 
-                            Text(
-                              "${goodWidgetList.length}/$noExperiences",
-                              textAlign: TextAlign.right,
-                              style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
-                            ),
+                              Text(
+                                "${goodWidgetList.length}/$noExperiences",
+                                textAlign: TextAlign.right,
+                                style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
+                              ),
 
-                          ],
+                            ],
+                          ),
                         ),
 
                         Container(
@@ -167,7 +178,8 @@ class _ExperienceState extends State<MyExperiences>{
 
                             itemCount: goodWidgetList?.length,
                             itemBuilder: (context, index) {
-                              return goodWidgetList[index];
+                              if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: goodWidgetList[index]);
+                              else return goodWidgetList[index];
                             },
 
                           ),
@@ -185,23 +197,26 @@ class _ExperienceState extends State<MyExperiences>{
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Weniger gute Erlebnisse",
-                              style: ThemeTexts.assessmentDialogTitle,
-                              textAlign: TextAlign.left,
-                            ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Weniger gute Erlebnisse",
+                                style: ThemeTexts.assessmentDialogTitle,
+                                textAlign: TextAlign.left,
+                              ),
 
-                            Text(
-                              "${badWidgetList.length}/$noExperiences",
-                              textAlign: TextAlign.right,
-                              style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
-                            ),
+                              Text(
+                                "${badWidgetList.length}/$noExperiences",
+                                textAlign: TextAlign.right,
+                                style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
+                              ),
 
-                          ],
+                            ],
+                          ),
                         ),
 
                         Container(
@@ -213,7 +228,8 @@ class _ExperienceState extends State<MyExperiences>{
 
                             itemCount: badWidgetList?.length,
                             itemBuilder: (context, index) {
-                              return badWidgetList[index];
+                              if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: badWidgetList[index]);
+                              else return badWidgetList[index];
                             },
 
                           ),

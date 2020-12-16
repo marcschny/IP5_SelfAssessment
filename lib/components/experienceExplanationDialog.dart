@@ -9,14 +9,14 @@ import 'package:oktoast/oktoast.dart';
 
 
 
-class ExperienceCardExplanationDialog extends StatefulWidget{
+class ExperienceExplanationDialog extends StatefulWidget{
 
   final int assessmentId;
   final String smiley;
   final String description;
   final Experience experience;
 
-  const ExperienceCardExplanationDialog({
+  const ExperienceExplanationDialog({
     Key key,
     @required this.assessmentId,
     @required this.smiley,
@@ -24,11 +24,11 @@ class ExperienceCardExplanationDialog extends StatefulWidget{
     this.experience
   }) : super(key: key);
 
-  _ExperienceCardExplanationDialogState createState() => _ExperienceCardExplanationDialogState();
+  _ExperienceExplanationDialogState createState() => _ExperienceExplanationDialogState();
 
 }
 
-class _ExperienceCardExplanationDialogState extends State<ExperienceCardExplanationDialog>{
+class _ExperienceExplanationDialogState extends State<ExperienceExplanationDialog>{
 
   final _explanationController = TextEditingController();
 

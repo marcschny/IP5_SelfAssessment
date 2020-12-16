@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/emptyExperienceCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/experienceCard.dart';
-import 'package:ip5_selbsteinschaetzung/components/experienceCardDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/changeProjectDescriptionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
@@ -141,7 +141,7 @@ class _ChangeProjectState extends State<ChangeProject>{
     setState(() {
       experiences.reversed.forEach((element){
         widgetList.add(
-            ExperienceCard(experience: element)
+            ExperienceCard(experience: element, editable: true)
         );
       });
       noExperiences = experiences.length;
@@ -241,7 +241,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                                     showDialog(
                                       context: context,
                                       barrierColor: Colors.black.withOpacity(.3),
-                                      child: SlideUpFromBottom(0, ExperienceCardDialog(assessmentId: widget.assessmentId)),
+                                      child: SlideUpFromBottom(0, ExperienceDialog(assessmentId: widget.assessmentId)),
                                     );
                                   },
                                 ),
@@ -253,13 +253,14 @@ class _ChangeProjectState extends State<ChangeProject>{
                           Container(
                             height: 170,
                             child: ListView.builder(
-                              padding: EdgeInsets.only(top: 14, left: 18, bottom: 10, right: 14),
+                              padding: EdgeInsets.only(top: 14, left: 0, bottom: 10, right: 14),
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
 
                               itemCount: widgetList.length,
                               itemBuilder: (context, index) {
-                                return widgetList[index];
+                                if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: widgetList[index]);
+                                else return widgetList[index];
                               },
 
                             ),

@@ -10,7 +10,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:ip5_selbsteinschaetzung/components/experienceCardExplanationDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceExplanationDialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
@@ -20,18 +20,18 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
-class ExperienceCardDialog extends StatefulWidget{
+class ExperienceDialog extends StatefulWidget{
 
   final int assessmentId;
   final Experience experience;
 
-  const ExperienceCardDialog({Key key, this.assessmentId, this.experience}) : super(key: key);
+  const ExperienceDialog({Key key, this.assessmentId, this.experience}) : super(key: key);
 
-  _ExperienceCardDialogState createState() => _ExperienceCardDialogState();
+  _ExperienceDialogState createState() => _ExperienceDialogState();
 
 }
 
-class _ExperienceCardDialogState extends State<ExperienceCardDialog>{
+class _ExperienceDialogState extends State<ExperienceDialog>{
 
   String _selectedSmiley;
   final _descriptionController = TextEditingController();
@@ -317,8 +317,8 @@ class _ExperienceCardDialogState extends State<ExperienceCardDialog>{
                               context: context,
                               barrierColor: Colors.black.withOpacity(.0),
                               child: widget.experience != null ?
-                              SlideUpFromBottom(0, ExperienceCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text, experience: widget.experience)) :
-                              SlideUpFromBottom(0, ExperienceCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text)),
+                              SlideUpFromBottom(0, ExperienceExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text, experience: widget.experience)) :
+                              SlideUpFromBottom(0, ExperienceExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text)),
                             );
                           }else{
                             showToast(

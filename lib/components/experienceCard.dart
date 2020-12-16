@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/components/experienceCardDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/notEditableExperienceDialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
@@ -10,10 +11,12 @@ import 'package:intl/intl.dart';
 class ExperienceCard extends StatelessWidget{
 
   final Experience experience;
+  final bool editable;
 
   ExperienceCard({
     Key key,
-    @required this.experience
+    @required this.experience,
+    @required this.editable
   }) : super(key: key);
 
   final format = DateFormat("dd.MM.yyyy");
@@ -83,11 +86,23 @@ class ExperienceCard extends StatelessWidget{
         ),
       ),
       onTap: (){
-        showDialog(
-          context: context,
-          barrierColor: Colors.black.withOpacity(.3),
-          child: SlideUpFromBottom(0, ExperienceCardDialog(assessmentId: experience.assessment_id, experience: experience)),
-        );
+        if(editable) {
+          showDialog(
+            context: context,
+            barrierColor: Colors.black.withOpacity(.3),
+            child: SlideUpFromBottom(0, ExperienceDialog(
+                assessmentId: experience.assessment_id,
+                experience: experience)),
+          );
+        }else{
+          showDialog(
+            context: context,
+            barrierColor: Colors.black.withOpacity(.3),
+            child: SlideUpFromBottom(0, NotEditableExperienceDialog(
+                assessmentId: experience.assessment_id,
+                experience: experience)),
+          );
+        }
       },
     );
   }
