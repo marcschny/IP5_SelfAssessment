@@ -11,6 +11,8 @@ import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'Congratulations.dart';
+
 
 
 class ChangeProject extends StatefulWidget{
@@ -311,8 +313,30 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   //next page
   void _next(BuildContext context, int assessmentId) {
-    //todo: validate and go to evaluation
-    print("validate and go to evaluation");
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 500),
+        pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return Congratulations(assessmentId: assessmentId);
+
+        },
+        transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return Align(
+            child: FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+          );
+        },
+      ),
+    );
   }
 
 

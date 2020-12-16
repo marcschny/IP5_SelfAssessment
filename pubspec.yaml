@@ -52,6 +52,7 @@ dev_dependencies:
   super_tooltip: ^0.9.6
   simple_animations: ^2.4.0
   intl: ^0.16.1
+  lottie: ^0.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -81,6 +82,7 @@ flutter:
     - assets/smileys/ok.png
     - assets/smileys/bad.png
     - assets/smileys/verybad.png
+    - assets/lottie/confetti.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

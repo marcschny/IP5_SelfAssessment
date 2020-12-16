@@ -90,7 +90,7 @@ class TopBar extends StatelessWidget{
             ),
             showProgressbar ? ProgressBar(
               percent: percent,
-            ) : Container(),
+            ) : Container(color: Colors.red),
             Container(
               width: MediaQuery.of(context).size.width,
               padding: widget != null ? EdgeInsets.fromLTRB(5, 0, 5, 0) : EdgeInsets.fromLTRB(5, 10, 5, 0),
