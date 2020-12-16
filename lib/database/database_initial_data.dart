@@ -1,7 +1,7 @@
 const initialDataScript = [
   'DELETE FROM Answer',
   'DELETE FROM Assessment',
-  'DELETE FROM ProjectCard',
+  'DELETE FROM Experience',
   'DELETE FROM Visualization',
   'DELETE FROM Person',
   'DELETE FROM Question',

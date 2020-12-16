@@ -2,28 +2,28 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/components/myProjectCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceCard.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
-class Experience extends StatefulWidget{
+class MyExperiences extends StatefulWidget{
 
   final int assessmentId;
 
-  const Experience({Key key, this.assessmentId}) : super(key: key);
+  const MyExperiences({Key key, this.assessmentId}) : super(key: key);
 
   _ExperienceState createState() => _ExperienceState();
 
 }
 
-class _ExperienceState extends State<Experience>{
+class _ExperienceState extends State<MyExperiences>{
 
-  List<MyProjectCard> goodWidgetList;
-  List<MyProjectCard> badWidgetList;
-  List<MyProjectCard> allWidgetList;
-  int noProjectCards;
+  List<ExperienceCard> goodWidgetList;
+  List<ExperienceCard> badWidgetList;
+  List<ExperienceCard> allWidgetList;
+  int noExperiences;
   String _datesString;
 
   final format = DateFormat("dd.MM.yyyy");
@@ -34,39 +34,38 @@ class _ExperienceState extends State<Experience>{
     goodWidgetList = List();
     badWidgetList = List();
     allWidgetList = List();
-    noProjectCards = 0;
+    noExperiences = 0;
     _datesString = "";
-    Future.delayed(Duration.zero, _getProjectCards);
+    Future.delayed(Duration.zero, _getExperiences);
   }
 
 
-  _getProjectCards() async{
+  _getExperiences() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
 
-    final projectCards = await assessmentRepo.getProjectCardsByAssessment(widget.assessmentId);
-    final positiveProjectCards = await assessmentRepo.getPositiveProjectCards(widget.assessmentId);
-    final negativeProjectCards = await assessmentRepo.getNegativeProjectCards(widget.assessmentId);
-    final allProjectCards = await assessmentRepo.getProjectCardsByAssessment(widget.assessmentId);
+    final positiveExperiences = await assessmentRepo.getPositiveExperiences(widget.assessmentId);
+    final negativeExperiences = await assessmentRepo.getNegativeExperiences(widget.assessmentId);
+    final allExperiences = await assessmentRepo.getExperiencesByAssessment(widget.assessmentId);
 
 
     setState(() {
-      noProjectCards = projectCards.length;
-      positiveProjectCards.reversed.forEach((element) {
+      noExperiences = allExperiences.length;
+      positiveExperiences.reversed.forEach((element) {
         goodWidgetList.add(
-          MyProjectCard(projectCard: element)
+          ExperienceCard(experience: element)
         );
       });
-      negativeProjectCards.reversed.forEach((element) {
+      negativeExperiences.reversed.forEach((element) {
         badWidgetList.add(
-          MyProjectCard(projectCard: element)
+            ExperienceCard(experience: element)
         );
       });
-      allProjectCards.reversed.forEach((element) {
+      allExperiences.reversed.forEach((element) {
         allWidgetList.add(
-            MyProjectCard(projectCard: element)
+            ExperienceCard(experience: element)
         );
       });
     });
@@ -77,7 +76,7 @@ class _ExperienceState extends State<Experience>{
 
   _setDates() async{
     setState(() {
-      _datesString = "${format.format(DateTime.parse(allWidgetList.first.projectCard.date_created))} - ${format.format(DateTime.parse(allWidgetList.last.projectCard.date_created))}";
+      _datesString = "${format.format(DateTime.parse(allWidgetList.first.experience.date_created))} - ${format.format(DateTime.parse(allWidgetList.last.experience.date_created))}";
     });
   }
 
@@ -151,7 +150,7 @@ class _ExperienceState extends State<Experience>{
                             ),
 
                             Text(
-                              "${goodWidgetList.length}/$noProjectCards",
+                              "${goodWidgetList.length}/$noExperiences",
                               textAlign: TextAlign.right,
                               style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
                             ),
@@ -197,7 +196,7 @@ class _ExperienceState extends State<Experience>{
                             ),
 
                             Text(
-                              "${badWidgetList.length}/$noProjectCards",
+                              "${badWidgetList.length}/$noExperiences",
                               textAlign: TextAlign.right,
                               style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
                             ),

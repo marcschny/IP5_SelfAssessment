@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 
-class EmptyProjectCard extends StatelessWidget{
+class EmptyExperienceCard extends StatelessWidget{
 
 
   @override

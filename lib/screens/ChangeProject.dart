@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
-import 'package:ip5_selbsteinschaetzung/components/emptyProjectCard.dart';
-import 'package:ip5_selbsteinschaetzung/components/myProjectCard.dart';
-import 'package:ip5_selbsteinschaetzung/components/projectCardDialog.dart';
-import 'package:ip5_selbsteinschaetzung/components/projectDescriptionDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/emptyExperienceCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceCard.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceCardDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/changeProjectDescriptionDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
@@ -32,7 +32,7 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   String projectTitle = "";
   List<Widget> widgetList;
-  int noProjectCards;
+  int noExperiences;
 
   Widget headerRow(BuildContext context) {
     return Container(
@@ -64,7 +64,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                   barrierColor: Colors.black.withOpacity(.55),
                   child: Padding(
                     padding: EdgeInsets.only(top: 120),
-                    child: SlideUpFromBottom(0, ProjectDescriptionDialog(assessmentId: widget.assessmentId)),
+                    child: SlideUpFromBottom(0, ChangeProjectDescriptionDialog(assessmentId: widget.assessmentId)),
                   ),
                 );
               },
@@ -105,9 +105,9 @@ class _ChangeProjectState extends State<ChangeProject>{
   void initState() {
     super.initState();
     widgetList = List();
-    noProjectCards = 0;
+    noExperiences = 0;
     Future.delayed(Duration.zero, _getProjectTitle);
-    Future.delayed(Duration.zero, _getProjectCards);
+    Future.delayed(Duration.zero, _getExperiences);
   }
 
   @override
@@ -129,27 +129,25 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   }
 
-  _getProjectCards() async{
+  _getExperiences() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
     widgetList.clear();
 
-    final projectCards = await assessmentRepo.getProjectCardsByAssessment(widget.assessmentId);
-
-    print("projectCards.length: "+projectCards.length.toString());
+    final experiences = await assessmentRepo.getExperiencesByAssessment(widget.assessmentId);
 
     setState(() {
-      projectCards.reversed.forEach((element){
+      experiences.reversed.forEach((element){
         widgetList.add(
-          MyProjectCard(projectCard: element)
+            ExperienceCard(experience: element)
         );
       });
-      noProjectCards = projectCards.length;
-      for(int i=0; i<10-noProjectCards; i++){
+      noExperiences = experiences.length;
+      for(int i=0; i<10-noExperiences; i++){
         widgetList.add(
-          EmptyProjectCard()
+          EmptyExperienceCard()
         );
       }
     });
@@ -243,7 +241,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                                     showDialog(
                                       context: context,
                                       barrierColor: Colors.black.withOpacity(.3),
-                                      child: SlideUpFromBottom(0, ProjectCardDialog(assessmentId: widget.assessmentId)),
+                                      child: SlideUpFromBottom(0, ExperienceCardDialog(assessmentId: widget.assessmentId)),
                                     );
                                   },
                                 ),
@@ -273,7 +271,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 22),
                             child: Text(
-                              "$noProjectCards/10 Karten",
+                              "$noExperiences/10 Karten",
                               textAlign: TextAlign.right,
                               style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
                             ),

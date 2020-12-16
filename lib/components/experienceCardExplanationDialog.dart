@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/projectcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -9,26 +9,26 @@ import 'package:oktoast/oktoast.dart';
 
 
 
-class ProjectCardExplanationDialog extends StatefulWidget{
+class ExperienceCardExplanationDialog extends StatefulWidget{
 
   final int assessmentId;
   final String smiley;
   final String description;
-  final ProjectCard projectCard;
+  final Experience experience;
 
-  const ProjectCardExplanationDialog({
+  const ExperienceCardExplanationDialog({
     Key key,
     @required this.assessmentId,
     @required this.smiley,
     @required this.description,
-    this.projectCard
+    this.experience
   }) : super(key: key);
 
-  _ProjectCardExplanationDialogState createState() => _ProjectCardExplanationDialogState();
+  _ExperienceCardExplanationDialogState createState() => _ExperienceCardExplanationDialogState();
 
 }
 
-class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDialog>{
+class _ExperienceCardExplanationDialogState extends State<ExperienceCardExplanationDialog>{
 
   final _explanationController = TextEditingController();
 
@@ -36,7 +36,7 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
   @override
   void initState() {
     super.initState();
-    _explanationController.text = widget.projectCard != null ? widget.projectCard.explanation : "";
+    _explanationController.text = widget.experience != null ? widget.experience.explanation : "";
   }
 
   @override
@@ -151,13 +151,13 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
       final assessmentRepo = appDatabase.assessmentRepository;
 
-      if (widget.projectCard != null) {
-        final updateProjectCard = ProjectCard(
-            widget.projectCard.id, widget.smiley,
+      if (widget.experience != null) {
+        final updateExperience = Experience(
+            widget.experience.id, widget.smiley,
             widget.description, _explanationController.text,
-            widget.projectCard.date_created, widget.assessmentId);
+            widget.experience.date_created, widget.assessmentId);
 
-        assessmentRepo.updateProjectCard(updateProjectCard);
+        assessmentRepo.updateExperience(updateExperience);
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),
@@ -183,11 +183,11 @@ class _ProjectCardExplanationDialogState extends State<ProjectCardExplanationDia
             ModalRoute.withName("/changeProject")
         );
       } else {
-        final newProjectCard = ProjectCard(
+        final newExperience = Experience(
             null, widget.smiley, widget.description, _explanationController.text,
             DateTime.now().toString(), widget.assessmentId);
 
-        assessmentRepo.createProjectCard(newProjectCard);
+        assessmentRepo.createExperience(newExperience);
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),

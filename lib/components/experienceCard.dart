@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/components/projectCardDialog.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/projectcard.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceCardDialog.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:intl/intl.dart';
 
 
-class MyProjectCard extends StatelessWidget{
+class ExperienceCard extends StatelessWidget{
 
-  final ProjectCard projectCard;
+  final Experience experience;
 
-  MyProjectCard({
+  ExperienceCard({
     Key key,
-    @required this.projectCard
+    @required this.experience
   }) : super(key: key);
 
   final format = DateFormat("dd.MM.yyyy");
@@ -43,13 +43,13 @@ class MyProjectCard extends StatelessWidget{
               children: [
 
                 Text(
-                  format.format(DateTime.parse(projectCard.date_created)).toString(),
+                  format.format(DateTime.parse(experience.date_created)).toString(),
                   style: ThemeTexts.assessmentNavigationNext.copyWith(color: Color.fromRGBO(105, 105, 105, 1)),
                   overflow: TextOverflow.fade,
                 ),
 
                 Text(
-                  projectCard.description,
+                  experience.description,
                   style: ThemeTexts.assessmentText.copyWith(fontSize: 16),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -71,7 +71,7 @@ class MyProjectCard extends StatelessWidget{
                         )
                       ],
                       image: DecorationImage(
-                        image: AssetImage("assets/smileys/${projectCard.mood}.png"),
+                        image: AssetImage("assets/smileys/${experience.mood}.png"),
                         fit: BoxFit.cover,
                       )
                   ),
@@ -86,7 +86,7 @@ class MyProjectCard extends StatelessWidget{
         showDialog(
           context: context,
           barrierColor: Colors.black.withOpacity(.3),
-          child: SlideUpFromBottom(0, ProjectCardDialog(assessmentId: projectCard.assessment_id, projectCard: projectCard)),
+          child: SlideUpFromBottom(0, ExperienceCardDialog(assessmentId: experience.assessment_id, experience: experience)),
         );
       },
     );

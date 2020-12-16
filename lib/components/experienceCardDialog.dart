@@ -10,9 +10,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:ip5_selbsteinschaetzung/components/projectCardExplanationDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceCardExplanationDialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/projectcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
@@ -20,18 +20,18 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
-class ProjectCardDialog extends StatefulWidget{
+class ExperienceCardDialog extends StatefulWidget{
 
   final int assessmentId;
-  final ProjectCard projectCard;
+  final Experience experience;
 
-  const ProjectCardDialog({Key key, this.assessmentId, this.projectCard}) : super(key: key);
+  const ExperienceCardDialog({Key key, this.assessmentId, this.experience}) : super(key: key);
 
-  _ProjectCardDialogState createState() => _ProjectCardDialogState();
+  _ExperienceCardDialogState createState() => _ExperienceCardDialogState();
 
 }
 
-class _ProjectCardDialogState extends State<ProjectCardDialog>{
+class _ExperienceCardDialogState extends State<ExperienceCardDialog>{
 
   String _selectedSmiley;
   final _descriptionController = TextEditingController();
@@ -41,8 +41,8 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
   void initState() {
     super.initState();
     _selectedSmiley = "";
-    _descriptionController.text = widget.projectCard != null ? widget.projectCard.description : "";
-    _selectedSmiley = widget.projectCard != null ? widget.projectCard.mood : "";
+    _descriptionController.text = widget.experience != null ? widget.experience.description : "";
+    _selectedSmiley = widget.experience != null ? widget.experience.mood : "";
   }
 
   @override
@@ -316,9 +316,9 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
                             showDialog(
                               context: context,
                               barrierColor: Colors.black.withOpacity(.0),
-                              child: widget.projectCard != null ?
-                              SlideUpFromBottom(0, ProjectCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text, projectCard: widget.projectCard)) :
-                              SlideUpFromBottom(0, ProjectCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text)),
+                              child: widget.experience != null ?
+                              SlideUpFromBottom(0, ExperienceCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text, experience: widget.experience)) :
+                              SlideUpFromBottom(0, ExperienceCardExplanationDialog(assessmentId: widget.assessmentId, smiley: _selectedSmiley, description: _descriptionController.text)),
                             );
                           }else{
                             showToast(
@@ -410,11 +410,11 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
       final assessmentRepo = appDatabase.assessmentRepository;
 
-      if(widget.projectCard != null) {
-        final updateProjectCard = ProjectCard(widget.projectCard.id, _selectedSmiley,
-            _descriptionController.text, "", widget.projectCard.date_created, widget.projectCard.assessment_id);
+      if(widget.experience != null) {
+        final updateExperience = Experience(widget.experience.id, _selectedSmiley,
+            _descriptionController.text, "", widget.experience.date_created, widget.experience.assessment_id);
 
-        assessmentRepo.updateProjectCard(updateProjectCard);
+        assessmentRepo.updateExperience(updateExperience);
         Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),
@@ -440,11 +440,11 @@ class _ProjectCardDialogState extends State<ProjectCardDialog>{
             ModalRoute.withName("/changeProject")
         );
       }else{
-        final newProjectCard = ProjectCard(
+        final newExperience = Experience(
             null, _selectedSmiley, _descriptionController.text, "",
             DateTime.now().toString(), widget.assessmentId);
 
-        assessmentRepo.createProjectCard(newProjectCard);
+        assessmentRepo.createExperience(newExperience);
         Navigator.of(context).pushAndRemoveUntil(
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 300),

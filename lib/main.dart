@@ -5,7 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Congratulations.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Experience.dart';
+import 'package:ip5_selbsteinschaetzung/screens/MyExperiences.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_1.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
             "/changeProject": (context) => ChangeProject(),
             "/congratulations": (context) => Congratulations(),
             "/evaluation": (context) => Evaluation(),
-            "/experience": (context) => Experience(),
+            "/experience": (context) => MyExperiences(),
           },
         ),
       ),

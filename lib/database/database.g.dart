@@ -90,7 +90,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Person` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `icon` TEXT, `lifeArea` TEXT, `distance` REAL, `visualization_id` INTEGER, `assessment_id` INTEGER, FOREIGN KEY (`visualization_id`) REFERENCES `Visualization` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `ProjectCard` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `mood` TEXT, `description` TEXT, `explanation` TEXT, `date_created` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
+            'CREATE TABLE IF NOT EXISTS `Experience` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `mood` TEXT, `description` TEXT, `explanation` TEXT, `date_created` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -127,10 +127,10 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
-        _projectCardInsertionAdapter = InsertionAdapter(
+        _experienceInsertionAdapter = InsertionAdapter(
             database,
-            'ProjectCard',
-            (ProjectCard item) => <String, dynamic>{
+            'Experience',
+            (Experience item) => <String, dynamic>{
                   'id': item.id,
                   'mood': item.mood,
                   'description': item.description,
@@ -191,11 +191,11 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
-        _projectCardUpdateAdapter = UpdateAdapter(
+        _experienceUpdateAdapter = UpdateAdapter(
             database,
-            'ProjectCard',
+            'Experience',
             ['id'],
-            (ProjectCard item) => <String, dynamic>{
+            (Experience item) => <String, dynamic>{
                   'id': item.id,
                   'mood': item.mood,
                   'description': item.description,
@@ -247,11 +247,11 @@ class _$AssessmentRepository extends AssessmentRepository {
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
-        _projectCardDeletionAdapter = DeletionAdapter(
+        _experienceDeletionAdapter = DeletionAdapter(
             database,
-            'ProjectCard',
+            'Experience',
             ['id'],
-            (ProjectCard item) => <String, dynamic>{
+            (Experience item) => <String, dynamic>{
                   'id': item.id,
                   'mood': item.mood,
                   'description': item.description,
@@ -293,7 +293,7 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final InsertionAdapter<Assessment> _assessmentInsertionAdapter;
 
-  final InsertionAdapter<ProjectCard> _projectCardInsertionAdapter;
+  final InsertionAdapter<Experience> _experienceInsertionAdapter;
 
   final InsertionAdapter<Visualization> _visualizationInsertionAdapter;
 
@@ -305,7 +305,7 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final UpdateAdapter<Assessment> _assessmentUpdateAdapter;
 
-  final UpdateAdapter<ProjectCard> _projectCardUpdateAdapter;
+  final UpdateAdapter<Experience> _experienceUpdateAdapter;
 
   final UpdateAdapter<Visualization> _visualizationUpdateAdapter;
 
@@ -315,7 +315,7 @@ class _$AssessmentRepository extends AssessmentRepository {
 
   final DeletionAdapter<Assessment> _assessmentDeletionAdapter;
 
-  final DeletionAdapter<ProjectCard> _projectCardDeletionAdapter;
+  final DeletionAdapter<Experience> _experienceDeletionAdapter;
 
   final DeletionAdapter<Visualization> _visualizationDeletionAdapter;
 
@@ -443,9 +443,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<ProjectCard>> getAllProjectCards() async {
-    return _queryAdapter.queryList('SELECT * FROM ProjectCard',
-        mapper: (Map<String, dynamic> row) => ProjectCard(
+  Future<List<Experience>> getAllExperiences() async {
+    return _queryAdapter.queryList('SELECT * FROM Experience',
+        mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
             row['description'] as String,
@@ -455,11 +455,11 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<ProjectCard>> getProjectCardsByAssessment(int id) async {
+  Future<List<Experience>> getExperiencesByAssessment(int id) async {
     return _queryAdapter.queryList(
-        'SELECT * FROM ProjectCard WHERE assessment_id = ?',
+        'SELECT * FROM Experience WHERE assessment_id = ?',
         arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => ProjectCard(
+        mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
             row['description'] as String,
@@ -469,10 +469,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<ProjectCard> findProjectCard(int id) async {
-    return _queryAdapter.query('SELECT * FROM ProjectCard WHERE id = ?',
+  Future<Experience> findExperience(int id) async {
+    return _queryAdapter.query('SELECT * FROM Experience WHERE id = ?',
         arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => ProjectCard(
+        mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
             row['description'] as String,
@@ -482,11 +482,11 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<ProjectCard>> getPositiveProjectCards(int id) async {
+  Future<List<Experience>> getPositiveExperiences(int id) async {
     return _queryAdapter.queryList(
-        'SELECT * FROM ProjectCard WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = ?',
+        'SELECT * FROM Experience WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = ?',
         arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => ProjectCard(
+        mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
             row['description'] as String,
@@ -496,11 +496,11 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<ProjectCard>> getNegativeProjectCards(int id) async {
+  Future<List<Experience>> getNegativeExperiences(int id) async {
     return _queryAdapter.queryList(
-        'SELECT * FROM ProjectCard WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = ?',
+        'SELECT * FROM Experience WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = ?',
         arguments: <dynamic>[id],
-        mapper: (Map<String, dynamic> row) => ProjectCard(
+        mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
             row['description'] as String,
@@ -586,9 +586,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<int> createProjectCard(ProjectCard projectCard) {
-    return _projectCardInsertionAdapter.insertAndReturnId(
-        projectCard, OnConflictStrategy.abort);
+  Future<int> createExperience(Experience experience) {
+    return _experienceInsertionAdapter.insertAndReturnId(
+        experience, OnConflictStrategy.abort);
   }
 
   @override
@@ -622,9 +622,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<int> updateProjectCard(ProjectCard projectCard) {
-    return _projectCardUpdateAdapter.updateAndReturnChangedRows(
-        projectCard, OnConflictStrategy.abort);
+  Future<int> updateExperience(Experience experience) {
+    return _experienceUpdateAdapter.updateAndReturnChangedRows(
+        experience, OnConflictStrategy.abort);
   }
 
   @override
@@ -650,8 +650,8 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<int> deleteProjectCard(ProjectCard projectCard) {
-    return _projectCardDeletionAdapter.deleteAndReturnChangedRows(projectCard);
+  Future<int> deleteExperience(Experience experience) {
+    return _experienceDeletionAdapter.deleteAndReturnChangedRows(experience);
   }
 
   @override

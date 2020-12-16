@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
-import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Experience.dart';
+import 'package:ip5_selbsteinschaetzung/screens/MyExperiences.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -25,19 +24,19 @@ class _EvaluationState extends State<Evaluation>{
 
   String projectTitle = "";
   String _selectedSmiley;
-  int noProjectCards;
-  int noPositiveProjectCards;
-  int noNegativeProjectCards;
+  int noExperiences;
+  int noPositiveExperiences;
+  int noNegativeExperiences;
 
   @override
   void initState() {
     super.initState();
     _selectedSmiley = "";
-    noPositiveProjectCards = 0;
-    noNegativeProjectCards = 0;
-    noProjectCards = 0;
+    noPositiveExperiences = 0;
+    noNegativeExperiences = 0;
+    noExperiences = 0;
     Future.delayed(Duration.zero, _getProjectTitle);
-    Future.delayed(Duration.zero, _getProjectCards);
+    Future.delayed(Duration.zero, _getExperiences);
   }
 
 
@@ -55,21 +54,21 @@ class _EvaluationState extends State<Evaluation>{
 
   }
 
-  _getProjectCards() async{
+  _getExperiences() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
 
-    final projectCards = await assessmentRepo.getProjectCardsByAssessment(widget.assessmentId);
-    final positiveProjectCards = await assessmentRepo.getPositiveProjectCards(widget.assessmentId);
-    final negativeProjectCards = await assessmentRepo.getNegativeProjectCards(widget.assessmentId);
+    final experiences = await assessmentRepo.getExperiencesByAssessment(widget.assessmentId);
+    final positiveExperiences = await assessmentRepo.getPositiveExperiences(widget.assessmentId);
+    final negativeExperience = await assessmentRepo.getNegativeExperiences(widget.assessmentId);
 
 
     setState(() {
-      noProjectCards = projectCards.length;
-      noPositiveProjectCards = positiveProjectCards.length;
-      noNegativeProjectCards = negativeProjectCards.length;
+      noExperiences = experiences.length;
+      noPositiveExperiences = positiveExperiences.length;
+      noNegativeExperiences = negativeExperience.length;
     });
 
   }
@@ -123,12 +122,12 @@ class _EvaluationState extends State<Evaluation>{
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Du hattest $noPositiveProjectCards/$noProjectCards gut gelungene Erlebnisse während Deines Veränderungsprojekts.",
+                                    "Du hattest $noPositiveExperiences/$noExperiences gut gelungene Erlebnisse während Deines Veränderungsprojekts.",
                                     textAlign: TextAlign.start,
                                     style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
                                   ),
                                   SizedBox(height: 5),
-                                  noNegativeProjectCards >=  noPositiveProjectCards ?
+                                  noNegativeExperiences >=  noPositiveExperiences ?
                                   Text(
                                     "Auch wenn Du selber noch nicht zufrieden bist: Du hast viel gemacht!",
                                     textAlign: TextAlign.start,
@@ -173,7 +172,7 @@ class _EvaluationState extends State<Evaluation>{
                                               BuildContext context,
                                               Animation<double> animation,
                                               Animation<double> secondaryAnimation) {
-                                            return Experience(assessmentId: widget.assessmentId);
+                                            return MyExperiences(assessmentId: widget.assessmentId);
                                           },
                                           transitionsBuilder: (
                                               BuildContext context,
@@ -200,7 +199,7 @@ class _EvaluationState extends State<Evaluation>{
                             SizedBox(height: 22),
 
 
-                            noNegativeProjectCards >=  noPositiveProjectCards ?
+                            noNegativeExperiences >=  noPositiveExperiences ?
                             Padding(
                               padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
                               child: Column(

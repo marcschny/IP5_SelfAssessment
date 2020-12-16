@@ -7,17 +7,17 @@ import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
-class ProjectDescriptionDialog extends StatefulWidget{
+class ChangeProjectDescriptionDialog extends StatefulWidget{
 
   final int assessmentId;
 
-  const ProjectDescriptionDialog({Key key, @required this.assessmentId}) : super(key: key);
+  const ChangeProjectDescriptionDialog({Key key, @required this.assessmentId}) : super(key: key);
 
-  _ProjectDescriptionDialogState createState() => _ProjectDescriptionDialogState();
+  _ChangeProjectDescriptionDialogState createState() => _ChangeProjectDescriptionDialogState();
 
 }
 
-class _ProjectDescriptionDialogState extends State<ProjectDescriptionDialog>{
+class _ChangeProjectDescriptionDialogState extends State<ChangeProjectDescriptionDialog>{
 
   String title = "";
   String description = "";
