@@ -10,6 +10,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'Congratulations.dart';
 
@@ -182,7 +183,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                     percent: 0,
                     showProgressbar: false,
                     widget: headerRow(context),
-                    intro: "Dokumentiere in den nächsten Wochen möglichst jeden Tag, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Erlebnis\" eine neue Erlebniskarte erstellen. Erstelle mindestens 10 Erlebniskarten um dein Projekt abzuschiessen",
+                    intro: "Dokumentiere in den nächsten Wochen möglichst jeden Tag, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Erlebnis\" eine neue Erlebniskarte erstellen. Erstelle mindestens 10 Erlebniskarten um dein Projekt abzuschiessen.",
                 ),
 
                 SizedBox(height: 12),
@@ -312,31 +313,42 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   //next page
   void _next(BuildContext context, int assessmentId) {
-    //todo: check for at least 10 cards before push
-    Navigator.of(context).push(
-      PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 500),
-        pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation) {
-          return Congratulations(assessmentId: assessmentId);
-
-        },
-        transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child) {
-          return Align(
-            child: FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
-          );
-        },
-      ),
-    );
+    if(noExperiences >= 10) {
+    //todo: uncomment the following line and comment the line above for demonstration purposes
+    //if(true){
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 500),
+          pageBuilder: (BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return Congratulations(assessmentId: assessmentId);
+          },
+          transitionsBuilder: (BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return Align(
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            );
+          },
+        ),
+      );
+    }else{
+      showToast(
+        "Du brauchst mindestens 10 Erlebniskarten",
+        context: context,
+        textAlign: TextAlign.center,
+        textStyle: ThemeTexts.toastText,
+        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        position: ToastPosition.bottom,
+        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+        duration: Duration(milliseconds: 2500),
+      );
+    }
   }
 
 

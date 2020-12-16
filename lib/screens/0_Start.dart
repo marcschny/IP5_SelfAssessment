@@ -288,7 +288,8 @@ class Part0 extends StatelessWidget {
 }
 
 class Part1 extends StatelessWidget {
-  const Part1({Key key}) : super(key: key);@override
+  const Part1({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -329,7 +330,8 @@ class Part1 extends StatelessWidget {
 }
 
 class Part2 extends StatelessWidget {
-  const Part2({Key key}) : super(key: key);@override
+  const Part2({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -404,7 +406,8 @@ class Part3 extends StatelessWidget {
 }
 
 class Part4 extends StatelessWidget {
-  const Part4({Key key}) : super(key: key);@override
+  const Part4({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -438,7 +441,8 @@ class Part4 extends StatelessWidget {
 }
 
 class Part5 extends StatelessWidget {
-  const Part5({Key key}) : super(key: key);@override
+  const Part5({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

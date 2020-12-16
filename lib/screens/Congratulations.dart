@@ -31,7 +31,7 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
     super.initState();
     _confettiController = AnimationController(vsync: this, duration: Duration(milliseconds: 6000));
     Future.delayed(Duration(milliseconds: 500), _startAnimation);
-    Future.delayed(Duration(milliseconds: 6000), _goToEvaluation);
+    Future.delayed(Duration(milliseconds: 5100), _goToEvaluation);
   }
 
   @override

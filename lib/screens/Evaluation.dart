@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
@@ -7,11 +5,14 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/slideLeft.dart';
+import 'package:ip5_selbsteinschaetzung/resources/slideRight.dart';
 import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/MyExperiences.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
+
 
 class Evaluation extends StatefulWidget{
 
@@ -133,12 +134,12 @@ class _EvaluationState extends State<Evaluation>{
                                       textAlign: TextAlign.start,
                                       style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
                                     ),
-                                    SizedBox(height: 5),
+                                    SizedBox(height: 12),
                                     noNegativeExperiences >=  noPositiveExperiences ?
                                     Text(
                                       "Auch wenn Du selber noch nicht zufrieden bist: Du hast viel gemacht!",
                                       textAlign: TextAlign.start,
-                                      style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
+                                      style: ThemeTexts.assessmentText.copyWith(color: ThemeColors.greyShade0, fontSize: 14.5),
                                     ) : Container(),
 
                                     SizedBox(height: 5),
@@ -187,9 +188,9 @@ class _EvaluationState extends State<Evaluation>{
                                                 Animation<double> secondaryAnimation,
                                                 Widget child) {
                                               return Align(
-                                                child: FadeTransition(
-                                                  opacity: animation,
-                                                  child: child,
+                                                child: SlideLeft(
+                                                  0.1,
+                                                  child,
                                                 ),
                                               );
                                             },
@@ -254,8 +255,7 @@ class _EvaluationState extends State<Evaluation>{
                                         ],
                                       ),
                                       onPressed: () {
-                                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ChangeProject(assessmentId: widget.assessmentId)), (Route<dynamic> route) => false);
-
+                                        _goToChangeProject();
                                       },
                                     ),
 
@@ -499,6 +499,10 @@ class _EvaluationState extends State<Evaluation>{
                           onPressed: () {
                             _finishAssessment();
                           },
+                          //todo: uncomment the following 3 lines for demonstration purposes
+                          /*onLongPress: (){
+                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ChangeProject(assessmentId: widget.assessmentId)), (route) => false);
+                          },*/
                         ),
 
 
@@ -535,6 +539,31 @@ class _EvaluationState extends State<Evaluation>{
           ),
         ),
       ),
+    );
+  }
+
+  _goToChangeProject(){
+    Navigator.of(context).pushAndRemoveUntil(
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 500),
+        pageBuilder: (BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return ChangeProject(assessmentId: widget.assessmentId);
+        },
+        transitionsBuilder: (BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return Align(
+            child: SlideRight(
+              0.1,
+              child,
+            ),
+          );
+        },
+      ),
+      (route) => false
     );
   }
 

@@ -63,7 +63,7 @@ class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialo
                 height: MediaQuery.of(context).size.height-25,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
 
@@ -123,7 +123,7 @@ class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialo
                             Text(
                               "Keine Erläuterung dazu vorhanden...",
                               style: ThemeTexts.assessmentText.copyWith(fontStyle: FontStyle.italic, fontSize: 18),
-                              textAlign: TextAlign.start
+                              textAlign: TextAlign.start,
                             ),
 
                         ),

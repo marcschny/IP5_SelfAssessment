@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/experienceCard.dart';
@@ -9,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 
-//todo: create subolder in components for all dialogs
+//todo: create subfolder in components for all dialogs
 class MyExperiences extends StatefulWidget{
 
   final int assessmentId;

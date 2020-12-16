@@ -26,6 +26,7 @@ import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:flutter/services.dart';
 
 import 'components/personDialog.dart';
 
@@ -40,10 +41,12 @@ Future<void> main() async {
       await database.execute(script);
     }
   },
+      //todo:
       //when app is opened
       onOpen: (database) async {
     //tbd
   },
+      //todo:
       //when upgraded
       onUpgrade: (database, startVersion, endVersion) {
     //tbd
@@ -64,6 +67,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     return Provider<AppDatabase>(
       create: (_) => database,
       child: OKToast(
