@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Experience.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -135,8 +136,29 @@ class _EvaluationState extends State<Evaluation>{
                                       ],
                                     ),
                                     onPressed: () {
-                                      //todo: open experience page
-                                      print("open experience page");
+                                      Navigator.of(context).push(
+                                        PageRouteBuilder(
+                                          transitionDuration: Duration(milliseconds: 300),
+                                          pageBuilder: (
+                                              BuildContext context,
+                                              Animation<double> animation,
+                                              Animation<double> secondaryAnimation) {
+                                            return Experience(assessmentId: widget.assessmentId);
+                                          },
+                                          transitionsBuilder: (
+                                              BuildContext context,
+                                              Animation<double> animation,
+                                              Animation<double> secondaryAnimation,
+                                              Widget child) {
+                                            return Align(
+                                              child: FadeTransition(
+                                                opacity: animation,
+                                                child: child,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      );
 
                                     },
                                   ),

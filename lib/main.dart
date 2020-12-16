@@ -5,6 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Congratulations.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Experience.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_1.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
@@ -19,7 +20,7 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_3_3.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_4.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_5.dart';
 import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
-import 'package:ip5_selbsteinschaetzung/screens/evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Evaluation.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -91,6 +92,7 @@ class MyApp extends StatelessWidget {
             "/changeProject": (context) => ChangeProject(),
             "/congratulations": (context) => Congratulations(),
             "/evaluation": (context) => Evaluation(),
+            "/experience": (context) => Experience(),
           },
         ),
       ),

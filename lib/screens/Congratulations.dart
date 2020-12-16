@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/screens/evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Evaluation.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:lottie/lottie.dart';
 
@@ -22,8 +22,8 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
   void initState() {
     super.initState();
     _confettiController = AnimationController(vsync: this, duration: Duration(milliseconds: 6000));
-    Future.delayed(Duration(milliseconds: 600), _startAnimation);
-    Future.delayed(Duration(milliseconds: 5600), _goToEvaluation);
+    Future.delayed(Duration(milliseconds: 500), _startAnimation);
+    Future.delayed(Duration(milliseconds: 6000), _goToEvaluation);
   }
 
   @override
