@@ -312,6 +312,7 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   //next page
   void _next(BuildContext context, int assessmentId) {
+    //todo: check for at least 10 cards before push
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 500),

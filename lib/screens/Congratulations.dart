@@ -1,3 +1,11 @@
+/*
+*
+* Lottie animation received from:  https://lottiefiles.com
+* check licence
+* > todo: will be done in main app later
+*
+* */
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Evaluation.dart';
@@ -112,7 +120,7 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
  _confettiAnimation(context){
     return Container(
       height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       child: Lottie.asset(
         "assets/lottie/confetti.json",
         repeat: false,

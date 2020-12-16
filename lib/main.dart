@@ -21,6 +21,7 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_3_4.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_5.dart';
 import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/TestScreen.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -93,6 +94,7 @@ class MyApp extends StatelessWidget {
             "/congratulations": (context) => Congratulations(),
             "/evaluation": (context) => Evaluation(),
             "/experience": (context) => MyExperiences(),
+            "/test": (context) => TestScreen(),
           },
         ),
       ),

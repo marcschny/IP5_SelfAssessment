@@ -6,19 +6,12 @@
 * > todo: will be done in main app later
 *
 * */
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:ip5_selbsteinschaetzung/components/experienceExplanationDialog.dart';
-import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
-import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
-import 'package:provider/provider.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:intl/intl.dart';
 
 class NotEditableExperienceDialog extends StatefulWidget{
@@ -34,8 +27,6 @@ class NotEditableExperienceDialog extends StatefulWidget{
 
 class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialog>{
 
-  String _selectedSmiley;
-  final _descriptionController = TextEditingController();
   final format = DateFormat("dd.MM.yyyy");
 
 
@@ -198,94 +189,6 @@ class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialo
     );
   }
 
-  bool _validate(){
-    if(_selectedSmiley != "" && _selectedSmiley != null && _descriptionController.text != "" && _descriptionController.text != null) return true;
-    else return false;
-  }
 
-  String _missingInput(){
-    if(_selectedSmiley == "") return "Du hast noch keinen Smiley ausgewählt";
-    else if(_descriptionController.text == "") return "Du hast noch nichts eingegeben";
-    else return "";
-  }
-
-  _save() async{
-    if(_validate()) {
-      final appDatabase = Provider.of<AppDatabase>(context, listen: false);
-      final assessmentRepo = appDatabase.assessmentRepository;
-
-      if(widget.experience != null) {
-        final updateExperience = Experience(widget.experience.id, _selectedSmiley,
-            _descriptionController.text, "", widget.experience.date_created, widget.experience.assessment_id);
-
-        assessmentRepo.updateExperience(updateExperience);
-        Navigator.of(context).pushAndRemoveUntil(
-            PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 300),
-              pageBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                return ChangeProject(assessmentId: widget.assessmentId);
-              },
-              transitionsBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return Align(
-                  child: FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
-                );
-              },
-            ),
-            ModalRoute.withName("/changeProject")
-        );
-      }else{
-        final newExperience = Experience(
-            null, _selectedSmiley, _descriptionController.text, "",
-            DateTime.now().toString(), widget.assessmentId);
-
-        assessmentRepo.createExperience(newExperience);
-        Navigator.of(context).pushAndRemoveUntil(
-            PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 300),
-              pageBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                return ChangeProject(assessmentId: widget.assessmentId);
-              },
-              transitionsBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return Align(
-                  child: FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
-                );
-              },
-            ),
-            ModalRoute.withName("/changeProject")
-        );
-      }
-    }else{
-      showToast(
-        _missingInput(),
-        context: context,
-        textAlign: TextAlign.center,
-        textStyle: ThemeTexts.toastText,
-        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-        position: ToastPosition.bottom,
-        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
-        duration: Duration(milliseconds: 2500),
-      );
-    }
-  }
 
 }

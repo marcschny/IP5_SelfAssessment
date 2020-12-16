@@ -552,6 +552,7 @@ class _EvaluationState extends State<Evaluation>{
           assessment.date_created, DateTime.now().toString());
 
       assessmentRepo.updateAssessment(finishAssessment);
+      Navigator.of(context).pushNamedAndRemoveUntil("/test", (route) => false);
     }else{
       showToast(
         "Du hast noch kein Smiley ausgewählt",
