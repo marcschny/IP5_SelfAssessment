@@ -32,7 +32,7 @@ void main() {
           .addCallback(callback)
           .build();
       repository = database.assessmentRepository;
-      final Assessment assessment = Assessment(1, "", "28-11-2020", "29-11-2020");
+      final Assessment assessment = Assessment(1, "", "", "28-11-2020", "29-11-2020");
       final Visualization visualization = Visualization(1, 1, 5, "lifeAreas");
       repository
         ..createAssessment(assessment)

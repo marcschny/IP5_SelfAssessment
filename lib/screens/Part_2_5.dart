@@ -54,7 +54,7 @@ class _Part_2_5State extends State<Part_2_5>{
 
 
     final thisAssessment = await assessmentRepo.findAssessment(widget.assessmentId);
-    final updateAssessment = Assessment(widget.assessmentId, projectTitle, thisAssessment.date_created, "");
+    final updateAssessment = Assessment(widget.assessmentId, projectTitle, null, thisAssessment.date_created, "");
 
     assessmentRepo.updateAssessment(updateAssessment);
 

@@ -80,7 +80,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Assessment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `project_title` TEXT, `date_created` TEXT, `date_finished` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `Assessment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `project_title` TEXT, `overall_mood` TEXT, `date_created` TEXT, `date_finished` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Answer` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `answer` TEXT, `question_number` TEXT, `assessment_id` INTEGER, FOREIGN KEY (`question_number`) REFERENCES `Question` (`question_number`) ON UPDATE NO ACTION ON DELETE NO ACTION, FOREIGN KEY (`assessment_id`) REFERENCES `Assessment` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)');
         await database.execute(
@@ -123,6 +123,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             (Assessment item) => <String, dynamic>{
                   'id': item.id,
                   'project_title': item.project_title,
+                  'overall_mood': item.overall_mood,
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
@@ -186,6 +187,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             (Assessment item) => <String, dynamic>{
                   'id': item.id,
                   'project_title': item.project_title,
+                  'overall_mood': item.overall_mood,
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
@@ -241,6 +243,7 @@ class _$AssessmentRepository extends AssessmentRepository {
             (Assessment item) => <String, dynamic>{
                   'id': item.id,
                   'project_title': item.project_title,
+                  'overall_mood': item.overall_mood,
                   'date_created': item.date_created,
                   'date_finished': item.date_finished
                 }),
@@ -409,6 +412,7 @@ class _$AssessmentRepository extends AssessmentRepository {
         mapper: (Map<String, dynamic> row) => Assessment(
             row['id'] as int,
             row['project_title'] as String,
+            row['overall_mood'] as String,
             row['date_created'] as String,
             row['date_finished'] as String));
   }
@@ -420,6 +424,7 @@ class _$AssessmentRepository extends AssessmentRepository {
         mapper: (Map<String, dynamic> row) => Assessment(
             row['id'] as int,
             row['project_title'] as String,
+            row['overall_mood'] as String,
             row['date_created'] as String,
             row['date_finished'] as String));
   }
@@ -432,6 +437,7 @@ class _$AssessmentRepository extends AssessmentRepository {
         mapper: (Map<String, dynamic> row) => Assessment(
             row['id'] as int,
             row['project_title'] as String,
+            row['overall_mood'] as String,
             row['date_created'] as String,
             row['date_finished'] as String));
   }
