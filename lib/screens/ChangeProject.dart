@@ -182,7 +182,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                     percent: 0,
                     showProgressbar: false,
                     widget: headerRow(context),
-                    intro: "Dokumentiere in den nächsten Wochen möglichst jeden Tag, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Neue Karte\" eine neue Karte erstellen. Erstelle mindestens 10 Karten um dein Projekt abzuschiessen",
+                    intro: "Dokumentiere in den nächsten Wochen möglichst jeden Tag, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Erlebnis\" eine neue Erlebniskarte erstellen. Erstelle mindestens 10 Erlebniskarten um dein Projekt abzuschiessen",
                 ),
 
                 SizedBox(height: 12),
@@ -203,7 +203,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Meine Karten",
+                                  "Erlebniskarten",
                                   style: ThemeTexts.assessmentDialogTitle,
                                   textAlign: TextAlign.left,
                                 ),
@@ -231,7 +231,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                                       ),
                                       SizedBox(width: 6),
                                       Text(
-                                        "Neue Karte",
+                                        "Erlebnis",
                                         style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
                                       ),
                                     ],
@@ -272,7 +272,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 22),
                             child: Text(
-                              "$noExperiences/10 Karten",
+                              "$noExperiences/10 Erlebnisse",
                               textAlign: TextAlign.right,
                               style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
                             ),

@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
+import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/MyExperiences.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -115,84 +118,89 @@ class _EvaluationState extends State<Evaluation>{
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Du hattest $noPositiveExperiences/$noExperiences gut gelungene Erlebnisse während Deines Veränderungsprojekts.",
-                                    textAlign: TextAlign.start,
-                                    style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
-                                  ),
-                                  SizedBox(height: 5),
-                                  noNegativeExperiences >=  noPositiveExperiences ?
-                                  Text(
-                                    "Auch wenn Du selber noch nicht zufrieden bist: Du hast viel gemacht!",
-                                    textAlign: TextAlign.start,
-                                    style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
-                                  ) : Container(),
 
-                                  SizedBox(height: 5),
-
-                                  RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                            SlideUpFadeIn(
+                              0.5,
+                              100,
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Du hattest $noPositiveExperiences/$noExperiences gut gelungene Erlebnisse während Deines Veränderungsprojekts.",
+                                      textAlign: TextAlign.start,
+                                      style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
                                     ),
-                                    color: ThemeColors.greenShade3,
-                                    elevation: 0,
-                                    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                                    highlightColor: ThemeColors.greenShade3,
-                                    focusElevation: 0,
-                                    highlightElevation: 0,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(
-                                          Icons.remove_red_eye_outlined,
-                                          color: Colors.black87,
-                                          size: 22,
-                                        ),
-                                        SizedBox(width: 7),
-                                        Text(
-                                          "Erlebnisse ansehen",
-                                          style: ThemeTexts.assessmentDialogSubtitle.copyWith(
-                                              color: Colors.black87,
-                                              fontSize: 16.5,
-                                              fontWeight: FontWeight.normal),
-                                        ),
-                                      ],
+                                    SizedBox(height: 5),
+                                    noNegativeExperiences >=  noPositiveExperiences ?
+                                    Text(
+                                      "Auch wenn Du selber noch nicht zufrieden bist: Du hast viel gemacht!",
+                                      textAlign: TextAlign.start,
+                                      style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
+                                    ) : Container(),
+
+                                    SizedBox(height: 5),
+
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      color: ThemeColors.greenShade3,
+                                      elevation: 0,
+                                      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                                      highlightColor: ThemeColors.greenShade3,
+                                      focusElevation: 0,
+                                      highlightElevation: 0,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            Icons.remove_red_eye_outlined,
+                                            color: Colors.black87,
+                                            size: 22,
+                                          ),
+                                          SizedBox(width: 7),
+                                          Text(
+                                            "Erlebnisse ansehen",
+                                            style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                                                color: Colors.black87,
+                                                fontSize: 16.5,
+                                                fontWeight: FontWeight.normal),
+                                          ),
+                                        ],
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                          PageRouteBuilder(
+                                            transitionDuration: Duration(milliseconds: 300),
+                                            pageBuilder: (
+                                                BuildContext context,
+                                                Animation<double> animation,
+                                                Animation<double> secondaryAnimation) {
+                                              return MyExperiences(assessmentId: widget.assessmentId);
+                                            },
+                                            transitionsBuilder: (
+                                                BuildContext context,
+                                                Animation<double> animation,
+                                                Animation<double> secondaryAnimation,
+                                                Widget child) {
+                                              return Align(
+                                                child: FadeTransition(
+                                                  opacity: animation,
+                                                  child: child,
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        );
+
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                        PageRouteBuilder(
-                                          transitionDuration: Duration(milliseconds: 300),
-                                          pageBuilder: (
-                                              BuildContext context,
-                                              Animation<double> animation,
-                                              Animation<double> secondaryAnimation) {
-                                            return MyExperiences(assessmentId: widget.assessmentId);
-                                          },
-                                          transitionsBuilder: (
-                                              BuildContext context,
-                                              Animation<double> animation,
-                                              Animation<double> secondaryAnimation,
-                                              Widget child) {
-                                            return Align(
-                                              child: FadeTransition(
-                                                opacity: animation,
-                                                child: child,
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      );
 
-                                    },
-                                  ),
-
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
 
@@ -200,242 +208,249 @@ class _EvaluationState extends State<Evaluation>{
 
 
                             noNegativeExperiences >=  noPositiveExperiences ?
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Möchtest Du am Veränderungsprojekt weiterfahren?",
-                                    textAlign: TextAlign.start,
-                                    style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
-                                  ),
-
-                                  SizedBox(height: 5),
-
-                                  RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                            SlideUpFadeIn(
+                              0.8,
+                              100,
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Möchtest Du am Veränderungsprojekt weiterfahren?",
+                                      textAlign: TextAlign.start,
+                                      style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
                                     ),
-                                    color: ThemeColors.greenShade3,
-                                    elevation: 0,
-                                    padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                                    highlightColor: ThemeColors.greenShade3,
-                                    focusElevation: 0,
-                                    highlightElevation: 0,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.black87,
-                                          size: 22,
-                                        ),
-                                        SizedBox(width: 7),
-                                        Text(
-                                          "Zum Veränderungsprojekt",
-                                          style: ThemeTexts.assessmentDialogSubtitle.copyWith(
-                                              color: Colors.black87,
-                                              fontSize: 16.5,
-                                              fontWeight: FontWeight.normal),
-                                        ),
-                                      ],
+
+                                    SizedBox(height: 5),
+
+                                    RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      color: ThemeColors.greenShade3,
+                                      elevation: 0,
+                                      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                                      highlightColor: ThemeColors.greenShade3,
+                                      focusElevation: 0,
+                                      highlightElevation: 0,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            Icons.arrow_forward,
+                                            color: Colors.black87,
+                                            size: 22,
+                                          ),
+                                          SizedBox(width: 7),
+                                          Text(
+                                            "Zum Veränderungsprojekt",
+                                            style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                                                color: Colors.black87,
+                                                fontSize: 16.5,
+                                                fontWeight: FontWeight.normal),
+                                          ),
+                                        ],
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ChangeProject(assessmentId: widget.assessmentId)), (Route<dynamic> route) => false);
+
+                                      },
                                     ),
-                                    onPressed: () {
-                                      //todo: reopen change project
-                                      print("reopen change project");
 
-                                    },
-                                  ),
-
-                                ],
+                                  ],
+                                ),
                               ),
                             ) : Container(),
 
 
                             SizedBox(height: 22),
 
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Wie zufrieden bist zu insgesamt mit deinem Veränderungsprojekt?",
-                                    textAlign: TextAlign.start,
-                                    style: ThemeTexts.assessmentDialogTitle.copyWith(fontSize: 17),
-                                  ),
-
-                                  SizedBox(height: 5),
-
-                                  Container(
-                                    padding: EdgeInsets.fromLTRB(5, 12, 5, 5),
-                                    height: 60,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        GestureDetector(
-                                          child: Opacity(
-                                            opacity: _selectedSmiley == "verygreat" || _selectedSmiley == "" ? 1 : 0.35,
-                                            child: Container(
-                                              width: _selectedSmiley == "verygreat" ? 57 : 50,
-                                              height: _selectedSmiley == "verygreat" ? 57 : 50,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.black45.withOpacity(.2),
-                                                        spreadRadius: -6,
-                                                        blurRadius: 12,
-                                                        offset: Offset(0,4)
-                                                    )
-                                                  ],
-                                                  image: DecorationImage(
-                                                      image: AssetImage("assets/smileys/verygreat.png"),
-                                                      fit: BoxFit.cover
-                                                  )
-                                              ),
-                                            ),
-                                          ),
-                                          onTap: (){
-                                            print("clicked on very great smiley");
-                                            setState(() {
-                                              _selectedSmiley = "verygreat";
-                                            });
-                                          },
-                                        ),
-                                        GestureDetector(
-                                          child: Opacity(
-                                            opacity: _selectedSmiley == "great" || _selectedSmiley == "" ? 1 : 0.35,
-                                            child: Container(
-                                              width: _selectedSmiley == "great" ? 57 : 50,
-                                              height: _selectedSmiley == "greaat" ? 57 : 50,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.black45.withOpacity(.2),
-                                                        spreadRadius: -6,
-                                                        blurRadius: 12,
-                                                        offset: Offset(0,4)
-                                                    )
-                                                  ],
-                                                  image: DecorationImage(
-                                                      image: AssetImage("assets/smileys/great.png"),
-                                                      fit: BoxFit.cover
-                                                  )
-                                              ),
-                                            ),
-                                          ),
-                                          onTap: (){
-                                            print("clicked on great smiley");
-                                            setState(() {
-                                              _selectedSmiley = "great";
-                                            });
-                                          },
-                                        ),
-                                        GestureDetector(
-                                          child: Opacity(
-                                            opacity: _selectedSmiley == "ok" || _selectedSmiley == "" ? 1 : 0.35,
-                                            child: Container(
-                                              width: _selectedSmiley == "ok" ? 57 : 50,
-                                              height: _selectedSmiley == "ok" ? 57 : 50,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.black45.withOpacity(.2),
-                                                        spreadRadius: -6,
-                                                        blurRadius: 12,
-                                                        offset: Offset(0,4)
-                                                    )
-                                                  ],
-                                                  image: DecorationImage(
-                                                    image: AssetImage("assets/smileys/ok.png"),
-                                                    fit: BoxFit.cover,
-                                                  )
-                                              ),
-                                            ),
-                                          ),
-                                          onTap: (){
-                                            print("clicked on ok smiley");
-                                            setState(() {
-                                              _selectedSmiley = "ok";
-                                            });
-                                          },
-                                        ),
-                                        GestureDetector(
-                                          child: Opacity(
-                                            opacity: _selectedSmiley == "bad" || _selectedSmiley == "" ? 1 : 0.35,
-                                            child: Container(
-                                              width: _selectedSmiley == "bad" ? 57 : 50,
-                                              height: _selectedSmiley == "bad" ? 57 : 50,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.black45.withOpacity(.2),
-                                                        spreadRadius: -6,
-                                                        blurRadius: 12,
-                                                        offset: Offset(0,4)
-                                                    )
-                                                  ],
-                                                  image: DecorationImage(
-                                                      image: AssetImage("assets/smileys/bad.png"),
-                                                      fit: BoxFit.cover
-                                                  )
-                                              ),
-                                            ),
-                                          ),
-                                          onTap: (){
-                                            print("clicked on bad smiley");
-                                            setState(() {
-                                              _selectedSmiley = "bad";
-                                            });
-                                          },
-                                        ),
-                                        GestureDetector(
-                                          child: Opacity(
-                                            opacity: _selectedSmiley == "verybad" || _selectedSmiley == "" ? 1 : 0.35,
-                                            child: Container(
-                                              width: _selectedSmiley == "verybad" ? 57 : 50,
-                                              height: _selectedSmiley == "verybad" ? 57 : 50,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.transparent,
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.black45.withOpacity(.2),
-                                                        spreadRadius: -6,
-                                                        blurRadius: 12,
-                                                        offset: Offset(0,4)
-                                                    )
-                                                  ],
-                                                  image: DecorationImage(
-                                                    image: AssetImage("assets/smileys/verybad.png"),
-                                                    fit: BoxFit.cover,
-                                                  )
-                                              ),
-                                            ),
-                                          ),
-                                          onTap: (){
-                                            print("clicked on very bad smiley");
-                                            setState(() {
-                                              _selectedSmiley = "verybad";
-                                            });
-                                          },
-                                        ),
-                                      ],
+                            SlideUpFadeIn(
+                              1.2,
+                              100,
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Wie zufrieden bist zu insgesamt mit deinem Veränderungsprojekt?",
+                                      textAlign: TextAlign.start,
+                                      style: ThemeTexts.assessmentDialogTitle.copyWith(fontSize: 17),
                                     ),
-                                  )
 
-                                ],
+                                    SizedBox(height: 5),
+
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(5, 12, 5, 5),
+                                      height: 60,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          GestureDetector(
+                                            child: Opacity(
+                                              opacity: _selectedSmiley == "verygreat" || _selectedSmiley == "" ? 1 : 0.35,
+                                              child: Container(
+                                                width: _selectedSmiley == "verygreat" ? 57 : 50,
+                                                height: _selectedSmiley == "verygreat" ? 57 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black45.withOpacity(.2),
+                                                          spreadRadius: -6,
+                                                          blurRadius: 12,
+                                                          offset: Offset(0,4)
+                                                      )
+                                                    ],
+                                                    image: DecorationImage(
+                                                        image: AssetImage("assets/smileys/verygreat.png"),
+                                                        fit: BoxFit.cover
+                                                    )
+                                                ),
+                                              ),
+                                            ),
+                                            onTap: (){
+                                              print("clicked on very great smiley");
+                                              setState(() {
+                                                _selectedSmiley = "verygreat";
+                                              });
+                                            },
+                                          ),
+                                          GestureDetector(
+                                            child: Opacity(
+                                              opacity: _selectedSmiley == "great" || _selectedSmiley == "" ? 1 : 0.35,
+                                              child: Container(
+                                                width: _selectedSmiley == "great" ? 57 : 50,
+                                                height: _selectedSmiley == "greaat" ? 57 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black45.withOpacity(.2),
+                                                          spreadRadius: -6,
+                                                          blurRadius: 12,
+                                                          offset: Offset(0,4)
+                                                      )
+                                                    ],
+                                                    image: DecorationImage(
+                                                        image: AssetImage("assets/smileys/great.png"),
+                                                        fit: BoxFit.cover
+                                                    )
+                                                ),
+                                              ),
+                                            ),
+                                            onTap: (){
+                                              print("clicked on great smiley");
+                                              setState(() {
+                                                _selectedSmiley = "great";
+                                              });
+                                            },
+                                          ),
+                                          GestureDetector(
+                                            child: Opacity(
+                                              opacity: _selectedSmiley == "ok" || _selectedSmiley == "" ? 1 : 0.35,
+                                              child: Container(
+                                                width: _selectedSmiley == "ok" ? 57 : 50,
+                                                height: _selectedSmiley == "ok" ? 57 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black45.withOpacity(.2),
+                                                          spreadRadius: -6,
+                                                          blurRadius: 12,
+                                                          offset: Offset(0,4)
+                                                      )
+                                                    ],
+                                                    image: DecorationImage(
+                                                      image: AssetImage("assets/smileys/ok.png"),
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                ),
+                                              ),
+                                            ),
+                                            onTap: (){
+                                              print("clicked on ok smiley");
+                                              setState(() {
+                                                _selectedSmiley = "ok";
+                                              });
+                                            },
+                                          ),
+                                          GestureDetector(
+                                            child: Opacity(
+                                              opacity: _selectedSmiley == "bad" || _selectedSmiley == "" ? 1 : 0.35,
+                                              child: Container(
+                                                width: _selectedSmiley == "bad" ? 57 : 50,
+                                                height: _selectedSmiley == "bad" ? 57 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black45.withOpacity(.2),
+                                                          spreadRadius: -6,
+                                                          blurRadius: 12,
+                                                          offset: Offset(0,4)
+                                                      )
+                                                    ],
+                                                    image: DecorationImage(
+                                                        image: AssetImage("assets/smileys/bad.png"),
+                                                        fit: BoxFit.cover
+                                                    )
+                                                ),
+                                              ),
+                                            ),
+                                            onTap: (){
+                                              print("clicked on bad smiley");
+                                              setState(() {
+                                                _selectedSmiley = "bad";
+                                              });
+                                            },
+                                          ),
+                                          GestureDetector(
+                                            child: Opacity(
+                                              opacity: _selectedSmiley == "verybad" || _selectedSmiley == "" ? 1 : 0.35,
+                                              child: Container(
+                                                width: _selectedSmiley == "verybad" ? 57 : 50,
+                                                height: _selectedSmiley == "verybad" ? 57 : 50,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.transparent,
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                          color: Colors.black45.withOpacity(.2),
+                                                          spreadRadius: -6,
+                                                          blurRadius: 12,
+                                                          offset: Offset(0,4)
+                                                      )
+                                                    ],
+                                                    image: DecorationImage(
+                                                      image: AssetImage("assets/smileys/verybad.png"),
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                ),
+                                              ),
+                                            ),
+                                            onTap: (){
+                                              print("clicked on very bad smiley");
+                                              setState(() {
+                                                _selectedSmiley = "verybad";
+                                              });
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    )
+
+                                  ],
+                                ),
                               ),
                             ),
 
@@ -457,57 +472,61 @@ class _EvaluationState extends State<Evaluation>{
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.fromLTRB(18, 10, 18, 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                  child: FadeIn(
+                    1.4,
+                    500,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
 
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          color: ThemeColors.greenShade2,
+                          elevation: 0,
+                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                          highlightColor: ThemeColors.greenShade2,
+                          focusElevation: 0,
+                          highlightElevation: 0,
+                          child: Text(
+                            "Assessment abschliessen",
+                            style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                                color: Colors.black87,
+                                fontSize: 18,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          onPressed: () {
+                            _finishAssessment();
+                          },
                         ),
-                        color: ThemeColors.greenShade2,
-                        elevation: 0,
-                        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        highlightColor: ThemeColors.greenShade2,
-                        focusElevation: 0,
-                        highlightElevation: 0,
-                        child: Text(
-                          "Assessment abschliessen",
-                          style: ThemeTexts.assessmentDialogSubtitle.copyWith(
-                              color: Colors.black87,
-                              fontSize: 18,
-                              fontWeight: FontWeight.normal),
+
+
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          color: ThemeColors.greyShade1,
+                          elevation: 0,
+                          padding: EdgeInsets.symmetric(vertical: 4, horizontal: 20),
+                          highlightColor: ThemeColors.greenShade3,
+                          focusElevation: 0,
+                          highlightElevation: 0,
+                          child: Text(
+                            "Assessment neu starten",
+                            style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                                color: Colors.black87,
+                                fontSize: 16.5,
+                                fontWeight: FontWeight.normal),
+                          ),
+                          onPressed: () {
+                            _restartAssessment();
+
+                          },
                         ),
-                        onPressed: () {
-                          _finishAssessment();
-                        },
-                      ),
 
-
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        color: ThemeColors.greyShade1,
-                        elevation: 0,
-                        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 20),
-                        highlightColor: ThemeColors.greenShade3,
-                        focusElevation: 0,
-                        highlightElevation: 0,
-                        child: Text(
-                          "Assessment neu starten",
-                          style: ThemeTexts.assessmentDialogSubtitle.copyWith(
-                              color: Colors.black87,
-                              fontSize: 16.5,
-                              fontWeight: FontWeight.normal),
-                        ),
-                        onPressed: () {
-                          _restartAssessment();
-
-                        },
-                      ),
-
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               )

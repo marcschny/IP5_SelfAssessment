@@ -169,6 +169,7 @@ class _ExperienceState extends State<MyExperiences>{
                           ),
                         ),
 
+                        goodWidgetList.length > 0 ?
                         Container(
                           height: 170,
                           child: ListView.builder(
@@ -182,6 +183,13 @@ class _ExperienceState extends State<MyExperiences>{
                               else return goodWidgetList[index];
                             },
 
+                          ),
+                        ) : Container(
+                          padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                          margin: EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            "Keine guten Erlebnisse",
+                            style: ThemeTexts.assessmentText.copyWith(fontSize: 17, fontStyle: FontStyle.italic, color: Colors.grey),
                           ),
                         ),
 
@@ -219,6 +227,7 @@ class _ExperienceState extends State<MyExperiences>{
                           ),
                         ),
 
+                        badWidgetList.length > 0 ?
                         Container(
                           height: 170,
                           child: ListView.builder(
@@ -232,6 +241,13 @@ class _ExperienceState extends State<MyExperiences>{
                               else return badWidgetList[index];
                             },
 
+                          ),
+                        ) : Container(
+                          padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                          margin: EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            "Keine weniger guten Erlebnisse",
+                            style: ThemeTexts.assessmentText.copyWith(fontSize: 17, fontStyle: FontStyle.italic, color: Colors.grey),
                           ),
                         ),
 

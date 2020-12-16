@@ -28,8 +28,8 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
 
   @override
   void dispose() {
-    super.dispose();
     _confettiController.dispose();
+    super.dispose();
   }
 
   _startAnimation() async{
@@ -68,43 +68,41 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
     return WillPopScope(
       onWillPop: (){},
       child: Scaffold(
-        body: SafeArea(
-          child: Stack(
-            children: [
+        body: Stack(
+          children: [
 
-              //background image
-              Image.asset(
-                "assets/background_image/gradient-grey.png",
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                fit: BoxFit.cover,
+            //background image
+            Image.asset(
+              "assets/background_image/gradient-grey.png",
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
+            ),
+
+            _confettiAnimation(context),
+
+
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Gratulation!",
+                    style: ThemeTexts.startAssessmentTitle.copyWith(fontSize: 32),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    "Du hast Dein Veränderungsprojekt abgeschlossen.",
+                    style: ThemeTexts.assessmentText.copyWith(fontSize: 17),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
+            )
 
-              _confettiAnimation(context),
-
-
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Gratulation!",
-                      style: ThemeTexts.startAssessmentTitle.copyWith(fontSize: 32),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      "Du hast Dein Veränderungsprojekt abgeschlossen.",
-                      style: ThemeTexts.assessmentText.copyWith(fontSize: 17),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              )
-
-            ],
-          ),
+          ],
         ),
       ),
     );
