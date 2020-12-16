@@ -35,7 +35,7 @@ class TopBar extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        padding: EdgeInsets.fromLTRB(16, 8, 16, 14),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -90,10 +90,10 @@ class TopBar extends StatelessWidget{
             ),
             showProgressbar ? ProgressBar(
               percent: percent,
-            ) : Container(color: Colors.red),
+            ) : Container(),
             Container(
               width: MediaQuery.of(context).size.width,
-              padding: widget != null ? EdgeInsets.fromLTRB(5, 0, 5, 0) : EdgeInsets.fromLTRB(5, 10, 5, 0),
+              padding: widget != null ? EdgeInsets.fromLTRB(5, 0, 5, 0) : EdgeInsets.fromLTRB(5, 0, 5, 0),
               child: Material(
                 color: Colors.transparent,
                 child: Text(
