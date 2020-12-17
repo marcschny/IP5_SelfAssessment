@@ -18,9 +18,9 @@ import 'Part_2_4.dart';
 class Part_3_5 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
-  const Part_3_5({Key key, this.assessmentId, this.networkId}) : super(key: key);
+  const Part_3_5({Key key, this.assessmentId, this.visualizationId}) : super(key: key);
 
   @override
   _Part_3_5State createState() => _Part_3_5State();
@@ -72,6 +72,7 @@ class _Part_3_5State extends State<Part_3_5>{
                 subtitle: "Auswertung Fragebogen",
                 intro: _introText,
                 percent: 0.55,
+                showProgressbar: true,
               ),
 
 
@@ -111,7 +112,7 @@ class _Part_3_5State extends State<Part_3_5>{
                   Navigator.of(context).pop();
                 },
                 callbackNext: () {
-                  _next(context, widget.assessmentId, widget.networkId, distinctQuestions);
+                  _next(context, widget.assessmentId, widget.visualizationId, distinctQuestions);
                 }
 
             ),
@@ -175,7 +176,7 @@ class _Part_3_5State extends State<Part_3_5>{
   }
 
   //when next-button pressed
-  _next(BuildContext context, int assessmentId, int networkId, Map questions) async{
+  _next(BuildContext context, int assessmentId, int visualizationId, Map questions) async{
 
   List<String> _selectedQuestions = List();
   _selectedQuestions.clear();
@@ -193,7 +194,7 @@ class _Part_3_5State extends State<Part_3_5>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_4(assessmentId: assessmentId, networkId: networkId, evaluation: _selectedQuestions);
+          return Part_2_4(assessmentId: assessmentId, visualizationId: visualizationId, evaluation: _selectedQuestions);
         },
         transitionsBuilder: (
             BuildContext context,

@@ -2,21 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_6.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:provider/provider.dart';
 
 
 
 class Part_2_5 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_2_5({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -26,18 +29,37 @@ class Part_2_5 extends StatefulWidget {
 class _Part_2_5State extends State<Part_2_5>{
 
 
+  TextEditingController _titleController;
+
   @override
   void initState() {
     super.initState();
+    _titleController = new TextEditingController();
   }
 
   @override
   void dispose() {
     super.dispose();
+    _titleController.dispose();
   }
 
-  TextEditingController _titleController;
 
+
+  setProjectTitle() async{
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    String projectTitle;
+    projectTitle = _titleController.text != null && _titleController.text != "" ? _titleController.text : "Mein Veränderungsprojekt";
+
+
+    final thisAssessment = await assessmentRepo.findAssessment(widget.assessmentId);
+    final updateAssessment = Assessment(widget.assessmentId, projectTitle, null, thisAssessment.date_created, "");
+
+    assessmentRepo.updateAssessment(updateAssessment);
+
+    print("set project title to: "+projectTitle);
+  }
 
 
   @override
@@ -62,6 +84,7 @@ class _Part_2_5State extends State<Part_2_5>{
                   subtitle: "Name it!",
                   intro: "Wie lautet der Titel deines Veränderungsprojekts?",
                   percent: 0.5,
+                  showProgressbar: true,
               ),
 
               Expanded(
@@ -75,9 +98,7 @@ class _Part_2_5State extends State<Part_2_5>{
                           TextField(
                             maxLines: 1,
                             controller: _titleController,
-                            onSubmitted: (value){
-                              //todo: write title to db (change project)
-                            },
+                            onSubmitted: (value){ },
                             textInputAction: TextInputAction.go,
                             decoration: InputDecoration(
                               hintText: "Titel hier eingeben...",
@@ -106,7 +127,7 @@ class _Part_2_5State extends State<Part_2_5>{
                   Navigator.of(context).pop();
                 },
                 callbackNext: (){
-                  _next(context, widget.assessmentId, widget.networkId);
+                  _next(context, widget.assessmentId, widget.visualizationId);
                 }
             ),
           ],
@@ -118,7 +139,10 @@ class _Part_2_5State extends State<Part_2_5>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
+
+    setProjectTitle();
+
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -126,7 +150,7 @@ class _Part_2_5State extends State<Part_2_5>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_6(assessmentId: assessmentId, networkId: networkId);
+          return Part_2_6(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

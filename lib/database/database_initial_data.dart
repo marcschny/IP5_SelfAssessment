@@ -1,9 +1,8 @@
 const initialDataScript = [
   'DELETE FROM Answer',
   'DELETE FROM Assessment',
-  'DELETE FROM ChangeProject',
-  'DELETE FROM NetworkCard',
-  'DELETE FROM Note',
+  'DELETE FROM Experience',
+  'DELETE FROM Visualization',
   'DELETE FROM Person',
   'DELETE FROM Question',
   'INSERT INTO Question (question_number, question) VALUES (\'2.1.1\',\'Was läuft richtig gut/was kannst Du richtig gut mit anderen Menschen?\')',

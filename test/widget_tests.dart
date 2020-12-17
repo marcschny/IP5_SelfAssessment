@@ -6,6 +6,7 @@ import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
 import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
+//todo: adjust widget tests to pass
 void main(){
 
   //test with: flutter test test/widget_tests.dart

@@ -1,24 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
-import 'package:ip5_selbsteinschaetzung/components/networkcardDialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/visualizationDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
 class Part_2_6 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_2_6({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -61,6 +62,7 @@ class _Part_2_6State extends State<Part_2_6>{
                   subtitle: "Wer oder was hilft Dir dabei?",
                   intro: "",
                   percent: 0.55,
+                  showProgressbar: true,
               ),
 
               Expanded(
@@ -160,9 +162,8 @@ class _Part_2_6State extends State<Part_2_6>{
                               showDialog(
                                 context: context,
                                 barrierColor: Colors.black.withOpacity(.3),
-                                child: SlideUpFromBottom(0, NetworkcardDialog(assessmentId: widget.assessmentId, networkId: widget.networkId)),
+                                child: SlideUpFromBottom(0, VisualizationDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
                               );
-                              print("show social card");
                             },
                           ),
                         ),
@@ -188,9 +189,30 @@ class _Part_2_6State extends State<Part_2_6>{
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                //todo: go to change project
                 print("Go to change project...");
-                //Navigator.of(context).pushNamed("/part_4", arguments: assessmentId);
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 200),
+                    pageBuilder: (
+                        BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return ChangeProject(assessmentId: widget.assessmentId,);
+                    },
+                    transitionsBuilder: (
+                        BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation,
+                        Widget child) {
+                      return Align(
+                        child: FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        ),
+                      );
+                    },
+                  ),
+                );
               }
           ),
         ],

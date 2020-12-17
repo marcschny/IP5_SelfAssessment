@@ -9,12 +9,12 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_2_4.dart';
 class Part_2_3 extends StatefulWidget{
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_2_3({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -56,6 +56,7 @@ class _Part_2_3State extends State<Part_2_3>{
                   subtitle: "Jetzt packe ich es an!",
                   intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                   percent: 0.4,
+                  showProgressbar: true,
               ),
 
               Expanded(
@@ -99,7 +100,7 @@ class _Part_2_3State extends State<Part_2_3>{
               Navigator.of(context).pop();
             },
             callbackNext: (){
-              _next(context, widget.assessmentId, widget.networkId);
+              _next(context, widget.assessmentId, widget.visualizationId);
             }
           ),
         ],
@@ -111,7 +112,7 @@ class _Part_2_3State extends State<Part_2_3>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -119,7 +120,7 @@ class _Part_2_3State extends State<Part_2_3>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_4(assessmentId: assessmentId, networkId: networkId);
+          return Part_2_4(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

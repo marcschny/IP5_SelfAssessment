@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,7 @@ class _StartScreenState extends State<StartScreen>{
 
   //start assessment
   void _startAssessment(BuildContext context){
-    final Assessment newAssessment = new Assessment(null, DateTime.now().toString(), null);
+    final Assessment newAssessment = new Assessment(null, null, null, DateTime.now().toString(), null);
 
     final appDataBase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDataBase.assessmentRepository;
@@ -62,7 +63,8 @@ class _StartScreenState extends State<StartScreen>{
               Animation<double> animation,
               Animation<double> secondaryAnimation) {
             return LifeAreas(assessmentId: assessmentId);
-            //return Part_3_2(assessmentId: assessmentId, networkId: 1);
+            //return ChangeProject(assessmentId: assessmentId);
+
           },
           transitionsBuilder: (
               BuildContext context,
@@ -286,7 +288,8 @@ class Part0 extends StatelessWidget {
 }
 
 class Part1 extends StatelessWidget {
-  const Part1({Key key}) : super(key: key);@override
+  const Part1({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -327,7 +330,8 @@ class Part1 extends StatelessWidget {
 }
 
 class Part2 extends StatelessWidget {
-  const Part2({Key key}) : super(key: key);@override
+  const Part2({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -402,7 +406,8 @@ class Part3 extends StatelessWidget {
 }
 
 class Part4 extends StatelessWidget {
-  const Part4({Key key}) : super(key: key);@override
+  const Part4({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -436,7 +441,8 @@ class Part4 extends StatelessWidget {
 }
 
 class Part5 extends StatelessWidget {
-  const Part5({Key key}) : super(key: key);@override
+  const Part5({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

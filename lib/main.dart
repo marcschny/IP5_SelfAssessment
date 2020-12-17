@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Congratulations.dart';
+import 'package:ip5_selbsteinschaetzung/screens/MyExperiences.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_1.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_2.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
@@ -16,11 +19,14 @@ import 'package:ip5_selbsteinschaetzung/screens/Part_3_2.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_3.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_4.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Part_3_5.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Visualization.dart';
+import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/TestScreen.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:flutter/services.dart';
 
 import 'components/personDialog.dart';
 
@@ -35,10 +41,12 @@ Future<void> main() async {
       await database.execute(script);
     }
   },
+      //todo:
       //when app is opened
       onOpen: (database) async {
     //tbd
   },
+      //todo:
       //when upgraded
       onUpgrade: (database, startVersion, endVersion) {
     //tbd
@@ -59,6 +67,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     return Provider<AppDatabase>(
       create: (_) => database,
       child: OKToast(
@@ -73,7 +85,7 @@ class MyApp extends StatelessWidget {
             "/lifeAreas": (context) => LifeAreas(),
             "/importantPersons": (context) => ImportantPersons(),
             "/personDialog": (context) => PersonDialog(),
-            "/visualization": (context) => Visualization(),
+            "/visualization": (context) => MyVisualization(),
             "/part_2_1": (context) => Part_2_1(),
             "/part_2_2": (context) => Part_2_2(),
             "/part_2_3": (context) => Part_2_3(),
@@ -85,6 +97,11 @@ class MyApp extends StatelessWidget {
             "/part_3_3": (context) => Part_3_3(),
             "/part_3_4": (context) => Part_3_4(),
             "/part_3_5": (context) => Part_3_5(),
+            "/changeProject": (context) => ChangeProject(),
+            "/congratulations": (context) => Congratulations(),
+            "/evaluation": (context) => Evaluation(),
+            "/experience": (context) => MyExperiences(),
+            "/test": (context) => TestScreen(),
           },
         ),
       ),
