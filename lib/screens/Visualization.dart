@@ -99,7 +99,7 @@ class _VisualizationState extends State<Visualization>{
     var yourPerson = Positioned(
       top: MediaQuery.of(context).size.width/2-40,
       left: MediaQuery.of(context).size.width/2-20,
-      child: YourPersonCircle(name: "Du"),
+      child: YourPersonCircle(name: "Ich"),
     );
     personCircleList.add(yourPerson);
 
@@ -202,7 +202,7 @@ class _VisualizationState extends State<Visualization>{
                       onClose: null,
                       subtitle: "So sieht deine Visualisierung aus",
                       percent: 0.2,
-                      intro: "",
+                      intro: "Tippe auf eine Person, um den Namen zu sehen.",
                     ),
 
                     SizedBox(height: 10),

@@ -170,10 +170,11 @@ class _QuestionDialogState extends State<QuestionDialog> {
             widget.assessmentId);
         if(newAnswer.answer != '') {
           assessmentRepo.insertAnswer(newAnswer).then((assessmentId) {
-            Navigator.of(context).pop();
+
           });
           print("answer created");
         }
+        Navigator.of(context).pop();
 
       }
     }
