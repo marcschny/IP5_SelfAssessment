@@ -28,7 +28,6 @@ before_script:
 
   - flutter pub get
   - flutter packages pub run build_runner build --delete-conflicting-outputs
-  - flutter packages pub run build_runner build
 
 
 stages:
@@ -46,8 +45,6 @@ test:flutter:
   #only: [merge_requests]
   stage: test
   script:
-    - flutter pub get
-    - flutter packages pub run build_runner build
     - flutter test test/db_tests.dart
 
 
