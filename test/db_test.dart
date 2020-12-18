@@ -11,7 +11,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
 
-//run with: flutter test test/db_tests.dart
+//run with: flutter test test/db_test.dart
 void main() {
 
   group('database tests', () {

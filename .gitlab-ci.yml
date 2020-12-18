@@ -45,7 +45,7 @@ test:flutter:
   #only: [merge_requests]
   stage: test
   script:
-    - flutter test --coverage
+    - flutter test test/db_test.dart
 
 
 #build:apk:
