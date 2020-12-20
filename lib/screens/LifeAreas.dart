@@ -4,7 +4,7 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-
+//todo: write visualization on "start" to db and adjust functions and vars in this file (like "visId")
 //Screen 1.1
 class LifeAreas extends StatefulWidget{
 
@@ -32,8 +32,8 @@ class _LifeAreasState extends State<LifeAreas>{
   //key for animatedList
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  bool alreadyExists = false; //check if network card already exists (for navigator.pop)
-  int netwId = -1;  //will be reset when new network card is created
+  bool alreadyExists = false; //check if visualization already exists (for navigator.pop)
+  int visId = -1;  //will be reset when new visualization is created
 
 
   //update variable 'alreadyExists' when navigator popped
@@ -98,6 +98,7 @@ class _LifeAreasState extends State<LifeAreas>{
                     subtitle: "Bereiche",
                     percent: 0.05,
                     intro: "Um deine Visualisierung erstellen zu können musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
+                    showProgressbar: true,
                   ),
 
                   FadeIn(
@@ -229,9 +230,9 @@ class _LifeAreasState extends State<LifeAreas>{
 
     //only continue when number of lifeareas is bigger than 1 and smaller than 7
     if (noLifeAreas > 0 && noLifeAreas <= 6) {
-      //create network card
-      final NetworkCard newNetworkCard = new NetworkCard(
-          !alreadyExists ? null : netwId, assessmentId, noLifeAreas, lifeAreas); //if already exists set current network id, else null (auto increment)
+      //create visualization
+      final Visualization newVisualization = new Visualization(
+          !alreadyExists ? null : visId, assessmentId, noLifeAreas, lifeAreas); //if already exists set current visualization id, else null (auto increment)
 
 
       print("already exists: "+alreadyExists.toString());
@@ -241,9 +242,9 @@ class _LifeAreasState extends State<LifeAreas>{
 
       //if record does not already exist
       if(!alreadyExists) {
-        assessmentRepo.createNetworkCard(newNetworkCard).then((
-            networkId) async {
-          print("network card created: "+networkId.toString());
+        assessmentRepo.createVisualization(newVisualization).then((
+            visualizationId) async {
+          print("visualization created: "+visualizationId.toString());
           final boolValue = await Navigator.of(context).push(
             PageRouteBuilder(
               transitionDuration: Duration(milliseconds: 300),
@@ -251,7 +252,7 @@ class _LifeAreasState extends State<LifeAreas>{
                   BuildContext context,
                   Animation<double> animation,
                   Animation<double> secondaryAnimation) {
-                return ImportantPersons(assessmentId: assessmentId, networkId: networkId);
+                return ImportantPersons(assessmentId: assessmentId, visualizationId: visualizationId);
               },
               transitionsBuilder: (
                   BuildContext context,
@@ -269,7 +270,7 @@ class _LifeAreasState extends State<LifeAreas>{
           );
           updateAlreadyExists(boolValue);
           setState(() {
-            netwId = networkId;
+            visId = visualizationId;
           });
         });
 
@@ -279,7 +280,7 @@ class _LifeAreasState extends State<LifeAreas>{
       }
       //if record already exists -> update it
       else{
-        assessmentRepo.updateNetworkCard(newNetworkCard);
+        assessmentRepo.updateVisualization(newVisualization);
         Navigator.of(context).push(
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 300),
@@ -287,7 +288,7 @@ class _LifeAreasState extends State<LifeAreas>{
                 BuildContext context,
                 Animation<double> animation,
                 Animation<double> secondaryAnimation) {
-              return ImportantPersons(assessmentId: assessmentId, networkId: netwId);
+              return ImportantPersons(assessmentId: assessmentId, visualizationId: visId);
             },
             transitionsBuilder: (
                 BuildContext context,

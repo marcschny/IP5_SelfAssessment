@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/changeproject.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/note.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 
 
-//these repository contains all DAOs for this assessment
+//this repository contains all DAOs for this assessment
 @dao
 abstract class AssessmentRepository{
 
@@ -85,6 +84,10 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM Assessment WHERE id = :id')
   Future<Assessment> findAssessment(int id);
 
+  //get project title
+  @Query('SELECT project_title FROM Assessment WHERE id = :id')
+  Future<Assessment> getProjectTitle(int id);
+
   //new assessment
   @insert
   Future<int> createAssessment(Assessment assessment);
@@ -100,83 +103,66 @@ abstract class AssessmentRepository{
 
 
 
-  /* CHANGE PROJECT */
+  /* EXPERIENCE */
 
-  //get all change projects
-  @Query('SELECT * FROM ChangeProject')
-  Future<List<ChangeProject>> getAllChangeProjects();
+  //get all experiences
+  @Query('SELECT * FROM Experience')
+  Future<List<Experience>> getAllExperiences();
 
-  //find changeproject by assessment_id
-  @Query('SELECT * FROM ChangeProject WHERE assessment_id = :id')
-  Future<ChangeProject> findChangeProject(int id);
+  //get experiences by assessment_id
+  @Query('SELECT * FROM Experience WHERE assessment_id = :id')
+  Future<List<Experience>> getExperiencesByAssessment(int id);
 
-  //new changeproject
+  //find specific experience by id
+  @Query('SELECT * FROM Experience WHERE id = :id')
+  Future<Experience> findExperience(int id);
+
+  //get all positive experiences
+  @Query('SELECT * FROM Experience WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = :id')
+  Future<List<Experience>> getPositiveExperiences(int id);
+
+
+  //get all negative experiences
+  @Query('SELECT * FROM Experience WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = :id')
+  Future<List<Experience>> getNegativeExperiences(int id);
+
+  //new Experience
   @insert
-  Future<int> createChangeProject(ChangeProject changeProject);
+  Future<int> createExperience(Experience experience);
 
-  //update changeproject
+  //update Experience
   @update
-  Future<int> updateChangeProject(ChangeProject changeProject);
+  Future<int> updateExperience(Experience experience);
 
-  //delete changeproject
+
+  //delete Experience
   @delete
-  Future<int> deleteChangeProject(ChangeProject changeProject);
+  Future<int> deleteExperience(Experience experience);
 
 
 
 
-  /* NOTE */
+  /* VISUALIZATION*/
 
-  //get all notes
-  @Query('SELECT * FROM Note')
-  Future<List<Note>> getAllNotes();
+  //get all visualizations
+  @Query('SELECT * FROM Visualization')
+  Future<List<Visualization>> getAllVisualizations();
 
-  //get all notes by project_id and assessment_id
-  @Query('SELECT * FROM Note WHERE project_id = :pid AND assessment_id = :aid')
-  Future<List<Note>> getAllNotesByAssessment(int pid, int aid);
+  //get visualization by assessment id
+  @Query('SELECT * FROM Visualization WHERE assessment_id = :id')
+  Future<Visualization> findVisualization(int id);
 
-  //get specific note by note_id
-  @Query('SELECT * FROM Note WHERE id = :id')
-  Future<Note> findNote(int id);
-
-  //create new note
+  //create new visualization
   @insert
-  Future<int> createNote(Note note);
+  Future<int> createVisualization(Visualization visualization);
 
-  //update note
+  //update visualization
   @update
-  Future<int> updateNote(Note note);
+  Future<int> updateVisualization(Visualization visualization);
 
-  //delete note
+  //delete visualization
   @delete
-  Future<int> deleteNote(Note note);
-
-
-
-
-  /* NETWORK CARD */
-
-  //get all network cards
-  @Query('SELECT * FROM NetworkCard')
-  Future<List<NetworkCard>> getAllNetworkCards();
-
-  //get network card by assessment id
-  @Query('SELECT * FROM NetworkCard WHERE assessment_id = :id')
-  Future<NetworkCard> findNetworkCard(int id);
-
-
-  //create new network card
-  @insert
-  Future<int> createNetworkCard(NetworkCard networkCard);
-
-
-  //update network card
-  @update
-  Future<int> updateNetworkCard(NetworkCard networkCard);
-
-  //delete network card
-  @delete
-  Future<int> deleteNetworkCard(NetworkCard networkCard);
+  Future<int> deleteVisualization(Visualization visualization);
 
 
 
@@ -187,9 +173,9 @@ abstract class AssessmentRepository{
   @Query('SELECT * FROM Person')
   Future<List<Person>> getAllPersons();
 
-  //get all persons by network card
-  @Query('SELECT * FROM Person WHERE network_id = :id')
-  Future<List<Person>> getAllPersonsByNetworkCard(int id);
+  //get all persons by Visualization
+  @Query('SELECT * FROM Person WHERE Visualization_id = :id')
+  Future<List<Person>> getAllPersonsByVisualization(int id);
 
   //find specific person by id
   @Query('SELECT * FROM Person WHERE id = :id')

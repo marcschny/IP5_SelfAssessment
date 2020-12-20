@@ -9,12 +9,12 @@ import 'Part_2_4.dart';
 class Part_3_1 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
   const Part_3_1({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
@@ -52,6 +52,7 @@ class _Part_3_1State extends State<Part_3_1> {
                   " kannst du die Frage  auslassen.Wenn Dir jedoch etwas wichtig ist oder Du es an anderen magst, kannst Du Deine "
                   "Beurteilung dazu abgeben.",
                   percent: 0.55,
+                  showProgressbar: true,
                   ),
 
 
@@ -75,7 +76,7 @@ class _Part_3_1State extends State<Part_3_1> {
                 ),
                 onPressed: (){
                   //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_2()));
-                  _next(context, widget.assessmentId, widget.networkId);
+                  _next(context, widget.assessmentId, widget.visualizationId);
                 },
 
               ),
@@ -93,7 +94,7 @@ class _Part_3_1State extends State<Part_3_1> {
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -101,7 +102,7 @@ class _Part_3_1State extends State<Part_3_1> {
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_2(assessmentId: assessmentId, networkId: networkId);
+          return Part_3_2(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,
