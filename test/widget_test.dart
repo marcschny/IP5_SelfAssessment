@@ -13,7 +13,6 @@ import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
 
-//test with: flutter test test/widget_tests.dart
 void main(){
 
   //setup widgets which need a MaterialApp to be built
