@@ -4,6 +4,7 @@ import 'dart:math';
  Here all all necessary methods used to build the visualization
 */
 
+//todo: try catch block for these methods (also adjust unit test)
 //computations methods for positioning the person circles
 double computeXPosition(int distance, double angle, double centerX, double radius){
   return centerX + ((radius/10)*distance) * cos(toRadian(angle));
@@ -15,7 +16,7 @@ double computeYPosition(int distance, double angle, double centerY, double radiu
 
 //convert degree to radian
 double toRadian(double angle){
-  return angle * (pi / 180);
+  return angle >= 0 && angle <= 360 ? angle * (pi / 180) : null;
 }
 
 //get the starting angle point from sector

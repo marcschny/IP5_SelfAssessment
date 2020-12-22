@@ -27,13 +27,15 @@ class CheckBoxComponentState extends State<CheckBoxComponent>{
       child: Row(
         textDirection: TextDirection.ltr,
         children: [
-          Checkbox(
-            value: widget.checked,
-            onChanged: (bool value) {
-              widget.callback(widget.checkboxTitle);
-            },
-            activeColor: ThemeColors.greenShade2,
-            checkColor: ThemeColors.greenShade4,
+          Material(
+            child: Checkbox(
+              value: widget.checked,
+              onChanged: (bool value) {
+                widget.callback(widget.checkboxTitle);
+              },
+              activeColor: ThemeColors.greenShade2,
+              checkColor: ThemeColors.greenShade4,
+            ),
           ),
           Expanded(
             child: GestureDetector(
