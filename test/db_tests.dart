@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:matcher/matcher.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
@@ -90,6 +91,17 @@ void main() {
 
     });
 
+    group('question tests', (){
+
+      test('get question by question_number and assessment_id', () async{
+        final question = Question(1, '3.2.1', 'Ein Gespräch anfangen/andere ansprechen', '', 1);
+        final actual = await repository.findQuestion(question.question_number);
+
+        expect(actual.question, question.question);
+      });
+
+    });
+
     group('answer tests', (){
 
       test('find answer by question_number and assessment_id', () async{
@@ -147,7 +159,6 @@ void main() {
 
     group('visualization tests', (){
 
-      //todo: repo: create find NC by NC.id
       test('update visualization', () async{
 
         final updateVisualization = Visualization(1, 1, 4, "updated life areas");
@@ -159,13 +170,13 @@ void main() {
       });
 
       test('create Visualization', () async{
-        //one nc has been created in setup()
+        //one visualization has been created in setup()
         final actual = await repository.getAllVisualizations();
         expect(actual, hasLength(1));
       });
 
       test('delete Visualization', () async{
-        //one nc has been created in setup()
+        //one visualization has been created in setup()
         final visualization = Visualization(2, 1, 5, "lifeAreas");
         await repository.createVisualization(visualization);
 

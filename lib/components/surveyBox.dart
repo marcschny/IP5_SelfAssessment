@@ -48,9 +48,12 @@ class _SurveyBoxState extends State<SurveyBox> {
         ),
         padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
 
-        child: Text(
-          widget.question,
-          style: ThemeTexts.assessmentQuestion,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Text(
+            widget.question,
+            style: ThemeTexts.assessmentQuestion,
+          ),
         ),
         margin: EdgeInsets.only(bottom: 15),
         width: MediaQuery

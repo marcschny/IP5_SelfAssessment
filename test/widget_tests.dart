@@ -1,48 +1,76 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
 import 'package:ip5_selbsteinschaetzung/components/NextButton.dart';
+import 'package:ip5_selbsteinschaetzung/components/experienceCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
 import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
+import 'package:ip5_selbsteinschaetzung/components/personCircle.dart';
+import 'package:ip5_selbsteinschaetzung/components/progressBar.dart';
+import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
+import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
-import 'package:ip5_selbsteinschaetzung/resources/visualizationMethods.dart';
 
-//todo: adjust widget tests to pass
+
+//test with: flutter test test/widget_tests.dart
 void main(){
 
-  //test with: flutter test test/widget_tests.dart
-  test('BottomNavigation Unit Test', (){
-    String nextTitle = "test route";
+  //setup widgets which need a MaterialApp to be built
+  const MaterialApp topBar = MaterialApp(
+    home: Scaffold(
+      body: const TopBar(title: "Testtitle", titleNumber: 2, onClose: null, subtitle: "Testsubtitle", percent: 0.1, showProgressbar: true),
+    ),
+  );
 
-    bool executedCallbackBack = false;
-    bool executedCallbackNext = false;
+  const MaterialApp nextButton = MaterialApp(
+    home: Scaffold(
+      body: const NextButton(nextTitle: "Next Title", callback: null)
+    ),
+  );
 
-    final bottomNav = BottomNavigation(nextTitle: nextTitle, callbackBack: () => executedCallbackBack = true, callbackNext: () => executedCallbackNext = true);
+  const MaterialApp surveyBox = MaterialApp(
+    home: Scaffold(
+      body: const SurveyBox(question: "Some question", checked: false)
+    ),
+  );
 
-    bottomNav.callbackBack();
-    expect(executedCallbackBack, true);
 
-    bottomNav.callbackNext();
-    expect(executedCallbackNext, true);
 
-    expect(bottomNav.nextTitle, nextTitle);
 
+  //testWidgets
+  testWidgets('TopBar Widget Test', (WidgetTester tester) async{
+    await tester.pumpWidget(topBar);
+
+    expect(find.text("Testtitle"), findsOneWidget);
+    expect(find.text("Testsubtitle"), findsOneWidget);
+    expect(find.text("2"), findsOneWidget);
+    expect(find.byType(ProgressBar), findsOneWidget);
+  });
+
+  testWidgets('NextButton Widget Test', (WidgetTester tester) async{
+    await tester.pumpWidget(nextButton);
+
+    expect(find.text("Next Title"), findsOneWidget);
+    expect(find.byType(Wrap), findsOneWidget);
+  });
+
+  testWidgets('SurveyBox Widget Test', (WidgetTester tester) async{
+    await tester.pumpWidget(surveyBox);
+
+    expect(find.text("Some question"), findsOneWidget);
+  });
+
+  testWidgets('PersonCircle Widget Test', (WidgetTester tester) async{
+    Person person = Person(1, "Peter", "adult", "lifeArea", 5, 1, 1);
+    await tester.pumpWidget(PersonCircle(person: person));
+
+    expect(find.byType(Icon), findsOneWidget);
   });
 
 
 
-  /*testWidgets('NextButton Widget Test', (WidgetTester tester) async{
-
-    await tester.pumpWidget(NextButton(nextTitle: "nextTitle", callback: null));
-
-    final titleFinder = find.text("nextTitle");
-
-    expect(titleFinder, findsOneWidget);
-  });*/
-
-
   testWidgets('CheckBoxComponent Widget Test', (WidgetTester tester) async{
-
     await tester.pumpWidget(CheckBoxComponent(checkboxTitle: "checkboxTitlte", checked: false));
 
     final titleFinder = find.text("checkboxTitlte");
@@ -52,7 +80,6 @@ void main(){
 
 
   testWidgets('LegendElement Widget Test', (WidgetTester tester) async{
-
     await tester.pumpWidget(LegendElement(sectorName: "sectorTestname", sector: 1));
 
     final sectorNameFinder = find.text("sectorTestname");
@@ -74,46 +101,16 @@ void main(){
   });
 
 
-  group("Unit tests for the visualization methods", (){
+  testWidgets('ExperienceCard Widget Test', (WidgetTester tester) async{
+    final Experience experience = Experience(1, "great", "My first experience", "explanation", DateTime.now().toString(), 1);
+    await tester.pumpWidget(ExperienceCard(experience: experience, editable: false));
 
-    test('test toRadian method', (){
-      double validDegree = 160;
-      double validRadian = 2.79253;
-      double actual = double.parse(toRadian(validDegree).toStringAsFixed(5));
-      expect(actual, validRadian);
+    final experienceTextFinder = find.text("My first experience");
 
-      double invalidDegree = 400;
-      double invalidRadian = null;
-      expect(toRadian(invalidDegree), invalidRadian);
-    });
-
-    test('test computeXPosition method', (){
-      double centerX = 180;
-      double radius = 100;
-
-      double validAngle = 160;
-      int validDistance = 5;
-      double validXPosition = 133.01537;
-      double actual = double.parse(computeXPosition(validDistance, validAngle, centerX, radius).toStringAsFixed(5));
-      expect(actual, validXPosition);
-      
-
-    });
-
-    test('test computeYPosition method', (){
-      double centerY = 180;
-      double radius = 100;
-
-      double validAngle = 160;
-      int validDistance = 5;
-      double validYPosition = 197.10101;
-      double actual = double.parse(computeYPosition(validDistance, validAngle, centerY, radius).toStringAsFixed(5));
-      expect(actual, validYPosition);
-
-
-    });
-
+    expect(experienceTextFinder, findsOneWidget);
   });
+
+
 
 
 }
