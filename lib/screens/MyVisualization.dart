@@ -12,7 +12,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/visualizationMethods.dart';
 import 'package:provider/provider.dart';
-import 'Part_2_1.dart';
+import 'Strengths.dart';
 
 
 //Screen 1.3
@@ -99,7 +99,7 @@ class _MyVisualizationState extends State<MyVisualization>{
     var yourPerson = Positioned(
       top: MediaQuery.of(context).size.width/2-40,
       left: MediaQuery.of(context).size.width/2-20,
-      child: YourPersonCircle(name: "Du"),
+      child: YourPersonCircle(name: "Ich"),
     );
     personCircleList.add(yourPerson);
 
@@ -196,26 +196,26 @@ class _MyVisualizationState extends State<MyVisualization>{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      FadeIn(
-                        1,
-                        600,
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 18),
-                              child: Center(
-                                child: CustomPaint(
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.all(20),
-                                  ),
-                                  painter: WheelPainter(
-                                    noAreas: lifeAreas.length,
-                                    widgetSize: MediaQuery.of(context).size.width-40,
-                                  ),
+                    FadeIn(
+                      1,
+                      600,
+                      Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            child: Center(
+                              child: CustomPaint(
+                                child: Container(
+                                  height: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.all(20),
+                                ),
+                                painter: WheelPainter(
+                                  noAreas: lifeAreas.length,
+                                  widgetSize: MediaQuery.of(context).size.width-40,
                                 ),
                               ),
                             ),
+                          ),
 
                           ]..addAll(personCircleList),
                         ),
@@ -254,7 +254,7 @@ class _MyVisualizationState extends State<MyVisualization>{
               onClose: null,
               subtitle: "So sieht deine Visualisierung aus",
               percent: 0.2,
-              intro: "",
+              intro: "Tippe auf eine Person, um den Namen zu sehen.",
               showProgressbar: true,
             ),
           ),
@@ -285,7 +285,7 @@ class _MyVisualizationState extends State<MyVisualization>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_1(assessmentId: assessmentId, visualizationId: visualizationId);
+          return Strengths(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

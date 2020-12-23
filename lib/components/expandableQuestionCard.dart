@@ -27,6 +27,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
 
   Answer answer;
   String question;
+  ExpandableController controller;
 
   @override
   void initState() {
@@ -194,7 +195,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
                 },
               ),
             ),
-
+          controller: controller,
           ),
         ),
       ),
