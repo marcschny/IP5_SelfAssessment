@@ -528,6 +528,8 @@ class _PersonDialogState extends State<PersonDialog>{
                         widget.assessmentId
                       );
 
+                      print("new Person distance: "+newPerson.distance.toString());
+
 
 
                       final appDatabase = Provider.of<AppDatabase>(context, listen: false);

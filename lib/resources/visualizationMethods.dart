@@ -16,7 +16,7 @@ double computeYPosition(int distance, double angle, double centerY, double radiu
 
 //convert degree to radian
 double toRadian(double angle){
-  return angle >= 0 && angle <= 360 ? angle * (pi / 180) : null;
+  return angle >= 0 && angle <= 360 ? angle * (pi / 180) : 0;
 }
 
 //get the starting angle point from sector

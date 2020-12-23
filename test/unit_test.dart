@@ -34,7 +34,7 @@ void main(){
       expect(actual, validRadian);
 
       double invalidDegree = 400;
-      double invalidRadian = null;
+      double invalidRadian = 0;
       expect(toRadian(invalidDegree), invalidRadian);
     });
 
