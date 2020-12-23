@@ -61,29 +61,31 @@ class _Part_2_3State extends State<Part_2_3>{
 
               Expanded(
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
-                      child: Wrap(
-                        children: [
+                    padding: EdgeInsets.fromLTRB(18, 2, 18, 94),
+                      child: SingleChildScrollView(
+                        child: Wrap(
+                          children: [
 
-                          SlideUpFadeIn(
-                            0.5,
-                            140,
-                            QuestionCard(
-                              questionNumber: "2.3.1",
-                              assessmentId: widget.assessmentId,
+                            SlideUpFadeIn(
+                              0.5,
+                              140,
+                              QuestionCard(
+                                questionNumber: "2.3.1",
+                                assessmentId: widget.assessmentId,
+                              ),
                             ),
-                          ),
-                          SlideUpFadeIn(
-                            1,
-                            140,
-                            QuestionCard(
-                              questionNumber: "2.3.2",
-                              assessmentId: widget.assessmentId,
+                            SlideUpFadeIn(
+                              1,
+                              140,
+                              QuestionCard(
+                                questionNumber: "2.3.2",
+                                assessmentId: widget.assessmentId,
+                              ),
                             ),
-                          ),
 
 
-                        ],
+                          ],
+                        ),
                       ),
                   ),
               ),

@@ -61,36 +61,38 @@ class _Part_2_2State extends State<Part_2_2>{
 
               Expanded(
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
-                      child: Wrap(
-                        children: [
-                          SlideUpFadeIn(
-                            0.5,
-                            140,
-                            QuestionCard(
-                              questionNumber: "2.2.1",
-                              assessmentId: widget.assessmentId,
+                    padding: EdgeInsets.fromLTRB(18, 2, 18, 94),
+                      child: SingleChildScrollView(
+                        child: Wrap(
+                          children: [
+                            SlideUpFadeIn(
+                              0.5,
+                              140,
+                              QuestionCard(
+                                questionNumber: "2.2.1",
+                                assessmentId: widget.assessmentId,
+                              ),
                             ),
-                          ),
-                          SlideUpFadeIn(
-                            1,
-                            140,
-                            QuestionCard(
-                              questionNumber: "2.2.2",
-                              assessmentId: widget.assessmentId,
+                            SlideUpFadeIn(
+                              1,
+                              140,
+                              QuestionCard(
+                                questionNumber: "2.2.2",
+                                assessmentId: widget.assessmentId,
+                              ),
                             ),
-                          ),
-                          SlideUpFadeIn(
-                            1.5,
-                            140,
-                            QuestionCard(
-                              questionNumber: "2.2.3",
-                              assessmentId: widget.assessmentId,
+                            SlideUpFadeIn(
+                              1.5,
+                              140,
+                              QuestionCard(
+                                questionNumber: "2.2.3",
+                                assessmentId: widget.assessmentId,
+                              ),
                             ),
-                          ),
 
-                        ],
+                          ],
                     ),
+                      ),
                   ),
               ),
 

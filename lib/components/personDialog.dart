@@ -157,7 +157,7 @@ class _PersonDialogState extends State<PersonDialog>{
 
                   //icons for category
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
+                    padding: EdgeInsets.symmetric(vertical: 28, horizontal: MediaQuery.of(context).size.width > 600 ? 18 : 6),
                     child: Column(
                       children: [
                         Text(
@@ -523,7 +523,7 @@ class _PersonDialogState extends State<PersonDialog>{
                         _nameController.text,
                         _selectedIcon,
                         _selectedLifeArea,
-                        8 - _currentDistance.toDouble(),
+                        (8 - _currentDistance).toDouble(),
                         widget.visualizationId,
                         widget.assessmentId
                       );

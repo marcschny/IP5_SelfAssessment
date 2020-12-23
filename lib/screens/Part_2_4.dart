@@ -68,7 +68,7 @@ class _Part_2_4State extends State<Part_2_4>{
 
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                    padding: EdgeInsets.fromLTRB(20, 2, 20, 74),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,

@@ -189,72 +189,75 @@ class _MyVisualizationState extends State<MyVisualization>{
 
 
             //content
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(bottom: 94),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+            Container(
+              padding: EdgeInsets.only(top: 140, bottom: 94),
+              child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-                    TopBar(
-                      title: "Wer ist mir wichtig?\nMeine Visualisierung",
-                      titleNumber: 1,
-                      onClose: null,
-                      subtitle: "So sieht deine Visualisierung aus",
-                      percent: 0.2,
-                      intro: "",
-                      showProgressbar: true,
-                    ),
-
-                    SizedBox(height: 10),
-
-                    FadeIn(
-                      1,
-                      600,
-                      Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
-                            child: Center(
-                              child: CustomPaint(
-                                child: Container(
-                                  height: MediaQuery.of(context).size.width,
-                                  padding: EdgeInsets.all(20),
-                                ),
-                                painter: WheelPainter(
-                                  noAreas: lifeAreas.length,
-                                  widgetSize: MediaQuery.of(context).size.width-40,
+                      FadeIn(
+                        1,
+                        600,
+                        Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 18),
+                              child: Center(
+                                child: CustomPaint(
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.width,
+                                    padding: EdgeInsets.all(20),
+                                  ),
+                                  painter: WheelPainter(
+                                    noAreas: lifeAreas.length,
+                                    widgetSize: MediaQuery.of(context).size.width-40,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
 
-                        ]..addAll(personCircleList),
-                      ),
-                    ),
-
-                    FadeIn(
-                      1.25,
-                      500,
-                      Container(
-                        padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
-                        width: MediaQuery.of(context).size.width,
-                        child: Wrap(
-                          alignment: WrapAlignment.start,
-                          verticalDirection: VerticalDirection.down,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-
-                          ]..addAll(legendList),
+                          ]..addAll(personCircleList),
                         ),
                       ),
-                    ),
+
+                      FadeIn(
+                        1.25,
+                        500,
+                        Container(
+                          padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                          width: MediaQuery.of(context).size.width,
+                          child: Wrap(
+                            alignment: WrapAlignment.start,
+                            verticalDirection: VerticalDirection.down,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+
+                            ]..addAll(legendList),
+                          ),
+                        ),
+                      ),
 
 
-                  ],
+                    ],
+                  ),
                 ),
-              ),
             ),
+
+
+          Positioned(
+            top: 0,
+            left: 0,
+            child: TopBar(
+              title: "Wer ist mir wichtig?\nMeine Visualisierung",
+              titleNumber: 1,
+              onClose: null,
+              subtitle: "So sieht deine Visualisierung aus",
+              percent: 0.2,
+              intro: "",
+              showProgressbar: true,
+            ),
+          ),
 
             //bottom navigation bar
             BottomNavigation(

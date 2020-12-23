@@ -63,8 +63,9 @@ class _Part_2_1State extends State<Part_2_1>{
               ),
 
               Expanded(
-                child: Padding(
-                    padding: EdgeInsets.fromLTRB(18, 20, 18, 94),
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(18, 2, 18, 94),
+                      child: SingleChildScrollView(
                         child: Wrap(
                           children: [
                             SlideUpFadeIn(
@@ -96,8 +97,9 @@ class _Part_2_1State extends State<Part_2_1>{
                           ],
                         ),
                       ),
+                    ),
               ),
-                ],
+              ],
             ),
 
             BottomNavigation(
