@@ -6,25 +6,25 @@ import 'package:ip5_selbsteinschaetzung/components/surveyBoxFilled.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_3_1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/NameIt.dart';
+import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
 //todo: validate: die Frage (die Projektbeschreibung) muss ausgefüllt sein
-class Part_2_4 extends StatefulWidget {
+class Improvements extends StatefulWidget {
 
   final List<String> evaluation;
   final int assessmentId;
   final int visualizationId;
 
-  const Part_2_4({Key key, this.assessmentId, this.evaluation, this.visualizationId}) : super(key: key);
+  const Improvements({Key key, this.assessmentId, this.evaluation, this.visualizationId}) : super(key: key);
 
   @override
-  _Part_2_4State createState() => _Part_2_4State();
+  _ImprovementsState createState() => _ImprovementsState();
 }
 
-class _Part_2_4State extends State<Part_2_4>{
+class _ImprovementsState extends State<Improvements>{
 
 
   @override
@@ -60,8 +60,8 @@ class _Part_2_4State extends State<Part_2_4>{
                     title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                     titleNumber: 2,
                     onClose: null,
-                    subtitle: "Lust auf etwas Neues!",
-                    intro: "Beschreibe bei dieser Frage, was du genau mit deinem Veränderungsprojekt ausproberen möchtest",
+                    subtitle: "Das möchte ich gerne können",
+                    intro: "Beschreibe bei dieser Frage, was du genau in deinem Veränderungsprojekt ausprobieren möchtest.",
                     percent: 0.45,
                     showProgressbar: true,
                 ),
@@ -260,7 +260,7 @@ class _Part_2_4State extends State<Part_2_4>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_5(assessmentId: assessmentId, visualizationId: visualizationId);
+          return NameIt(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,
@@ -286,7 +286,7 @@ class _Part_2_4State extends State<Part_2_4>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_1(assessmentId: assessmentId, visualizationId: visualizationId);
+          return SurveyPart1(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

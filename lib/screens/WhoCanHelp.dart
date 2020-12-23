@@ -11,22 +11,22 @@ import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
-class Part_2_6 extends StatefulWidget {
+class WhoCanHelp extends StatefulWidget {
 
   final int assessmentId;
   final int visualizationId;
 
-  const Part_2_6({
+  const WhoCanHelp({
     Key key,
     this.assessmentId,
     this.visualizationId
   }) : super(key: key);
 
   @override
-  _Part_2_6State createState() => _Part_2_6State();
+  _WhoCanHelpState createState() => _WhoCanHelpState();
 }
 
-class _Part_2_6State extends State<Part_2_6>{
+class _WhoCanHelpState extends State<WhoCanHelp>{
 
 
   @override
@@ -184,7 +184,7 @@ class _Part_2_6State extends State<Part_2_6>{
           BottomNavigation(
               showNextButton: true,
               showBackButton: true,
-              nextTitle: "Jetzt packe ich es an!",
+              nextTitle: "Veränderungsprojekt",
               callbackBack: () {
                 Navigator.of(context).pop();
               },

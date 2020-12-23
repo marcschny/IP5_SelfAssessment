@@ -4,7 +4,7 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_4.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Improvements.dart';
 
 class Part_2_3 extends StatefulWidget{
 
@@ -120,7 +120,7 @@ class _Part_2_3State extends State<Part_2_3>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_4(assessmentId: assessmentId, visualizationId: visualizationId);
+          return Improvements(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

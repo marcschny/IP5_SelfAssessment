@@ -483,7 +483,7 @@ class Part5 extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: " um das Assessment zu starten !",
+                    text: " um das Assessment zu starten!",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,

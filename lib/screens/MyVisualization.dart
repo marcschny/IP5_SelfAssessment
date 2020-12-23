@@ -12,7 +12,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/visualizationMethods.dart';
 import 'package:provider/provider.dart';
-import 'Part_2_1.dart';
+import 'Strengths.dart';
 
 
 //Screen 1.3
@@ -99,7 +99,7 @@ class _MyVisualizationState extends State<MyVisualization>{
     var yourPerson = Positioned(
       top: MediaQuery.of(context).size.width/2-40,
       left: MediaQuery.of(context).size.width/2-20,
-      child: YourPersonCircle(name: "Du"),
+      child: YourPersonCircle(name: "Ich"),
     );
     personCircleList.add(yourPerson);
 
@@ -202,11 +202,10 @@ class _MyVisualizationState extends State<MyVisualization>{
                       onClose: null,
                       subtitle: "So sieht deine Visualisierung aus",
                       percent: 0.2,
-                      intro: "",
-                      showProgressbar: true,
+                      intro: "Tippe auf eine Person, um den Namen zu sehen.",
+                      showProgressbar: true
                     ),
 
-                    SizedBox(height: 10),
 
                     FadeIn(
                       1,
@@ -237,7 +236,7 @@ class _MyVisualizationState extends State<MyVisualization>{
                       1.25,
                       500,
                       Container(
-                        padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                        padding: EdgeInsets.fromLTRB(18, 0, 18, 5),
                         width: MediaQuery.of(context).size.width,
                         child: Wrap(
                           alignment: WrapAlignment.start,
@@ -282,7 +281,7 @@ class _MyVisualizationState extends State<MyVisualization>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_1(assessmentId: assessmentId, visualizationId: visualizationId);
+          return Strengths(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,
