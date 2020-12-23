@@ -61,7 +61,8 @@ class _ImprovementsState extends State<Improvements>{
                     titleNumber: 2,
                     onClose: null,
                     subtitle: "Das möchte ich gerne können",
-                    intro: "Beschreibe bei dieser Frage, was du genau in deinem Veränderungsprojekt ausprobieren möchtest.",
+                    intro: "In den nächsten Wochen kannst Du Dich in einem Bereich verbessern, den Du gerne besser können willst. "
+                        "In Deinem Veränderungsprojekt kannst Du dazu deine täglichen Erlebnisse eintragen.",
                     percent: 0.45,
                     showProgressbar: true,
                 ),
