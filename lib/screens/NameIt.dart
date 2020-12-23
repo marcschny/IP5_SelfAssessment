@@ -5,28 +5,28 @@ import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_6.dart';
+import 'package:ip5_selbsteinschaetzung/screens/WhoCanHelp.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
 
 
-class Part_2_5 extends StatefulWidget {
+class NameIt extends StatefulWidget {
 
   final int assessmentId;
   final int visualizationId;
 
-  const Part_2_5({
+  const NameIt({
     Key key,
     this.assessmentId,
     this.visualizationId
   }) : super(key: key);
 
   @override
-  _Part_2_5State createState() => _Part_2_5State();
+  _NameItState createState() => _NameItState();
 }
 
-class _Part_2_5State extends State<Part_2_5>{
+class _NameItState extends State<NameIt>{
 
 
   TextEditingController _titleController;
@@ -82,7 +82,7 @@ class _Part_2_5State extends State<Part_2_5>{
                   titleNumber: 2,
                   onClose: null,
                   subtitle: "Name it!",
-                  intro: "Wie lautet der Titel deines Veränderungsprojekts?",
+                  intro: "Möchtest Du Deinem Veränderungsprojekt einen Titel geben? Falls ja, welchen?",
                   percent: 0.5,
                   showProgressbar: true,
               ),
@@ -110,11 +110,26 @@ class _Part_2_5State extends State<Part_2_5>{
                             ),
                             style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
                           ),
+
+                          SizedBox(height: 80),
+
+                          Text(
+                            "Wenn Dir nichts dazu einfällt, Du aber gerne einen Titel für Dein Projekt hättest: Wer könnte Dir dabei helfen?",
+                            style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                            textAlign: TextAlign.start,
+                            softWrap: true,
+                            overflow: TextOverflow.clip,
+
+                          ),
+
                         ],
                       ),
+
+
                   ),
                 ),
               ),
+
           ],
         ),
 
@@ -150,7 +165,7 @@ class _Part_2_5State extends State<Part_2_5>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_6(assessmentId: assessmentId, visualizationId: visualizationId);
+          return WhoCanHelp(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

@@ -5,24 +5,24 @@ import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 
-import 'Part_3_5.dart';
+import 'SurveyPart5.dart';
 
-class Part_3_4 extends StatefulWidget {
+class SurveyPart4 extends StatefulWidget {
 
   final int assessmentId;
   final int visualizationId;
 
-  const Part_3_4({
+  const SurveyPart4({
     Key key,
     this.assessmentId,
     this.visualizationId
   }) : super(key: key);
 
   @override
-  _Part_3_4State createState() => _Part_3_4State();
+  _SurveyPart4State createState() => _SurveyPart4State();
 }
 
-class _Part_3_4State extends State<Part_3_4>{
+class _SurveyPart4State extends State<SurveyPart4>{
 
 
   @override
@@ -157,7 +157,7 @@ class _Part_3_4State extends State<Part_3_4>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_5(assessmentId: assessmentId, visualizationId: visualizationId);
+          return SurveyPart5(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

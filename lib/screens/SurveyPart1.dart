@@ -1,27 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_3_2.dart';
+import 'package:ip5_selbsteinschaetzung/screens/SurveyPart2.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
-import 'Part_2_4.dart';
+import 'Improvements.dart';
 
-class Part_3_1 extends StatefulWidget {
+class SurveyPart1 extends StatefulWidget {
 
   final int assessmentId;
   final int visualizationId;
 
-  const Part_3_1({
+  const SurveyPart1({
     Key key,
     this.assessmentId,
     this.visualizationId
   }) : super(key: key);
 
   @override
-  _Part_3_1State createState() => _Part_3_1State();
+  _SurveyPart1State createState() => _SurveyPart1State();
 }
 
-class _Part_3_1State extends State<Part_3_1> {
+class _SurveyPart1State extends State<SurveyPart1> {
 
 
   @override
@@ -43,7 +43,7 @@ class _Part_3_1State extends State<Part_3_1> {
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 3,
-                  onClose: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_2_4()));},
+                  onClose: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => Improvements()));},
                   subtitle: "Fragebogen",
                   intro: "Auf den folgenden Screens erhälst Du jeweils  Fragen zu drei Themenblöcken, "
                   "welche Dir helfen  werden nach Abschluss des Fragebogens ein  mögliches Ziel für Dein Veränderungsprojekt zu finden. \n"
@@ -102,7 +102,7 @@ class _Part_3_1State extends State<Part_3_1> {
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_2(assessmentId: assessmentId, visualizationId: visualizationId);
+          return SurveyPart2(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,
