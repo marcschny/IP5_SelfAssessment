@@ -93,9 +93,8 @@ class _WeaknessesState extends State<Weaknesses>{
                           ],
                     ),
                   ),
+                ),
               ),
-
-
             ],
           ),
 

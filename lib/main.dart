@@ -8,7 +8,6 @@ import 'package:ip5_selbsteinschaetzung/screens/Congratulations.dart';
 import 'package:ip5_selbsteinschaetzung/screens/MyExperiences.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Strengths.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Weaknesses.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Improvements.dart';
 import 'package:ip5_selbsteinschaetzung/screens/NameIt.dart';
 import 'package:ip5_selbsteinschaetzung/screens/WhoCanHelp.dart';
@@ -86,16 +85,16 @@ class MyApp extends StatelessWidget {
             "/importantPersons": (context) => ImportantPersons(),
             "/personDialog": (context) => PersonDialog(),
             "/visualization": (context) => MyVisualization(),
-            "/part_2_1": (context) => Strengths(),
-            "/part_2_2": (context) => Weaknesses(),
-            "/part_2_4": (context) => Improvements(),
-            "/part_2_5": (context) => NameIt(),
-            "/part_2_6": (context) => WhoCanHelp(),
-            "/part_3_1": (context) => SurveyPart1(),
-            "/part_3_2": (context) => SurveyPart2(),
-            "/part_3_3": (context) => SurveyPart3(),
-            "/part_3_4": (context) => SurveyPart4(),
-            "/part_3_5": (context) => SurveyPart5(),
+            "/strengths": (context) => Strengths(),
+            "/weaknesses": (context) => Weaknesses(),
+            "/improvements": (context) => Improvements(),
+            "/nameIt": (context) => NameIt(),
+            "/WhoCanHelp": (context) => WhoCanHelp(),
+            "/SurveyPart1": (context) => SurveyPart1(),
+            "/SurveyPart2": (context) => SurveyPart2(),
+            "/SurveyPart3": (context) => SurveyPart3(),
+            "/SurveyPart4": (context) => SurveyPart4(),
+            "/SurveyPart5": (context) => SurveyPart5(),
             "/changeProject": (context) => ChangeProject(),
             "/congratulations": (context) => Congratulations(),
             "/evaluation": (context) => Evaluation(),
