@@ -114,7 +114,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                           SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen",
+                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen.",
                               style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                               textAlign: TextAlign.start,
                               softWrap: true,
