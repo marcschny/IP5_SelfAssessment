@@ -5,26 +5,24 @@ import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 
-import 'Part_3_3.dart';
+import 'SurveyPart5.dart';
 
-
-
-class Part_3_2 extends StatefulWidget {
+class SurveyPart4 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
-  const Part_3_2({
+  const SurveyPart4({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
-  _Part_3_2State createState() => _Part_3_2State();
+  _SurveyPart4State createState() => _SurveyPart4State();
 }
 
-class _Part_3_2State extends State<Part_3_2> {
+class _SurveyPart4State extends State<SurveyPart4>{
 
 
   @override
@@ -36,6 +34,7 @@ class _Part_3_2State extends State<Part_3_2> {
   void dispose() {
     super.dispose();
   }
+
 
 
   @override
@@ -61,6 +60,7 @@ class _Part_3_2State extends State<Part_3_2> {
                 subtitle: "Kommunikation mit Mitmenschen",
                 intro: "",
                 percent: 0.55,
+                showProgressbar: true,
               ),
 
 
@@ -70,19 +70,12 @@ class _Part_3_2State extends State<Part_3_2> {
                   child: ListView(
                     children: [
 
+
                       SlideUpFadeIn(
                         0.5,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.2.1",
-                          assessmentId: widget.assessmentId,
-                        ),
-                      ),
-                      SlideUpFadeIn(
-                        0.7,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.2.2",
+                          questionNumber: "3.4.1",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -90,7 +83,7 @@ class _Part_3_2State extends State<Part_3_2> {
                         0.9,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.2.3",
+                          questionNumber: "3.4.2",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -98,7 +91,7 @@ class _Part_3_2State extends State<Part_3_2> {
                         1.1,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.2.4",
+                          questionNumber: "3.4.3",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -106,15 +99,23 @@ class _Part_3_2State extends State<Part_3_2> {
                         1.3,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.2.5",
+                          questionNumber: "3.4.4",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
                       SlideUpFadeIn(
-                        1.4,
+                        1.5,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.2.6",
+                          questionNumber: "3.4.5",
+                          assessmentId: widget.assessmentId,
+                        ),
+                      ),
+                      SlideUpFadeIn(
+                        1.6,
+                        100,
+                        ExpandableQuestionCard(
+                          questionNumber: "3.4.6",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -125,32 +126,30 @@ class _Part_3_2State extends State<Part_3_2> {
                 ),
             ),
 
-
-                ],
+            ],
             ),
 
             BottomNavigation(
                 showNextButton: true,
                 showBackButton: true,
-                nextTitle: "Themenblock 2",
+                nextTitle: "Auswertung",
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },
 
                 callbackNext: () {
-                 _next(context, widget.assessmentId, widget.networkId);
+                  _next(context, widget.assessmentId, widget.visualizationId);
                 }
 
             ),
         ],
         ),
       ),
-
-
     );
   }
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -158,7 +157,7 @@ class _Part_3_2State extends State<Part_3_2> {
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_3(assessmentId: assessmentId, networkId: networkId);
+          return SurveyPart5(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,
@@ -175,6 +174,5 @@ class _Part_3_2State extends State<Part_3_2> {
       ),
     );
   }
-
 
 }

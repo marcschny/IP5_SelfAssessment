@@ -4,26 +4,26 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandableQuestionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
-import 'Part_3_4.dart';
+import 'SurveyPart4.dart';
 
 
 
-class Part_3_3 extends StatefulWidget {
+class SurveyPart3 extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
-  const Part_3_3({
+  const SurveyPart3({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
-  _Part_3_3State createState() => _Part_3_3State();
+  _SurveyPart3State createState() => _SurveyPart3State();
 }
 
-class _Part_3_3State extends State<Part_3_3>{
+class _SurveyPart3State extends State<SurveyPart3>{
 
 
   @override
@@ -60,6 +60,7 @@ class _Part_3_3State extends State<Part_3_3>{
                 subtitle: "Kommunikation mit Mitmenschen",
                 intro: "",
                 percent: 0.55,
+                showProgressbar: true,
               ),
 
 
@@ -144,7 +145,7 @@ class _Part_3_3State extends State<Part_3_3>{
                 },
 
                 callbackNext: () {
-                  _next(context, widget.assessmentId, widget.networkId);
+                  _next(context, widget.assessmentId, widget.visualizationId);
                 }
 
             ),
@@ -157,7 +158,7 @@ class _Part_3_3State extends State<Part_3_3>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -165,7 +166,7 @@ class _Part_3_3State extends State<Part_3_3>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_4(assessmentId: assessmentId, networkId: networkId);
+          return SurveyPart4(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

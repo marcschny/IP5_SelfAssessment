@@ -1,7 +1,7 @@
 import 'dart:math';
 
 /*
- Here all all necessary methods used to build the networkcard
+ Here all all necessary methods used to build the visualization
 */
 
 //computations methods for positioning the person circles

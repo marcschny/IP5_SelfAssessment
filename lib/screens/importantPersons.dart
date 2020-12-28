@@ -9,7 +9,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFromBottom.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Visualization.dart';
+import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -19,13 +19,13 @@ import 'package:oktoast/oktoast.dart';
 class ImportantPersons extends StatefulWidget{
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
 
   const ImportantPersons({
     Key key,
     @required this.assessmentId,
-    @required this.networkId
+    @required this.visualizationId
   }) : super(key: key);
 
   _ImportantPersonsState createState() => _ImportantPersonsState();
@@ -68,8 +68,8 @@ class _ImportantPersonsState extends State<ImportantPersons>{
     //prevent widgetList from duplicate values...
     widgetList.clear();
 
-    //get all persons by network card
-    final persons = await assessmentRepo.getAllPersonsByNetworkCard(widget.networkId);
+    //get all persons by visualization
+    final persons = await assessmentRepo.getAllPersonsByVisualization(widget.visualizationId);
 
     //refresh personList asynchronously
     setState(() {
@@ -118,7 +118,8 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                   onClose: null,
                   subtitle: "Wichtige Personen",
                   percent: 0.1,
-                  intro: "Hier kannst Du wichtige Personen in deinem Leben auswählen und bestimmen, wie Du zu dieser Person stehst. Je weiter weg von der Mitte (und damit von Dir) Du eine Person einträgst, desto weniger wichtig ist sie aktuell in Deinem Leben.",
+                  intro: "Hier kannst Du wichtige Personen aus deinem Leben hinzufügen und bestimmen, wie Du zu dieser Person stehst. Je weniger Wichtig Du eine Person einträgst, desto weiter weg erscheint diese auf der Visualisierung.",
+                  showProgressbar: true,
                 ),
 
 
@@ -156,7 +157,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                         showDialog(
                           context: context,
                           barrierColor: Colors.black.withOpacity(.3),
-                          child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, networkId: widget.networkId)),
+                          child: SlideUpFromBottom(0, PersonDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
                         ).then(onGoBack);
                       },
                     ),
@@ -189,7 +190,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                                   0,
                                   PersonDialog(
                                     assessmentId: widget.assessmentId,
-                                    networkId: widget.networkId,
+                                    visualizationId: widget.visualizationId,
                                     person: widgetList[index].person,
                                   ),
                                 ),
@@ -212,7 +213,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
               showBackButton: true,
               nextTitle: "Visualisierung",
               callbackNext: (){
-                _next(context, widget.assessmentId, widget.networkId);
+                _next(context, widget.assessmentId, widget.visualizationId);
               },
               callbackBack: (){
                 Navigator.of(context).pop(true);
@@ -225,7 +226,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   }
 
   //next page
-  void _next(BuildContext context, int assessmentId, int networkId) {
+  void _next(BuildContext context, int assessmentId, int visualizationId) {
     if (personList.length >= 2) {
       Navigator.of(context).push(
         PageRouteBuilder(
@@ -234,7 +235,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
               BuildContext context,
               Animation<double> animation,
               Animation<double> secondaryAnimation) {
-            return Visualization(assessmentId: assessmentId, networkId: networkId);
+            return MyVisualization(assessmentId: assessmentId, visualizationId: visualizationId);
           },
           transitionsBuilder: (
               BuildContext context,

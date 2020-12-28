@@ -6,25 +6,25 @@ import 'package:ip5_selbsteinschaetzung/components/surveyBoxFilled.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_5.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_3_1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/NameIt.dart';
+import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
 //todo: validate: die Frage (die Projektbeschreibung) muss ausgefüllt sein
-class Part_2_4 extends StatefulWidget {
+class Improvements extends StatefulWidget {
 
   final List<String> evaluation;
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
-  const Part_2_4({Key key, this.assessmentId, this.evaluation, this.networkId}) : super(key: key);
+  const Improvements({Key key, this.assessmentId, this.evaluation, this.visualizationId}) : super(key: key);
 
   @override
-  _Part_2_4State createState() => _Part_2_4State();
+  _ImprovementsState createState() => _ImprovementsState();
 }
 
-class _Part_2_4State extends State<Part_2_4>{
+class _ImprovementsState extends State<Improvements>{
 
 
   @override
@@ -60,9 +60,11 @@ class _Part_2_4State extends State<Part_2_4>{
                     title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                     titleNumber: 2,
                     onClose: null,
-                    subtitle: "Lust auf etwas Neues!",
-                    intro: "",
+                    subtitle: "Das möchte ich gerne können",
+                    intro: "In den nächsten Wochen kannst Du Dich in einem Bereich verbessern, den Du gerne besser können willst. "
+                        "In Deinem Veränderungsprojekt kannst Du dazu deine täglichen Erlebnisse eintragen.",
                     percent: 0.45,
+                    showProgressbar: true,
                 ),
 
                 Expanded(
@@ -130,7 +132,7 @@ class _Part_2_4State extends State<Part_2_4>{
                                   padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                                   onPressed: () {
-                                    _goToQuestionnaire(context, widget.assessmentId, widget.networkId);
+                                    _goToQuestionnaire(context, widget.assessmentId, widget.visualizationId);
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(vertical: 3, horizontal: 10),
@@ -179,7 +181,7 @@ class _Part_2_4State extends State<Part_2_4>{
                  showBackButton: false,
                  nextTitle: "Name it!",
                  callbackNext: (){
-                   _next(context, widget.assessmentId, widget.networkId);
+                   _next(context, widget.assessmentId, widget.visualizationId);
                  }
               ),
 
@@ -251,7 +253,7 @@ class _Part_2_4State extends State<Part_2_4>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -259,7 +261,7 @@ class _Part_2_4State extends State<Part_2_4>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_5(assessmentId: assessmentId, networkId: networkId);
+          return NameIt(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,
@@ -277,7 +279,7 @@ class _Part_2_4State extends State<Part_2_4>{
     );
   }
 
-  void _goToQuestionnaire(BuildContext context, int assessmentId, int networkId){
+  void _goToQuestionnaire(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -285,7 +287,7 @@ class _Part_2_4State extends State<Part_2_4>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_3_1(assessmentId: assessmentId, networkId: networkId);
+          return SurveyPart1(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

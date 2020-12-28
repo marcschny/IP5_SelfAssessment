@@ -6,30 +6,30 @@ import 'package:ip5_selbsteinschaetzung/components/yourPersonCircle.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/resources/networkCardMethods.dart';
+import 'package:ip5_selbsteinschaetzung/resources/visualizationMethods.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 import 'CircleTrianlgePainter.dart';
 
 
-class NetworkcardDialog extends StatefulWidget{
+class VisualizationDialog extends StatefulWidget{
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
 
-  const NetworkcardDialog({
+  const VisualizationDialog({
     Key key,
     @required this.assessmentId,
-    @required this.networkId,
+    @required this.visualizationId,
   }) : super(key: key);
 
 
-  _NetworkcardDialogState createState() => _NetworkcardDialogState();
+  _VisualizationDialogState createState() => _VisualizationDialogState();
 
 }
 
-class _NetworkcardDialogState extends State<NetworkcardDialog>{
+class _VisualizationDialogState extends State<VisualizationDialog>{
 
 
   //necessary lists
@@ -138,7 +138,7 @@ class _NetworkcardDialogState extends State<NetworkcardDialog>{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    final persons = await assessmentRepo.getAllPersonsByNetworkCard(widget.networkId);
+    final persons = await assessmentRepo.getAllPersonsByVisualization(widget.visualizationId);
 
     setState(() {
       personList = persons;
@@ -182,7 +182,7 @@ class _NetworkcardDialogState extends State<NetworkcardDialog>{
                     padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
                     margin: EdgeInsets.only(bottom: 10),
                     child: Text(
-                      "So sieht Deine Karte aus",
+                      "So sieht Deine Visualisierung aus",
                       style: ThemeTexts.assessmentSubtitle,
                     ),
                   ),

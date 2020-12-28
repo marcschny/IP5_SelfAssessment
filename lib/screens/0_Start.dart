@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
+import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,7 @@ class _StartScreenState extends State<StartScreen>{
 
   //start assessment
   void _startAssessment(BuildContext context){
-    final Assessment newAssessment = new Assessment(null, DateTime.now().toString(), null);
+    final Assessment newAssessment = new Assessment(null, null, null, DateTime.now().toString(), null);
 
     final appDataBase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDataBase.assessmentRepository;
@@ -62,7 +63,8 @@ class _StartScreenState extends State<StartScreen>{
               Animation<double> animation,
               Animation<double> secondaryAnimation) {
             return LifeAreas(assessmentId: assessmentId);
-            //return Part_3_2(assessmentId: assessmentId, networkId: 1);
+            //return ChangeProject(assessmentId: assessmentId);
+
           },
           transitionsBuilder: (
               BuildContext context,
@@ -286,7 +288,8 @@ class Part0 extends StatelessWidget {
 }
 
 class Part1 extends StatelessWidget {
-  const Part1({Key key}) : super(key: key);@override
+  const Part1({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -304,14 +307,14 @@ class Part1 extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "In einem ersten Schritt erstellst Du eine  soziale Karte über Deine Freun*innen und Beziehungen. Dazu wählst Du die für Dich wichtigsten Bereiche und fügst danach Personen hinzu, welche Dir entweder sehr wichtig oder nicht wichtig sind.\n\n",
+                  text: "In einem ersten Schritt erstellst Du eine  Visualisierung deines sozialen Umfelds. Dazu wählst Du die für Dich wichtigsten Bereiche aus und fügst anschliessend Personen hinzu, welche Dir entweder sehr wichtig oder eher weniger wichtig sind.\n\n",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
                   ),
                 ),
                 TextSpan(
-                  text: "Nach Abschluss des Teil 1 siehst Du eine Karte über Deine Freund*innen und Beziehungen.",
+                  text: "Zum Abschluss des Teil 1 siehst du Deine Visualisierung ",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
@@ -327,7 +330,8 @@ class Part1 extends StatelessWidget {
 }
 
 class Part2 extends StatelessWidget {
-  const Part2({Key key}) : super(key: key);@override
+  const Part2({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -345,14 +349,14 @@ class Part2 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Danach kannst Du mit Hilfe einiger persönlicher Fragen herausfinden, was Du bereits sehr gut kannst im Umgang mit anderen Menschen und wo Du selber noch nicht so zufrieden bist mit Dir. \n\n",
+                    text: "Im zweiten Teil kannst Du mit Hilfe einiger persönlicher Fragen herausfinden, was Du bereits sehr gut kannst im Umgang mit anderen Menschen und wo Du selber noch nicht so zufrieden bist mit Dir. \n\n",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
                     ),
                   ),
                   TextSpan(
-                    text: "Zum Abschluss des Teil 2 machst Du Dir erste Gedanken zu deinem Veränderungsprojekt, welches Du dann starten kannst",
+                    text: "Zum Abschluss des Teil 2 machst Du Dir erste Gedanken zu deinem Veränderungsprojekt, welches Du dann im Teil 4 starten kannst",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -386,7 +390,7 @@ class Part3 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "In einem dritten Teil, welcher optional ist, kannst du mit Hilfe eines dreiteiligen Fragebogens herausfinden, worin Deine Stärken und Schwächen liegen, um damit Dein Veränderungsprojekt starten zu können.",
+                    text: "In einem dritten Teil, welcher optional ist, kannst du mit Hilfe eines dreiteiligen Fragebogens herausfinden, worin Deine Stärken und Schwächen liegen. Dies hilft Dir bei der Wahl Deines Veränderungsprojekts",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -402,7 +406,8 @@ class Part3 extends StatelessWidget {
 }
 
 class Part4 extends StatelessWidget {
-  const Part4({Key key}) : super(key: key);@override
+  const Part4({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -420,7 +425,7 @@ class Part4 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Teil 4 ist Dein Veränderungsprojekt  “Hey, das kann ich!”. Hier kannst Du täglich Deine Gedanken, Deine Ideen oder Deinen Fortschritt als Notizen festhalten.",
+                    text: "Teil 4 ist Dein Veränderungsprojekt  “Hey, das kann ich!”. Hier kannst Du täglich Deine Gedanken, Deine Ideen oder Deinen Fortschritt festhalten.",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -436,7 +441,8 @@ class Part4 extends StatelessWidget {
 }
 
 class Part5 extends StatelessWidget {
-  const Part5({Key key}) : super(key: key);@override
+  const Part5({Key key}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -454,7 +460,7 @@ class Part5 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du eine visuelle Auswertung Deines Assessments.\n\n\n",
+                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du eine Auswertung dazu.\n\n\n",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -477,7 +483,7 @@ class Part5 extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: " um das Assessment zu starten !",
+                    text: " um das Assessment zu starten!",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black,

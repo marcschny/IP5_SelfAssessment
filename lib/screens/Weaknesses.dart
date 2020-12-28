@@ -4,25 +4,25 @@ import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/questionCard.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
 import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Part_2_3.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Improvements.dart';
 
 
-class Part_2_2 extends StatefulWidget {
+class Weaknesses extends StatefulWidget {
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
 
-  const Part_2_2({
+  const Weaknesses({
     Key key,
     this.assessmentId,
-    this.networkId
+    this.visualizationId
   }) : super(key: key);
 
   @override
-  _Part_2_2State createState() => _Part_2_2State();
+  _WeaknessesState createState() => _WeaknessesState();
 }
 
-class _Part_2_2State extends State<Part_2_2>{
+class _WeaknessesState extends State<Weaknesses>{
 
   @override
   void initState() {
@@ -53,9 +53,10 @@ class _Part_2_2State extends State<Part_2_2>{
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
                   onClose: null,
-                  subtitle: "Das möchte ich gerne besser können",
-                  intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
+                  subtitle: "Damit habe ich noch Mühe",
+                  //intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                   percent: 0.35,
+                  showProgressbar: true,
               ),
 
               Expanded(
@@ -68,22 +69,6 @@ class _Part_2_2State extends State<Part_2_2>{
                             140,
                             QuestionCard(
                               questionNumber: "2.2.1",
-                              assessmentId: widget.assessmentId,
-                            ),
-                          ),
-                          SlideUpFadeIn(
-                            1,
-                            140,
-                            QuestionCard(
-                              questionNumber: "2.2.2",
-                              assessmentId: widget.assessmentId,
-                            ),
-                          ),
-                          SlideUpFadeIn(
-                            1.5,
-                            140,
-                            QuestionCard(
-                              questionNumber: "2.2.3",
                               assessmentId: widget.assessmentId,
                             ),
                           ),
@@ -106,7 +91,7 @@ class _Part_2_2State extends State<Part_2_2>{
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                _next(context, widget.assessmentId, widget.networkId);
+                _next(context, widget.assessmentId, widget.visualizationId);
               }
           ),
         ],
@@ -118,7 +103,7 @@ class _Part_2_2State extends State<Part_2_2>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int networkId){
+  void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: Duration(milliseconds: 200),
@@ -126,7 +111,7 @@ class _Part_2_2State extends State<Part_2_2>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return Part_2_3(assessmentId: assessmentId, networkId: networkId);
+          return Improvements(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

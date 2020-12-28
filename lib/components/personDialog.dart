@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/database/entities/networkcard.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:ip5_selbsteinschaetzung/resources/FadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:flutter_score_slider/flutter_score_slider.dart';
@@ -14,14 +14,14 @@ import 'package:oktoast/oktoast.dart';
 class PersonDialog extends StatefulWidget{
 
   final int assessmentId;
-  final int networkId;
+  final int visualizationId;
   final Person person;
 
 
   const PersonDialog({
     Key key,
     @required this.assessmentId,
-    @required this.networkId,
+    @required this.visualizationId,
     this.person
   }) : super(key: key);
 
@@ -56,15 +56,16 @@ class _PersonDialogState extends State<PersonDialog>{
   //distance
   int _currentDistance = 4;
   Map<int, String> _distanceMap = {
-    8: "Gar nicht wichtig",
-    7: "Weniger wichtig",
-    6: "Weniger wichtig",
-    5: "Etwas wichtig",
+
+    8: "Sehr sehr wichtig",
+    7: "Sehr wichtig" ,
+    6: "Sehr wichtig",
+    5: "Wichtig",
     4: "Wichtig",
-    3: "Wichtig",
-    2: "Sehr wichtig",
-    1: "Sehr wichtig",
-    0: "Sehr sehr wichtig"
+    3: "Etwas wichtig" ,
+    2: "Weniger wichtig",
+    1: "Weniger wichtig",
+    0: "Gar nicht wichtig"
   };
 
 
@@ -522,8 +523,8 @@ class _PersonDialogState extends State<PersonDialog>{
                         _nameController.text,
                         _selectedIcon,
                         _selectedLifeArea,
-                        _currentDistance.toDouble(),
-                        widget.networkId,
+                        8 - _currentDistance.toDouble(),
+                        widget.visualizationId,
                         widget.assessmentId
                       );
 
@@ -540,7 +541,7 @@ class _PersonDialogState extends State<PersonDialog>{
                           print(newPerson.name + ", " + newPerson.icon + ", " +
                               newPerson.lifeArea + ", " +
                               newPerson.distance.toString() + ", nId: " +
-                              newPerson.network_id.toString() + ", aId: " +
+                              newPerson.visualization_id.toString() + ", aId: " +
                               newPerson.assessment_id.toString());
                           Navigator.of(context).pop();
                         });
@@ -568,12 +569,12 @@ class _PersonDialogState extends State<PersonDialog>{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    //get network card by assessment id
-    final NetworkCard networkCard = await assessmentRepo.findNetworkCard(widget.assessmentId);
+    //get visualization by assessment id
+    final Visualization visualization = await assessmentRepo.findVisualization(widget.assessmentId);
 
     //convert life areas from comma separated string to list
     setState(() {
-      _lifeAreas = networkCard.lifeAreas.split(",").map((e) => e.trim()).toList();
+      _lifeAreas = visualization.lifeAreas.split(",").map((e) => e.trim()).toList();
     });
 
     //create a dropdownmenuitem for each life area string
