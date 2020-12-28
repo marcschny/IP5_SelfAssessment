@@ -113,14 +113,32 @@ class _NameItState extends State<NameIt>{
 
                           SizedBox(height: 80),
 
-                          Text(
-                            "Wenn Dir nichts dazu einfällt, Du aber gerne einen Titel für Dein Projekt hättest: Wer könnte Dir dabei helfen?",
-                            style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
-                            textAlign: TextAlign.start,
-                            softWrap: true,
-                            overflow: TextOverflow.clip,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                  child: Icon(
+                                    Icons.info_outline_rounded,
+                                    size: 25,
+                                    color: Colors.black26,
+                                  )
+                              ),
+                              SizedBox(width: 10),
 
-                          ),
+                              Expanded(
+                                child: Text(
+                                  "Wenn Du keinen passenden Titel findest, können Dir vielleicht Deine Freunde oder Sozialpädagog*innen weiterhelfen.",
+                                  style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                  textAlign: TextAlign.start,
+                                  softWrap: true,
+                                  overflow: TextOverflow.clip,
+
+                                ),
+                              ),
+
+                            ],
+                          )
 
                         ],
                       ),

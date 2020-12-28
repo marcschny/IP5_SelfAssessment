@@ -97,6 +97,34 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                           ),
                         ),
 
+                      SizedBox(height: 16),
+                      FadeIn(
+                        2.9,
+                        600,
+                        Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                              child: Icon(
+                                Icons.info_outline_rounded,
+                                size: 25,
+                                color: Colors.black26,
+                              )
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen.",
+                              style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                              textAlign: TextAlign.start,
+                              softWrap: true,
+                              overflow: TextOverflow.clip,
+                            ),
+                          ),
+                        ],
+                      ),
+                      ),
                         SizedBox(height: 16),
                         FadeIn(
                           2.9,
