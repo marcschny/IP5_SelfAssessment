@@ -6,6 +6,7 @@ import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
 //todo: remove attribute onClose. bc onclose functionality must be defined in this widget
+//todo: add some kind of divider if no progressbar visible, for better ui
 class TopBar extends StatelessWidget{
 
   final String title;

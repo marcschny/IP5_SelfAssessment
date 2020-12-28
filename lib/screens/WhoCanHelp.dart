@@ -74,7 +74,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                       children: [
                         SlideUpFadeIn(
                           0.5,
-                          130,
+                          140,
                           QuestionCard(
                             questionNumber: "2.6.1",
                             assessmentId: widget.assessmentId,
@@ -89,7 +89,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                           ),
                         ),
                         SlideUpFadeIn(
-                          0.8,
+                          0.9,
                           140,
                           QuestionCard(
                             questionNumber: "2.6.3",
@@ -98,33 +98,6 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                         ),
 
                       SizedBox(height: 16),
-                      FadeIn(
-                        2.9,
-                        600,
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                              child: Icon(
-                                Icons.info_outline_rounded,
-                                size: 25,
-                                color: Colors.black26,
-                              )
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen.",
-                              style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
-                              textAlign: TextAlign.start,
-                              softWrap: true,
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                        ],
-                      ),
-                      ),
                         SizedBox(height: 16),
                         FadeIn(
                           2.9,
@@ -156,8 +129,8 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
 
 
                         FadeIn(
-                          3,
-                          600,
+                          3.3,
+                          800,
                           Padding(
                             padding: EdgeInsets.only(left: 32),
                             child: RaisedButton(

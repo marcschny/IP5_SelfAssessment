@@ -111,33 +111,37 @@ class _NameItState extends State<NameIt>{
                             style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
                           ),
 
-                          SizedBox(height: 80),
+                          SizedBox(height: 90),
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                  child: Icon(
-                                    Icons.info_outline_rounded,
-                                    size: 25,
-                                    color: Colors.black26,
-                                  )
-                              ),
-                              SizedBox(width: 10),
+                          FadeIn(
+                              2.2,
+                              1600,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                      child: Icon(
+                                        Icons.info_outline_rounded,
+                                        size: 25,
+                                        color: Colors.black26,
+                                      )
+                                  ),
+                                  SizedBox(width: 10),
 
-                              Expanded(
-                                child: Text(
-                                  "Wenn Du keinen passenden Titel findest, können Dir vielleicht Deine Freunde oder Sozialpädagog*innen weiterhelfen.",
-                                  style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
-                                  textAlign: TextAlign.start,
-                                  softWrap: true,
-                                  overflow: TextOverflow.clip,
+                                  Expanded(
+                                    child: Text(
+                                      "Wenn Du keinen passenden Titel findest, können Dir vielleicht Deine Freunde oder Sozialpädagog*innen weiterhelfen.",
+                                      style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                      textAlign: TextAlign.start,
+                                      softWrap: true,
+                                      overflow: TextOverflow.clip,
 
-                                ),
-                              ),
+                                    ),
+                                  ),
 
-                            ],
+                                ],
+                              )
                           )
 
                         ],

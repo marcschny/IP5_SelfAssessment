@@ -22,6 +22,9 @@ class Weaknesses extends StatefulWidget {
   _WeaknessesState createState() => _WeaknessesState();
 }
 
+
+//todo: what if question was not answered?
+//todo: add intro text (mainly to fill screen)
 class _WeaknessesState extends State<Weaknesses>{
 
   @override
@@ -60,8 +63,9 @@ class _WeaknessesState extends State<Weaknesses>{
               ),
 
               Expanded(
-                  child: Padding(
+                  child: Container(
                     padding: EdgeInsets.fromLTRB(18, 2, 18, 94),
+                    margin: EdgeInsets.only(top: 10),
                       child: SingleChildScrollView(
                         child: Wrap(
                           children: [
@@ -73,23 +77,6 @@ class _WeaknessesState extends State<Weaknesses>{
                                 assessmentId: widget.assessmentId,
                               ),
                             ),
-                            SlideUpFadeIn(
-                              1,
-                              140,
-                              QuestionCard(
-                                questionNumber: "2.2.2",
-                                assessmentId: widget.assessmentId,
-                              ),
-                            ),
-                            SlideUpFadeIn(
-                              1.5,
-                              140,
-                              QuestionCard(
-                                questionNumber: "2.2.3",
-                                assessmentId: widget.assessmentId,
-                              ),
-                            ),
-
                           ],
                     ),
                   ),

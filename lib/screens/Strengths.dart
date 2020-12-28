@@ -22,6 +22,8 @@ class Strengths extends StatefulWidget {
   _StrengthsState createState() => _StrengthsState();
 }
 
+//todo: what if question was not answered?
+//todo: add more intro text (mainly to fill screen)
 class _StrengthsState extends State<Strengths>{
 
   @override
@@ -65,6 +67,7 @@ class _StrengthsState extends State<Strengths>{
               Expanded(
                 child: Container(
                   padding: EdgeInsets.fromLTRB(18, 2, 18, 94),
+                  margin: EdgeInsets.only(top: 10),
                       child: SingleChildScrollView(
                         child: Wrap(
                           children: [
