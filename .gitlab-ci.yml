@@ -26,25 +26,26 @@ before_script:
   - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
   - set -o pipefail
 
-  - flutter pub get
-  - flutter packages pub run build_runner build --delete-conflicting-outputs
+
 
 
 stages:
   - test
   #- build
 
-test:android:
+test:database_creation:
   #only: [merge_requests]
   stage: test
   script:
-    - cd android
+    - flutter pub get
+    - flutter packages pub run build_runner build --delete-conflicting-outputs
 
 ## Checks test cases in test folder ###
-test:flutter:
+test:db_and_widget:
   #only: [merge_requests]
   stage: test
   script:
+    - sudo apt-get install sqlite3
     - flutter test test/db_tests.dart
 
 
