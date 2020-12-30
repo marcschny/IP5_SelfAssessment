@@ -1,7 +1,7 @@
 import 'package:floor/floor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
+import 'package:ip5_selbsteinschaetzung/database/creationDataScript.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Congratulations.dart';
@@ -36,7 +36,7 @@ Future<void> main() async {
   final callback = Callback(
       //when initialized for the first time
       onCreate: (database, version) async {
-    const initScript = initialDataScript;
+    const initScript = creationDataScript;
     for (final script in initScript) {
       await database.execute(script);
     }

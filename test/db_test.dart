@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:floor/floor.dart';
-import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
+import 'package:ip5_selbsteinschaetzung/database/creationDataScript.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
@@ -21,7 +21,7 @@ void main() {
 
       final callback = Callback(
           onCreate: (database, version) async {
-            const initScript = initialDataScript;
+            const initScript = creationDataScript;
             for (final script in initScript) {
               await database.execute(script);
             }

@@ -1,6 +1,5 @@
 
-//todo: update questions and question numbers (and adjust flow chart file)
-const initialDataScript = [
+const creationDataScript = [
   'DELETE FROM Answer',
   'DELETE FROM Assessment',
   'DELETE FROM Experience',
@@ -9,9 +8,7 @@ const initialDataScript = [
   'DELETE FROM Question',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.1.1\',\'Was kannst Du richtig gut im Umgang mit anderen Menschen?\', \'Zähle möglichst viel auf.\')',
   'INSERT INTO Question (question_number, question) VALUES (\'2.2.1\',\'Was fällt Dir manchmal schwer im Umgang mit anderen Menschen?\')',
-  'INSERT INTO Question (question_number, question) VALUES (\'2.3.1\',\'Welches sind die beiden wichtigsten Situationen, die Du gerne anders hinkriegen möchtest?\')',
-  'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.3.2\',\'Welche Verhaltensweisen möchtest Du verändern? Welche neuen Verhaltensweisen wünscht Du Dir?\', \'Wenn Du jetzt nochmals über schwierige soziale Situationen (und auch über das Motto der Person, die Du gerne wärst!) nachdenkst... Welche Verhaltensweisen möchtest Du genau verändern oder welche neuen Verhaltensweisen wünscht Du Dir?\')',
-  'INSERT INTO Question (question_number, question) VALUES (\'2.4.1\',\'Was möchtest Du in den nächsten Wochen ausprobieren?\')',
+  'INSERT INTO Question (question_number, question) VALUES (\'2.3.1\',\'Was möchtest Du in den nächsten Wochen ausprobieren?\')',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.6.1\',\'Wer der Jugendlichen könnte Dir dabei helfen?\', \'Wen willst Du einweihen und fragen, ob er/sie Dich unterstützt?\')',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.6.2\',\'Wer der Sozialpädagog*innen könnte Dir dabei helfen?\', \'Die Sozialpädagog*innen in der WG sind ja dazu da, Dich zu unterstützen. Wen willst Du einbeziehen in Dein Veränderungsprojekt?\')',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.6.3\',\'Wer aus deiner Familie könnte Dir dabei helfen?\', \'Wen willst Du einweihen und fragen, ob er/sie Dich unterstützt?\')',
@@ -30,8 +27,8 @@ const initialDataScript = [
   'INSERT INTO Question (question_number, question) VALUES (\'3.3.7\',\'Eigene Irritationen/Schwierigkeiten ansprechen\')',
   'INSERT INTO Question (question_number, question) VALUES (\'3.4.1\',\'Freude über die Beziehung/das Gespräch zeigen\')',
   'INSERT INTO Question (question_number, question) VALUES (\'3.4.2\',\'Ansprechen, wie es weitergeht\')',
-  'INSERT INTO Question (question_number, question, subquestion) VALUES (\'3.4.3\',\'Jemandem ein Feedback geben \', \'(z.B. was ich toll fand, was schwierig war)\')',
+  'INSERT INTO Question (question_number, question) VALUES (\'3.4.3\',\'Jemandem ein Feedback geben \')',
   'INSERT INTO Question (question_number, question) VALUES (\'3.4.4\',\'Weitere Fragen formulieren\')',
   'INSERT INTO Question (question_number, question) VALUES (\'3.4.5\',\'Um ein weiteres Gespräch bitten\')',
-  'INSERT INTO Question (question_number, question, subquestion) VALUES (\'3.4.6\',\'Weitere Gesprächsmöglichkeiten ansprechen \', \'(z.B. ich hätte nächste Woche wieder Zeit)\')',
+  'INSERT INTO Question (question_number, question) VALUES (\'3.4.6\',\'Weitere Gesprächsmöglichkeiten ansprechen\')',
 ];
