@@ -75,7 +75,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                           0.5,
                           140,
                           QuestionCard(
-                            questionNumber: "2.6.1",
+                            questionNumber: "2.5.1",
                             assessmentId: widget.assessmentId,
                           ),
                         ),
@@ -83,7 +83,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                           0.7,
                           140,
                           QuestionCard(
-                            questionNumber: "2.6.2",
+                            questionNumber: "2.5.2",
                             assessmentId: widget.assessmentId,
                           ),
                         ),
@@ -91,7 +91,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                           0.9,
                           140,
                           QuestionCard(
-                            questionNumber: "2.6.3",
+                            questionNumber: "2.5.3",
                             assessmentId: widget.assessmentId,
                           ),
                         ),
