@@ -9,9 +9,9 @@ import 'package:ip5_selbsteinschaetzung/resources/SlideUpFadeIn.dart';
 import 'package:ip5_selbsteinschaetzung/screens/NameIt.dart';
 import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:oktoast/oktoast.dart';
 
 
-//todo: validate: die Frage (die Projektbeschreibung) muss ausgefüllt sein
 class Improvements extends StatefulWidget {
 
   final List<String> evaluation;
@@ -26,10 +26,12 @@ class Improvements extends StatefulWidget {
 
 class _ImprovementsState extends State<Improvements>{
 
+  bool _answered;
 
   @override
   void initState() {
     super.initState();
+    _answered = false;
   }
 
   @override
@@ -80,6 +82,11 @@ class _ImprovementsState extends State<Improvements>{
                             QuestionCard(
                               questionNumber: "2.3.1",
                               assessmentId: widget.assessmentId,
+                              answered: (answered){
+                                setState(() {
+                                  _answered = answered;
+                                });
+                              },
                             ),
                           ),
 
@@ -253,30 +260,46 @@ class _ImprovementsState extends State<Improvements>{
 
 
   void _next(BuildContext context, int assessmentId, int visualizationId){
-    Navigator.of(context).push(
-      PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 200),
-        pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation) {
-          return NameIt(assessmentId: assessmentId, visualizationId: visualizationId);
-        },
-        transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child) {
-          return Align(
-            child: FadeTransition(
-              opacity: animation,
-              child: child,
-            ),
-          );
-        },
-      ),
-    );
+    if(_answered){
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 200),
+          pageBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return NameIt(assessmentId: assessmentId, visualizationId: visualizationId);
+          },
+          transitionsBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return Align(
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            );
+          },
+        ),
+      );
+    }else{
+      //todo redesign toasts
+      showToast(
+        "Du hast die Frage noch nicht beantwortet",
+        context: context,
+        textAlign: TextAlign.center,
+        textStyle: ThemeTexts.toastText,
+        textPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 12),
+        position: ToastPosition.bottom,
+        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
+        duration: Duration(milliseconds: 3500),
+      );
+    }
+
   }
+
 
   void _goToQuestionnaire(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(

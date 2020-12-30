@@ -90,7 +90,7 @@ class _StrengthsState extends State<Strengths>{
             BottomNavigation(
                 showNextButton: true,
                 showBackButton: true,
-                nextTitle: "Das möchte ich  gerne besser können",
+                nextTitle: "Damit habe ich noch Mühe",
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },

@@ -11,11 +11,13 @@ class QuestionCard extends StatefulWidget{
 
   final String questionNumber;
   final int assessmentId;
+  final Function answered;
 
   const QuestionCard({
     Key key,
     @required this.questionNumber,
-    @required this.assessmentId
+    @required this.assessmentId,
+    this.answered
   });
 
   _QuestionCardState createState() => _QuestionCardState();
@@ -55,6 +57,7 @@ class _QuestionCardState extends State<QuestionCard>{
       });
       setState(() {
       });
+      widget.answered(_answered);
     }
   }
 
