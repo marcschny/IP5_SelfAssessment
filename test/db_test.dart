@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:floor/floor.dart';
 import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:matcher/matcher.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
@@ -10,7 +11,6 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
 
-//run with: flutter test test/db_tests.dart
 void main() {
 
   group('database tests', () {
@@ -90,6 +90,17 @@ void main() {
 
     });
 
+    group('question tests', (){
+
+      test('get question by question_number and assessment_id', () async{
+        final question = Question(1, '3.2.1', 'Ein Gespräch anfangen/andere ansprechen', '', 1);
+        final actual = await repository.findQuestion(question.question_number);
+
+        expect(actual.question, question.question);
+      });
+
+    });
+
     group('answer tests', (){
 
       test('find answer by question_number and assessment_id', () async{
@@ -109,9 +120,9 @@ void main() {
       });
 
       test('get added answers by assessment_id', () async{
-        final answer1 = Answer(null, "my answer 1", "2.2.1", 1);
-        final answer2 = Answer(null, "my answer 2", "2.2.2", 1);
-        final answer3 = Answer(null, "my answer 3", "2.2.3", 1);
+        final answer1 = Answer(null, "my answer 2.1.1", "2.1.1", 1);
+        final answer2 = Answer(null, "my answer 2.2.1", "2.2.1", 1);
+        final answer3 = Answer(null, "my answer 2.3.1", "2.3.1", 1);
         await repository
           ..insertAnswer(answer1)
           ..insertAnswer(answer2)
@@ -147,7 +158,6 @@ void main() {
 
     group('visualization tests', (){
 
-      //todo: repo: create find NC by NC.id
       test('update visualization', () async{
 
         final updateVisualization = Visualization(1, 1, 4, "updated life areas");
@@ -159,13 +169,13 @@ void main() {
       });
 
       test('create Visualization', () async{
-        //one nc has been created in setup()
+        //one visualization has been created in setup()
         final actual = await repository.getAllVisualizations();
         expect(actual, hasLength(1));
       });
 
       test('delete Visualization', () async{
-        //one nc has been created in setup()
+        //one visualization has been created in setup()
         final visualization = Visualization(2, 1, 5, "lifeAreas");
         await repository.createVisualization(visualization);
 

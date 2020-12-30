@@ -63,10 +63,13 @@ class _PersonCircleState extends State<PersonCircle>{
             width: 1
           ),
         ),
-        child: Icon(
-          Icons.person,
-          size: 30,
-          color: Color.fromRGBO(80, 80, 80, 1)
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Icon(
+            Icons.person,
+            size: 30,
+            color: Color.fromRGBO(80, 80, 80, 1)
+          ),
         ),
       ),
       onTap: _onTap,

@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:ip5_selbsteinschaetzung/resources/visualizationMethods.dart';
 
 class LegendElement extends StatelessWidget{
 
@@ -14,31 +15,7 @@ class LegendElement extends StatelessWidget{
     this.sectorName
   });
 
-  Color _getColor(){
-    switch(sector){
-      case 1:
-        return ThemeColors.firstColor;
-        break;
-      case 2:
-        return ThemeColors.secondColor;
-        break;
-      case 3:
-        return ThemeColors.thirdColor;
-        break;
-      case 4:
-        return ThemeColors.fourthColor;
-        break;
-      case 5:
-        return ThemeColors.fifthColor;
-        break;
-      case 6:
-        return ThemeColors.sixthColor;
-        break;
-      default:
-        return ThemeColors.greyShade1;
-        break;
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +33,7 @@ class LegendElement extends StatelessWidget{
               width: 20,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: _getColor(),
+                color: getColor(sector),
               ),
             ),
           ),

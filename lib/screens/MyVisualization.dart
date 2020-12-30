@@ -189,23 +189,12 @@ class _MyVisualizationState extends State<MyVisualization>{
 
 
             //content
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(bottom: 94),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    TopBar(
-                      title: "Wer ist mir wichtig?\nMeine Visualisierung",
-                      titleNumber: 1,
-                      onClose: null,
-                      subtitle: "So sieht deine Visualisierung aus",
-                      percent: 0.2,
-                      intro: "Tippe auf eine Person, um den Namen zu sehen.",
-                      showProgressbar: true
-                    ),
-
+            Container(
+              padding: EdgeInsets.only(top: 140, bottom: 94),
+              child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
                     FadeIn(
                       1,
@@ -228,32 +217,47 @@ class _MyVisualizationState extends State<MyVisualization>{
                             ),
                           ),
 
-                        ]..addAll(personCircleList),
-                      ),
-                    ),
-
-                    FadeIn(
-                      1.25,
-                      500,
-                      Container(
-                        padding: EdgeInsets.fromLTRB(18, 0, 18, 5),
-                        width: MediaQuery.of(context).size.width,
-                        child: Wrap(
-                          alignment: WrapAlignment.start,
-                          verticalDirection: VerticalDirection.down,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-
-                          ]..addAll(legendList),
+                          ]..addAll(personCircleList),
                         ),
                       ),
-                    ),
+
+                      FadeIn(
+                        1.25,
+                        500,
+                        Container(
+                          padding: EdgeInsets.fromLTRB(18, 10, 18, 5),
+                          width: MediaQuery.of(context).size.width,
+                          child: Wrap(
+                            alignment: WrapAlignment.start,
+                            verticalDirection: VerticalDirection.down,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+
+                            ]..addAll(legendList),
+                          ),
+                        ),
+                      ),
 
 
-                  ],
+                    ],
+                  ),
                 ),
-              ),
             ),
+
+
+          Positioned(
+            top: 0,
+            left: 0,
+            child: TopBar(
+              title: "Wer ist mir wichtig?\nMeine Visualisierung",
+              titleNumber: 1,
+              onClose: null,
+              subtitle: "So sieht deine Visualisierung aus",
+              percent: 0.2,
+              intro: "Tippe auf eine Person, um den Namen zu sehen.",
+              showProgressbar: true,
+            ),
+          ),
 
             //bottom navigation bar
             BottomNavigation(

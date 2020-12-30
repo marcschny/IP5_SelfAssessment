@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/components/NextButton.dart';
+import 'package:ip5_selbsteinschaetzung/components/nextButton.dart';
 
 import 'BackButton.dart';
 

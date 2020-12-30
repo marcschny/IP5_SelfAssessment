@@ -1,5 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+//the package intl and material both have a widget called 'TextDirection'
+//to avoid name errors material is imported as UI
+import 'package:flutter/material.dart' as UI;
+import 'package:flutter/widgets.dart';
 import 'package:ip5_selbsteinschaetzung/components/experienceDialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/notEditableExperienceDialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
@@ -43,19 +48,27 @@ class ExperienceCard extends StatelessWidget{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
+              textDirection: UI.TextDirection.ltr,
               children: [
 
-                Text(
-                  format.format(DateTime.parse(experience.date_created)).toString(),
-                  style: ThemeTexts.assessmentNavigationNext.copyWith(color: Color.fromRGBO(105, 105, 105, 1)),
-                  overflow: TextOverflow.fade,
+
+                Directionality(
+                  textDirection: UI.TextDirection.ltr,
+                  child: Text(
+                    format.format(DateTime.parse(experience.date_created)).toString(),
+                    style: ThemeTexts.assessmentNavigationNext.copyWith(color: Color.fromRGBO(105, 105, 105, 1)),
+                    overflow: TextOverflow.fade,
+                  ),
                 ),
 
-                Text(
-                  experience.description,
-                  style: ThemeTexts.assessmentText.copyWith(fontSize: 16),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
+                Directionality(
+                  textDirection: UI.TextDirection.ltr,
+                  child: Text(
+                    experience.description,
+                    style: ThemeTexts.assessmentText.copyWith(fontSize: 16),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
 
                 SizedBox(height: 5),
@@ -63,11 +76,11 @@ class ExperienceCard extends StatelessWidget{
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                      color: Colors.transparent,
+                      color: UI.Colors.transparent,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black45.withOpacity(.2),
+                            color: UI.Colors.black45.withOpacity(.2),
                             spreadRadius: -6,
                             blurRadius: 12,
                             offset: Offset(0,4)
@@ -87,17 +100,17 @@ class ExperienceCard extends StatelessWidget{
       ),
       onTap: (){
         if(editable) {
-          showDialog(
+          UI.showDialog(
             context: context,
-            barrierColor: Colors.black.withOpacity(.3),
+            barrierColor: UI.Colors.black.withOpacity(.3),
             child: SlideUpFromBottom(0, ExperienceDialog(
                 assessmentId: experience.assessment_id,
                 experience: experience)),
           );
         }else{
-          showDialog(
+          UI.showDialog(
             context: context,
-            barrierColor: Colors.black.withOpacity(.3),
+            barrierColor: UI.Colors.black.withOpacity(.3),
             child: SlideUpFromBottom(0, NotEditableExperienceDialog(
                 assessmentId: experience.assessment_id,
                 experience: experience)),

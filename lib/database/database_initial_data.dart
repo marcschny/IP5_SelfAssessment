@@ -1,3 +1,5 @@
+
+//todo: update questions and question numbers (and adjust flow chart file)
 const initialDataScript = [
   'DELETE FROM Answer',
   'DELETE FROM Assessment',
@@ -6,10 +8,7 @@ const initialDataScript = [
   'DELETE FROM Person',
   'DELETE FROM Question',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.1.1\',\'Was kannst Du richtig gut im Umgang mit anderen Menschen?\', \'Zähle möglichst viel auf.\')',
-
   'INSERT INTO Question (question_number, question) VALUES (\'2.2.1\',\'Was fällt Dir manchmal schwer im Umgang mit anderen Menschen?\')',
-  'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.2.2\',\'Wenn Du morgen früh aufwachst und im Umgang mit anderen so bist, wie Du es gerne hättest... Wie wärst Du dann?\', \'Wie würdest Du Dich dann verhalten?\')',
-  'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.2.3\',\'Wenn Du daran denkst, was für eine Person Du gerne wärst... Wie könnte das Motto dieser Person lauten? \', \'Z.B. «In meiner Clique habe immer alles im Griff» oder «Ich chille mein Leben» oder…?\')',
   'INSERT INTO Question (question_number, question) VALUES (\'2.3.1\',\'Welches sind die beiden wichtigsten Situationen, die Du gerne anders hinkriegen möchtest?\')',
   'INSERT INTO Question (question_number, question, subquestion) VALUES (\'2.3.2\',\'Welche Verhaltensweisen möchtest Du verändern? Welche neuen Verhaltensweisen wünscht Du Dir?\', \'Wenn Du jetzt nochmals über schwierige soziale Situationen (und auch über das Motto der Person, die Du gerne wärst!) nachdenkst... Welche Verhaltensweisen möchtest Du genau verändern oder welche neuen Verhaltensweisen wünscht Du Dir?\')',
   'INSERT INTO Question (question_number, question) VALUES (\'2.4.1\',\'Was möchtest Du in den nächsten Wochen ausprobieren?\')',

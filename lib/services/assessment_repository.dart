@@ -32,7 +32,7 @@ abstract class AssessmentRepository{
   @update
   Future<int> updateQuestion(Question question);
 
-  //questions are currently added and modified from 'database_initial_data' script
+  //questions are added and modified from 'database_initial_data' script
 
 
 

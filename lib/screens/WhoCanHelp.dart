@@ -68,109 +68,112 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(18, 10, 18, 94),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SlideUpFadeIn(
-                        0.5,
-                        130,
-                        QuestionCard(
-                          questionNumber: "2.6.1",
-                          assessmentId: widget.assessmentId,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SlideUpFadeIn(
+                          0.5,
+                          140,
+                          QuestionCard(
+                            questionNumber: "2.6.1",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
-                      SlideUpFadeIn(
-                        0.7,
-                        140,
-                        QuestionCard(
-                          questionNumber: "2.6.2",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          0.7,
+                          140,
+                          QuestionCard(
+                            questionNumber: "2.6.2",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
-                      SlideUpFadeIn(
-                        0.8,
-                        140,
-                        QuestionCard(
-                          questionNumber: "2.6.3",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          0.9,
+                          140,
+                          QuestionCard(
+                            questionNumber: "2.6.3",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
 
                       SizedBox(height: 16),
-                      FadeIn(
-                        2.9,
-                        600,
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                              child: Icon(
-                                Icons.info_outline_rounded,
-                                size: 25,
-                                color: Colors.black26,
-                              )
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen.",
-                              style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
-                              textAlign: TextAlign.start,
-                              softWrap: true,
-                              overflow: TextOverflow.clip,
+                        SizedBox(height: 16),
+                        FadeIn(
+                          2.9,
+                          600,
+                          Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                                child: Icon(
+                                  Icons.info_outline_rounded,
+                                  size: 25,
+                                  color: Colors.black26,
+                                )
                             ),
-                          ),
-                        ],
-                      ),
-                      ),
-
-
-                      FadeIn(
-                        3,
-                        600,
-                        Padding(
-                          padding: EdgeInsets.only(left: 32),
-                          child: RaisedButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen",
+                                style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                textAlign: TextAlign.start,
+                                softWrap: true,
+                                overflow: TextOverflow.clip,
+                              ),
                             ),
-                            color: ThemeColors.greenShade4,
-                            elevation: 0,
-                            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-                            highlightColor: ThemeColors.greenShade4,
-                            splashColor: Colors.transparent,
-                            focusElevation: 0,
-                            highlightElevation: 0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.remove_red_eye_outlined,
-                                  size: 20.5,
-                                  color: Color.fromRGBO(80, 80, 80, 1),
-                                ),
-                                SizedBox(width: 6),
-                                Text(
-                                  "Visualisierung anzeigen",
-                                  style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 16.5, fontWeight: FontWeight.normal),
-                                ),
-                              ],
-                            ),
-                            onPressed: (){
-                              showDialog(
-                                context: context,
-                                barrierColor: Colors.black.withOpacity(.3),
-                                child: SlideUpFromBottom(0, VisualizationDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
-                              );
-                            },
-                          ),
+                          ],
+                        ),
                         ),
 
-                      ),
 
-                    ],
+                        FadeIn(
+                          3.3,
+                          800,
+                          Padding(
+                            padding: EdgeInsets.only(left: 32),
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              color: ThemeColors.greenShade4,
+                              elevation: 0,
+                              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                              highlightColor: ThemeColors.greenShade4,
+                              splashColor: Colors.transparent,
+                              focusElevation: 0,
+                              highlightElevation: 0,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.remove_red_eye_outlined,
+                                    size: 20.5,
+                                    color: Color.fromRGBO(80, 80, 80, 1),
+                                  ),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    "Visualisierung anzeigen",
+                                    style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 16.5, fontWeight: FontWeight.normal),
+                                  ),
+                                ],
+                              ),
+                              onPressed: (){
+                                showDialog(
+                                  context: context,
+                                  barrierColor: Colors.black.withOpacity(.3),
+                                  child: SlideUpFromBottom(0, VisualizationDialog(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId)),
+                                );
+                              },
+                            ),
+                          ),
+
+                        ),
+
+                      ],
+                    ),
                   ),
                 ),
               ),
