@@ -24,7 +24,6 @@ class Weaknesses extends StatefulWidget {
 
 
 //todo: what if question was not answered?
-//todo: add intro text (mainly to fill screen)
 class _WeaknessesState extends State<Weaknesses>{
 
   @override
@@ -56,7 +55,7 @@ class _WeaknessesState extends State<Weaknesses>{
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
                   subtitle: "Damit habe ich noch Mühe",
-                  //intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
+                  intro: "Hier geht's um Dinge mit denen Du noch Mühe hast.\nTippe auf die Frage um sie zu beantworten.",
                   percent: 0.35,
                   showProgressbar: true,
               ),

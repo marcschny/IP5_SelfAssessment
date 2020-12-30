@@ -62,8 +62,7 @@ class _ImprovementsState extends State<Improvements>{
                     title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                     titleNumber: 2,
                     subtitle: "Das möchte ich gerne können",
-                    intro: "In den nächsten Wochen kannst Du Dich in einem Bereich verbessern, den Du gerne besser können willst. "
-                        "In Deinem Veränderungsprojekt kannst Du dazu deine täglichen Erlebnisse eintragen.",
+                    intro: "Nun geht es um Dein Veränderungsprojekt: In den nächsten Wochen kannst Du Dich in einem Bereich verbessern, in dem Du gerne besser werden möchtest.\nTippe auf die Frage um sie zu beantworten.",
                     percent: 0.45,
                     showProgressbar: true,
                 ),
@@ -111,7 +110,7 @@ class _ImprovementsState extends State<Improvements>{
 
                                   Expanded(
                                     child: Text(
-                                      "Wenn Du hier irgendwie nicht weiter kommst, dann könntest Du den Fragebogen ausfüllen.",
+                                      "Falls Dir nichts einfällt, kannst Du auch den Fragebogen ausfüllen, um herauszufinden worin du noch besser werden könntest.",
                                       style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                       textAlign: TextAlign.start,
                                       softWrap: true,

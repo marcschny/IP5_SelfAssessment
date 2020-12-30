@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-//todo: what if only top answers were selected -> handle this case
 //todo: what if no answers were selected -> handle case
 class SurveyEvaluation extends StatefulWidget {
 

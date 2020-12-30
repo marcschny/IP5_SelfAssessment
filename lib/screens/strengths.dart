@@ -23,7 +23,6 @@ class Strengths extends StatefulWidget {
 }
 
 //todo: what if question was not answered?
-//todo: add more intro text (mainly to fill screen)
 class _StrengthsState extends State<Strengths>{
 
   @override
@@ -58,7 +57,7 @@ class _StrengthsState extends State<Strengths>{
                 title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 2,
                 subtitle: "Hey, das kann ich bereits!",
-                intro: "Hier kannst Du Deine Stärken notieren!",
+                intro: "Hier geht's um Deine Stärken und Dinge die Du bereits gut kannst!\nTippe auf die Frage um sie zu beantworten.",
                 percent: 0.3,
                 showProgressbar: true,
               ),

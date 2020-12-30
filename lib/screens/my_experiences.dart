@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 
-//todo: create subfolder in components for all dialogs
 class MyExperiences extends StatefulWidget{
 
   final int assessmentId;

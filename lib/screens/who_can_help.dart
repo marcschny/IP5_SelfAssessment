@@ -59,7 +59,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
                   subtitle: "Wer oder was hilft Dir dabei?",
-                  intro: "",
+                  intro: "Überlege Dir wer Dir bei Deinem Veränderungsprojekt helfen könnte und tippe auf die passende Frage um sie zu beantworten.",
                   percent: 0.55,
                   showProgressbar: true,
               ),
@@ -96,7 +96,6 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                           ),
                         ),
 
-                      SizedBox(height: 16),
                         SizedBox(height: 16),
                         FadeIn(
                           2.9,
@@ -115,7 +114,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                             SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen",
+                                "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen.",
                                 style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
                                 textAlign: TextAlign.start,
                                 softWrap: true,

@@ -87,7 +87,7 @@ class _LifeAreasState extends State<LifeAreas>{
                     titleNumber: 1,
                     subtitle: "Bereiche",
                     percent: 0.05,
-                    intro: "Um deine Visualisierung erstellen zu können musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
+                    intro: "Um Deine Visualisierung erstellen zu können musst Du zuerst auswählen welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
                     showProgressbar: true,
                   ),
 
