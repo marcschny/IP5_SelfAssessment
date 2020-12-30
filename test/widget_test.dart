@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
-import 'package:ip5_selbsteinschaetzung/components/nextButton.dart';
-import 'package:ip5_selbsteinschaetzung/components/experienceCard.dart';
-import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
-import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
-import 'package:ip5_selbsteinschaetzung/components/notEditableExperienceDialog.dart';
-import 'package:ip5_selbsteinschaetzung/components/personCircle.dart';
-import 'package:ip5_selbsteinschaetzung/components/progressBar.dart';
-import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
-import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/components/checkbox_component.dart';
+import 'package:ip5_selbsteinschaetzung/components/dialogs/not_editable_experience_dialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/next_button.dart';
+import 'package:ip5_selbsteinschaetzung/components/experience_card.dart';
+import 'package:ip5_selbsteinschaetzung/components/important_person_tile.dart';
+import 'package:ip5_selbsteinschaetzung/components/legend_element.dart';
+import 'package:ip5_selbsteinschaetzung/components/person_circle.dart';
+import 'package:ip5_selbsteinschaetzung/components/progress_bar.dart';
+import 'package:ip5_selbsteinschaetzung/components/survey_box.dart';
+import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
-import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/survey_intro.dart';
 import 'package:test/test.dart' as test;
 
 
@@ -106,7 +106,7 @@ void main(){
 
     testWidgets('Survey Part 1', (WidgetTester tester) async {
 
-      await tester.pumpWidget(buildTestableWidget(SurveyPart1()));
+      await tester.pumpWidget(buildTestableWidget(SurveyIntro()));
 
       expect(find.text("Fragebogen"), findsOneWidget);
       expect(find.byType(RaisedButton), findsOneWidget);

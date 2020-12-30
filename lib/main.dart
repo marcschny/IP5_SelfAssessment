@@ -1,32 +1,32 @@
 import 'package:floor/floor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/database/creationDataScript.dart';
+import 'package:ip5_selbsteinschaetzung/database/creation_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/screens/ChangeProject.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Congratulations.dart';
-import 'package:ip5_selbsteinschaetzung/screens/MyExperiences.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Strengths.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Weaknesses.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Improvements.dart';
-import 'package:ip5_selbsteinschaetzung/screens/NameIt.dart';
-import 'package:ip5_selbsteinschaetzung/screens/WhoCanHelp.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Start.dart';
-import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
-import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
-import 'package:ip5_selbsteinschaetzung/screens/SurveyPart2.dart';
-import 'package:ip5_selbsteinschaetzung/screens/SurveyPart3.dart';
-import 'package:ip5_selbsteinschaetzung/screens/SurveyPart4.dart';
-import 'package:ip5_selbsteinschaetzung/screens/SurveyPart5.dart';
-import 'package:ip5_selbsteinschaetzung/screens/MyVisualization.dart';
-import 'package:ip5_selbsteinschaetzung/screens/Evaluation.dart';
-import 'package:ip5_selbsteinschaetzung/screens/TestScreen.dart';
-import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
-import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
+import 'package:ip5_selbsteinschaetzung/screens/change_project.dart';
+import 'package:ip5_selbsteinschaetzung/screens/congratulations.dart';
+import 'package:ip5_selbsteinschaetzung/screens/my_experiences.dart';
+import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
+import 'package:ip5_selbsteinschaetzung/screens/weaknesses.dart';
+import 'package:ip5_selbsteinschaetzung/screens/improvements.dart';
+import 'package:ip5_selbsteinschaetzung/screens/name_it.dart';
+import 'package:ip5_selbsteinschaetzung/screens/who_can_help.dart';
+import 'package:ip5_selbsteinschaetzung/screens/start.dart';
+import 'package:ip5_selbsteinschaetzung/screens/areas.dart';
+import 'package:ip5_selbsteinschaetzung/screens/survey_intro.dart';
+import 'package:ip5_selbsteinschaetzung/screens/survey_part_1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/survey_part_2.dart';
+import 'package:ip5_selbsteinschaetzung/screens/survey_part_3.dart';
+import 'package:ip5_selbsteinschaetzung/screens/survey_evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/my_visualization.dart';
+import 'package:ip5_selbsteinschaetzung/screens/evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/test_screen.dart';
+import 'package:ip5_selbsteinschaetzung/screens/important_persons.dart';
+import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter/services.dart';
-import 'components/personDialog.dart';
+import 'components/dialogs/person_dialog.dart';
 
 
 
@@ -91,11 +91,11 @@ class MyApp extends StatelessWidget {
             "/improvements": (context) => Improvements(),
             "/nameIt": (context) => NameIt(),
             "/WhoCanHelp": (context) => WhoCanHelp(),
-            "/SurveyPart1": (context) => SurveyPart1(),
-            "/SurveyPart2": (context) => SurveyPart2(),
-            "/SurveyPart3": (context) => SurveyPart3(),
-            "/SurveyPart4": (context) => SurveyPart4(),
-            "/SurveyPart5": (context) => SurveyPart5(),
+            "/SurveyPart1": (context) => SurveyIntro(),
+            "/SurveyPart2": (context) => SurveyPart1(),
+            "/SurveyPart3": (context) => SurveyPart2(),
+            "/SurveyPart4": (context) => SurveyPart3(),
+            "/SurveyPart5": (context) => SurveyEvaluation(),
             "/changeProject": (context) => ChangeProject(),
             "/congratulations": (context) => Congratulations(),
             "/evaluation": (context) => Evaluation(),

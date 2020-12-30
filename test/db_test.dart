@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:floor/floor.dart';
-import 'package:ip5_selbsteinschaetzung/database/creationDataScript.dart';
+import 'package:ip5_selbsteinschaetzung/database/creation_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';

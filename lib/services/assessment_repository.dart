@@ -21,12 +21,12 @@ abstract class AssessmentRepository{
   Future<List<Question>> getAllQuestions();
 
   //get all questions by assessment_id
-  @Query('SELECT * FROM Question WHERE assessment_id = :assessment_id')
-  Future<List<Question>> getAllQuestionsByAssessment(int assessment_id);
+  @Query('SELECT * FROM Question WHERE assessment_id = :assessmentId')
+  Future<List<Question>> getAllQuestionsByAssessment(int assessmentId);
 
   //find specific question by question_number
-  @Query('SELECT * FROM Question WHERE question_number = :question_number')
-  Future<Question> findQuestion(String question_number);
+  @Query('SELECT * FROM Question WHERE question_number = :questionNumber')
+  Future<Question> findQuestion(String questionNumber);
 
   //update question
   @update
@@ -40,12 +40,12 @@ abstract class AssessmentRepository{
   /* ANSWER */
 
   //find answer by question_number and assessment_id
-  @Query('SELECT * FROM Answer WHERE question_number = :question_number AND assessment_id = :assessmentId') //AND assessment_id = :assessment_id
-  Future<Answer> findAnswer(String question_number, int assessmentId); //, int assessment_id
+  @Query('SELECT * FROM Answer WHERE question_number = :questionNumber AND assessment_id = :assessmentId') //AND assessment_id = :assessmentId
+  Future<Answer> findAnswer(String questionNumber, int assessmentId);
 
   //get all answers by assessment_id
-  @Query('SELECT * FROM Answer WHERE assessment_id = :assessment_id')
-  Future<List<Answer>> getAllAnswersByAssessment(int assessment_id);
+  @Query('SELECT * FROM Answer WHERE assessment_id = :assessmentId')
+  Future<List<Answer>> getAllAnswersByAssessment(int assessmentId);
 
   //insert answer
   @insert
@@ -81,12 +81,12 @@ abstract class AssessmentRepository{
   Future<List<Assessment>> getAllAssessments();
 
   //find assessment by id
-  @Query('SELECT * FROM Assessment WHERE id = :id')
-  Future<Assessment> findAssessment(int id);
+  @Query('SELECT * FROM Assessment WHERE id = :assessmentId')
+  Future<Assessment> findAssessment(int assessmentId);
 
   //get project title
-  @Query('SELECT project_title FROM Assessment WHERE id = :id')
-  Future<Assessment> getProjectTitle(int id);
+  @Query('SELECT project_title FROM Assessment WHERE id = :assessmentId')
+  Future<Assessment> getProjectTitle(int assessmentId);
 
   //new assessment
   @insert
@@ -110,21 +110,21 @@ abstract class AssessmentRepository{
   Future<List<Experience>> getAllExperiences();
 
   //get experiences by assessment_id
-  @Query('SELECT * FROM Experience WHERE assessment_id = :id')
-  Future<List<Experience>> getExperiencesByAssessment(int id);
+  @Query('SELECT * FROM Experience WHERE assessment_id = :assessmentId')
+  Future<List<Experience>> getExperiencesByAssessment(int assessmentId);
 
-  //find specific experience by id
-  @Query('SELECT * FROM Experience WHERE id = :id')
-  Future<Experience> findExperience(int id);
+  //find specific experience by assessment_id
+  @Query('SELECT * FROM Experience WHERE id = :assessmentId')
+  Future<Experience> findExperience(int assessmentId);
 
   //get all positive experiences
-  @Query('SELECT * FROM Experience WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = :id')
-  Future<List<Experience>> getPositiveExperiences(int id);
+  @Query('SELECT * FROM Experience WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = :assessmentId')
+  Future<List<Experience>> getPositiveExperiences(int assessmentId);
 
 
   //get all negative experiences
-  @Query('SELECT * FROM Experience WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = :id')
-  Future<List<Experience>> getNegativeExperiences(int id);
+  @Query('SELECT * FROM Experience WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = :assessmentId')
+  Future<List<Experience>> getNegativeExperiences(int assessmentId);
 
   //new Experience
   @insert
@@ -149,8 +149,8 @@ abstract class AssessmentRepository{
   Future<List<Visualization>> getAllVisualizations();
 
   //get visualization by assessment id
-  @Query('SELECT * FROM Visualization WHERE assessment_id = :id')
-  Future<Visualization> findVisualization(int id);
+  @Query('SELECT * FROM Visualization WHERE assessment_id = :assessmentId')
+  Future<Visualization> findVisualization(int assessmentId);
 
   //create new visualization
   @insert
@@ -174,12 +174,12 @@ abstract class AssessmentRepository{
   Future<List<Person>> getAllPersons();
 
   //get all persons by Visualization
-  @Query('SELECT * FROM Person WHERE Visualization_id = :id')
-  Future<List<Person>> getAllPersonsByVisualization(int id);
+  @Query('SELECT * FROM Person WHERE Visualization_id = :visualizationId')
+  Future<List<Person>> getAllPersonsByVisualization(int visualizationId);
 
-  //find specific person by id
-  @Query('SELECT * FROM Person WHERE id = :id')
-  Future<Person> findPerson(int id);
+  //find specific person by assessment_id
+  @Query('SELECT * FROM Person WHERE id = :assessmentId')
+  Future<Person> findPerson(int assessmentId);
 
   //create Person
   @insert

@@ -333,10 +333,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Question>> getAllQuestionsByAssessment(int assessment_id) async {
+  Future<List<Question>> getAllQuestionsByAssessment(int assessmentId) async {
     return _queryAdapter.queryList(
         'SELECT * FROM Question WHERE assessment_id = ?',
-        arguments: <dynamic>[assessment_id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Question(
             row['id'] as int,
             row['question_number'] as String,
@@ -346,10 +346,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Question> findQuestion(String question_number) async {
+  Future<Question> findQuestion(String questionNumber) async {
     return _queryAdapter.query(
         'SELECT * FROM Question WHERE question_number = ?',
-        arguments: <dynamic>[question_number],
+        arguments: <dynamic>[questionNumber],
         mapper: (Map<String, dynamic> row) => Question(
             row['id'] as int,
             row['question_number'] as String,
@@ -359,10 +359,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Answer> findAnswer(String question_number, int assessmentId) async {
+  Future<Answer> findAnswer(String questionNumber, int assessmentId) async {
     return _queryAdapter.query(
         'SELECT * FROM Answer WHERE question_number = ? AND assessment_id = ?',
-        arguments: <dynamic>[question_number, assessmentId],
+        arguments: <dynamic>[questionNumber, assessmentId],
         mapper: (Map<String, dynamic> row) => Answer(
             row['id'] as int,
             row['answer'] as String,
@@ -371,10 +371,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Answer>> getAllAnswersByAssessment(int assessment_id) async {
+  Future<List<Answer>> getAllAnswersByAssessment(int assessmentId) async {
     return _queryAdapter.queryList(
         'SELECT * FROM Answer WHERE assessment_id = ?',
-        arguments: <dynamic>[assessment_id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Answer(
             row['id'] as int,
             row['answer'] as String,
@@ -418,9 +418,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Assessment> findAssessment(int id) async {
+  Future<Assessment> findAssessment(int assessmentId) async {
     return _queryAdapter.query('SELECT * FROM Assessment WHERE id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Assessment(
             row['id'] as int,
             row['project_title'] as String,
@@ -430,10 +430,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Assessment> getProjectTitle(int id) async {
+  Future<Assessment> getProjectTitle(int assessmentId) async {
     return _queryAdapter.query(
         'SELECT project_title FROM Assessment WHERE id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Assessment(
             row['id'] as int,
             row['project_title'] as String,
@@ -455,10 +455,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Experience>> getExperiencesByAssessment(int id) async {
+  Future<List<Experience>> getExperiencesByAssessment(int assessmentId) async {
     return _queryAdapter.queryList(
         'SELECT * FROM Experience WHERE assessment_id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
@@ -469,9 +469,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Experience> findExperience(int id) async {
+  Future<Experience> findExperience(int assessmentId) async {
     return _queryAdapter.query('SELECT * FROM Experience WHERE id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
@@ -482,10 +482,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Experience>> getPositiveExperiences(int id) async {
+  Future<List<Experience>> getPositiveExperiences(int assessmentId) async {
     return _queryAdapter.queryList(
         'SELECT * FROM Experience WHERE (mood = "verygreat" OR mood = "great") AND assessment_id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
@@ -496,10 +496,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Experience>> getNegativeExperiences(int id) async {
+  Future<List<Experience>> getNegativeExperiences(int assessmentId) async {
     return _queryAdapter.queryList(
         'SELECT * FROM Experience WHERE (mood = "verybad" OR mood = "bad") AND assessment_id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Experience(
             row['id'] as int,
             row['mood'] as String,
@@ -520,10 +520,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Visualization> findVisualization(int id) async {
+  Future<Visualization> findVisualization(int assessmentId) async {
     return _queryAdapter.query(
         'SELECT * FROM Visualization WHERE assessment_id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Visualization(
             row['id'] as int,
             row['assessment_id'] as int,
@@ -545,10 +545,10 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<List<Person>> getAllPersonsByVisualization(int id) async {
+  Future<List<Person>> getAllPersonsByVisualization(int visualizationId) async {
     return _queryAdapter.queryList(
         'SELECT * FROM Person WHERE Visualization_id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[visualizationId],
         mapper: (Map<String, dynamic> row) => Person(
             row['id'] as int,
             row['name'] as String,
@@ -560,9 +560,9 @@ class _$AssessmentRepository extends AssessmentRepository {
   }
 
   @override
-  Future<Person> findPerson(int id) async {
+  Future<Person> findPerson(int assessmentId) async {
     return _queryAdapter.query('SELECT * FROM Person WHERE id = ?',
-        arguments: <dynamic>[id],
+        arguments: <dynamic>[assessmentId],
         mapper: (Map<String, dynamic> row) => Person(
             row['id'] as int,
             row['name'] as String,
