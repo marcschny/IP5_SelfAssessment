@@ -104,7 +104,6 @@ class _EvaluationState extends State<Evaluation>{
                   TopBar(
                     title: "Auswertung",
                     titleNumber: 5,
-                    onClose: null,
                     subtitle: projectTitle,
                     percent: 0.05,
                     intro: "",

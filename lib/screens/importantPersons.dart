@@ -115,7 +115,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                 TopBar(
                   title: "Wer ist mir wichtig?\nMeine wichtigen Personen",
                   titleNumber: 1,
-                  onClose: null,
                   subtitle: "Wichtige Personen",
                   percent: 0.1,
                   intro: "Hier kannst Du wichtige Personen aus deinem Leben hinzufügen und bestimmen, wie Du zu dieser Person stehst. Je weniger Wichtig Du eine Person einträgst, desto weiter weg erscheint diese auf der Visualisierung.",

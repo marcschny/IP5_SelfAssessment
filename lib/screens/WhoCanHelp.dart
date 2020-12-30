@@ -58,7 +58,6 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
-                  onClose: null,
                   subtitle: "Wer oder was hilft Dir dabei?",
                   intro: "",
                   percent: 0.55,

@@ -57,7 +57,6 @@ class _SurveyPart2State extends State<SurveyPart2> {
               TopBar(
                 title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 3,
-                onClose: null,
                 subtitle: "Kommunikation mit Mitmenschen",
                 intro: "",
                 percent: 0.55,

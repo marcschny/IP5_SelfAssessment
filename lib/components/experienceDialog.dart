@@ -3,7 +3,7 @@
 * Smiley icons received from:  https://icons8.de
 * this link must be shown in the app
 * e.g in the "about us" or "settings" screen
-* > todo: will be done in main app later
+* > todo: has to be done in main app later
 *
 * */
 

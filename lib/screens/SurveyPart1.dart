@@ -43,7 +43,6 @@ class _SurveyPart1State extends State<SurveyPart1> {
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 3,
-                  onClose: (){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => Improvements()));},
                   subtitle: "Fragebogen",
                   intro: "Auf den folgenden Screens erhälst Du jeweils  Fragen zu drei Themenblöcken, "
                   "welche Dir helfen  werden nach Abschluss des Fragebogens ein  mögliches Ziel für Dein Veränderungsprojekt zu finden. \n"

@@ -57,7 +57,6 @@ class _StrengthsState extends State<Strengths>{
               TopBar(
                 title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                 titleNumber: 2,
-                onClose: null,
                 subtitle: "Hey, das kann ich bereits!",
                 intro: "Hier kannst Du Deine Stärken notieren!",
                 percent: 0.3,

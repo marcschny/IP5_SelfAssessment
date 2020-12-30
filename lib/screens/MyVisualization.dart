@@ -251,7 +251,6 @@ class _MyVisualizationState extends State<MyVisualization>{
             child: TopBar(
               title: "Wer ist mir wichtig?\nMeine Visualisierung",
               titleNumber: 1,
-              onClose: null,
               subtitle: "So sieht deine Visualisierung aus",
               percent: 0.2,
               intro: "Tippe auf eine Person, um den Namen zu sehen.",

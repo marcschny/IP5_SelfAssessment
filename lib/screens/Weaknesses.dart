@@ -55,7 +55,6 @@ class _WeaknessesState extends State<Weaknesses>{
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
-                  onClose: null,
                   subtitle: "Damit habe ich noch Mühe",
                   //intro: "Wähle die Frage, die Dich am meisten anspricht und beantworte sie anschliessend.",
                   percent: 0.35,

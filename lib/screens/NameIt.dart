@@ -80,7 +80,6 @@ class _NameItState extends State<NameIt>{
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
-                  onClose: null,
                   subtitle: "Name it!",
                   intro: "Möchtest Du Deinem Veränderungsprojekt einen Titel geben? Falls ja, welchen?",
                   percent: 0.5,

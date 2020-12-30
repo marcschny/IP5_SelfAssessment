@@ -178,7 +178,6 @@ class _ChangeProjectState extends State<ChangeProject>{
                 TopBar(
                     title: "Veränderungsprojekt",
                     titleNumber: 4,
-                    onClose: null,
                     subtitle: projectTitle,
                     percent: 0,
                     showProgressbar: false,

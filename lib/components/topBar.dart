@@ -5,13 +5,11 @@ import 'package:ip5_selbsteinschaetzung/components/progressBar.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 
 
-//todo: remove attribute onClose. bc onclose functionality must be defined in this widget
 //todo: add some kind of divider if no progressbar visible, for better ui
 class TopBar extends StatelessWidget{
 
   final String title;
   final int titleNumber;
-  final Function onClose;
   final String subtitle;
   final String intro;
   final double percent;
@@ -23,7 +21,6 @@ class TopBar extends StatelessWidget{
     Key key,
     @required this.title,
     @required this.titleNumber,
-    @required this.onClose,
     @required this.subtitle,
     this.intro,
     @required this.percent,
@@ -84,7 +81,9 @@ class TopBar extends StatelessWidget{
                           size: 32,
                           color: Color.fromRGBO(80, 80, 80, 1),
                         ),
-                        onTap: onClose,
+                        onTap: (){
+                          //todo: popUntil (pop back to main app)
+                        },
                       ),
                     ),
                   ),

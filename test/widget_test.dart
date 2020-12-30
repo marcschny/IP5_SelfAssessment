@@ -29,7 +29,7 @@ void main(){
   test.group('ui tests for custom components', (){
 
     testWidgets('TopBar Widget Test', (WidgetTester tester) async{
-      await tester.pumpWidget(buildTestableWidget(TopBar(title: "Testtitle", titleNumber: 2, onClose: null, subtitle: "Testsubtitle", percent: 0.1, showProgressbar: true)));
+      await tester.pumpWidget(buildTestableWidget(TopBar(title: "Testtitle", titleNumber: 2, subtitle: "Testsubtitle", percent: 0.1, showProgressbar: true)));
 
       expect(find.text("Testtitle"), findsOneWidget);
       expect(find.text("Testsubtitle"), findsOneWidget);

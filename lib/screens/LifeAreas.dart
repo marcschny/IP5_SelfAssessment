@@ -94,7 +94,6 @@ class _LifeAreasState extends State<LifeAreas>{
                   TopBar(
                     title: "Wer ist mir wichtig?\nMeine wichtigen Personen",
                     titleNumber: 1,
-                    onClose: null,
                     subtitle: "Bereiche",
                     percent: 0.05,
                     intro: "Um deine Visualisierung erstellen zu können musst Du zuerst auswählen, welche Bereiche Dir momentan wichtig sind: Welches sind für Dich wichtige Bereiche? ",
