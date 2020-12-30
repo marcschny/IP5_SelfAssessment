@@ -120,9 +120,9 @@ void main() {
       });
 
       test('get added answers by assessment_id', () async{
-        final answer1 = Answer(null, "my answer 1", "2.2.1", 1);
-        final answer2 = Answer(null, "my answer 2", "2.2.2", 1);
-        final answer3 = Answer(null, "my answer 3", "2.2.3", 1);
+        final answer1 = Answer(null, "my answer 2.1.1", "2.1.1", 1);
+        final answer2 = Answer(null, "my answer 2.2.1", "2.2.1", 1);
+        final answer3 = Answer(null, "my answer 2.3.1", "2.3.1", 1);
         await repository
           ..insertAnswer(answer1)
           ..insertAnswer(answer2)

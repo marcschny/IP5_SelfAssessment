@@ -38,7 +38,7 @@ void main(){
       expect(toRadian(invalidDegree), invalidRadian);
     });
 
-    test('test computeXPosition method', (){
+    test('test computeXPosition method with valid values', (){
       double centerX = 180;
       double radius = 100;
 
@@ -47,11 +47,20 @@ void main(){
       double validXPosition = 133.01537;
       double actual = double.parse(computeXPosition(validDistance, validAngle, centerX, radius).toStringAsFixed(5));
       expect(actual, validXPosition);
-
-
     });
 
-    test('test computeYPosition method', (){
+    test('test computeXPosition method with invalid values', (){
+      double centerX = 180;
+      double radius = 100;
+
+      double invalidAngle = 460;
+      int validDistance = 5;
+      double invalidXPosition = 0;
+      double actual = double.parse(computeXPosition(validDistance, invalidAngle, centerX, radius).toStringAsFixed(5));
+      expect(actual, invalidXPosition);
+    });
+
+    test('test computeYPosition method with valid values', (){
       double centerY = 180;
       double radius = 100;
 
@@ -60,8 +69,17 @@ void main(){
       double validYPosition = 197.10101;
       double actual = double.parse(computeYPosition(validDistance, validAngle, centerY, radius).toStringAsFixed(5));
       expect(actual, validYPosition);
+    });
 
+    test('test computeYPosition method with invalid values', (){
+      double centerY = 180;
+      double radius = 100;
 
+      double validAngle = 160;
+      int invalidDistance = 15;
+      double invalidYPosition = 0;
+      double actual = double.parse(computeYPosition(invalidDistance, validAngle, centerY, radius).toStringAsFixed(5));
+      expect(actual, invalidYPosition);
     });
 
   });
