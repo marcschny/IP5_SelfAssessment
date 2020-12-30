@@ -1,4 +1,3 @@
-import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
@@ -11,14 +10,9 @@ import 'package:ip5_selbsteinschaetzung/components/personCircle.dart';
 import 'package:ip5_selbsteinschaetzung/components/progressBar.dart';
 import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
 import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
-import 'package:ip5_selbsteinschaetzung/components/visualizationDialog.dart';
-import 'package:ip5_selbsteinschaetzung/database/database.dart';
-import 'package:ip5_selbsteinschaetzung/database/database_initial_data.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
-import 'package:ip5_selbsteinschaetzung/screens/importantPersons.dart';
-import 'package:provider/provider.dart';
 import 'package:test/test.dart' as test;
 
 
