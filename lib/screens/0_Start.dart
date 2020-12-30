@@ -87,10 +87,7 @@ class _StartScreenState extends State<StartScreen>{
   _checkIfExistingAssessment(){
     //if constructor has retrieved an assessment, thne navigate to change project [part 4]
     if(widget.existingAssessment != null){
-      print("existing assessment: "+widget.existingAssessment.id.toString());
-
-      //todo: navigate to change project [part 4]
-      //Navigator.of(context).pushNamed("/part_4", arguments: widget.existingAssessment.id);
+      Navigator.of(context).pushNamed("/part_4", arguments: widget.existingAssessment.id);
     }
   }
 
