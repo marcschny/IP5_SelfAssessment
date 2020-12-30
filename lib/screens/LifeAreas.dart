@@ -12,15 +12,16 @@ import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-//todo: write visualization on "start" to db and adjust functions and vars in this file (like "visId")
 //Screen 1.1
 class LifeAreas extends StatefulWidget{
 
   final int assessmentId;
+  final int visualizationId;
 
   const LifeAreas({
     Key key,
-    @required this.assessmentId
+    @required this.assessmentId,
+    @required this.visualizationId,
   });
 
   _LifeAreasState createState() => _LifeAreasState();
@@ -32,16 +33,6 @@ class _LifeAreasState extends State<LifeAreas>{
   //key for animatedList
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  bool alreadyExists = false; //check if visualization already exists (for navigator.pop)
-  int visId = -1;  //will be reset when new visualization is created
-
-
-  //update variable 'alreadyExists' when navigator popped
-  void updateAlreadyExists(bool boolValue){
-    setState(() {
-      alreadyExists = boolValue;
-    });
-  }
 
   TextEditingController _textController = TextEditingController();
 
@@ -145,7 +136,7 @@ class _LifeAreasState extends State<LifeAreas>{
                 showBackButton: false,
                 nextTitle: "Wichtige Personen",
                 callbackNext: (){
-                  _next(context, widget.assessmentId);
+                  _next(context);
                 },
               ),
             ],
@@ -213,7 +204,7 @@ class _LifeAreasState extends State<LifeAreas>{
 
 
   //next page
-  void _next(BuildContext context, int assessmentId) async{
+  void _next(BuildContext context) async{
     int noLifeAreas = 0;
     String lifeAreas = "";
 
@@ -229,81 +220,35 @@ class _LifeAreasState extends State<LifeAreas>{
 
     //only continue when number of lifeareas is bigger than 1 and smaller than 7
     if (noLifeAreas > 0 && noLifeAreas <= 6) {
-      //create visualization
-      final Visualization newVisualization = new Visualization(
-          !alreadyExists ? null : visId, assessmentId, noLifeAreas, lifeAreas); //if already exists set current visualization id, else null (auto increment)
-
-
-      print("already exists: "+alreadyExists.toString());
-
       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
       final assessmentRepo = appDatabase.assessmentRepository;
 
-      //if record does not already exist
-      if(!alreadyExists) {
-        assessmentRepo.createVisualization(newVisualization).then((
-            visualizationId) async {
-          print("visualization created: "+visualizationId.toString());
-          final boolValue = await Navigator.of(context).push(
-            PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 300),
-              pageBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                return ImportantPersons(assessmentId: assessmentId, visualizationId: visualizationId);
-              },
-              transitionsBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return Align(
-                  child: FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
-                );
-              },
-            ),
-          );
-          updateAlreadyExists(boolValue);
-          setState(() {
-            visId = visualizationId;
-          });
-        });
+      final Visualization updatedVisualization = Visualization(widget.visualizationId, widget.assessmentId, noLifeAreas, lifeAreas);
 
-        //reset variables
-        noLifeAreas = 0;
-        lifeAreas = "";
-      }
-      //if record already exists -> update it
-      else{
-        assessmentRepo.updateVisualization(newVisualization);
-        Navigator.of(context).push(
-          PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 300),
-            pageBuilder: (
-                BuildContext context,
-                Animation<double> animation,
-                Animation<double> secondaryAnimation) {
-              return ImportantPersons(assessmentId: assessmentId, visualizationId: visId);
-            },
-            transitionsBuilder: (
-                BuildContext context,
-                Animation<double> animation,
-                Animation<double> secondaryAnimation,
-                Widget child) {
-              return Align(
-                child: FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
-              );
-            },
-          ),
-        );
-      }
+      assessmentRepo.updateVisualization(updatedVisualization);
+      Navigator.of(context).push(
+        PageRouteBuilder(
+          transitionDuration: Duration(milliseconds: 300),
+          pageBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return ImportantPersons(assessmentId: widget.assessmentId, visualizationId: widget.visualizationId);
+          },
+          transitionsBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+              Widget child) {
+            return Align(
+              child: FadeTransition(
+                opacity: animation,
+                child: child,
+              ),
+            );
+          },
+        ),
+      );
     }else{
       showToast(
         "Wähle mindestens einen Bereich",

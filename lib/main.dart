@@ -11,7 +11,7 @@ import 'package:ip5_selbsteinschaetzung/screens/Weaknesses.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Improvements.dart';
 import 'package:ip5_selbsteinschaetzung/screens/NameIt.dart';
 import 'package:ip5_selbsteinschaetzung/screens/WhoCanHelp.dart';
-import 'package:ip5_selbsteinschaetzung/screens/0_Start.dart';
+import 'package:ip5_selbsteinschaetzung/screens/Start.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
 import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
 import 'package:ip5_selbsteinschaetzung/screens/SurveyPart2.dart';
@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: "/start",
           routes: {
-            "/start": (context) => StartScreen(),
+            "/start": (context) => Start(),
             "/lifeAreas": (context) => LifeAreas(),
             "/importantPersons": (context) => ImportantPersons(),
             "/personDialog": (context) => PersonDialog(),

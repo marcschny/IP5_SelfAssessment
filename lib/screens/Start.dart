@@ -3,24 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/CurvedShape.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
+import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:ip5_selbsteinschaetzung/screens/Improvements.dart';
 import 'package:ip5_selbsteinschaetzung/screens/LifeAreas.dart';
 import 'package:ip5_selbsteinschaetzung/themes/sa_sr_theme.dart';
 import 'package:provider/provider.dart';
 
-class StartScreen extends StatefulWidget {
+class Start extends StatefulWidget {
 
   final Assessment existingAssessment;
 
 
-  const StartScreen({Key key, this.existingAssessment}) : super(key: key);
+  const Start({Key key, this.existingAssessment}) : super(key: key);
 
-  @override
-  _StartScreenState createState() => _StartScreenState();
+  _StartState createState() => _StartState();
+
 
 }
 
-class _StartScreenState extends State<StartScreen>{
+class _StartState extends State<Start>{
 
 
   //index for intro pageView
@@ -54,32 +55,36 @@ class _StartScreenState extends State<StartScreen>{
     final appDataBase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDataBase.assessmentRepository;
     assessmentRepo.createAssessment(newAssessment).then((assessmentId) {
-      print(assessmentId);
-      Navigator.of(context).push(
-        PageRouteBuilder(
-          transitionDuration: Duration(milliseconds: 500),
-          pageBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return LifeAreas(assessmentId: assessmentId);
-            //return ChangeProject(assessmentId: assessmentId);
+      final Visualization newVisualization = new Visualization(null, assessmentId, 0, "");
+      assessmentRepo.createVisualization(newVisualization).then((visualizationId) {
+        print(assessmentId.toString()+", "+visualizationId.toString());
+        Navigator.of(context).push(
+          PageRouteBuilder(
+            transitionDuration: Duration(milliseconds: 500),
+            pageBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              return LifeAreas(assessmentId: assessmentId, visualizationId: visualizationId);
+              //return ChangeProject(assessmentId: assessmentId);
 
-          },
-          transitionsBuilder: (
-              BuildContext context,
-              Animation<double> animation,
-              Animation<double> secondaryAnimation,
-              Widget child) {
-            return Align(
-              child: FadeTransition(
-                opacity: animation,
-                child: child,
-              ),
-            );
-          },
-        ),
-      );
+            },
+            transitionsBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child) {
+              return Align(
+                child: FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+              );
+            },
+          ),
+        );
+      });
+
     });
   }
 
