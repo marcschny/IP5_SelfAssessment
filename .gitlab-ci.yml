@@ -45,7 +45,7 @@ test:db_and_widget:
   only: [merge_requests]
   stage: test
   script:
-    - flutter test test/db_test.dart
+    - flutter test
 
 
 #build:apk:
