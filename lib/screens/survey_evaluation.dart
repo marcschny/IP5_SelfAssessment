@@ -213,23 +213,11 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
     showToast(
       "Wähle einen oder zwei Punkte aus",
       context: context,
-      textAlign: TextAlign.center,
-      textStyle: ThemeTexts.toastText,
-      textPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 12),
-      position: ToastPosition.bottom,
-      backgroundColor: Color.fromRGBO(70, 70, 70, .7),
-      duration: Duration(milliseconds: 3500),
     );
   }else if(_selectedQuestions.length > 2){
     showToast(
       "Wähle maximal zwei Punkte aus",
       context: context,
-      textAlign: TextAlign.center,
-      textStyle: ThemeTexts.toastText,
-      textPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 12),
-      position: ToastPosition.bottom,
-      backgroundColor: Color.fromRGBO(70, 70, 70, .7),
-      duration: Duration(milliseconds: 3500),
     );
   }
 

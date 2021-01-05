@@ -217,12 +217,6 @@ class _ExperienceExplanationDialogState extends State<ExperienceExplanationDialo
       showToast(
         "Du hast noch nichts eingetippt",
         context: context,
-        textAlign: TextAlign.center,
-        textStyle: ThemeTexts.toastText,
-        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-        position: ToastPosition.bottom,
-        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
-        duration: Duration(milliseconds: 2500),
       );
     }
 

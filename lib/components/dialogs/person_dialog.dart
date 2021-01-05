@@ -98,7 +98,7 @@ class _PersonDialogState extends State<PersonDialog>{
         _nameController.text = widget.person.name;
         _selectedIcon = widget.person.icon;
         _selectedLifeArea = widget.person.lifeArea;
-        _currentDistance = widget.person.distance.toInt();
+        _currentDistance = 8-widget.person.distance.toInt();
       });
     }
   }
@@ -506,12 +506,6 @@ class _PersonDialogState extends State<PersonDialog>{
                       showToast(
                         _missingInput(),
                         context: context,
-                        textAlign: TextAlign.center,
-                        textStyle: ThemeTexts.toastText,
-                        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                        position: ToastPosition.bottom,
-                        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
-                        duration: Duration(milliseconds: 2500),
                       );
                     }else{
 

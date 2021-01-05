@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/creation_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_toast.dart';
+import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/screens/change_project.dart';
 import 'package:ip5_selbsteinschaetzung/screens/congratulations.dart';
 import 'package:ip5_selbsteinschaetzung/screens/my_experiences.dart';
@@ -74,9 +76,15 @@ class MyApp extends StatelessWidget {
     return Provider<AppDatabase>(
       create: (_) => database,
       child: OKToast(
-        backgroundColor: Color.fromRGBO(80, 80, 80, 1),
-        radius: 30,
-        duration: Duration(seconds: 5),
+        backgroundColor: Color.fromRGBO(140, 140, 140, .85),
+        radius: 12,
+        duration: Duration(seconds: 3),
+        animationCurve: Curves.ease,
+        animationBuilder: SlideUpToast(),
+        textPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+        textStyle: ThemeTexts.toastText,
+        textAlign: TextAlign.center,
+        position: ToastPosition.bottom,
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: "/start",

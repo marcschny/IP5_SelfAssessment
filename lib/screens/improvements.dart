@@ -286,16 +286,9 @@ class _ImprovementsState extends State<Improvements>{
         ),
       );
     }else{
-      //todo redesign toasts
       showToast(
         "Du hast die Frage noch nicht beantwortet",
         context: context,
-        textAlign: TextAlign.center,
-        textStyle: ThemeTexts.toastText,
-        textPadding: EdgeInsets.symmetric(vertical: 9, horizontal: 12),
-        position: ToastPosition.bottom,
-        backgroundColor: Color.fromRGBO(70, 70, 70, .7),
-        duration: Duration(milliseconds: 3500),
       );
     }
 
