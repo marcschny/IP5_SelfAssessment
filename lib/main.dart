@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/creation_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
+import 'package:ip5_selbsteinschaetzung/database/update_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_toast.dart';
 import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/screens/change_project.dart';
@@ -36,22 +37,19 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final callback = Callback(
-      //when initialized for the first time
+      //when initialized for the first time: create questions
       onCreate: (database, version) async {
     const initScript = creationDataScript;
     for (final script in initScript) {
       await database.execute(script);
     }
   },
-      //todo:
-      //when app is opened
+      //when app is opened: update questions
       onOpen: (database) async {
-    //tbd
-  },
-      //todo:
-      //when upgraded
-      onUpgrade: (database, startVersion, endVersion) {
-    //tbd
+        const initScript = updateDataScript;
+        for (final script in initScript) {
+          await database.execute(script);
+        }
   });
 
   final database = await $FloorAppDatabase
@@ -73,8 +71,10 @@ class MyApp extends StatelessWidget {
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ));
+    // the provider provides access to the app database
     return Provider<AppDatabase>(
-      create: (_) => database,
+      create: (context) => database,
+      dispose: (context, db) => db.close(),
       child: OKToast(
         backgroundColor: Color.fromRGBO(140, 140, 140, .85),
         radius: 12,
