@@ -15,6 +15,7 @@ import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
 import 'package:provider/provider.dart';
 
 
+//todo: umgekehrte nähe/distanz bei Visualisierung?!
 //Screen 1.3
 class MyVisualization extends StatefulWidget{
 

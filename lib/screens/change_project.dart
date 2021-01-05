@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/dialogs/experience_dialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/dialogs/project_description_dialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/dialogs/project_help_dialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/empty_experience_card.dart';
 import 'package:ip5_selbsteinschaetzung/components/experience_card.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
@@ -91,8 +92,14 @@ class _ChangeProjectState extends State<ChangeProject>{
                     fontWeight: FontWeight.normal),
               ),
               onPressed: () {
-                //todo: show help dialog
-                print("show help dialog");
+                showDialog(
+                  context: context,
+                  barrierColor: Colors.black.withOpacity(.55),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 120),
+                    child: SlideUpFromBottom(0, ProjectHelpDialog(assessmentId: widget.assessmentId)),
+                  ),
+                );
 
               },
             ),
@@ -158,151 +165,154 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
+    return WillPopScope(
+      onWillPop: (){},
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
 
-            //background image
-            Image.asset(
-              "assets/background_image/gradient-grey.png",
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              fit: BoxFit.cover,
-            ),
+              //background image
+              Image.asset(
+                "assets/background_image/gradient-grey.png",
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                fit: BoxFit.cover,
+              ),
 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
-                TopBar(
-                    title: "Veränderungsprojekt",
-                    titleNumber: 4,
-                    subtitle: projectTitle,
-                    percent: 0,
-                    showProgressbar: false,
-                    widget: headerRow(context),
-                    intro: "Halte in den nächsten Wochen möglichst oft fest, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Erlebnis\" eine neue Erlebniskarte erstellen. Erstelle mindestens 10 Erlebniskarten um dein Veränderungsprojekt abzuschiessen.",
-                ),
+                  TopBar(
+                      title: "Veränderungsprojekt",
+                      titleNumber: 4,
+                      subtitle: projectTitle,
+                      percent: 0,
+                      showProgressbar: false,
+                      widget: headerRow(context),
+                      intro: "Halte in den nächsten Wochen möglichst oft fest, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Erlebnis\" eine neue Erlebniskarte erstellen. Erstelle mindestens 10 Erlebniskarten um dein Veränderungsprojekt abzuschiessen.",
+                  ),
 
-                SizedBox(height: 12),
+                  SizedBox(height: 12),
 
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(bottom: 94),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 94),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 18),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Erlebniskarten",
-                                  style: ThemeTexts.assessmentDialogTitle,
-                                  textAlign: TextAlign.left,
-                                ),
-
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    side: BorderSide(width: 1.2, color: ThemeColors.greenShade1),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 18),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Erlebniskarten",
+                                    style: ThemeTexts.assessmentDialogTitle,
+                                    textAlign: TextAlign.left,
                                   ),
-                                  color: Colors.transparent,
-                                  elevation: 0,
-                                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-                                  highlightColor: ThemeColors.greenShade3,
-                                  splashColor: Colors.transparent,
-                                  focusElevation: 0,
-                                  highlightElevation: 0,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(
-                                        Icons.add,
-                                        size: 20.5,
-                                        color: ThemeColors.greenShade1,
-                                      ),
-                                      SizedBox(width: 6),
-                                      Text(
-                                        "Erlebnis",
-                                        style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
-                                      ),
-                                    ],
+
+                                  RaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      side: BorderSide(width: 1.2, color: ThemeColors.greenShade1),
+                                    ),
+                                    color: Colors.transparent,
+                                    elevation: 0,
+                                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                                    highlightColor: ThemeColors.greenShade3,
+                                    splashColor: Colors.transparent,
+                                    focusElevation: 0,
+                                    highlightElevation: 0,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          size: 20.5,
+                                          color: ThemeColors.greenShade1,
+                                        ),
+                                        SizedBox(width: 6),
+                                        Text(
+                                          "Erlebnis",
+                                          style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
+                                        ),
+                                      ],
+                                    ),
+                                    onPressed: (){
+                                      print("open new card dialog");
+                                      showDialog(
+                                        context: context,
+                                        barrierColor: Colors.black.withOpacity(.3),
+                                        child: SlideUpFromBottom(0, ExperienceDialog(assessmentId: widget.assessmentId)),
+                                      );
+                                    },
                                   ),
-                                  onPressed: (){
-                                    print("open new card dialog");
-                                    showDialog(
-                                      context: context,
-                                      barrierColor: Colors.black.withOpacity(.3),
-                                      child: SlideUpFromBottom(0, ExperienceDialog(assessmentId: widget.assessmentId)),
-                                    );
-                                  },
-                                ),
 
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
 
-                          Container(
-                            height: 170,
-                            child: ListView.builder(
-                              padding: EdgeInsets.only(top: 14, left: 0, bottom: 10, right: 14),
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
+                            Container(
+                              height: 170,
+                              child: ListView.builder(
+                                padding: EdgeInsets.only(top: 14, left: 0, bottom: 10, right: 14),
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
 
-                              itemCount: widgetList.length,
-                              itemBuilder: (context, index) {
-                                if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: widgetList[index]);
-                                else return widgetList[index];
-                              },
+                                itemCount: widgetList.length,
+                                itemBuilder: (context, index) {
+                                  if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: widgetList[index]);
+                                  else return widgetList[index];
+                                },
 
+                              ),
                             ),
-                          ),
 
 
 
-                          Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 22),
-                            child: Text(
-                              "$noExperiences/10 Erlebnisse",
-                              textAlign: TextAlign.right,
-                              style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
+                            Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 22),
+                              child: Text(
+                                "$noExperiences/10 Erlebnisse",
+                                textAlign: TextAlign.right,
+                                style: ThemeTexts.assessmentDialogSubtitle.copyWith(color: ThemeColors.greenShade1, fontSize: 16.5, fontWeight: FontWeight.normal),
+                              ),
                             ),
-                          ),
 
-                        ]
+                          ]
+                        ),
                       ),
                     ),
                   ),
-                ),
 
-              ],
-            ),
-
+                ],
+              ),
 
 
-            //bottom navigation bar
-            BottomNavigation(
-              showNextButton: true,
-              showBackButton: false,
-              nextTitle: "Auswertung",
-              callbackNext: (){
-                _next(context, widget.assessmentId);
-              },
-              callbackBack: (){
-                _next(context, widget.assessmentId);
-              },
-            )
 
-          ],
+              //bottom navigation bar
+              BottomNavigation(
+                showNextButton: true,
+                showBackButton: false,
+                nextTitle: "Auswertung",
+                callbackNext: (){
+                  _next(context, widget.assessmentId);
+                },
+                callbackBack: (){
+                  _next(context, widget.assessmentId);
+                },
+              )
+
+            ],
+          ),
         ),
       ),
     );

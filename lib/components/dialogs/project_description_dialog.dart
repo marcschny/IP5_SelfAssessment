@@ -39,7 +39,7 @@ class _ProjectDescriptionDialogState extends State<ProjectDescriptionDialog>{
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final assessment = await assessmentRepo.getProjectTitle(widget.assessmentId);
-    final answer = await assessmentRepo.findAnswer("2.4.1", widget.assessmentId);
+    final answer = await assessmentRepo.findAnswer("2.3.1", widget.assessmentId);
 
     setState(() {
       title = assessment?.project_title != null ? assessment.project_title : "Kein Projekttitel";

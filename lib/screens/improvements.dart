@@ -4,12 +4,14 @@ import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/question_card.dart';
 import 'package:ip5_selbsteinschaetzung/components/survey_box_filled.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
+import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/resources/animations/fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/screens/name_it.dart';
 import 'package:ip5_selbsteinschaetzung/screens/survey_intro.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:provider/provider.dart';
 
 
 class Improvements extends StatefulWidget {
@@ -81,11 +83,6 @@ class _ImprovementsState extends State<Improvements>{
                             QuestionCard(
                               questionNumber: "2.3.1",
                               assessmentId: widget.assessmentId,
-                              answered: (answered){
-                                setState(() {
-                                  _answered = answered;
-                                });
-                              },
                             ),
                           ),
 
@@ -258,8 +255,13 @@ class _ImprovementsState extends State<Improvements>{
   }
 
 
-  void _next(BuildContext context, int assessmentId, int visualizationId){
-    if(_answered){
+  void _next(BuildContext context, int assessmentId, int visualizationId) async{
+    final appDatabase = Provider.of<AppDatabase>(context, listen: false);
+    final assessmentRepo = appDatabase.assessmentRepository;
+
+    final answeredQuestion = await assessmentRepo.findAnswer('2.3.1', widget.assessmentId);
+
+    if(answeredQuestion?.answer != null && answeredQuestion?.answer != ""){
       Navigator.of(context).push(
         PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 200),

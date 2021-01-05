@@ -134,7 +134,7 @@ class _PersonDialogState extends State<PersonDialog>{
 
                   //textfield for name input
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                     margin: EdgeInsets.only(bottom: 20),
                     child: TextField(
                       maxLines: 1,
