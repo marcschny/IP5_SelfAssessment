@@ -15,7 +15,7 @@ import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
 import 'package:provider/provider.dart';
 
 
-//todo: umgekehrte nähe/distanz bei Visualisierung?!
+
 //Screen 1.3
 class MyVisualization extends StatefulWidget{
 
@@ -93,12 +93,12 @@ class _MyVisualizationState extends State<MyVisualization>{
 
     personCircleList.clear();
 
-    double space = 22; //default space (when multiple persons have same life area and distance)
+    double space = 20; //default space (when multiple persons have same life area and distance)
     List<Person> tempPersonList = List();
 
 
     var yourPerson = Positioned(
-      top: MediaQuery.of(context).size.width/2-40,
+      top: MediaQuery.of(context).size.width/2-20,
       left: MediaQuery.of(context).size.width/2-20,
       child: YourPersonCircle(name: "Ich"),
     );
@@ -171,7 +171,7 @@ class _MyVisualizationState extends State<MyVisualization>{
 
     //canvas variables
     centerX = MediaQuery.of(context).size.width/2-20;
-    centerY = MediaQuery.of(context).size.width/2-40;
+    centerY = MediaQuery.of(context).size.width/2-20;
     radius = (MediaQuery.of(context).size.width-40)/2;
 
 
@@ -200,26 +200,29 @@ class _MyVisualizationState extends State<MyVisualization>{
                     FadeIn(
                       1,
                       600,
-                      Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
-                            child: Center(
-                              child: CustomPaint(
-                                child: Container(
-                                  height: MediaQuery.of(context).size.width,
-                                  padding: EdgeInsets.all(20),
-                                ),
-                                painter: WheelPainter(
-                                  noAreas: lifeAreas.length,
-                                  widgetSize: MediaQuery.of(context).size.width-40,
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.width,
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                              child: Center(
+                                child: CustomPaint(
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.width,
+                                  ),
+                                  painter: WheelPainter(
+                                    noAreas: lifeAreas.length,
+                                    widgetSize: MediaQuery.of(context).size.width-40,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
 
-                          ]..addAll(personCircleList),
-                        ),
+                            ]..addAll(personCircleList),
+                          ),
+                      ),
                       ),
 
                       FadeIn(
