@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
@@ -64,7 +62,6 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
       answer = getAnswer;
     });
   }
-
 
   _getAnswer(){
     return answer.answer;

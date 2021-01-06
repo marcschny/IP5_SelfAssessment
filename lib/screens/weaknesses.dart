@@ -23,7 +23,6 @@ class Weaknesses extends StatefulWidget {
 }
 
 
-//todo: what if question was not answered?
 class _WeaknessesState extends State<Weaknesses>{
 
   @override

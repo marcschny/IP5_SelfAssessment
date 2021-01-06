@@ -5,7 +5,6 @@ import 'package:ip5_selbsteinschaetzung/database/creation_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/update_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_toast.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/screens/change_project.dart';
 import 'package:ip5_selbsteinschaetzung/screens/congratulations.dart';
 import 'package:ip5_selbsteinschaetzung/screens/my_experiences.dart';

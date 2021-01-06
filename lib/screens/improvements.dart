@@ -28,12 +28,9 @@ class Improvements extends StatefulWidget {
 
 class _ImprovementsState extends State<Improvements>{
 
-  bool _answered;
-
   @override
   void initState() {
     super.initState();
-    _answered = false;
   }
 
   @override

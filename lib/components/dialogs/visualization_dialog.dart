@@ -87,14 +87,14 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
 
     personCircleList.clear();
 
-    double space = 22; //default space (when multiple persons have same life area and distance)
+    double space = 20; //default space (when multiple persons have same life area and distance)
     List<Person> tempPersonList = List();
 
 
     var yourPerson = Positioned(
-      top: MediaQuery.of(context).size.width/2-40,
+      top: MediaQuery.of(context).size.width/2-20,
       left: MediaQuery.of(context).size.width/2-20,
-      child: YourPersonCircle(name: "Du"),
+      child: YourPersonCircle(name: "Ich"),
     );
     personCircleList.add(yourPerson);
 
@@ -162,7 +162,7 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
 
     //canvas variables
     centerX = MediaQuery.of(context).size.width/2-20;
-    centerY = MediaQuery.of(context).size.width/2-40;
+    centerY = MediaQuery.of(context).size.width/2-20;
     radius = (MediaQuery.of(context).size.width-40)/2;
 
 
@@ -179,8 +179,7 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
                 children: [
 
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
-                    margin: EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.fromLTRB(18, 30, 18, 24),
                     child: Text(
                       "So sieht Deine Visualisierung aus",
                       style: ThemeTexts.assessmentSubtitle,
@@ -190,25 +189,28 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
 
 
 
-                  Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        child: Center(
-                          child: CustomPaint(
-                            child: Container(
-                              height: MediaQuery.of(context).size.width,
-                              padding: EdgeInsets.all(20),
-                            ),
-                            painter: WheelPainter(
-                              noAreas: lifeAreas.length,
-                              widgetSize: MediaQuery.of(context).size.width-40,
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.width,
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                          child: Center(
+                            child: CustomPaint(
+                              child: Container(
+                                height: MediaQuery.of(context).size.width,
+                              ),
+                              painter: WheelPainter(
+                                noAreas: lifeAreas.length,
+                                widgetSize: MediaQuery.of(context).size.width-40,
+                              ),
                             ),
                           ),
                         ),
-                      ),
 
-                    ]..addAll(personCircleList),
+                      ]..addAll(personCircleList),
+                    ),
                   ),
 
                   Container(
