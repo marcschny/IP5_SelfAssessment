@@ -8,12 +8,10 @@ import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
 import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/screens/improvements.dart';
-import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-//todo: what if no answers were selected -> handle case
 class SurveyEvaluation extends StatefulWidget {
 
   final int assessmentId;
@@ -137,30 +135,38 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
-    List<Answer> surveyAnswers = await assessmentRepo.getNegSurveyAnswers(widget.assessmentId);
-    if(surveyAnswers == null || surveyAnswers.length == 0){
-      print(surveyAnswers.length);
+    List<Answer> negSurveyAnswers = await assessmentRepo.getNegSurveyAnswers(widget.assessmentId);
+    List<Answer> posSurveyAnswers = await assessmentRepo.getPosSurveyAnswers(widget.assessmentId);
+    List<Answer> surveyAnswers = List();
+    if((posSurveyAnswers == null || posSurveyAnswers.length == 0) && (negSurveyAnswers == null || negSurveyAnswers.length == 0)){
+      setState((){
+        allPositive = false;
+        _introText = "Du hast keine der Fragen beantwortet. Gehe zurück um mindestens eine Frage zu beantworten.";
+      });
+    }else if(negSurveyAnswers == null || negSurveyAnswers.length == 0){
       setState(() {
         allPositive = true;
         _introText = "Wähle einen oder zwei der folgenden Punkte aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest, um darin noch besser zu werden.";
       });
-      surveyAnswers = await assessmentRepo.getPosSurveyAnswers(widget.assessmentId);
+      surveyAnswers = posSurveyAnswers;
     }else{
-      print("neg");
       setState(() {
         _introText = "Folgende Punkte sind Dir weniger gut gelungen. Wähle bis zu zwei davon aus, an welchen Du gerne am Veränderungsprojekt arbeiten möchtest.";
       });
+      surveyAnswers = negSurveyAnswers;
     }
 
-    print("surveyAnswers: "+surveyAnswers.length.toString());
 
     String questionNumber;
     distinctQuestions.clear();
-    for(Answer answer in surveyAnswers){
-      questionNumber = answer.question_number;
-      Question findQuestion = await assessmentRepo.findQuestion(questionNumber);
+    if(surveyAnswers != null || surveyAnswers.length != 0){
+      for(Answer answer in surveyAnswers){
+        questionNumber = answer.question_number;
+        Question findQuestion = await assessmentRepo.findQuestion(questionNumber);
 
-      distinctQuestions.putIfAbsent(findQuestion.question, () => false);
+        distinctQuestions.putIfAbsent(findQuestion.question, () => false);
+      }
+      surveyAnswers.clear();
     }
 
 
