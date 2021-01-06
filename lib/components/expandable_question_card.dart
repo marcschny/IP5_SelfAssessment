@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
@@ -27,7 +30,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
 
   Answer answer;
   String question;
-  ExpandableController controller;
+  ExpandableController _expandableController = ExpandableController();
 
   @override
   void initState() {
@@ -85,55 +88,60 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
         child: Container(
           color: ThemeColors.greenShade3,
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          child: ExpandablePanel(
-            header: Text(
-              question,
-              style: ThemeTexts.assessmentQuestion,
-            ),
+          child: ExpandableNotifier(
+            controller: _expandableController,
+            child: ScrollOnExpand(
+              child: ExpandablePanel(
+                header: Text(
+                  question,
+                  style: ThemeTexts.assessmentQuestion,
+                ),
 
-            expanded: Container(
-              padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
-              //color: Colors.red,
-              child: CustomRadioButton(
-                defaultSelected: _getAnswer(),
-                enableShape: true,
-                customShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(color: ThemeColors.greenShade2),
+                expanded: Container(
+                  padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
+                  child: CustomRadioButton(
+                    defaultSelected: _getAnswer(),
+                    enableShape: true,
+                    customShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: BorderSide(color: ThemeColors.greenShade2),
+                    ),
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    padding: 0,
+                    elevation: 0,
+                    enableButtonWrap: true,
+                    unSelectedColor: Colors.transparent,
+                    selectedColor: ThemeColors.greenShade2,
+                    buttonLables: [
+                      "Mache ich sehr oft / kann ich echt gut",
+                      "Mache ich öfters / kann ich meisten",
+                      "Kriege ich hin und wieder hin",
+                      "Schaffe ich selten"
+                    ],
+                    buttonValues: [
+                      "Mache ich sehr oft / kann ich echt gut",
+                      "Mache ich öfters / kann ich meisten",
+                      "Kriege ich hin und wieder hin",
+                      "Schaffe ich selten"
+                    ],
+                    buttonTextStyle: ButtonTextStyle(
+                        unSelectedColor: Colors.black,
+                        selectedColor: Colors.black,
+                        textStyle: ThemeTexts.assessmentAnswer.copyWith(
+                            fontSize: 14, fontWeight: FontWeight.w600)
+                    ),
+                    radioButtonValue: (value) {
+                      _saveOrUpdateAnswer(value);
+                      if(_expandableController.expanded) Timer(const Duration(milliseconds: 200), () => _expandableController.toggle());
+                    },
+                  ),
                 ),
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                padding: 0,
-                elevation: 0,
-                enableButtonWrap: true,
-                unSelectedColor: Colors.transparent,
-                selectedColor: ThemeColors.greenShade2,
-                buttonLables: [
-                  "Mache ich sehr oft / kann ich echt gut",
-                  "Mache ich öfters / kann ich meisten",
-                  "Kriege ich hin und wieder hin",
-                  "Schaffe ich selten"
-                ],
-                buttonValues: [
-                  "Mache ich sehr oft / kann ich echt gut",
-                  "Mache ich öfters / kann ich meisten",
-                  "Kriege ich hin und wieder hin",
-                  "Schaffe ich selten"
-                ],
-                buttonTextStyle: ButtonTextStyle(
-                    unSelectedColor: Colors.black,
-                    selectedColor: Colors.black,
-                    textStyle: ThemeTexts.assessmentAnswer.copyWith(
-                        fontSize: 14, fontWeight: FontWeight.w600)
-                ),
-                radioButtonValue: (value) {
-                  _saveOrUpdateAnswer(value);
-                },
+
               ),
             ),
-
           ),
         ),
       ),
@@ -148,54 +156,59 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
         child: Container(
           color: ThemeColors.greenShade3,
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          child: ExpandablePanel(
-            header: Text(
-              question,
-              style: ThemeTexts.assessmentQuestion,
-            ),
+          child: ExpandableNotifier(
+            controller: _expandableController,
+            child: ScrollOnExpand(
+              child: ExpandablePanel(
+                header: Text(
+                  question,
+                  style: ThemeTexts.assessmentQuestion,
+                ),
 
-            expanded: Container(
-              padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
-              //color: Colors.red,
-              child: CustomRadioButton(
-                enableShape: true,
-                customShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(color: ThemeColors.greenShade2),
+                expanded: Container(
+                  padding: EdgeInsets.fromLTRB(0, 14, 0, 0),
+                  //color: Colors.red,
+                  child: CustomRadioButton(
+                    enableShape: true,
+                    customShape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: BorderSide(color: ThemeColors.greenShade2),
+                    ),
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    padding: 0,
+                    elevation: 0,
+                    enableButtonWrap: true,
+                    unSelectedColor: Colors.transparent,
+                    selectedColor: ThemeColors.greenShade2,
+                    buttonLables: [
+                      "Mache ich sehr oft / kann ich echt gut",
+                      "Mache ich öfters / kann ich meisten",
+                      "Kriege ich hin und wieder hin",
+                      "Schaffe ich selten"
+                    ],
+                    buttonValues: [
+                      "Mache ich sehr oft / kann ich echt gut",
+                      "Mache ich öfters / kann ich meisten",
+                      "Kriege ich hin und wieder hin",
+                      "Schaffe ich selten"
+                    ],
+                    buttonTextStyle: ButtonTextStyle(
+                        unSelectedColor: Colors.black,
+                        selectedColor: Colors.black,
+                        textStyle: ThemeTexts.assessmentAnswer.copyWith(
+                            fontSize: 14, fontWeight: FontWeight.w600)
+                    ),
+                    radioButtonValue: (value) {
+                      _saveOrUpdateAnswer(value);
+                      if(_expandableController.expanded) Timer(const Duration(milliseconds: 200), () => _expandableController.toggle());
+                    },
+                  ),
                 ),
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                padding: 0,
-                elevation: 0,
-                enableButtonWrap: true,
-                unSelectedColor: Colors.transparent,
-                selectedColor: ThemeColors.greenShade2,
-                buttonLables: [
-                  "Mache ich sehr oft / kann ich echt gut",
-                  "Mache ich öfters / kann ich meisten",
-                  "Kriege ich hin und wieder hin",
-                  "Schaffe ich selten"
-                ],
-                buttonValues: [
-                  "Mache ich sehr oft / kann ich echt gut",
-                  "Mache ich öfters / kann ich meisten",
-                  "Kriege ich hin und wieder hin",
-                  "Schaffe ich selten"
-                ],
-                buttonTextStyle: ButtonTextStyle(
-                    unSelectedColor: Colors.black,
-                    selectedColor: Colors.black,
-                    textStyle: ThemeTexts.assessmentAnswer.copyWith(
-                        fontSize: 14, fontWeight: FontWeight.w600)
-                ),
-                radioButtonValue: (value) {
-                  _saveOrUpdateAnswer(value);
-                },
               ),
             ),
-          controller: controller,
           ),
         ),
       ),

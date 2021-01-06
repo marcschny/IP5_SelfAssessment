@@ -22,7 +22,7 @@ class Strengths extends StatefulWidget {
   _StrengthsState createState() => _StrengthsState();
 }
 
-//todo: what if question was not answered?
+
 class _StrengthsState extends State<Strengths>{
 
   @override
