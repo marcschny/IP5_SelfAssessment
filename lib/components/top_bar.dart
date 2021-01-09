@@ -44,7 +44,7 @@ class TopBar extends StatelessWidget{
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.only(right: 8, left: 6),
+                  padding: EdgeInsets.only(right: 8, left: 1),
                   child: Material(
                     color: Colors.transparent,
                     child: Text(
@@ -94,7 +94,6 @@ class TopBar extends StatelessWidget{
             ) : Container(),
             Container(
               width: MediaQuery.of(context).size.width,
-              padding: widget != null ? EdgeInsets.fromLTRB(5, 0, 5, 0) : EdgeInsets.fromLTRB(5, 0, 5, 0),
               child: Material(
                 color: Colors.transparent,
                 child: Text(
@@ -111,7 +110,7 @@ class TopBar extends StatelessWidget{
               fit: FlexFit.loose,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.fromLTRB(5, 5, 5, 10),
+                padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
                 child: Material(
                   color: Colors.transparent,
                   child: Text(

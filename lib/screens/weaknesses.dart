@@ -61,7 +61,7 @@ class _WeaknessesState extends State<Weaknesses>{
 
               Expanded(
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(18, 2, 18, 94),
+                    padding: EdgeInsets.fromLTRB(16, 2, 16, 94),
                     margin: EdgeInsets.only(top: 10),
                       child: SingleChildScrollView(
                         child: Wrap(

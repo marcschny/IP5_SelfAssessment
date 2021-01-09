@@ -66,7 +66,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
 
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(18, 10, 18, 94),
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 94),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +115,7 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                             Expanded(
                               child: Text(
                                 "Bei der Wahl Deiner Hilfspersonen könnte Dir Deine Visualisierung weiterhelfen.",
-                                style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26, fontSize: 15.4),
                                 textAlign: TextAlign.start,
                                 softWrap: true,
                                 overflow: TextOverflow.clip,

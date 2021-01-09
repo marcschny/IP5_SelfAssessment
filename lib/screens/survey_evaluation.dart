@@ -76,7 +76,7 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
 
               Expanded(
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
+                    padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
                       child: ListView.builder(
                         itemCount: distinctQuestions.length,
                         itemBuilder: (context, index) {

@@ -64,69 +64,69 @@ class _SurveyPart1State extends State<SurveyPart1> {
               ),
 
 
-            Expanded(
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 94),
-                  child: ListView(
-                    children: [
+              Expanded(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
+                    child: ListView(
+                      children: [
 
-                      SlideUpFadeIn(
-                        0.5,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.2.1",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          0.5,
+                          100,
+                          ExpandableQuestionCard(
+                            questionNumber: "3.2.1",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
-                      SlideUpFadeIn(
-                        0.7,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.2.2",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          0.7,
+                          100,
+                          ExpandableQuestionCard(
+                            questionNumber: "3.2.2",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
-                      SlideUpFadeIn(
-                        0.9,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.2.3",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          0.9,
+                          100,
+                          ExpandableQuestionCard(
+                            questionNumber: "3.2.3",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
-                      SlideUpFadeIn(
-                        1.1,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.2.4",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          1.1,
+                          100,
+                          ExpandableQuestionCard(
+                            questionNumber: "3.2.4",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
-                      SlideUpFadeIn(
-                        1.3,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.2.5",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          1.3,
+                          100,
+                          ExpandableQuestionCard(
+                            questionNumber: "3.2.5",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
-                      SlideUpFadeIn(
-                        1.4,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.2.6",
-                          assessmentId: widget.assessmentId,
+                        SlideUpFadeIn(
+                          1.4,
+                          100,
+                          ExpandableQuestionCard(
+                            questionNumber: "3.2.6",
+                            assessmentId: widget.assessmentId,
+                          ),
                         ),
-                      ),
 
 
-                  ],
+                    ],
+                    ),
                   ),
-                ),
-            ),
+              ),
 
 
-                ],
+              ],
             ),
 
             BottomNavigation(

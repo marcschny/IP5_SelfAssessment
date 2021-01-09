@@ -91,30 +91,36 @@ class _NameItState extends State<NameIt>{
                   1.1,
                   500,
                   Padding(
-                    padding: EdgeInsets.fromLTRB(30, 30, 34, 20),
-                      child: Wrap(
+                    padding: EdgeInsets.fromLTRB(16, 20, 16, 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          TextField(
-                            maxLines: 1,
-                            controller: _titleController,
-                            onSubmitted: (value){ },
-                            textInputAction: TextInputAction.go,
-                            decoration: InputDecoration(
-                              hintText: "Titel hier eingeben...",
-                              hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20.5, color: Colors.grey, fontWeight: FontWeight.w500),
-                              contentPadding: EdgeInsets.all(0),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: ThemeColors.greenShade3),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8),
+                            child: TextField(
+                              maxLines: 1,
+                              controller: _titleController,
+                              onSubmitted: (value){ },
+                              textInputAction: TextInputAction.go,
+                              decoration: InputDecoration(
+                                hintText: "Titel hier eingeben...",
+                                hintStyle: ThemeTexts.assessmentText.copyWith(fontSize: 20.5, color: Colors.grey, fontWeight: FontWeight.w500),
+                                contentPadding: EdgeInsets.all(0),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: ThemeColors.greenShade3),
+                                ),
                               ),
+                              style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
                             ),
-                            style: ThemeTexts.assessmentText.copyWith(fontSize: 20),
                           ),
 
-                          SizedBox(height: 90),
+                          SizedBox(height: 40),
 
                           FadeIn(
-                              2.2,
-                              1600,
+                              2.3,
+                              2000,
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,12 +132,13 @@ class _NameItState extends State<NameIt>{
                                         color: Colors.black26,
                                       )
                                   ),
+
                                   SizedBox(width: 10),
 
                                   Expanded(
                                     child: Text(
                                       "Wenn Du keinen passenden Titel findest, können Dir vielleicht Deine Freunde oder Sozialpädagog*innen weiterhelfen.",
-                                      style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                      style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26, fontSize: 15.4),
                                       textAlign: TextAlign.start,
                                       softWrap: true,
                                       overflow: TextOverflow.clip,

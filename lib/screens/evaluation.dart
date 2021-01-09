@@ -123,7 +123,7 @@ class _EvaluationState extends State<Evaluation>{
                               0.5,
                               100,
                               Padding(
-                                padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
+                                padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,7 +133,9 @@ class _EvaluationState extends State<Evaluation>{
                                       textAlign: TextAlign.start,
                                       style: ThemeTexts.assessmentDialogTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 17),
                                     ),
+
                                     SizedBox(height: 12),
+
                                     noNegativeExperiences >=  noPositiveExperiences ?
                                     Text(
                                       "Auch wenn Du selber noch nicht zufrieden bist: Du hast viel gemacht!",
@@ -212,7 +214,7 @@ class _EvaluationState extends State<Evaluation>{
                               0.8,
                               100,
                               Padding(
-                                padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
+                                padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,7 +272,7 @@ class _EvaluationState extends State<Evaluation>{
                               1.2,
                               100,
                               Padding(
-                                padding: EdgeInsets.fromLTRB(18, 10, 18, 10),
+                                padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -470,7 +472,7 @@ class _EvaluationState extends State<Evaluation>{
                 right: 0,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.fromLTRB(18, 10, 18, 20),
+                  padding: EdgeInsets.fromLTRB(16, 10, 16, 20),
                   child: FadeIn(
                     1.4,
                     500,

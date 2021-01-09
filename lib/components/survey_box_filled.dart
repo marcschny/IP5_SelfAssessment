@@ -32,7 +32,7 @@ class _SurveyBoxFilledState extends State<SurveyBoxFilled> {
               border: Border.all(color: ThemeColors.greenShade4),
               borderRadius: BorderRadius.all(Radius.circular(12))
       ),
-      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
 
       child: Text(
         widget.question,

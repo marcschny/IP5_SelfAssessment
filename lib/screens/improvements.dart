@@ -66,13 +66,15 @@ class _ImprovementsState extends State<Improvements>{
                     showProgressbar: true,
                 ),
 
-                Expanded(
+                Flexible(
+                  fit: FlexFit.loose,
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 2, 20, 74),
+                    padding: EdgeInsets.fromLTRB(16, 2, 16, 74),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
 
                             SlideUpFadeIn(
@@ -101,12 +103,13 @@ class _ImprovementsState extends State<Improvements>{
                                           color: Colors.black26,
                                         )
                                     ),
+
                                     SizedBox(width: 10),
 
                                     Expanded(
                                       child: Text(
                                         "Falls Dir nichts einfällt, kannst Du auch den Fragebogen ausfüllen, um herauszufinden worin du noch besser werden könntest.",
-                                        style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26),
+                                        style: ThemeTexts.assessmentQuestion.copyWith(color: Colors.black26, fontSize: 15.4),
                                         textAlign: TextAlign.start,
                                         softWrap: true,
                                         overflow: TextOverflow.clip,
@@ -197,57 +200,61 @@ class _ImprovementsState extends State<Improvements>{
 
 
   _evaluationQuestionnaire(){
-    return  Expanded(
-      child: SingleChildScrollView(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FadeIn(
-                2.2,
-                600,
-                Text(
-                  "Auswertung Fragebogen",
-                  style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
-                ),
-              ),
-
-              FadeIn(
-                2.2,
-                600,
-                Container(
-                  padding: EdgeInsets.only(top: 4),
-                  child: Text(
-                    widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Veränderungsprojekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Veränderungsprojekt arbeiten:",
-                    style: ThemeTexts.assessmentIntro,
-                    overflow: TextOverflow.clip,
+    return  Flexible(
+      fit: FlexFit.loose,
+      child: Container(
+        child: SingleChildScrollView(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FadeIn(
+                  2.2,
+                  600,
+                  Text(
+                    "Auswertung Fragebogen",
+                    style: ThemeTexts.assessmentSubtitle.copyWith(color: ThemeColors.greenShade2),
                   ),
                 ),
-              ),
 
-              SizedBox(height: 20),
-
-              Container(
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: widget.evaluation.length,
-                  itemBuilder: (context, index) {
-                    return SlideUpFadeIn(
-                      2.8+(index*0.1),
-                      20,
-                      SurveyBoxFilled(
-                        question: widget.evaluation[index],
-                      ),
-                    );
-                  },
-
+                FadeIn(
+                  2.2,
+                  600,
+                  Container(
+                    padding: EdgeInsets.only(top: 4),
+                    child: Text(
+                      widget.evaluation.length == 1 ? "An folgendem Punkt möchtest Du gerne am Veränderungsprojekt arbeiten:" : "An folgenden Punkten möchtest Du gerne am Veränderungsprojekt arbeiten:",
+                      style: ThemeTexts.assessmentIntro,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
                 ),
-              ),
+
+                SizedBox(height: 16),
+
+                Container(
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: widget.evaluation.length,
+                    itemBuilder: (context, index) {
+                      return SlideUpFadeIn(
+                        2.8+(index*0.1),
+                        20,
+                        SurveyBoxFilled(
+                          question: widget.evaluation[index],
+                        ),
+                      );
+                    },
+
+                  ),
+                ),
 
 
-            ],
-          ),
-    )
+              ],
+            ),
+        ),
+      )
     );
 
   }

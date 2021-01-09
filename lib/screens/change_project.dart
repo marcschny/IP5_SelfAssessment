@@ -206,7 +206,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                           children: [
 
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 18),
+                              padding: EdgeInsets.symmetric(horizontal: 16),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -268,7 +268,7 @@ class _ChangeProjectState extends State<ChangeProject>{
 
                                 itemCount: widgetList.length,
                                 itemBuilder: (context, index) {
-                                  if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: widgetList[index]);
+                                  if(index == 0) return Padding(padding: EdgeInsets.only(left: 16), child: widgetList[index]);
                                   else return widgetList[index];
                                 },
 
@@ -322,9 +322,9 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   //next page
   void _next(BuildContext context, int assessmentId) {
-    if(noExperiences >= 10) {
+    //if(noExperiences >= 10) {
     //todo: uncomment the following line and comment the line above for demonstration purposes
-    //if(true){
+    if(true){
       Navigator.of(context).push(
         PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 500),

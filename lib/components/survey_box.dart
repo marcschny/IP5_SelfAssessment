@@ -46,7 +46,7 @@ class _SurveyBoxState extends State<SurveyBox> {
                 borderRadius: BorderRadius.all(Radius.circular(12)),
                 color: Colors.transparent,
         ),
-        padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
 
         child: Directionality(
           textDirection: TextDirection.ltr,

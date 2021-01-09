@@ -106,7 +106,7 @@ class _ExperienceState extends State<MyExperiences>{
                   children: [
 
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18),
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         "Deine Erlebnisse",
                         style: ThemeTexts.assessmentTitle.copyWith(color: ThemeColors.greenShade1, fontSize: 28),
@@ -115,7 +115,7 @@ class _ExperienceState extends State<MyExperiences>{
                     ),
                     SizedBox(height: 3),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18),
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -145,7 +145,7 @@ class _ExperienceState extends State<MyExperiences>{
                       children: [
 
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -176,13 +176,13 @@ class _ExperienceState extends State<MyExperiences>{
 
                             itemCount: goodWidgetList?.length,
                             itemBuilder: (context, index) {
-                              if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: goodWidgetList[index]);
+                              if(index == 0) return Padding(padding: EdgeInsets.only(left: 16), child: goodWidgetList[index]);
                               else return goodWidgetList[index];
                             },
 
                           ),
                         ) : Container(
-                          padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           margin: EdgeInsets.only(bottom: 10),
                           child: Text(
                             "Keine guten Erlebnisse",
@@ -203,7 +203,7 @@ class _ExperienceState extends State<MyExperiences>{
                       children: [
 
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 18),
+                          padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -234,13 +234,13 @@ class _ExperienceState extends State<MyExperiences>{
 
                             itemCount: badWidgetList?.length,
                             itemBuilder: (context, index) {
-                              if(index == 0) return Padding(padding: EdgeInsets.only(left: 18), child: badWidgetList[index]);
+                              if(index == 0) return Padding(padding: EdgeInsets.only(left: 16), child: badWidgetList[index]);
                               else return badWidgetList[index];
                             },
 
                           ),
                         ) : Container(
-                          padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           margin: EdgeInsets.only(bottom: 10),
                           child: Text(
                             "Keine weniger guten Erlebnisse",

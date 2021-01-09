@@ -15,7 +15,7 @@ class ProgressBar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
       child: LinearPercentIndicator(
         width: MediaQuery.of(context).size.width-32, //subtract topBar horizontally padding
@@ -26,6 +26,7 @@ class ProgressBar extends StatelessWidget{
         linearStrokeCap: LinearStrokeCap.roundAll,
         progressColor: ThemeColors.greenShade3,
         backgroundColor: Color.fromRGBO(230, 230, 230, 1),
+        padding: EdgeInsets.all(4),
       ),
     );
   }

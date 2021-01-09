@@ -191,6 +191,7 @@ class _StartState extends State<Start>{
                     ),
                   ),
 
+                  //pageview dots
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

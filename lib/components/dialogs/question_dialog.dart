@@ -6,7 +6,6 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
 
-//todo: bug: sometimes there appears a renderflex overflow when navigator pops
 class QuestionDialog extends StatefulWidget{
 
   final int assessmentId;

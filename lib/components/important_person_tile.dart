@@ -18,7 +18,7 @@ class ImportantPersonTile extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 4),
       decoration: BoxDecoration(
         color: Colors.transparent,
       ),

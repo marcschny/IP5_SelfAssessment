@@ -81,7 +81,6 @@ class _LifeAreasState extends State<LifeAreas>{
               Column(
                 children: [
 
-
                   TopBar(
                     title: "Wer ist mir wichtig?\nMeine wichtigen Personen",
                     titleNumber: 1,
@@ -97,14 +96,13 @@ class _LifeAreasState extends State<LifeAreas>{
                     _customCheckBox(),
                   ),
 
-
                   Expanded(
                     child: FadeIn(
                       1.6,
                       500,
                       Container(
                         color: Colors.transparent,
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 94),
+                        padding: EdgeInsets.fromLTRB(6, 0, 16, 94),
                         child: AnimatedList(
                           key: _listKey,
                           initialItemCount: _lifeAreasMap.length,
@@ -115,7 +113,7 @@ class _LifeAreasState extends State<LifeAreas>{
                                 end: Offset(0, 0),
                               ).animate(animation),
                               child: CheckBoxComponent(
-                                checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //count backwards, so the newly added life area appears on top
+                                checkboxTitle: _lifeAreasMap.keys.elementAt(_lifeAreasMap.length-index-1), //counts backwards, so the newly added life area appears on top
                                 checked: _lifeAreasMap.values.elementAt(_lifeAreasMap.length-index-1),
                                 callback: (checkBoxTitle){
                                   _switchChecked(checkBoxTitle);
@@ -149,7 +147,7 @@ class _LifeAreasState extends State<LifeAreas>{
 
   _customCheckBox(){
     return Container(
-        padding: EdgeInsets.fromLTRB(10, 0, 16, 0),
+        padding: EdgeInsets.fromLTRB(6, 0, 18, 0),
         margin: EdgeInsets.only(bottom: 8),
         child: Row(
             children: [

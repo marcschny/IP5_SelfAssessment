@@ -123,7 +123,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
 
 
                   Padding(
-                    padding: EdgeInsets.only(left: 18),
+                    padding: EdgeInsets.only(left: 16),
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -167,7 +167,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
                     1,
                     500,
                     Container(
-                      padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
+                      padding: EdgeInsets.fromLTRB(16, 10, 16, 94),
                       width: MediaQuery.of(context).size.width,
                       child: widgetList.length > 0 && widgetList != null ?
                       ListView.builder(
