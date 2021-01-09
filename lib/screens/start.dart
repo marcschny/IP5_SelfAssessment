@@ -5,6 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:ip5_selbsteinschaetzung/screens/areas.dart';
+import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -64,8 +65,8 @@ class _StartState extends State<Start>{
                 BuildContext context,
                 Animation<double> animation,
                 Animation<double> secondaryAnimation) {
-              return LifeAreas(assessmentId: assessmentId, visualizationId: visualizationId);
-              //return ChangeProject(assessmentId: assessmentId);
+              //return LifeAreas(assessmentId: assessmentId, visualizationId: visualizationId);
+              return Strengths(assessmentId: assessmentId, visualizationId: 1);
 
             },
             transitionsBuilder: (

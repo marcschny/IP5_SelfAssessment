@@ -31,7 +31,9 @@ import 'package:flutter/services.dart';
 import 'components/dialogs/person_dialog.dart';
 
 
-
+//todo: adjust all wordings
+//todo: comments
+//todo: code cleanup
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

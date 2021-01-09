@@ -4,7 +4,7 @@ import 'package:ip5_selbsteinschaetzung/components/progress_bar.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
 
-//todo: add some kind of divider if no progressbar visible, for better ui
+
 class TopBar extends StatelessWidget{
 
   final String title;

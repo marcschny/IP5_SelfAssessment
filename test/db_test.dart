@@ -10,7 +10,7 @@ import 'package:ip5_selbsteinschaetzung/services/assessment_repository.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 
-
+//database tests
 void main() {
 
   group('database tests', () {

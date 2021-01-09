@@ -16,6 +16,7 @@ import 'package:ip5_selbsteinschaetzung/screens/survey_intro.dart';
 import 'package:test/test.dart' as test;
 
 
+//widget tests
 void main(){
 
   //helper method to setup widgets which need a MaterialApp to be built
