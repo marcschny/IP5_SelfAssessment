@@ -132,7 +132,7 @@ class _SurveyPart1State extends State<SurveyPart1> {
             BottomNavigation(
                 showNextButton: true,
                 showBackButton: true,
-                nextTitle: "Themenblock 2",
+                nextTitle: "Teil 2",
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },

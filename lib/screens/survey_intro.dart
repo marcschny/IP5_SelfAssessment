@@ -36,6 +36,7 @@ class _SurveyIntroState extends State<SurveyIntro> {
           fit: BoxFit.cover,
         ),
 
+          //todo: adjust wording
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -43,7 +44,7 @@ class _SurveyIntroState extends State<SurveyIntro> {
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 3,
                   subtitle: "Fragebogen",
-                  intro: "Auf den folgenden Screens erhälst Du jeweils  Fragen zu drei Themenblöcken, "
+                  intro: "Auf den folgenden Screens erhälst Du jeweils  Fragen zu drei Teilen, "
                   "welche Dir helfen  werden nach Abschluss des Fragebogens ein  mögliches Ziel für Dein Veränderungsprojekt zu finden. \n"
                   "Beantworte so viele Fragen wie möglich: \n\n"
                   "Wenn Dir etwas unwichtig ist oder dies andere  Menschen gar nicht machen,"

@@ -86,7 +86,7 @@ class _WeaknessesState extends State<Weaknesses>{
           BottomNavigation(
               showNextButton: true,
               showBackButton: true,
-              nextTitle: "Das möchte ich gerne können",
+              nextTitle: "Das möchte ich gerne besser können",
               callbackBack: () {
                 Navigator.of(context).pop();
               },

@@ -60,7 +60,7 @@ class _ImprovementsState extends State<Improvements>{
                 TopBar(
                     title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                     titleNumber: 2,
-                    subtitle: "Das möchte ich gerne können",
+                    subtitle: "Das möchte ich gerne besser können",
                     intro: "Nun geht es um Dein Veränderungsprojekt: In den nächsten Wochen kannst Du Dich in einem Bereich verbessern, in dem Du gerne besser werden möchtest.\nTippe auf die Frage um sie zu beantworten.",
                     percent: 0.45,
                     showProgressbar: true,

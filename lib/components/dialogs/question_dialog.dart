@@ -27,6 +27,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
 
   String subquestion;
   Answer answer;
+  FocusNode focusNode;
 
   final answerController = TextEditingController();
 
@@ -38,12 +39,18 @@ class _QuestionDialogState extends State<QuestionDialog> {
     answerController.addListener(() {
       getSubQuestion();
     });
+    focusNode = FocusNode();
+    Future.delayed(Duration(milliseconds: 600), _showKeyboard);
   }
 
   @override
   void dispose() {
     answerController.dispose();
     super.dispose();
+  }
+
+  void _showKeyboard() async{
+    focusNode.requestFocus();
   }
 
 
@@ -86,7 +93,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
                   color: ThemeColors.greenShade4,
                 ),
                 child: TextField(
-                  autofocus: true,
+                  focusNode: focusNode,
                   style: ThemeTexts.assessmentAnswer,
                   decoration: InputDecoration(
                     hintText: "Deine Antwort...",
