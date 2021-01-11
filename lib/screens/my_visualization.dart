@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/circle_trianlge_painter.dart';
+import 'package:ip5_selbsteinschaetzung/components/info_button.dart';
 import 'package:ip5_selbsteinschaetzung/components/legend_element.dart';
 import 'package:ip5_selbsteinschaetzung/components/person_circle.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
@@ -13,6 +14,7 @@ import 'package:ip5_selbsteinschaetzung/resources/animations/fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/resources/visualization_methods.dart';
 import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
 import 'package:provider/provider.dart';
+import 'package:super_tooltip/super_tooltip.dart';
 
 
 
@@ -34,6 +36,8 @@ class MyVisualization extends StatefulWidget{
 
 
 class _MyVisualizationState extends State<MyVisualization>{
+
+  SuperTooltip tooltip;
 
   //necessary lists
   List<String> lifeAreas;
@@ -67,6 +71,32 @@ class _MyVisualizationState extends State<MyVisualization>{
     super.dispose();
   }
 
+
+  void _showInfo(){
+    tooltip = SuperTooltip(
+      popupDirection: TooltipDirection.left,
+      hasShadow: false,
+      arrowLength: 20,
+      arrowTipDistance: 2,
+      maxWidth: MediaQuery.of(context).size.width-40,
+      backgroundColor: Color.fromRGBO(220, 220, 220, .8),
+      borderColor: Colors.transparent,
+      outsideBackgroundColor: Colors.transparent,
+      content: new Material(
+        color: Colors.transparent,
+        child: Text(
+          "Scrolle nach unten falls die Legende nicht ersichtlich ist",
+          style: TextStyle(
+            fontSize: 13,
+            color: Colors.black45,
+          ),
+          softWrap: true,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+    tooltip.show(context);
+  }
 
 
   //create legend
@@ -103,6 +133,7 @@ class _MyVisualizationState extends State<MyVisualization>{
       child: YourPersonCircle(name: "Ich"),
     );
     personCircleList.add(yourPerson);
+
 
 
     personList.forEach((element) {
@@ -218,6 +249,12 @@ class _MyVisualizationState extends State<MyVisualization>{
                                   ),
                                 ),
                               ),
+                            ),
+
+                            Positioned(
+                              top: 8,
+                              right: 10,
+                              child: InfoButton(text: "Scrolle nach unten falls die Legende nicht sichtbar ist!", tooltipDirection: TooltipDirection.left),
                             ),
 
                             ]..addAll(personCircleList),

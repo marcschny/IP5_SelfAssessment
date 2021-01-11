@@ -65,8 +65,8 @@ class _StartState extends State<Start>{
                 BuildContext context,
                 Animation<double> animation,
                 Animation<double> secondaryAnimation) {
-              //return LifeAreas(assessmentId: assessmentId, visualizationId: visualizationId);
-              return Strengths(assessmentId: assessmentId, visualizationId: 1);
+              return LifeAreas(assessmentId: assessmentId, visualizationId: visualizationId);
+              //return Strengths(assessmentId: assessmentId, visualizationId: 1);
 
             },
             transitionsBuilder: (
