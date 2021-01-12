@@ -38,7 +38,7 @@ class _SurveyBoxFilledState extends State<SurveyBoxFilled> {
         widget.question,
         style: ThemeTexts.assessmentQuestion,
       ),
-      margin: EdgeInsets.only(bottom: 15),
+      margin: EdgeInsets.only(bottom: 12),
       width: MediaQuery
           .of(context)
           .size

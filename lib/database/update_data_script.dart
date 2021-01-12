@@ -3,7 +3,7 @@
 const updateDataScript = [
   'UPDATE Question SET question = \'Was kannst Du richtig gut im Umgang mit anderen Menschen?\', subquestion = \'Zähle möglichst viel auf.\' WHERE question_number = \'2.1.1\'',
   'UPDATE Question SET question = \'Was fällt Dir manchmal schwer im Umgang mit anderen Menschen?\' WHERE question_number = \'2.2.1\'',
-  'UPDATE Question SET question = \'Was möchtest Du in den nächsten Wochen ausprobieren?\' WHERE question_number = \'2.3.1\'',
+  'UPDATE Question SET question = \'Was möchtest Du in den nächsten Wochen ausprobieren?\', subquestion = \'Dies ist Teil Deines Veränderungsprojekts!\' WHERE question_number = \'2.3.1\'',
   'UPDATE Question SET question = \'Wer der Jugendlichen könnte Dir dabei helfen?\', subquestion = \'Wen willst Du einweihen und fragen, ob er/sie Dich unterstützt?\' WHERE question_number = \'2.5.1\'',
   'UPDATE Question SET question = \'Wer der Sozialpädagog*innen könnte Dir dabei helfen?\', subquestion = \'Die Sozialpädagog*innen in der WG sind ja dazu da, Dich zu unterstützen. Wen willst Du einbeziehen in Dein Veränderungsprojekt?\' WHERE question_number = \'2.5.2\'',
   'UPDATE Question SET question = \'Wer aus deiner Familie könnte Dir dabei helfen?\', subquestion = \'Wen willst Du einweihen und fragen, ob er/sie Dich unterstützt?\' WHERE question_number = \'2.5.3\'',

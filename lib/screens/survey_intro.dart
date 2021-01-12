@@ -4,7 +4,7 @@ import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/screens/survey_part_1.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
-
+//todo: gif for showing expandable_question_card
 class SurveyIntro extends StatefulWidget {
 
   final int assessmentId;
@@ -44,11 +44,11 @@ class _SurveyIntroState extends State<SurveyIntro> {
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 3,
                   subtitle: "Fragebogen",
-                  intro: "Auf den folgenden Screens erhälst Du jeweils  Fragen zu drei Teilen, "
-                  "welche Dir helfen  werden nach Abschluss des Fragebogens ein  mögliches Ziel für Dein Veränderungsprojekt zu finden. \n"
-                  "Beantworte so viele Fragen wie möglich: \n\n"
+                  intro: "Auf den folgenden Screens erhälst Du einen dreiteiligen Fragebogen, "
+                  "welcher Dir helfen  wird nach Abschluss ein  mögliches Ziel für Dein Veränderungsprojekt zu finden. \n"
+                  "Beantworte so viele Fragen wie möglich: \n"
                   "Wenn Dir etwas unwichtig ist oder dies andere  Menschen gar nicht machen,"
-                  " kannst du die Frage  auslassen.Wenn Dir jedoch etwas wichtig ist oder Du es an anderen magst, kannst Du Deine "
+                  " kannst du die Frage  auslassen. Wenn Dir jedoch etwas wichtig ist oder Du es an anderen magst, kannst Du Deine "
                   "Beurteilung dazu abgeben.",
                   percent: 0.55,
                   showProgressbar: true,

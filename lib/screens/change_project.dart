@@ -191,7 +191,7 @@ class _ChangeProjectState extends State<ChangeProject>{
                       percent: 0,
                       showProgressbar: false,
                       widget: headerRow(context),
-                      intro: "Halte in den nächsten Wochen möglichst oft fest, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils mit dem Button \"+ Erlebnis\" eine neue Erlebniskarte erstellen. Erstelle mindestens 10 Erlebniskarten um dein Veränderungsprojekt abzuschiessen.",
+                      intro: "Halte in den nächsten Wochen fest, was Du gemacht hast und wie das war.\nDazu kannst Du jeweils eine neue Erlebniskarte erstellen: Erstelle mindestens 10 Erlebniskarten um dein Veränderungsprojekt abzuschliessen.",
                   ),
 
                   SizedBox(height: 12),

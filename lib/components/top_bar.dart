@@ -98,7 +98,7 @@ class TopBar extends StatelessWidget{
                 color: Colors.transparent,
                 child: Text(
                   subtitle,
-                  style: ThemeTexts.assessmentSubtitle,
+                  style: ThemeTexts.assessmentSubtitle.copyWith(height: .92),
                 ),
               ),
             ),

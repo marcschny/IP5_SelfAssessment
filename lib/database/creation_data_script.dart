@@ -10,7 +10,7 @@ const creationDataScript = [
   'DELETE FROM Question',
   'INSERT INTO Question (question_number, question, subquestion)  VALUES (\'2.1.1\',\'Was kannst Du richtig gut im Umgang mit anderen Menschen?\', \'Zähle möglichst viel auf.\')',
   'INSERT INTO Question (question_number, question)               VALUES (\'2.2.1\',\'Was fällt Dir manchmal schwer im Umgang mit anderen Menschen?\')',
-  'INSERT INTO Question (question_number, question)               VALUES (\'2.3.1\',\'Was möchtest Du in den nächsten Wochen ausprobieren?\')',
+  'INSERT INTO Question (question_number, question, subquestion)  VALUES (\'2.3.1\',\'Was möchtest Du in den nächsten Wochen ausprobieren?\', \'Dies ist Teil Deines Veränderungsprojekts!\')',
   'INSERT INTO Question (question_number, question, subquestion)  VALUES (\'2.5.1\',\'Wer der Jugendlichen könnte Dir dabei helfen?\', \'Wen willst Du einweihen und fragen, ob er/sie Dich unterstützt?\')',
   'INSERT INTO Question (question_number, question, subquestion)  VALUES (\'2.5.2\',\'Wer der Sozialpädagog*innen könnte Dir dabei helfen?\', \'Die Sozialpädagog*innen in der WG sind ja dazu da, Dich zu unterstützen. Wen willst Du einbeziehen in Dein Veränderungsprojekt?\')',
   'INSERT INTO Question (question_number, question, subquestion)  VALUES (\'2.5.3\',\'Wer aus deiner Familie könnte Dir dabei helfen?\', \'Wen willst Du einweihen und fragen, ob er/sie Dich unterstützt?\')',

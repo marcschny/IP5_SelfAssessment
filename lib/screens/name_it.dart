@@ -81,7 +81,7 @@ class _NameItState extends State<NameIt>{
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 2,
                   subtitle: "Name it!",
-                  intro: "Möchtest Du Deinem Veränderungsprojekt einen Titel geben? Falls ja, welchen?",
+                  intro: "Möchtest Du Deinem Veränderungsprojekt einen Titel geben? Falls nicht, kannst Du zum nächsten Schritt gehen.",
                   percent: 0.5,
                   showProgressbar: true,
               ),

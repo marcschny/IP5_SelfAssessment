@@ -103,7 +103,7 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
             BottomNavigation(
                 showNextButton: true,
                 showBackButton: true,
-                nextTitle: "Lust auf etwas Neues?",
+                nextTitle: "Das möchte ich gerne können",
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },

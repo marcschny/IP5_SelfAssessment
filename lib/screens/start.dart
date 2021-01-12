@@ -281,6 +281,16 @@ class Part0 extends StatelessWidget {
               WidgetSpan(
                 child: Image.asset("assets/illustrations/flowchart.png"),
               ),
+              TextSpan(
+                text: "\n\nWische nach links um mehr über dieses Assessment zu erfahren. ",
+                style: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 15.5
+                ),
+              ),
+              WidgetSpan(
+                child: Icon(Icons.swipe, size: 20, color: Colors.black26),
+              ),
             ],
           ),
 
@@ -305,7 +315,8 @@ class Part1 extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 16),
-          child: RichText(
+          child:
+          RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
               children: [
@@ -317,7 +328,22 @@ class Part1 extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: "Zum Abschluss des Teil 1 siehst du Deine Visualisierung ",
+                  text: "Zum Abschluss des ",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black
+                  ),
+                ),
+                TextSpan(
+                  text: "Teil 1",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: ThemeColors.greenShade1,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                TextSpan(
+                  text: " erhälst Du Deine Visualisierung.",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black
@@ -359,7 +385,37 @@ class Part2 extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: "Zum Abschluss des Teil 2 machst Du Dir erste Gedanken zu deinem Veränderungsprojekt, welches Du dann im Teil 4 starten kannst",
+                    text: "Zum Abschluss des ",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black
+                    ),
+                  ),
+                  TextSpan(
+                    text: "Teil 2",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: ThemeColors.greenShade1,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  TextSpan(
+                    text: " machst Du Dir erste Gedanken zu Deinem Veränderungsprojekt, welches Du dann im ",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black
+                    ),
+                  ),
+                  TextSpan(
+                    text: "Teil 4",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: ThemeColors.greenShade1,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  TextSpan(
+                    text: " starten kannst.",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -393,7 +449,7 @@ class Part3 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "In einem dritten Teil, welcher optional ist, kannst du mit Hilfe eines dreiteiligen Fragebogens herausfinden, worin Deine Stärken und Schwächen liegen. Dies hilft Dir bei der Wahl Deines Veränderungsprojekts",
+                    text: "In einem dritten Teil, welcher optional ist, kannst Du mit Hilfe eines dreiteiligen Fragebogens herausfinden, worin Deine Stärken und Schwächen liegen. Dies hilft Dir bei der Wahl Deines Veränderungsprojekts",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -428,7 +484,29 @@ class Part4 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Teil 4 ist Dein Veränderungsprojekt  “Hey, das kann ich!”. Hier kannst Du täglich Deine Gedanken, Deine Ideen oder Deinen Fortschritt festhalten.",
+                    text: "Teil 4",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: ThemeColors.greenShade1,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  TextSpan(
+                    text: " ist Dein Veränderungsprojekt ",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black
+                    ),
+                  ),
+                  TextSpan(
+                    text: " “Das möchte ich gerne können!”",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black
+                    ),
+                  ),
+                  TextSpan(
+                    text: "  Hier kannst Du während zwei bis drei Wochen an Dir arbeiten und festhalten was Dir dabei gut und weniger gut gelungen ist.",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
@@ -463,7 +541,22 @@ class Part5 extends StatelessWidget {
             text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du eine Auswertung dazu.\n\n\n",
+                    text: "Nach Abschluss Deines Veränderungsprojekts erhälts Du im ",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black
+                    ),
+                  ),
+                  TextSpan(
+                    text: "Teil 5",
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: ThemeColors.greenShade1,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  TextSpan(
+                    text: " eine Auswertung davon.\n\n\n",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black
