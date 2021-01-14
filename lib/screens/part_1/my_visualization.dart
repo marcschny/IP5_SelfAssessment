@@ -72,33 +72,6 @@ class _MyVisualizationState extends State<MyVisualization>{
   }
 
 
-  void _showInfo(){
-    tooltip = SuperTooltip(
-      popupDirection: TooltipDirection.left,
-      hasShadow: false,
-      arrowLength: 20,
-      arrowTipDistance: 2,
-      maxWidth: MediaQuery.of(context).size.width-40,
-      backgroundColor: Color.fromRGBO(220, 220, 220, .8),
-      borderColor: Colors.transparent,
-      outsideBackgroundColor: Colors.transparent,
-      content: new Material(
-        color: Colors.transparent,
-        child: Text(
-          "Scrolle nach unten falls die Legende nicht ersichtlich ist",
-          style: TextStyle(
-            fontSize: 13,
-            color: Colors.black45,
-          ),
-          softWrap: true,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-    tooltip.show(context);
-  }
-
-
   //create legend
   _createLegend(){
 

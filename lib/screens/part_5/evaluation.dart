@@ -500,10 +500,6 @@ class _EvaluationState extends State<Evaluation>{
                           onPressed: () {
                             _finishAssessment();
                           },
-                          //todo: uncomment the following 3 lines for demonstration purposes
-                          /*onLongPress: (){
-                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ChangeProject(assessmentId: widget.assessmentId)), (route) => false);
-                          },*/
                         ),
 
 

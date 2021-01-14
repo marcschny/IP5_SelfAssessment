@@ -322,9 +322,7 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   //next page
   void _next(BuildContext context, int assessmentId) {
-    //if(noExperiences >= 10) {
-    //todo: uncomment the following line and comment the line above for demonstration purposes
-    if(true){
+    if(noExperiences >= 10) {
       Navigator.of(context).push(
         PageRouteBuilder(
           transitionDuration: Duration(milliseconds: 500),
