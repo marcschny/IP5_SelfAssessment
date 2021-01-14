@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandable_question_card.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_part_2.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_part_2.dart';
 
 
 

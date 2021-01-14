@@ -3,27 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/expandable_question_card.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_part_3.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_evaluation.dart';
 
 
-
-class SurveyPart2 extends StatefulWidget {
+class SurveyPart3 extends StatefulWidget {
 
   final int assessmentId;
   final int visualizationId;
 
-  const SurveyPart2({
+  const SurveyPart3({
     Key key,
     this.assessmentId,
     this.visualizationId
   }) : super(key: key);
 
   @override
-  _SurveyPart2State createState() => _SurveyPart2State();
+  _SurveyPart3State createState() => _SurveyPart3State();
 }
 
-class _SurveyPart2State extends State<SurveyPart2>{
+class _SurveyPart3State extends State<SurveyPart3>{
 
 
   @override
@@ -35,6 +34,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
   void dispose() {
     super.dispose();
   }
+
 
 
   @override
@@ -74,15 +74,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
                         0.5,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.3.1",
-                          assessmentId: widget.assessmentId,
-                        ),
-                      ),
-                      SlideUpFadeIn(
-                        0.7,
-                        100,
-                        ExpandableQuestionCard(
-                          questionNumber: "3.3.2",
+                          questionNumber: "3.4.1",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -90,7 +82,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
                         0.9,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.3.3",
+                          questionNumber: "3.4.2",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -98,7 +90,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
                         1.1,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.3.4",
+                          questionNumber: "3.4.3",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -106,7 +98,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
                         1.3,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.3.5",
+                          questionNumber: "3.4.4",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -114,7 +106,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
                         1.5,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.3.6",
+                          questionNumber: "3.4.5",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
@@ -122,10 +114,11 @@ class _SurveyPart2State extends State<SurveyPart2>{
                         1.6,
                         100,
                         ExpandableQuestionCard(
-                          questionNumber: "3.3.7",
+                          questionNumber: "3.4.6",
                           assessmentId: widget.assessmentId,
                         ),
                       ),
+
 
                   ],
                   ),
@@ -138,7 +131,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
             BottomNavigation(
                 showNextButton: true,
                 showBackButton: true,
-                nextTitle: "Teil 3",
+                nextTitle: "Auswertung",
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },
@@ -151,8 +144,6 @@ class _SurveyPart2State extends State<SurveyPart2>{
         ],
         ),
       ),
-
-
     );
   }
 
@@ -165,7 +156,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
             BuildContext context,
             Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return SurveyPart3(assessmentId: assessmentId, visualizationId: visualizationId);
+          return SurveyEvaluation(assessmentId: assessmentId, visualizationId: visualizationId);
         },
         transitionsBuilder: (
             BuildContext context,

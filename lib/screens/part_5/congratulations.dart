@@ -8,7 +8,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ip5_selbsteinschaetzung/screens/evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_5/evaluation.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:lottie/lottie.dart';
 

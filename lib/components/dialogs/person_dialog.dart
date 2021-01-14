@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:flutter_score_slider/flutter_score_slider.dart';
 import 'package:provider/provider.dart';

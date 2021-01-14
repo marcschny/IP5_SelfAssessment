@@ -4,8 +4,8 @@ import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/fade_in.dart';
-import 'package:ip5_selbsteinschaetzung/screens/who_can_help.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/who_can_help.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 

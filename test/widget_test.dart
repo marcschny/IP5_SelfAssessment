@@ -12,7 +12,7 @@ import 'package:ip5_selbsteinschaetzung/components/survey_box.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_intro.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_intro.dart';
 import 'package:test/test.dart' as test;
 
 

@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:ip5_selbsteinschaetzung/components/dialogs/experience_dialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/dialogs/not_editable_experience_dialog.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_from_bottom.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_from_bottom.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:intl/intl.dart';
 

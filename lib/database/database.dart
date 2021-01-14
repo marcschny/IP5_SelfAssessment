@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:floor/floor.dart';
-import 'package:ip5_selbsteinschaetzung/services/assessment_repository.dart';
+import 'package:ip5_selbsteinschaetzung/database/assessment_repository.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 import 'entities/answer.dart';
 import 'entities/person.dart';

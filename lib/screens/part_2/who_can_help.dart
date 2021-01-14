@@ -4,10 +4,10 @@ import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
 import 'package:ip5_selbsteinschaetzung/components/dialogs/visualization_dialog.dart';
 import 'package:ip5_selbsteinschaetzung/components/question_card.dart';
 import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/fade_in.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_from_bottom.dart';
-import 'package:ip5_selbsteinschaetzung/screens/change_project.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_from_bottom.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_4/change_project.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
 

@@ -4,8 +4,8 @@ import 'package:ip5_selbsteinschaetzung/components/curved_shape.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
-import 'package:ip5_selbsteinschaetzung/screens/areas.dart';
-import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_1/areas.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/strengths.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 

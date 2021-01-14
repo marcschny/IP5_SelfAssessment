@@ -6,8 +6,8 @@ import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/question.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_fade_in.dart';
-import 'package:ip5_selbsteinschaetzung/screens/improvements.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/improvements.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 

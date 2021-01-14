@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
-import 'package:ip5_selbsteinschaetzung/screens/change_project.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_4/change_project.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';

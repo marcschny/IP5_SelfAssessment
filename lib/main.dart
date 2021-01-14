@@ -4,26 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/creation_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/update_data_script.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/slide_up_toast.dart';
-import 'package:ip5_selbsteinschaetzung/screens/change_project.dart';
-import 'package:ip5_selbsteinschaetzung/screens/congratulations.dart';
-import 'package:ip5_selbsteinschaetzung/screens/my_experiences.dart';
-import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
-import 'package:ip5_selbsteinschaetzung/screens/weaknesses.dart';
-import 'package:ip5_selbsteinschaetzung/screens/improvements.dart';
-import 'package:ip5_selbsteinschaetzung/screens/name_it.dart';
-import 'package:ip5_selbsteinschaetzung/screens/who_can_help.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_toast.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_4/change_project.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_5/congratulations.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_5/my_experiences.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/strengths.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/weaknesses.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/improvements.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/name_it.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/who_can_help.dart';
 import 'package:ip5_selbsteinschaetzung/screens/start.dart';
-import 'package:ip5_selbsteinschaetzung/screens/areas.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_intro.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_part_1.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_part_2.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_part_3.dart';
-import 'package:ip5_selbsteinschaetzung/screens/survey_evaluation.dart';
-import 'package:ip5_selbsteinschaetzung/screens/my_visualization.dart';
-import 'package:ip5_selbsteinschaetzung/screens/evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_1/areas.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_intro.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_part_1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_part_2.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_part_3.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_evaluation.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_1/my_visualization.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_5/evaluation.dart';
 import 'package:ip5_selbsteinschaetzung/screens/test_screen.dart';
-import 'package:ip5_selbsteinschaetzung/screens/important_persons.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_1/important_persons.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
@@ -31,7 +31,7 @@ import 'package:flutter/services.dart';
 import 'components/dialogs/person_dialog.dart';
 
 
-//todo: adjust all wordings
+//todo: separate routes
 //todo: comments
 //todo: code cleanup
 Future<void> main() async {

@@ -10,7 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:intl/intl.dart';
 

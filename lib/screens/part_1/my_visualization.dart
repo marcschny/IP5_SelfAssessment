@@ -10,9 +10,9 @@ import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/components/your_person_circle.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
-import 'package:ip5_selbsteinschaetzung/resources/animations/fade_in.dart';
+import 'package:ip5_selbsteinschaetzung/components/animations/fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/resources/visualization_methods.dart';
-import 'package:ip5_selbsteinschaetzung/screens/strengths.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_2/strengths.dart';
 import 'package:provider/provider.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
@@ -186,9 +186,8 @@ class _MyVisualizationState extends State<MyVisualization>{
       });
     });
 
-    //then create list of personCircles
+    //then create list of personCircles and the legend
     _createPersonCircleList();
-    //then create legend
     _createLegend();
 
   }
