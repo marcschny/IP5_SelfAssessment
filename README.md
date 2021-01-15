@@ -14,7 +14,7 @@ Sobald Flutter auf dem Rechner installiert und in der Entwicklungsumgebung integ
 Klicken Sie dazu oben links auf "File" und anschliessend auf "Open..." und wählen Sie das Projekt zum Öffnen aus.
 
 Bevor das Projekt gestartet werden kann müssen noch einige Befehle ausgeführt werden.
-Öffnen sie dazu die Kommandozeile und navigieren Sie zum Verzeichnis des Projeks (oder nutzen Sie das integrierte Terminal in der IDE).
+Öffnen Sie dazu die Kommandozeile und navigieren Sie zum Verzeichnis des Projekts (oder nutzen Sie das integrierte Terminal in der IDE).
 Führen Sie nun folgende Befehle aus:
 
 1. Build Cache leeren
@@ -27,7 +27,7 @@ flutter clean
 flutter pub get
 ```
 
-3. Datenbank aufbauen
+3. Datenbank aufbauen:
 Löschen Sie dazu zuerst die Datei "database.g.dart" (falls vorhanden) im Verzeichnis "lib/database", und führen Sie dann den Befehl aus:
 ```bash
 flutter packages pub run build_runner build
