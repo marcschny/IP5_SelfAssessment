@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ip5_selbsteinschaetzung/components/BottomNavigation.dart';
-import 'package:ip5_selbsteinschaetzung/resources/visualizationMethods.dart';
+import 'package:ip5_selbsteinschaetzung/components/bottom_navigation.dart';
+import 'package:ip5_selbsteinschaetzung/resources/visualization_methods.dart';
 
-
+//Unit tests
 void main(){
 
   test('BottomNavigation Unit Test', (){

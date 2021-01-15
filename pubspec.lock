@@ -198,7 +198,7 @@ packages:
     source: hosted
     version: "0.5.0"
   expandable:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: expandable
       url: "https://pub.dartlang.org"
@@ -264,7 +264,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_score_slider:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_score_slider
       url: "https://pub.dartlang.org"
@@ -288,7 +288,7 @@ packages:
     source: hosted
     version: "1.2.0"
   google_fonts:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_fonts
       url: "https://pub.dartlang.org"
@@ -323,7 +323,7 @@ packages:
     source: hosted
     version: "3.1.4"
   intl:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -365,7 +365,7 @@ packages:
     source: hosted
     version: "0.11.4"
   lottie:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: lottie
       url: "https://pub.dartlang.org"
@@ -421,7 +421,7 @@ packages:
     source: hosted
     version: "1.4.12"
   oktoast:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: oktoast
       url: "https://pub.dartlang.org"
@@ -484,7 +484,7 @@ packages:
     source: hosted
     version: "1.10.0-nullsafety.2"
   percent_indicator:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: percent_indicator
       url: "https://pub.dartlang.org"
@@ -547,7 +547,7 @@ packages:
     source: hosted
     version: "2.1.5"
   rxdart:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
@@ -589,7 +589,7 @@ packages:
     source: hosted
     version: "0.2.3"
   simple_animations:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: simple_animations
       url: "https://pub.dartlang.org"
@@ -685,7 +685,7 @@ packages:
     source: hosted
     version: "1.1.0-nullsafety.1"
   super_tooltip:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: super_tooltip
       url: "https://pub.dartlang.org"

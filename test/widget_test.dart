@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ip5_selbsteinschaetzung/components/CheckBoxComponent.dart';
-import 'package:ip5_selbsteinschaetzung/components/nextButton.dart';
-import 'package:ip5_selbsteinschaetzung/components/experienceCard.dart';
-import 'package:ip5_selbsteinschaetzung/components/importantPersonTile.dart';
-import 'package:ip5_selbsteinschaetzung/components/legendElement.dart';
-import 'package:ip5_selbsteinschaetzung/components/notEditableExperienceDialog.dart';
-import 'package:ip5_selbsteinschaetzung/components/personCircle.dart';
-import 'package:ip5_selbsteinschaetzung/components/progressBar.dart';
-import 'package:ip5_selbsteinschaetzung/components/surveyBox.dart';
-import 'package:ip5_selbsteinschaetzung/components/topBar.dart';
+import 'package:ip5_selbsteinschaetzung/components/checkbox_component.dart';
+import 'package:ip5_selbsteinschaetzung/components/dialogs/not_editable_experience_dialog.dart';
+import 'package:ip5_selbsteinschaetzung/components/next_button.dart';
+import 'package:ip5_selbsteinschaetzung/components/experience_card.dart';
+import 'package:ip5_selbsteinschaetzung/components/important_person_tile.dart';
+import 'package:ip5_selbsteinschaetzung/components/legend_element.dart';
+import 'package:ip5_selbsteinschaetzung/components/person_circle.dart';
+import 'package:ip5_selbsteinschaetzung/components/progress_bar.dart';
+import 'package:ip5_selbsteinschaetzung/components/survey_box.dart';
+import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/experience.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
-import 'package:ip5_selbsteinschaetzung/screens/SurveyPart1.dart';
+import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_intro.dart';
 import 'package:test/test.dart' as test;
 
 
+//widget tests
 void main(){
 
   //helper method to setup widgets which need a MaterialApp to be built
@@ -29,7 +30,7 @@ void main(){
   test.group('ui tests for custom components', (){
 
     testWidgets('TopBar Widget Test', (WidgetTester tester) async{
-      await tester.pumpWidget(buildTestableWidget(TopBar(title: "Testtitle", titleNumber: 2, onClose: null, subtitle: "Testsubtitle", percent: 0.1, showProgressbar: true)));
+      await tester.pumpWidget(buildTestableWidget(TopBar(title: "Testtitle", titleNumber: 2, subtitle: "Testsubtitle", percent: 0.1, showProgressbar: true)));
 
       expect(find.text("Testtitle"), findsOneWidget);
       expect(find.text("Testsubtitle"), findsOneWidget);
@@ -106,7 +107,7 @@ void main(){
 
     testWidgets('Survey Part 1', (WidgetTester tester) async {
 
-      await tester.pumpWidget(buildTestableWidget(SurveyPart1()));
+      await tester.pumpWidget(buildTestableWidget(SurveyIntro()));
 
       expect(find.text("Fragebogen"), findsOneWidget);
       expect(find.byType(RaisedButton), findsOneWidget);
