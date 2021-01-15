@@ -13,22 +13,22 @@ import 'package:oktoast/oktoast.dart';
 
 
 //Screen 1.1
-class LifeAreas extends StatefulWidget{
+class Areas extends StatefulWidget{
 
   final int assessmentId;
   final int visualizationId;
 
-  const LifeAreas({
+  const Areas({
     Key key,
     @required this.assessmentId,
     @required this.visualizationId,
   });
 
-  _LifeAreasState createState() => _LifeAreasState();
+  _AreasState createState() => _AreasState();
 
 }
 
-class _LifeAreasState extends State<LifeAreas>{
+class _AreasState extends State<Areas>{
 
   //key for animatedList
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();

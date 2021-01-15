@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:ip5_selbsteinschaetzung/components/dialogs/person_dialog.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_1/areas.dart';
@@ -22,9 +20,11 @@ import 'package:ip5_selbsteinschaetzung/screens/part_5/my_experiences.dart';
 import 'package:ip5_selbsteinschaetzung/screens/start.dart';
 import 'package:ip5_selbsteinschaetzung/screens/test_screen.dart';
 
+
+
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   "/start": (context) => Start(),
-  "/lifeAreas": (context) => LifeAreas(),
+  "/lifeAreas": (context) => Areas(),
   "/importantPersons": (context) => ImportantPersons(),
   "/personDialog": (context) => PersonDialog(),
   "/visualization": (context) => MyVisualization(),

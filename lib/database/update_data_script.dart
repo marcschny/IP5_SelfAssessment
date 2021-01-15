@@ -23,7 +23,7 @@ const updateDataScript = [
   'UPDATE Question SET question = \'Freude über die Beziehung/das Gespräch zeigen\' WHERE question_number = \'3.4.1\'',
   'UPDATE Question SET question = \'Ansprechen, wie es weitergeht\' WHERE question_number = \'3.4.2\'',
   'UPDATE Question SET question = \'Jemandem ein Feedback geben \' WHERE question_number = \'3.4.3\'',
-  'UPDATE Question SET question = \'Weitere Fragen formulieren\' WHERE question_number = \'3.3.4\'',
+  'UPDATE Question SET question = \'Weitere Fragen formulieren\' WHERE question_number = \'3.4.4\'',
   'UPDATE Question SET question = \'Um ein weiteres Gespräch bitten\' WHERE question_number = \'3.4.5\'',
   'UPDATE Question SET question = \'Weitere Gesprächsmöglichkeiten ansprechen\' WHERE question_number = \'3.4.6\'',
 ];              
