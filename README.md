@@ -6,7 +6,7 @@ Digitale Tools zur ressourcenorientierten Selbsteinschätzung für jugendliche
 
 ### Aufsetzen von Flutter und IDE
 
-Um Flutter auf dem Rechner zu installieren und die Entwicklungsumgebung anzupassen, folgen Sie den Anweisungen auf [dieser Website](https://flutter.dev/docs/get-started/install)
+Um Flutter auf dem Rechner zu installieren und die Entwicklungsumgebung anzupassen, folgen Sie den Anweisungen auf [dieser Website](https://flutter.dev/docs/get-started/install).
 
 ### Starten der Applikation
 
