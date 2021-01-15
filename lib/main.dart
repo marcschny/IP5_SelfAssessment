@@ -5,6 +5,7 @@ import 'package:ip5_selbsteinschaetzung/database/creation_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/update_data_script.dart';
 import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_toast.dart';
+import 'package:ip5_selbsteinschaetzung/routes.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_4/change_project.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_5/congratulations.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_5/my_experiences.dart';
@@ -89,28 +90,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: "/start",
-          routes: {
-            "/start": (context) => Start(),
-            "/lifeAreas": (context) => LifeAreas(),
-            "/importantPersons": (context) => ImportantPersons(),
-            "/personDialog": (context) => PersonDialog(),
-            "/visualization": (context) => MyVisualization(),
-            "/strengths": (context) => Strengths(),
-            "/weaknesses": (context) => Weaknesses(),
-            "/improvements": (context) => Improvements(),
-            "/nameIt": (context) => NameIt(),
-            "/WhoCanHelp": (context) => WhoCanHelp(),
-            "/SurveyPart1": (context) => SurveyIntro(),
-            "/SurveyPart2": (context) => SurveyPart1(),
-            "/SurveyPart3": (context) => SurveyPart2(),
-            "/SurveyPart4": (context) => SurveyPart3(),
-            "/SurveyPart5": (context) => SurveyEvaluation(),
-            "/changeProject": (context) => ChangeProject(),
-            "/congratulations": (context) => Congratulations(),
-            "/evaluation": (context) => Evaluation(),
-            "/experience": (context) => MyExperiences(),
-            "/test": (context) => TestScreen(),
-          },
+          routes: routes
         ),
       ),
     );
