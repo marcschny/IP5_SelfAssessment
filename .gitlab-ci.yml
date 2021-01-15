@@ -1,0 +1,70 @@
+image: openjdk:8-jdk
+
+variables:
+  ANDROID_COMPILE_SDK: "28"
+  ANDROID_BUILD_TOOLS: "28.0.2"
+  ANDROID_SDK_TOOLS:   "4333796"
+  FLUTTER_VERSION: "https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_1.22.3-stable.tar.xz"
+
+before_script:
+  - apt-get --quiet update --yes
+  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+  - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs
+  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
+  - unzip -d android-sdk-linux android-sdk.zip
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null
+  - echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
+  - export ANDROID_HOME=$PWD/android-sdk-linux
+  - export PATH=$PATH:$PWD/android-sdk-linux/platform-tools/
+
+  # temporarily disable checking for EPIPE error and use yes to accept all licenses
+  # flutter sdk setup
+  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+  - export PATH=$PATH:$PWD/flutter/bin
+  - export PATH=$PATH:$PWD/flutter/bin/cache/dart-sdk/bin
+  - set +o pipefail
+  - yes | android-sdk-linux/tools/bin/sdkmanager --licenses
+  - set -o pipefail
+
+
+
+stages:
+  - test
+  #- build
+
+test:database_creation:
+  only: [merge_requests]
+  stage: test
+  script:
+    - flutter pub get
+    - flutter packages pub run build_runner build --delete-conflicting-outputs
+
+## Checks test cases in test folder ###
+test:db_and_widget:
+  only: [merge_requests]
+  stage: test
+  script:
+    - flutter test
+
+
+#build:apk:
+#  only: [merge_requests]
+#  stage: build
+#  script:
+#    - flutter pub get
+#    - flutter packages pub run build_runner build
+#    - flutter build apk
+#  artifacts:
+#    paths:
+#      - build/app/outputs/apk
+#
+#build:bundle:
+#  only: [merge_requests]
+#  stage: build
+#  script:
+#    - flutter build appbundle
+#  artifacts:
+#    paths:
+#      - build/app/outputs/bundle
+
