@@ -13,6 +13,7 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
+
 //Screen 2.3
 class Improvements extends StatefulWidget {
 
@@ -122,7 +123,6 @@ class _ImprovementsState extends State<Improvements>{
                                 )
                              : Container(),
 
-
                               widget.evaluation == null ?
                                 FadeIn(
                                   2.2,
@@ -163,6 +163,7 @@ class _ImprovementsState extends State<Improvements>{
 
                                 SizedBox(height: 10),
 
+                                //show evaluation of part_3 only when an evaluation has been passed
                                 widget.evaluation == null ? Container() : _evaluationQuestionnaire(),
 
                               ],
@@ -188,8 +189,7 @@ class _ImprovementsState extends State<Improvements>{
                  }
               ),
 
-
-          ]
+            ]
           ),
         ),
 
@@ -233,6 +233,7 @@ class _ImprovementsState extends State<Improvements>{
                 SizedBox(height: 16),
 
                 Container(
+                  //listview builder for selected answers in survey_evaluation (part_3)
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -249,7 +250,6 @@ class _ImprovementsState extends State<Improvements>{
 
                   ),
                 ),
-
 
               ],
             ),
@@ -300,7 +300,7 @@ class _ImprovementsState extends State<Improvements>{
 
   }
 
-  //when user wants to open the survey
+  //when user wants to open the survey - go to survey_intro (part_3)
   void _goToQuestionnaire(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(

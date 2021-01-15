@@ -11,6 +11,7 @@ import 'package:ip5_selbsteinschaetzung/screens/part_2/improvements.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
+
 //Screen 3.5
 class SurveyEvaluation extends StatefulWidget {
 
@@ -91,10 +92,10 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
                             );
                         },
                       ),
-              ),
+                  ),
 
-              ),
-            ],
+                ),
+              ],
             ),
 
             BottomNavigation(
@@ -109,7 +110,7 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
                 }
 
             ),
-        ],
+          ],
         ),
       ),
 
@@ -135,6 +136,7 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
     List<Answer> negSurveyAnswers = await assessmentRepo.getNegSurveyAnswers(widget.assessmentId);
     List<Answer> posSurveyAnswers = await assessmentRepo.getPosSurveyAnswers(widget.assessmentId);
     List<Answer> surveyAnswers = List();
+    //check for empty list of positive and negative survey answers and set related intro text
     if((posSurveyAnswers == null || posSurveyAnswers.length == 0) && (negSurveyAnswers == null || negSurveyAnswers.length == 0)){
       setState((){
         allPositive = false;

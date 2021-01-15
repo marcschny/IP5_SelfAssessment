@@ -22,6 +22,7 @@ double toRadian(double angle){
   return angle >= 0 && angle <= 360 ? angle * (pi / 180) : 0;
 }
 
+
 //get the starting angle point from sector
 double getStartSectorAngle(int sector, int noLifeAreas){
   if(noLifeAreas == 2){
@@ -104,6 +105,7 @@ double getStartSectorAngle(int sector, int noLifeAreas){
   }
 }
 
+//get sector related color
 Color getColor(sector){
   switch(sector){
     case 1:

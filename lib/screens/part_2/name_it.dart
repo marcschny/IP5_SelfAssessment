@@ -28,7 +28,7 @@ class NameIt extends StatefulWidget {
 
 class _NameItState extends State<NameIt>{
 
-
+  //TextEditingController for the title
   TextEditingController _titleController;
 
   @override
@@ -52,12 +52,10 @@ class _NameItState extends State<NameIt>{
     String projectTitle;
     projectTitle = _titleController.text != null && _titleController.text != "" ? _titleController.text : "Mein Veränderungsprojekt";
 
-
     final thisAssessment = await assessmentRepo.findAssessment(widget.assessmentId);
     final updateAssessment = Assessment(widget.assessmentId, projectTitle, null, thisAssessment.date_created, "");
 
     assessmentRepo.updateAssessment(updateAssessment);
-
   }
 
 
@@ -154,20 +152,20 @@ class _NameItState extends State<NameIt>{
                 ),
               ),
 
-          ],
-        ),
+            ],
+          ),
 
 
             BottomNavigation(
-                showNextButton: true,
-                showBackButton: true,
-                nextTitle: "Wer oder was hilft  Dir dabei?",
-                callbackBack: () {
-                  Navigator.of(context).pop();
-                },
-                callbackNext: (){
-                  _next(context, widget.assessmentId, widget.visualizationId);
-                }
+              showNextButton: true,
+              showBackButton: true,
+              nextTitle: "Wer oder was hilft  Dir dabei?",
+              callbackBack: () {
+                Navigator.of(context).pop();
+              },
+              callbackNext: (){
+                _next(context, widget.assessmentId, widget.visualizationId);
+              }
             ),
           ],
         ),

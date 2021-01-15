@@ -130,7 +130,7 @@ class _SurveyPart2State extends State<SurveyPart2>{
                   ],
                   ),
                 ),
-            ),
+             ),
 
             ],
             ),
@@ -142,13 +142,12 @@ class _SurveyPart2State extends State<SurveyPart2>{
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },
-
                 callbackNext: () {
                   _next(context, widget.assessmentId, widget.visualizationId);
                 }
 
             ),
-        ],
+          ],
         ),
       ),
 

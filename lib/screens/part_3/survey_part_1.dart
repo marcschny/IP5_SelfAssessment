@@ -141,7 +141,7 @@ class _SurveyPart1State extends State<SurveyPart1> {
                 }
 
             ),
-        ],
+          ],
         ),
       ),
     );

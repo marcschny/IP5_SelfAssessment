@@ -68,7 +68,6 @@ class _EvaluationState extends State<Evaluation>{
     final positiveExperiences = await assessmentRepo.getPositiveExperiences(widget.assessmentId);
     final negativeExperience = await assessmentRepo.getNegativeExperiences(widget.assessmentId);
 
-
     setState(() {
       noExperiences = experiences.length;
       noPositiveExperiences = positiveExperiences.length;
@@ -570,7 +569,8 @@ class _EvaluationState extends State<Evaluation>{
           assessment.date_created, DateTime.now().toString());
 
       assessmentRepo.updateAssessment(finishAssessment);
-      Navigator.of(context).pushNamedAndRemoveUntil("/test", (route) => false);
+      //todo: popUntil (go back to main app)
+      //Navigator.of(context).pushNamedAndRemoveUntil("/test", (route) => false);
     }else{
       showToast(
         "Du hast noch kein Smiley ausgewählt",

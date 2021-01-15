@@ -5,7 +5,6 @@ import 'package:ip5_selbsteinschaetzung/database/database.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/assessment.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/visualization.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_1/areas.dart';
-import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_intro.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +21,6 @@ class Start extends StatefulWidget {
 }
 
 class _StartState extends State<Start>{
-
 
   //index for intro pageView
   int _currentIndex = 0;

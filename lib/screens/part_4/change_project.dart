@@ -35,79 +35,7 @@ class _ChangeProjectState extends State<ChangeProject>{
   List<Widget> widgetList;
   int noExperiences;
 
-  //header row widget for the top bar
-  Widget headerRow(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
 
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              color: ThemeColors.greenShade3,
-              elevation: 0,
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-              highlightColor: ThemeColors.greenShade3,
-              focusElevation: 0,
-              highlightElevation: 0,
-              child: Text(
-                "Beschreibung",
-                style: ThemeTexts.assessmentDialogSubtitle.copyWith(
-                    color: Colors.black87,
-                    fontSize: 16.5,
-                    fontWeight: FontWeight.normal),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  barrierColor: Colors.black.withOpacity(.55),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 120),
-                    child: SlideUpFromBottom(0, ProjectDescriptionDialog(assessmentId: widget.assessmentId)),
-                  ),
-                );
-              },
-            ),
-
-            SizedBox(width: 10),
-
-            RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              color: ThemeColors.greenShade3,
-              elevation: 0,
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-              highlightColor: ThemeColors.greenShade3,
-              focusElevation: 0,
-              highlightElevation: 0,
-              child: Text(
-                "Hilfestellungen",
-                style: ThemeTexts.assessmentDialogSubtitle.copyWith(
-                    color: Colors.black87,
-                    fontSize: 16.5,
-                    fontWeight: FontWeight.normal),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  barrierColor: Colors.black.withOpacity(.55),
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 120),
-                    child: SlideUpFromBottom(0, ProjectHelpDialog(assessmentId: widget.assessmentId)),
-                  ),
-                );
-
-              },
-            ),
-
-          ],
-        )
-    );
-  }
 
   @override
   void initState() {
@@ -317,6 +245,80 @@ class _ChangeProjectState extends State<ChangeProject>{
     );
   }
 
+
+  //header row widget for the top bar
+  Widget headerRow(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              color: ThemeColors.greenShade3,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              highlightColor: ThemeColors.greenShade3,
+              focusElevation: 0,
+              highlightElevation: 0,
+              child: Text(
+                "Beschreibung",
+                style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                    color: Colors.black87,
+                    fontSize: 16.5,
+                    fontWeight: FontWeight.normal),
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierColor: Colors.black.withOpacity(.55),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 120),
+                    child: SlideUpFromBottom(0, ProjectDescriptionDialog(assessmentId: widget.assessmentId)),
+                  ),
+                );
+              },
+            ),
+
+            SizedBox(width: 10),
+
+            RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              color: ThemeColors.greenShade3,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              highlightColor: ThemeColors.greenShade3,
+              focusElevation: 0,
+              highlightElevation: 0,
+              child: Text(
+                "Hilfestellungen",
+                style: ThemeTexts.assessmentDialogSubtitle.copyWith(
+                    color: Colors.black87,
+                    fontSize: 16.5,
+                    fontWeight: FontWeight.normal),
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierColor: Colors.black.withOpacity(.55),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 120),
+                    child: SlideUpFromBottom(0, ProjectHelpDialog(assessmentId: widget.assessmentId)),
+                  ),
+                );
+
+              },
+            ),
+
+          ],
+        )
+    );
+  }
 
 
   //next page

@@ -18,7 +18,6 @@ import 'package:ip5_selbsteinschaetzung/screens/part_5/congratulations.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_5/evaluation.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_5/my_experiences.dart';
 import 'package:ip5_selbsteinschaetzung/screens/start.dart';
-import 'package:ip5_selbsteinschaetzung/screens/test_screen.dart';
 
 
 //this map contains all routes for this assessment
@@ -42,5 +41,4 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   "/congratulations": (context) => Congratulations(),
   "/evaluation": (context) => Evaluation(),
   "/experience": (context) => MyExperiences(),
-  "/test": (context) => TestScreen(),
 };

@@ -122,8 +122,8 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                                 overflow: TextOverflow.clip,
                               ),
                             ),
-                          ],
-                        ),
+                           ],
+                          ),
                         ),
 
 
@@ -215,8 +215,8 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                   ),
                 );
               }
-          ),
-        ],
+           ),
+          ],
         ),
       ),
 

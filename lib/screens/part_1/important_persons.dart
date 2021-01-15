@@ -225,6 +225,7 @@ class _ImportantPersonsState extends State<ImportantPersons>{
 
   //go to next page
   void _next(BuildContext context, int assessmentId, int visualizationId) {
+
     //check if at least two persons has been added
     if (personList.length >= 2) {
       Navigator.of(context).push(

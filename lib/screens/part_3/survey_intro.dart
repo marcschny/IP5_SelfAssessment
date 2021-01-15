@@ -37,10 +37,10 @@ class _SurveyIntroState extends State<SurveyIntro> {
           fit: BoxFit.cover,
         ),
 
-          //todo: adjust wording
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+
               TopBar(
                   title: "Ich und andere Menschen:  Wie ich bin und werden möchte",
                   titleNumber: 3,
@@ -55,35 +55,32 @@ class _SurveyIntroState extends State<SurveyIntro> {
                   showProgressbar: true,
                   ),
 
-
                   Padding(
                   padding: const EdgeInsets.only(bottom: 40),
                   child: RaisedButton(
-                    color: ThemeColors.greenShade2,
-                    padding: EdgeInsets.symmetric(vertical: 11, horizontal: 34),
-                    shape: RoundedRectangleBorder(
-
-                      borderRadius: BorderRadius.circular(40)
-                  ),
-                  elevation: 5.0,
-                    child: Text(
-                      "Los geht’s",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.8,
+                      color: ThemeColors.greenShade2,
+                      padding: EdgeInsets.symmetric(vertical: 11, horizontal: 34),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40)
                       ),
-                    ),
-                  onPressed: (){
-                    //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_2()));
-                    _next(context, widget.assessmentId, widget.visualizationId);
-                  },
+                      elevation: 5.0,
+                      child: Text(
+                        "Los geht’s",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                      onPressed: (){
+                        //Navigator.of(context).push(MaterialPageRoute(builder: (context) => Part_3_2()));
+                        _next(context, widget.assessmentId, widget.visualizationId);
+                      },
 
+                    ),
                 ),
-              ),
             ],
           ),
-
 
         ],
         ),

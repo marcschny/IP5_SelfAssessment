@@ -10,11 +10,9 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter/services.dart';
-import 'components/dialogs/person_dialog.dart';
 
 
-//todo: comments
-//todo: code cleanup
+//async main function
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -82,23 +80,3 @@ class MyApp extends StatelessWidget {
 
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: Text(
-            "Hello World",
-            style: TextStyle(fontSize: 20, color: ThemeColors.greenShade1),
-          ),
-      ),
-    );
-  }
-}

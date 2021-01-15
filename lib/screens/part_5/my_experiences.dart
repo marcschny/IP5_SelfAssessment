@@ -137,7 +137,6 @@ class _ExperienceState extends State<MyExperiences>{
                       ),
                     ),
 
-
                     SizedBox(height: 40),
 
                     Column(
@@ -167,6 +166,7 @@ class _ExperienceState extends State<MyExperiences>{
                           ),
                         ),
 
+                        //check if there's at least one positive experience
                         goodWidgetList.length > 0 ?
                         Container(
                           height: 170,
@@ -223,6 +223,7 @@ class _ExperienceState extends State<MyExperiences>{
                           ),
                         ),
 
+                        //check if there's at least one negative experience
                         badWidgetList.length > 0 ?
                         Container(
                           height: 170,

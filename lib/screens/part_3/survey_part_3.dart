@@ -136,7 +136,6 @@ class _SurveyPart3State extends State<SurveyPart3>{
                 callbackBack: () {
                   Navigator.of(context).pop();
                 },
-
                 callbackNext: () {
                   _next(context, widget.assessmentId, widget.visualizationId);
                 }

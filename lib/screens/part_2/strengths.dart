@@ -6,6 +6,7 @@ import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_2/weaknesses.dart';
 
+
 //Screen 2.1
 class Strengths extends StatefulWidget {
 
@@ -82,22 +83,20 @@ class _StrengthsState extends State<Strengths>{
                         ),
                       ),
                     ),
-              ),
+                ),
               ],
             ),
 
             BottomNavigation(
-                showNextButton: true,
-                showBackButton: true,
-                nextTitle: "Damit habe ich noch Mühe",
-                callbackBack: () {
-                  Navigator.of(context).pop();
-                },
-
-                callbackNext: () {
-                  _next(context, widget.assessmentId, widget.visualizationId);
-                }
-
+              showNextButton: true,
+              showBackButton: true,
+              nextTitle: "Damit habe ich noch Mühe",
+              callbackBack: () {
+                Navigator.of(context).pop();
+              },
+              callbackNext: () {
+                _next(context, widget.assessmentId, widget.visualizationId);
+              }
             ),
           ],
         ),

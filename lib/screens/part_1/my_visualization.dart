@@ -54,7 +54,6 @@ class _MyVisualizationState extends State<MyVisualization>{
   double radius;
 
 
-
   @override
   void initState() {
     super.initState();
@@ -75,8 +74,10 @@ class _MyVisualizationState extends State<MyVisualization>{
   //create legend
   _createLegend(){
 
+    //temporary sector number
     int tempSector = 1;
 
+    //create a LegendElement for each sector
     lifeAreas.forEach((element) {
       legendList.add(
         LegendElement(
@@ -88,27 +89,33 @@ class _MyVisualizationState extends State<MyVisualization>{
     });
 
     setState(() { });
+    //reset temporary sector number
     tempSector = 1;
   }
 
-  //create person circle list
+
+  //create list of person circles
   _createPersonCircleList(){
 
+    //fist make sure list is empty
     personCircleList.clear();
 
-    double space = 20; //default space (when multiple persons have same life area and distance)
+    //default space (when multiple persons have same area and distance)
+    double space = 20;
+    //temporary list of persons
     List<Person> tempPersonList = List();
 
-
+    //create your person (put in center of visualization)
     var yourPerson = Positioned(
       top: MediaQuery.of(context).size.width/2-20,
       left: MediaQuery.of(context).size.width/2-20,
       child: YourPersonCircle(name: "Ich"),
     );
+    //add your person to personCircleList
     personCircleList.add(yourPerson);
 
 
-
+    //add each person as a PersonCircle widget in personCircleList
     personList.forEach((element) {
       int sector;
       double startAngle;
@@ -116,6 +123,7 @@ class _MyVisualizationState extends State<MyVisualization>{
 
       sector = lifeAreas.indexOf(element.lifeArea);
 
+      //if person with same area and distance already exists: increment multiplicator
       if(tempPersonList.length > 0) {
         tempPersonList.forEach((person) {
           if (person.lifeArea == element.lifeArea && person.distance == element.distance) {
@@ -128,6 +136,7 @@ class _MyVisualizationState extends State<MyVisualization>{
 
       startAngle = getStartSectorAngle(sector+1, lifeAreas.length);
 
+      //add person to personCircleList with proper positioning
       personCircleList.add(
         Positioned(
           top: computeYPosition(element.distance.toInt()+2, startAngle+(space*multiplicator), centerY, radius),
@@ -137,6 +146,7 @@ class _MyVisualizationState extends State<MyVisualization>{
       );
     });
 
+    //clear temporary person list
     tempPersonList.clear();
 
   }
@@ -189,7 +199,6 @@ class _MyVisualizationState extends State<MyVisualization>{
               fit: BoxFit.cover,
             ),
 
-
             //content
             Container(
               padding: EdgeInsets.only(top: 140, bottom: 94),
@@ -221,6 +230,7 @@ class _MyVisualizationState extends State<MyVisualization>{
                               ),
                             ),
 
+                            //info button
                             Positioned(
                               top: 8,
                               right: 10,
@@ -255,19 +265,19 @@ class _MyVisualizationState extends State<MyVisualization>{
                 ),
             ),
 
-
-          Positioned(
-            top: 0,
-            left: 0,
-            child: TopBar(
-              title: "Wer ist mir wichtig?\nMeine Visualisierung",
-              titleNumber: 1,
-              subtitle: "So sieht deine Visualisierung aus",
-              percent: 0.2,
-              intro: "Tippe auf eine Person, um den Namen zu sehen.",
-              showProgressbar: true,
+            //absolute positioned top bar
+            Positioned(
+              top: 0,
+              left: 0,
+              child: TopBar(
+                title: "Wer ist mir wichtig?\nMeine Visualisierung",
+                titleNumber: 1,
+                subtitle: "So sieht deine Visualisierung aus",
+                percent: 0.2,
+                intro: "Tippe auf eine Person, um den Namen zu sehen.",
+                showProgressbar: true,
+              ),
             ),
-          ),
 
             //bottom navigation bar
             BottomNavigation(
