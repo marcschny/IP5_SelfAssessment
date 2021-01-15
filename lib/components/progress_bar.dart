@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-
+//this is the progress bar used in the top bar
 class ProgressBar extends StatelessWidget{
 
   final double percent;

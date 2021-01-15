@@ -6,7 +6,7 @@ import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_2/weaknesses.dart';
 
-
+//Screen 2.1
 class Strengths extends StatefulWidget {
 
   final int assessmentId;
@@ -106,7 +106,7 @@ class _StrengthsState extends State<Strengths>{
 
   }
 
-
+  //go to next page
   void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(

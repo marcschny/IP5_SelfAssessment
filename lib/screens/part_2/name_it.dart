@@ -10,7 +10,7 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
 
-
+//Screen 2.3
 class NameIt extends StatefulWidget {
 
   final int assessmentId;
@@ -44,7 +44,7 @@ class _NameItState extends State<NameIt>{
   }
 
 
-
+  //write project title to db
   setProjectTitle() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
@@ -148,11 +148,8 @@ class _NameItState extends State<NameIt>{
                                 ],
                               )
                           )
-
                         ],
                       ),
-
-
                   ),
                 ),
               ),
@@ -180,7 +177,7 @@ class _NameItState extends State<NameIt>{
 
   }
 
-
+  //go to nect page
   void _next(BuildContext context, int assessmentId, int visualizationId){
 
     setProjectTitle();

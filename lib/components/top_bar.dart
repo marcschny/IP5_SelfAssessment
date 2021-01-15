@@ -4,7 +4,7 @@ import 'package:ip5_selbsteinschaetzung/components/progress_bar.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
 
-
+//this is the custom component for the top bar, which is used on most screens
 class TopBar extends StatelessWidget{
 
   final String title;
@@ -26,7 +26,6 @@ class TopBar extends StatelessWidget{
     @required this.showProgressbar,
     this.widget
   }) : super(key: key);
-
 
 
 

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:math' show min;
 import 'package:oktoast/oktoast.dart';
 
-class SlideUpToast extends BaseAnimationBuilder{
 
+//this animation is for defined toasts: a simple slide-up-animation
+class SlideUpToast extends BaseAnimationBuilder{
 
   @override
   Widget buildWidget(BuildContext context, Widget child, AnimationController controller, double percent) {

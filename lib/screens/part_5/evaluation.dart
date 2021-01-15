@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
+//Screen 5.1
 class Evaluation extends StatefulWidget{
 
   final int assessmentId;
@@ -26,6 +27,7 @@ class Evaluation extends StatefulWidget{
 
 class _EvaluationState extends State<Evaluation>{
 
+  //necessary vars
   String projectTitle = "";
   String _selectedSmiley;
   int noExperiences;
@@ -43,7 +45,7 @@ class _EvaluationState extends State<Evaluation>{
     Future.delayed(Duration.zero, _getExperiences);
   }
 
-
+  //fetch project title from db
   _getProjectTitle() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
@@ -56,11 +58,11 @@ class _EvaluationState extends State<Evaluation>{
 
   }
 
+  //fetch experiences from db
   _getExperiences() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
-
 
     final experiences = await assessmentRepo.getExperiencesByAssessment(widget.assessmentId);
     final positiveExperiences = await assessmentRepo.getPositiveExperiences(widget.assessmentId);
@@ -74,7 +76,6 @@ class _EvaluationState extends State<Evaluation>{
     });
 
   }
-
 
 
 
@@ -448,15 +449,11 @@ class _EvaluationState extends State<Evaluation>{
                               ),
                             ),
 
-
-
                           ],
                         ),
                       ),
                     ),
                   ),
-
-
                 ],
               ),
 
@@ -532,6 +529,7 @@ class _EvaluationState extends State<Evaluation>{
     );
   }
 
+  //go back / continue change project
   _goToChangeProject(){
     Navigator.of(context).pushAndRemoveUntil(
       PageRouteBuilder(
@@ -557,8 +555,9 @@ class _EvaluationState extends State<Evaluation>{
     );
   }
 
-
+  //finish the assessment
   _finishAssessment() async{
+    //check if an overall_mood smiley has been selected
     if(_selectedSmiley != "") {
       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
       final assessmentRepo = appDatabase.assessmentRepository;
@@ -581,7 +580,9 @@ class _EvaluationState extends State<Evaluation>{
 
   }
 
+  //restart the entire assessment
   _restartAssessment() async{
+    //check if an overall_mood smiley has been selected
     if(_selectedSmiley != "") {
       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
       final assessmentRepo = appDatabase.assessmentRepository;
@@ -604,7 +605,6 @@ class _EvaluationState extends State<Evaluation>{
     }
 
   }
-
 
 
 }

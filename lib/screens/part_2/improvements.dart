@@ -13,7 +13,7 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
-
+//Screen 2.3
 class Improvements extends StatefulWidget {
 
   final List<String> evaluation;
@@ -198,7 +198,7 @@ class _ImprovementsState extends State<Improvements>{
 
   }
 
-
+  //receive and show evaluated questions from survey_evaluation (part_3)
   _evaluationQuestionnaire(){
     return  Flexible(
       fit: FlexFit.loose,
@@ -259,13 +259,14 @@ class _ImprovementsState extends State<Improvements>{
 
   }
 
-
+  //go to next page
   void _next(BuildContext context, int assessmentId, int visualizationId) async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final answeredQuestion = await assessmentRepo.findAnswer('2.3.1', widget.assessmentId);
 
+    //check if question 2.3.1 has been answered
     if(answeredQuestion?.answer != null && answeredQuestion?.answer != ""){
       Navigator.of(context).push(
         PageRouteBuilder(
@@ -299,7 +300,7 @@ class _ImprovementsState extends State<Improvements>{
 
   }
 
-
+  //when user wants to open the survey
   void _goToQuestionnaire(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(

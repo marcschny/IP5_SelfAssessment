@@ -5,7 +5,8 @@ import 'package:ip5_selbsteinschaetzung/database/entities/answer.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
-
+//this is the question dialog used in several screens to answer a question
+//this dialog pops up when clicked on a question_card
 class QuestionDialog extends StatefulWidget{
 
   final int assessmentId;
@@ -25,6 +26,7 @@ class QuestionDialog extends StatefulWidget{
 
 class _QuestionDialogState extends State<QuestionDialog> {
 
+  //define vars
   String subquestion;
   Answer answer;
   FocusNode focusNode;
@@ -129,6 +131,7 @@ class _QuestionDialogState extends State<QuestionDialog> {
     );
   }
 
+  //fetch answer from db
   getAnswer() async {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
@@ -160,8 +163,9 @@ class _QuestionDialogState extends State<QuestionDialog> {
     final loadAnswer = await assessmentRepo.findAnswer(
         widget.questionNumber, widget.assessmentId);
 
-
+      //check if fetched answer is not null
       if(loadAnswer != null) {
+        //if answer is not null: update the answer in db
         final Answer updatedAnswer =  Answer(
             loadAnswer.id, answerController.text, widget.questionNumber,
             widget.assessmentId);
@@ -170,21 +174,20 @@ class _QuestionDialogState extends State<QuestionDialog> {
         });
 
       } else {
-
+        //if answer is null: create new answer in db
         final Answer newAnswer = new Answer(
             null, answerController.text, widget.questionNumber,
             widget.assessmentId);
+        //check if answer is not empty
         if(newAnswer.answer != '') {
           assessmentRepo.insertAnswer(newAnswer).then((assessmentId) {
-
           });
         }
         Navigator.of(context).pop();
-
       }
     }
 
-
+  //fetch question from db
   getSubQuestion() async {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;

@@ -4,6 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 enum AniProps {translateY}
 
+//this animation component creates a slide-up-from-bottom-animation
 class SlideUpFromBottom extends StatelessWidget {
   final double delay;
   final Widget child;

@@ -4,6 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 enum AniProps {translateX}
 
+//this animation component creates a slide-from-left-animation
 class SlideLeft extends StatelessWidget{
   final double delay;
   final Widget child;

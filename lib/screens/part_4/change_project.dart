@@ -15,8 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-
-
+//ChangeProject
 class ChangeProject extends StatefulWidget{
 
   final int assessmentId;
@@ -36,6 +35,7 @@ class _ChangeProjectState extends State<ChangeProject>{
   List<Widget> widgetList;
   int noExperiences;
 
+  //header row widget for the top bar
   Widget headerRow(BuildContext context) {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
@@ -123,6 +123,7 @@ class _ChangeProjectState extends State<ChangeProject>{
     super.dispose();
   }
 
+  //fetch project title from db
   _getProjectTitle() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
@@ -135,6 +136,7 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   }
 
+  //fetch experiences from db
   _getExperiences() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
@@ -319,6 +321,7 @@ class _ChangeProjectState extends State<ChangeProject>{
 
   //next page
   void _next(BuildContext context, int assessmentId) {
+    //check if at least 10 experiences have been created
     if(noExperiences >= 10) {
       Navigator.of(context).push(
         PageRouteBuilder(

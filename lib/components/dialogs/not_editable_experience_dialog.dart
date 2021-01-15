@@ -25,10 +25,11 @@ class NotEditableExperienceDialog extends StatefulWidget{
 
 }
 
+//this is an experience dialog which is not editable. Used in my_experiences (part_5)
 class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialog>{
 
+  //define date format
   final format = DateFormat("dd.MM.yyyy");
-
 
   @override
   void initState() {

@@ -7,7 +7,7 @@ import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_from_bott
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
-
+//this is the question card which is used for each question
 class QuestionCard extends StatefulWidget{
 
   final String questionNumber;
@@ -39,12 +39,14 @@ class _QuestionCardState extends State<QuestionCard>{
     _getAnswered();
   }
 
+  //fetch answer from db
   _getAnswered() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
     final findAnswer = await assessmentRepo.findAnswer(widget.questionNumber, widget.assessmentId);
 
+    //check if an answer exists
     if(findAnswer != null) {
       setState(() {
         if (findAnswer.answer == null || findAnswer.answer == "") {
@@ -104,6 +106,7 @@ class _QuestionCardState extends State<QuestionCard>{
             ),
           ),
           onTap: () {
+            //open question dialog
             showDialog(
                 context: context,
                 barrierColor: Colors.black.withOpacity(.3),

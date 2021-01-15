@@ -13,11 +13,13 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:intl/intl.dart';
 
 
-
+//this is the experience card used in change_project (part_4)
 class ExperienceCard extends StatelessWidget{
 
   final Experience experience;
   final bool editable;
+  //default date format
+  final format = DateFormat("dd.MM.yyyy");
 
   ExperienceCard({
     Key key,
@@ -25,7 +27,6 @@ class ExperienceCard extends StatelessWidget{
     @required this.editable
   }) : super(key: key);
 
-  final format = DateFormat("dd.MM.yyyy");
 
 
   @override
@@ -100,6 +101,7 @@ class ExperienceCard extends StatelessWidget{
         ),
       ),
       onTap: (){
+        //check if it is an editable experience card
         if(editable) {
           ui.showDialog(
             context: context,

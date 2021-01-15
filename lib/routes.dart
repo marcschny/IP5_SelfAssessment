@@ -21,7 +21,7 @@ import 'package:ip5_selbsteinschaetzung/screens/start.dart';
 import 'package:ip5_selbsteinschaetzung/screens/test_screen.dart';
 
 
-
+//this map contains all routes for this assessment
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   "/start": (context) => Start(),
   "/lifeAreas": (context) => Areas(),

@@ -8,7 +8,7 @@ import 'package:expandable/expandable.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:provider/provider.dart';
 
-
+//this is the expandable question card used in part_3
 class ExpandableQuestionCard extends StatefulWidget {
 
   final int assessmentId;
@@ -38,7 +38,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
     _loadAnswer();
   }
 
-
+  //fetch question from db
   _getQuestion() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
@@ -51,8 +51,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
 
   }
 
-
-
+  //fetch answer from db
   _loadAnswer() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
@@ -63,6 +62,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
     });
   }
 
+  //get answer
   _getAnswer(){
     return answer.answer;
   }
@@ -77,6 +77,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
     }
   }
 
+  //widget for an answered question
   _answeredList(){
     return Container(
       margin: EdgeInsets.only(bottom: 20),
@@ -145,6 +146,7 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
     );
   }
 
+  //widget for an unanswered question
   _unansweredList(){
     return Container(
       margin: EdgeInsets.only(bottom: 20),
@@ -212,11 +214,13 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
     );
   }
 
-
+  //save or update answer to db
   _saveOrUpdateAnswer(String value) async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
 
+    //if answer is null: create new answer
+    //else update existing answer
     if(answer == null) {
       final Answer newAnswer = Answer(null, value, widget.questionNumber, widget.assessmentId);
       assessmentRepo.insertAnswer(newAnswer).then((answerId) {

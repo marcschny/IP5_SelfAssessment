@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
-
+//this is the survey box component used in part_3
 class SurveyBox extends StatefulWidget{
 
   final String question;

@@ -6,7 +6,7 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
-
+//Screen 5.1.1
 class MyExperiences extends StatefulWidget{
 
   final int assessmentId;
@@ -19,12 +19,14 @@ class MyExperiences extends StatefulWidget{
 
 class _ExperienceState extends State<MyExperiences>{
 
+  //necessary lists
   List<ExperienceCard> goodWidgetList;
   List<ExperienceCard> badWidgetList;
   List<ExperienceCard> allWidgetList;
   int noExperiences;
   String _datesString;
 
+  //default date format
   final format = DateFormat("dd.MM.yyyy");
 
   @override
@@ -38,12 +40,11 @@ class _ExperienceState extends State<MyExperiences>{
     Future.delayed(Duration.zero, _getExperiences);
   }
 
-
+  //fetch experiences from db
   _getExperiences() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;
-
 
     final positiveExperiences = await assessmentRepo.getPositiveExperiences(widget.assessmentId);
     final negativeExperiences = await assessmentRepo.getNegativeExperiences(widget.assessmentId);
@@ -73,6 +74,7 @@ class _ExperienceState extends State<MyExperiences>{
 
   }
 
+  //set formatted dates
   _setDates() async{
     setState(() {
       _datesString = "${format.format(DateTime.parse(allWidgetList.first.experience.date_created))} - ${format.format(DateTime.parse(allWidgetList.last.experience.date_created))}";
@@ -87,7 +89,6 @@ class _ExperienceState extends State<MyExperiences>{
       body: SafeArea(
         child: Stack(
           children: [
-
 
             //background image
             Image.asset(
@@ -189,8 +190,6 @@ class _ExperienceState extends State<MyExperiences>{
                             style: ThemeTexts.assessmentText.copyWith(fontSize: 17, fontStyle: FontStyle.italic, color: Colors.grey),
                           ),
                         ),
-
-
                       ],
                     ),
 

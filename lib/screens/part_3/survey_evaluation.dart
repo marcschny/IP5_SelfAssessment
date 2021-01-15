@@ -11,7 +11,7 @@ import 'package:ip5_selbsteinschaetzung/screens/part_2/improvements.dart';
 import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
-
+//Screen 3.5
 class SurveyEvaluation extends StatefulWidget {
 
   final int assessmentId;
@@ -71,9 +71,6 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
                 showProgressbar: true,
               ),
 
-
-
-
               Expanded(
                   child: Container(
                     padding: EdgeInsets.fromLTRB(18, 10, 18, 94),
@@ -130,7 +127,7 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
     setState(() { });
   }
 
-
+  //fetch survey answers from db
   getSurveyAnswers() async {
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;

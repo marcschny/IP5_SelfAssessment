@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:ip5_selbsteinschaetzung/components/info_button.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
-
+//this dialog is for the visualization used in who_can_help (part_2)
 class VisualizationDialog extends StatefulWidget{
 
   final int assessmentId;
@@ -68,8 +68,10 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
   //create legend
   _createLegend(){
 
+    //temporary sector number
     int tempSector = 1;
 
+    //create a LegendElement for each sector
     lifeAreas.forEach((element) {
       legendList.add(
           LegendElement(
@@ -81,26 +83,31 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
     });
 
     setState(() { });
+    //reset temporary sector number
     tempSector = 1;
   }
 
   //create person circle list
   _createPersonCircleList(){
 
+    //fist make sure list is cleared
     personCircleList.clear();
 
-    double space = 20; //default space (when multiple persons have same life area and distance)
+    //default space (when multiple persons have same area and distance)
+    double space = 20;
+    //temporary person list
     List<Person> tempPersonList = List();
 
-
+    //create your person (put in center of visualization)
     var yourPerson = Positioned(
       top: MediaQuery.of(context).size.width/2-20,
       left: MediaQuery.of(context).size.width/2-20,
       child: YourPersonCircle(name: "Ich"),
     );
+    //add your person to personCircleList
     personCircleList.add(yourPerson);
 
-
+    //add each person as a PersonCircle in personCircleList
     personList.forEach((element) {
       int sector;
       double startAngle;
@@ -108,6 +115,7 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
 
       sector = lifeAreas.indexOf(element.lifeArea);
 
+      //if person with same area and distance already exists: increment multiplicator
       if(tempPersonList.length > 0) {
         tempPersonList.forEach((person) {
           if (person.lifeArea == element.lifeArea && person.distance == element.distance) {
@@ -120,6 +128,7 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
 
       startAngle = getStartSectorAngle(sector+1, lifeAreas.length);
 
+      //add person to personCircleList with proper positioning
       personCircleList.add(
         Positioned(
           top: computeYPosition(element.distance.toInt()+2, startAngle+(space*multiplicator), centerY, radius),
@@ -129,12 +138,13 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
       );
     });
 
+    //clear temporary person list
     tempPersonList.clear();
 
   }
 
 
-  //get persons from db
+  //fetch persons from db
   _getPersons() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
@@ -151,9 +161,8 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
       });
     });
 
-    //then create list of personCircles
+    //then create list of personCircles and create legend
     _createPersonCircleList();
-    //then create legend
     _createLegend();
 
   }
@@ -187,8 +196,6 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
                       style: ThemeTexts.assessmentSubtitle,
                     ),
                   ),
-
-
 
 
                   Container(

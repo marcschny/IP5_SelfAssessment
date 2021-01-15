@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
-
+//this is the custom component for the next button in the bottom navigation bar
 class NextButton extends StatelessWidget{
 
   final String nextTitle;

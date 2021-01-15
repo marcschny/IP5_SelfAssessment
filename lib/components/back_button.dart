@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
-
+//this is the custom component for the back button
 class GoBackButton extends StatelessWidget{
 
   final Function callback;

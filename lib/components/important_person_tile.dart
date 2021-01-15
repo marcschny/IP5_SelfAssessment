@@ -4,6 +4,7 @@ import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
 
+//this is the important person tile used in important_persons (part_1)
 class ImportantPersonTile extends StatelessWidget{
 
   final Person person;

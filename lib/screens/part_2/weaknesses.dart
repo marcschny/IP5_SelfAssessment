@@ -7,6 +7,7 @@ import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.d
 import 'package:ip5_selbsteinschaetzung/screens/part_2/improvements.dart';
 
 
+//Screen 2.2
 class Weaknesses extends StatefulWidget {
 
   final int assessmentId;
@@ -102,7 +103,7 @@ class _WeaknessesState extends State<Weaknesses>{
 
   }
 
-
+  //go to next page
   void _next(BuildContext context, int assessmentId, int visualizationId){
     Navigator.of(context).push(
       PageRouteBuilder(

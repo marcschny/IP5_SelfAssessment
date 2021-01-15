@@ -4,6 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 enum AniProps {opacity, translateY}
 
+//this animation component combines two animations: animate opacity and slide-up-animation
 class SlideUpFadeIn extends StatelessWidget {
   final double delay;
   final double begin;
@@ -14,6 +15,7 @@ class SlideUpFadeIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //create tweens for animation
     final _tween = MultiTween<AniProps>()
       ..add(AniProps.opacity, Tween(begin: 0.0, end: 1.0), Duration(milliseconds: 500))
       ..add(AniProps.translateY, Tween(begin: begin, end: 0.0), Duration(milliseconds: 350));

@@ -10,13 +10,13 @@ import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-
+//this is the person dialog used in important_persons (part_1)
+//this dialog creates a person
 class PersonDialog extends StatefulWidget{
 
   final int assessmentId;
   final int visualizationId;
   final Person person;
-
 
   const PersonDialog({
     Key key,
@@ -32,16 +32,14 @@ class PersonDialog extends StatefulWidget{
 
 class _PersonDialogState extends State<PersonDialog>{
 
-  //name
+  //define TextEditingController for the name input
   final _nameController = TextEditingController();
 
-
-  //category
+  //variables used for the category selection
   String _selectedIcon;
   bool _showAdditionalCategories = false;
 
-
-  //life areas
+  //variables and methods for the area selection
   List<String> _lifeAreas;
   String _selectedLifeArea;
   List<DropdownMenuItem<String>> _dropdownMenuItems;
@@ -53,10 +51,10 @@ class _PersonDialogState extends State<PersonDialog>{
   }
 
 
-  //distance
+  //define default distance
   int _currentDistance = 4;
+  //Map with distance value and related text
   Map<int, String> _distanceMap = {
-
     8: "Sehr sehr wichtig",
     7: "Sehr wichtig" ,
     6: "Sehr wichtig",
@@ -89,7 +87,8 @@ class _PersonDialogState extends State<PersonDialog>{
     _nameController.dispose();
   }
 
-
+  //this methods checks if a new person has to be created
+  //or if a person has to be updated
   _checkForUpdatePerson() async{
     if(widget.person != null){
       setState(() {
@@ -379,7 +378,7 @@ class _PersonDialogState extends State<PersonDialog>{
                     ),
                   ),
 
-                //dropdown list for life areas
+                //dropdown list for areas
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 28),
                   child: Column(
@@ -546,6 +545,7 @@ class _PersonDialogState extends State<PersonDialog>{
     );
   }
 
+  //fetches all areas from the db and creates dropdown menu items for each area
   _getLifeAreas() async{
     //initialize app db
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);

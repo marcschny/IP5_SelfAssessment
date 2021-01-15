@@ -12,7 +12,7 @@ import 'package:ip5_selbsteinschaetzung/screens/part_5/evaluation.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:lottie/lottie.dart';
 
-
+//Screen 5
 class Congratulations extends StatefulWidget{
 
   final int assessmentId;
@@ -29,6 +29,7 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
   @override
   void initState() {
     super.initState();
+    //declare animation controller
     _confettiController = AnimationController(vsync: this, duration: Duration(milliseconds: 6000));
     Future.delayed(Duration(milliseconds: 500), _startAnimation);
     Future.delayed(Duration(milliseconds: 5100), _goToEvaluation);
@@ -40,10 +41,12 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
     super.dispose();
   }
 
+  //start confetti animation
   _startAnimation() async{
     _confettiController.forward(from: 0);
   }
 
+  //automatically go to next page
   _goToEvaluation() async{
     Navigator.of(context).push(
       PageRouteBuilder(
@@ -117,6 +120,7 @@ class _CongratulationsState extends State<Congratulations> with TickerProviderSt
 
   }
 
+  //confetti animation widget
  _confettiAnimation(context){
     return Container(
       height: MediaQuery.of(context).size.height,

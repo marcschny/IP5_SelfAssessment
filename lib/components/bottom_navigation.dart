@@ -4,7 +4,7 @@ import 'package:ip5_selbsteinschaetzung/components/back_button.dart';
 import 'package:ip5_selbsteinschaetzung/components/next_button.dart';
 
 
-
+//this is the custom component for the bottom navigation bar
 class BottomNavigation extends StatelessWidget{
   final bool showNextButton;
   final bool showBackButton;

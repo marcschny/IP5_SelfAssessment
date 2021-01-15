@@ -7,8 +7,7 @@ import 'package:ip5_selbsteinschaetzung/components/animations/slide_up_fade_in.d
 import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_part_2.dart';
 
 
-
-
+//Screen 3.2
 class SurveyPart1 extends StatefulWidget {
 
   final int assessmentId;
@@ -145,8 +144,6 @@ class _SurveyPart1State extends State<SurveyPart1> {
         ],
         ),
       ),
-
-
     );
   }
 

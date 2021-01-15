@@ -4,7 +4,8 @@ import 'package:ip5_selbsteinschaetzung/components/top_bar.dart';
 import 'package:ip5_selbsteinschaetzung/screens/part_3/survey_part_1.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
-//todo: gif for showing expandable_question_card
+
+//Screen 3.1
 class SurveyIntro extends StatefulWidget {
 
   final int assessmentId;

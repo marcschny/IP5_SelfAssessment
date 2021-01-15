@@ -6,6 +6,8 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
 
+
+//this is the project description dialog used in change_project (part_4)
 class ProjectDescriptionDialog extends StatefulWidget{
 
   final int assessmentId;
@@ -18,6 +20,7 @@ class ProjectDescriptionDialog extends StatefulWidget{
 
 class _ProjectDescriptionDialogState extends State<ProjectDescriptionDialog>{
 
+  //define variables
   String title = "";
   String description = "";
 
@@ -32,8 +35,7 @@ class _ProjectDescriptionDialogState extends State<ProjectDescriptionDialog>{
     super.dispose();
   }
 
-
-
+  //fetch project title and description from db
   getProjectTitleAndDescription() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;

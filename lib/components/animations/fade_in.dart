@@ -4,6 +4,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 enum AniProps {opacity}
 
+//this animation component creates a fade-in-animation
 class FadeIn extends StatelessWidget {
   final double delay;
   final int duration;

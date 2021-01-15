@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-
+//this is the component for an empty experience card used in change_project (part_4)
 class EmptyExperienceCard extends StatelessWidget{
 
 

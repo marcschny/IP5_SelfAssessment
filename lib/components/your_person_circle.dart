@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
-
+//this is the person circle representing the user himself
 class YourPersonCircle extends StatefulWidget {
 
   final String icon;

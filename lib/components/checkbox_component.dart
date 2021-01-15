@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
+
+//this is the custom component for the checkbox
 class CheckBoxComponent extends StatefulWidget {
   final String checkboxTitle;
   final bool checked;

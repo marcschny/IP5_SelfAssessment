@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
 
+//this is the custom component for an info button
 class InfoButton extends StatefulWidget {
 
   final String text;
@@ -20,8 +21,10 @@ class InfoButton extends StatefulWidget {
 
 class _InfoButtonState extends State<InfoButton>{
 
+  //define tooltip using Supertooltip package
   SuperTooltip tooltip;
 
+  //when on tapped
   void _onTap() {
     tooltip = SuperTooltip(
       popupDirection: widget.tooltipDirection,

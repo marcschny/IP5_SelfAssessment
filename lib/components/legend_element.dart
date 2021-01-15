@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:ip5_selbsteinschaetzung/resources/visualization_methods.dart';
 
-
+//this is the custom component for a legend element (used in the visualization)
 class LegendElement extends StatelessWidget{
 
   final int sector;

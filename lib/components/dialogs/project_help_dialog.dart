@@ -6,6 +6,7 @@ import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
 
 
+//this is the project help dialog used in change_project (part_4)
 class ProjectHelpDialog extends StatefulWidget{
 
   final int assessmentId;
@@ -18,6 +19,7 @@ class ProjectHelpDialog extends StatefulWidget{
 
 class _ProjectHelpDialogState extends State<ProjectHelpDialog>{
 
+  //define variables
   String title = "";
   String youths = "";
   String socialEducators = "";
@@ -35,7 +37,8 @@ class _ProjectHelpDialogState extends State<ProjectHelpDialog>{
   }
 
 
-
+  //fetch project title and help from db
+  //help: contains the questions 2.5.1, 2.5.2, 2.5.3
   getProjectTitleAndHelp() async{
     final appDatabase = Provider.of<AppDatabase>(context, listen: false);
     final assessmentRepo = appDatabase.assessmentRepository;

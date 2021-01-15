@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 
-
+//this is the custom component for the wheel painter (visualization)
 class WheelPainter extends CustomPainter {
 
   final int noAreas;
@@ -37,11 +37,12 @@ class WheelPainter extends CustomPainter {
     int noElements = noAreas;
     double radius = (2 * pi) / noElements;
 
-
+    //paints circle with only one sector
     var paintFullCircle = Paint()
       ..color = ThemeColors.firstColor
       ..style = PaintingStyle.fill;
 
+    //draw circle with different sectors
     if(noElements == 1){
       canvas.drawCircle(Offset(wheelSize, wheelSize), wheelSize, paintFullCircle);
     }

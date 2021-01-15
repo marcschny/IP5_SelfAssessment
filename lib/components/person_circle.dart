@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ip5_selbsteinschaetzung/database/entities/person.dart';
 import 'package:super_tooltip/super_tooltip.dart';
 
-
+//this is the person circle component used in the visualization
 class PersonCircle extends StatefulWidget {
 
   final Person person;

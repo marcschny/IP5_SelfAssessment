@@ -48,7 +48,7 @@ class _StartState extends State<Start>{
   }
 
 
-  //start assessment
+  //start the assessment
   void _startAssessment(BuildContext context){
     final Assessment newAssessment = new Assessment(null, null, null, DateTime.now().toString(), null);
 
@@ -66,7 +66,6 @@ class _StartState extends State<Start>{
                 Animation<double> secondaryAnimation) {
               return Areas(assessmentId: assessmentId, visualizationId: visualizationId);
               //return SurveyIntro(assessmentId: assessmentId, visualizationId: 1);
-
             },
             transitionsBuilder: (
                 BuildContext context,
@@ -90,7 +89,7 @@ class _StartState extends State<Start>{
 
   //check if its a new or existing assessment
   _checkIfExistingAssessment(){
-    //if constructor has retrieved an assessment, thne navigate to change project [part 4]
+    //if constructor has retrieved an assessment, then navigate to change_project [part 4]
     if(widget.existingAssessment != null){
       Navigator.of(context).pushNamed("/part_4", arguments: widget.existingAssessment.id);
     }
@@ -257,7 +256,7 @@ class _StartState extends State<Start>{
 
 }
 
-
+//pageview 0
 class Part0 extends StatelessWidget {
   const Part0({Key key}) : super(key: key);
 
@@ -299,6 +298,7 @@ class Part0 extends StatelessWidget {
   }
 }
 
+//pageview 1
 class Part1 extends StatelessWidget {
   const Part1({Key key}) : super(key: key);
   @override
@@ -357,6 +357,7 @@ class Part1 extends StatelessWidget {
   }
 }
 
+//pageview 2
 class Part2 extends StatelessWidget {
   const Part2({Key key}) : super(key: key);
   @override
@@ -429,6 +430,7 @@ class Part2 extends StatelessWidget {
   }
 }
 
+//pageview 3
 class Part3 extends StatelessWidget {
   const Part3({Key key}) : super(key: key);@override
   Widget build(BuildContext context) {
@@ -463,6 +465,7 @@ class Part3 extends StatelessWidget {
   }
 }
 
+//pageview 4
 class Part4 extends StatelessWidget {
   const Part4({Key key}) : super(key: key);
   @override

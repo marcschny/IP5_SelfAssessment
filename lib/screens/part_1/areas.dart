@@ -33,10 +33,10 @@ class _AreasState extends State<Areas>{
   //key for animatedList
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-
+  //TextEditingController for new area input
   TextEditingController _textController = TextEditingController();
 
-
+  //map with areas and boolean
   Map<String, bool> _lifeAreasMap = {
     "Verein / Hobby": false,
     "Schule / Ausbildung / Arbeit": false,
