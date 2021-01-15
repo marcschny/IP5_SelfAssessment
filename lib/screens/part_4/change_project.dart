@@ -133,8 +133,6 @@ class _ChangeProjectState extends State<ChangeProject>{
       projectTitle = assessment?.project_title != null ? assessment.project_title : "Kein Projekttitel";
     });
 
-    print(assessment?.project_title);
-
   }
 
   _getExperiences() async{
@@ -246,7 +244,6 @@ class _ChangeProjectState extends State<ChangeProject>{
                                       ],
                                     ),
                                     onPressed: (){
-                                      print("open new card dialog");
                                       showDialog(
                                         context: context,
                                         barrierColor: Colors.black.withOpacity(.3),

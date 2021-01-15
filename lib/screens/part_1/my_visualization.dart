@@ -170,8 +170,6 @@ class _MyVisualizationState extends State<MyVisualization>{
   @override
   Widget build(BuildContext context) {
 
-    print("width: "+MediaQuery.of(context).size.width.toString());
-
     //canvas variables
     centerX = MediaQuery.of(context).size.width/2-20;
     centerY = MediaQuery.of(context).size.width/2-20;

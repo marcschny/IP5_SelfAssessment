@@ -46,9 +46,6 @@ class _ProjectDescriptionDialogState extends State<ProjectDescriptionDialog>{
       description = answer?.answer != null ? answer.answer : "Keine Projektbeschreibung";
     });
 
-    print(assessment.project_title);
-
-
   }
 
 

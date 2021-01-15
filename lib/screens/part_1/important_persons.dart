@@ -56,7 +56,6 @@ class _ImportantPersonsState extends State<ImportantPersons>{
   //when popped back from dialog screen
   FutureOr onGoBack(dynamic value){
     _getTiles();
-    print("FutureOr onGoBck!");
   }
 
   //get person tiles from db

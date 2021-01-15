@@ -57,7 +57,6 @@ class _StartState extends State<Start>{
     assessmentRepo.createAssessment(newAssessment).then((assessmentId) {
       final Visualization newVisualization = new Visualization(null, assessmentId, 0, "");
       assessmentRepo.createVisualization(newVisualization).then((visualizationId) {
-        print(assessmentId.toString()+", "+visualizationId.toString());
         Navigator.of(context).push(
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 500),

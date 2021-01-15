@@ -18,8 +18,6 @@ class SlideUpFadeIn extends StatelessWidget {
       ..add(AniProps.opacity, Tween(begin: 0.0, end: 1.0), Duration(milliseconds: 500))
       ..add(AniProps.translateY, Tween(begin: begin, end: 0.0), Duration(milliseconds: 350));
 
-
-
     return PlayAnimation<MultiTweenValues<AniProps>>(
       delay: Duration(milliseconds: (300 * delay).round()),
       duration: _tween.duration,

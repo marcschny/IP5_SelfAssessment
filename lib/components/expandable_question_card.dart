@@ -222,11 +222,9 @@ class _ExpandableQuestionCardState extends State<ExpandableQuestionCard> {
       assessmentRepo.insertAnswer(newAnswer).then((answerId) {
         _loadAnswer();
       });
-      print("new answer: "+newAnswer.answer+" ["+newAnswer.assessment_id.toString()+"]");
     }else{
       final Answer updateAnswer = Answer(answer.id, value, widget.questionNumber, widget.assessmentId);
       assessmentRepo.updateAnswer(updateAnswer);
-      print("updated answer: "+updateAnswer.answer+" ["+updateAnswer.assessment_id.toString()+"]");
     }
   }
 

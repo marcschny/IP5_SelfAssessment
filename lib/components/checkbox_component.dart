@@ -41,7 +41,6 @@ class CheckBoxComponentState extends State<CheckBoxComponent>{
           Expanded(
             child: GestureDetector(
                 onTap: () {
-                  print(widget.checkboxTitle+" ["+widget.checked.toString()+"]");
                   widget.callback(widget.checkboxTitle);
                 },
                 child: Directionality(

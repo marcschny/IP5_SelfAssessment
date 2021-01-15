@@ -168,7 +168,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
         assessmentRepo.updateAnswer(updatedAnswer).then((assessmentId){
           Navigator.of(context).pop();
         });
-        print("answer updated");
 
       } else {
 
@@ -179,7 +178,6 @@ class _QuestionDialogState extends State<QuestionDialog> {
           assessmentRepo.insertAnswer(newAnswer).then((assessmentId) {
 
           });
-          print("answer created");
         }
         Navigator.of(context).pop();
 

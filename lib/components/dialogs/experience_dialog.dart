@@ -117,7 +117,6 @@ class _ExperienceDialogState extends State<ExperienceDialog>{
                                 ),
                               ),
                               onTap: (){
-                                print("clicked on very great smiley");
                                 setState(() {
                                   _selectedSmiley = "verygreat";
                                 });
@@ -148,7 +147,6 @@ class _ExperienceDialogState extends State<ExperienceDialog>{
                                 ),
                               ),
                               onTap: (){
-                                print("clicked on great smiley");
                                 setState(() {
                                   _selectedSmiley = "great";
                                 });
@@ -179,7 +177,6 @@ class _ExperienceDialogState extends State<ExperienceDialog>{
                                 ),
                               ),
                               onTap: (){
-                                print("clicked on ok smiley");
                                 setState(() {
                                   _selectedSmiley = "ok";
                                 });
@@ -210,7 +207,6 @@ class _ExperienceDialogState extends State<ExperienceDialog>{
                                 ),
                               ),
                               onTap: (){
-                                print("clicked on bad smiley");
                                 setState(() {
                                   _selectedSmiley = "bad";
                                 });
@@ -241,7 +237,6 @@ class _ExperienceDialogState extends State<ExperienceDialog>{
                                 ),
                               ),
                               onTap: (){
-                                print("clicked on very bad smiley");
                                 setState(() {
                                   _selectedSmiley = "verybad";
                                 });

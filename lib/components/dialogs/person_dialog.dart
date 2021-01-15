@@ -91,9 +91,7 @@ class _PersonDialogState extends State<PersonDialog>{
 
 
   _checkForUpdatePerson() async{
-    if(widget.person == null){
-      print("new person");
-    }else{
+    if(widget.person != null){
       setState(() {
         _nameController.text = widget.person.name;
         _selectedIcon = widget.person.icon;
@@ -500,7 +498,6 @@ class _PersonDialogState extends State<PersonDialog>{
                   color: Color.fromRGBO(80, 80, 80, 1),
                 ),
                 onPressed: (){
-                    print(_validate().toString());
                     if(!_validate()){
 
                       showToast(
@@ -522,9 +519,6 @@ class _PersonDialogState extends State<PersonDialog>{
                         widget.assessmentId
                       );
 
-                      print("new Person distance: "+newPerson.distance.toString());
-
-
 
                       final appDatabase = Provider.of<AppDatabase>(context, listen: false);
                       final assessmentRepo = appDatabase.assessmentRepository;
@@ -532,20 +526,12 @@ class _PersonDialogState extends State<PersonDialog>{
                       //create new person
                       if(widget.person == null) {
                         assessmentRepo.createPerson(newPerson).then((personId) {
-                          print("new created person id: " +
-                              personId.toString());
-                          print(newPerson.name + ", " + newPerson.icon + ", " +
-                              newPerson.lifeArea + ", " +
-                              newPerson.distance.toString() + ", nId: " +
-                              newPerson.visualization_id.toString() + ", aId: " +
-                              newPerson.assessment_id.toString());
                           Navigator.of(context).pop();
                         });
                       }
                       //update person
                       else{
                         assessmentRepo.updatePerson(newPerson).then((personId){
-                          print("updated person: "+personId.toString());
                           Navigator.of(context).pop();
                         });
                       }

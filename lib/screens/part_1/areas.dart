@@ -181,7 +181,6 @@ class _AreasState extends State<Areas>{
 
   //when textfield is submitted
   _onSubmit(String value){
-    print(value);
     if(value.length > 2) {
       _listKey.currentState.insertItem(0, duration: const Duration(milliseconds: 200));
       _lifeAreasMap.putIfAbsent(value, () => true);
@@ -210,7 +209,6 @@ class _AreasState extends State<Areas>{
     //and count number of life areas
     _lifeAreasMap.forEach((key, value) {
       if (value) {
-        print(key);
         noLifeAreas++;
         lifeAreas += key + ", ";
       }

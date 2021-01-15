@@ -190,7 +190,6 @@ class _WhoCanHelpState extends State<WhoCanHelp>{
                 Navigator.of(context).pop();
               },
               callbackNext: (){
-                print("Go to change project...");
                 Navigator.of(context).push(
                   PageRouteBuilder(
                     transitionDuration: Duration(milliseconds: 200),

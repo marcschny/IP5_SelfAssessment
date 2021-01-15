@@ -67,13 +67,14 @@ class _ExperienceExplanationDialogState extends State<ExperienceExplanationDialo
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 
-
                 Text(
                   "Wie war das genau? Und wie ging es Dir dabei?",
                   textAlign: TextAlign.center,
                   style: ThemeTexts.assessmentDialogTitle.copyWith(color: Color.fromRGBO(85, 85, 85, 1), fontSize: 18),
                 ),
+
                 SizedBox(height: 40),
+
                 Expanded(
                   child: TextField(
                     autofocus: false,

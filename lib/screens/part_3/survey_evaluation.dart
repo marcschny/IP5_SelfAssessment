@@ -168,12 +168,7 @@ class _SurveyEvaluationState extends State<SurveyEvaluation>{
       }
       surveyAnswers.clear();
     }
-
-
-    print(distinctQuestions.length);
-
     setState(() {
-
     });
 
     }

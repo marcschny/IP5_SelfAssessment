@@ -66,9 +66,6 @@ class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialo
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-
-
-
                     Container(
                       padding: EdgeInsets.fromLTRB(12, 10, 18, 18),
                       child: Row(
@@ -106,8 +103,6 @@ class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialo
                         ],
                       ),
                     ),
-
-
 
                     Flexible(
                       fit: FlexFit.loose,
@@ -149,7 +144,6 @@ class _NotEditableExperienceDialogState extends State<NotEditableExperienceDialo
                         ],
                       ),
                     ),
-
 
                   ],
                 ),

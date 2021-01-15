@@ -54,8 +54,6 @@ class _EvaluationState extends State<Evaluation>{
       projectTitle = assessment?.project_title != null ? assessment.project_title : "Kein Projekttitel";
     });
 
-    print(assessment?.project_title);
-
   }
 
   _getExperiences() async{
@@ -316,7 +314,6 @@ class _EvaluationState extends State<Evaluation>{
                                               ),
                                             ),
                                             onTap: (){
-                                              print("clicked on very great smiley");
                                               setState(() {
                                                 _selectedSmiley = "verygreat";
                                               });
@@ -347,7 +344,6 @@ class _EvaluationState extends State<Evaluation>{
                                               ),
                                             ),
                                             onTap: (){
-                                              print("clicked on great smiley");
                                               setState(() {
                                                 _selectedSmiley = "great";
                                               });
@@ -378,7 +374,6 @@ class _EvaluationState extends State<Evaluation>{
                                               ),
                                             ),
                                             onTap: (){
-                                              print("clicked on ok smiley");
                                               setState(() {
                                                 _selectedSmiley = "ok";
                                               });
@@ -409,7 +404,6 @@ class _EvaluationState extends State<Evaluation>{
                                               ),
                                             ),
                                             onTap: (){
-                                              print("clicked on bad smiley");
                                               setState(() {
                                                 _selectedSmiley = "bad";
                                               });
@@ -440,7 +434,6 @@ class _EvaluationState extends State<Evaluation>{
                                               ),
                                             ),
                                             onTap: (){
-                                              print("clicked on very bad smiley");
                                               setState(() {
                                                 _selectedSmiley = "verybad";
                                               });

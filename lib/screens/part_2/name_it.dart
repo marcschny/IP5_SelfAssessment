@@ -58,7 +58,6 @@ class _NameItState extends State<NameIt>{
 
     assessmentRepo.updateAssessment(updateAssessment);
 
-    print("set project title to: "+projectTitle);
   }
 
 

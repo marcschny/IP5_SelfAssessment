@@ -37,7 +37,6 @@ class _QuestionCardState extends State<QuestionCard>{
   //when popped back from dialog screen
   FutureOr onGoBack(dynamic value){
     _getAnswered();
-    print("FutureOr onGoBck!");
   }
 
   _getAnswered() async{
@@ -50,10 +49,8 @@ class _QuestionCardState extends State<QuestionCard>{
       setState(() {
         if (findAnswer.answer == null || findAnswer.answer == "") {
           _answered = false;
-          print("not answered");
         } else {
           _answered = true;
-          print(findAnswer.question_number+": "+findAnswer.answer);
         }
       });
       setState(() {
