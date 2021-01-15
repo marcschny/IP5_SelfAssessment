@@ -10,6 +10,8 @@ import 'package:ip5_selbsteinschaetzung/components/animations/fade_in.dart';
 import 'package:ip5_selbsteinschaetzung/resources/visualization_methods.dart';
 import 'package:ip5_selbsteinschaetzung/themes/assessment_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:ip5_selbsteinschaetzung/components/info_button.dart';
+import 'package:super_tooltip/super_tooltip.dart';
 
 
 class VisualizationDialog extends StatefulWidget{
@@ -207,6 +209,12 @@ class _VisualizationDialogState extends State<VisualizationDialog>{
                               ),
                             ),
                           ),
+                        ),
+
+                        Positioned(
+                          top: 8,
+                          right: 10,
+                          child: InfoButton(text: "Scrolle nach unten falls die Legende nicht sichtbar ist!", tooltipDirection: TooltipDirection.left),
                         ),
 
                       ]..addAll(personCircleList),

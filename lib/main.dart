@@ -32,7 +32,6 @@ import 'package:flutter/services.dart';
 import 'components/dialogs/person_dialog.dart';
 
 
-//todo: separate routes
 //todo: comments
 //todo: code cleanup
 Future<void> main() async {
