@@ -1,36 +1,20 @@
-# ip5_selbsteinschaetzung
+# Self Assessment - Friends and Relationships
 
-Digitale Tools zur ressourcenorientierten Selbsteinschätzung für jugendliche Klient_innen der Sozialen Arbeit.
+A mobile app (android/ios) for resource-oriented self-assessment for young social work clients.
 
-## Setup
+### Motto
+Find out where you are in life and track your personal progress.
 
-### Aufsetzen von Flutter und IDE
+### Target Group
+The target group of the application are young people who are placed in inpatient youth welfare facilities.
 
-Um Flutter auf dem Rechner zu installieren und die Entwicklungsumgebung anzupassen, folgen Sie den Anweisungen auf [dieser Website](https://flutter.dev/docs/get-started/install).
+### Needs
+The basic objective of the app is to enable young people to take a picture of themselves and their life context in order to become aware of their situation. More specifically, users should become aware of self-related issues in particular.
 
-### Starten der Applikation
+### Screenshots
+<img src="/assets/screenshots/ip5-1.png" height="300" align="left" />
+<img src="/assets/screenshots/ip5-2.png" height="300" align="left" />
+<img src="/assets/screenshots/ip5-3.png" height="300" align="left" />
+<img src="/assets/screenshots/ip5-4.png" height="300" align="left" />
+<img src="/assets/screenshots/ip5-5.png" height="300" align="left" />
 
-Sobald Flutter auf dem Rechner installiert und in der Entwicklungsumgebung integriert ist, können Sie das Projekt in der Entwicklungsumgebung öffnen:
-Klicken Sie dazu oben links auf "File" und anschliessend auf "Open..." und wählen Sie das Projekt zum Öffnen aus.
-
-Bevor das Projekt gestartet werden kann müssen noch einige Befehle ausgeführt werden.
-Öffnen Sie dazu die Kommandozeile und navigieren Sie zum Verzeichnis des Projekts (oder nutzen Sie das integrierte Terminal in der IDE).
-Führen Sie nun folgende Befehle aus:
-
-1. Build Cache leeren
-```bash
-flutter clean
-```
-
-2. Package dependencies holen
-```bash
-flutter pub get
-```
-
-3. Datenbank aufbauen:
-Löschen Sie dazu zuerst die Datei "database.g.dart" (falls vorhanden) im Verzeichnis "lib/database", und führen Sie dann den Befehl aus:
-```bash
-flutter packages pub run build_runner build
-```
-
-Nun kann die Applikation entweder mit angeschlossenem Android-Smartphone oder einem Emulator gestartet werden!
