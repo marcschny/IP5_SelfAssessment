@@ -13,6 +13,7 @@ The basic objective of the app is to enable young people to take a picture of th
 
 ### Screenshots
 <img src="/assets/screenshots/ip5-1.png" height="300" align="left" />
+<img src="/assets/screenshots/ip5-6.png" height="300" align="left" />
 <img src="/assets/screenshots/ip5-2.png" height="300" align="left" />
 <img src="/assets/screenshots/ip5-3.png" height="300" align="left" />
 <img src="/assets/screenshots/ip5-4.png" height="300" align="left" />
